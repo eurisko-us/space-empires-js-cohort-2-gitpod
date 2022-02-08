@@ -16,13 +16,13 @@ class Game {
                     gameState: this.state
                 });        
             }
-        }, 200);  
+        }, 1000);  
     }
 
     generateRandomGameState() {
         let board = {
-            numRows: 20,
-            numCols: 20,
+            numRows: 10,
+            numCols: 15,
             spaces: []
         };
 

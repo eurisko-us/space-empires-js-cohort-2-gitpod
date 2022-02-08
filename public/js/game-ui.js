@@ -29,12 +29,18 @@ function updateBoard(board) {
             let cell = row.insertCell();
             cell.className = 'boardSpace';
 
-            if (spaceValue === 1) {
-                cell.style.backgroundColor = 'red';
-            } else if (spaceValue === 2)  {
-                cell.style.backgroundColor = 'blue';
-            } else {
+            if ((i < 2 || i >= board.numRows - 2) && (j < 2 || j >= board.numCols - 2)) {
                 cell.style.backgroundColor = 'black';
+            } else if (spaceValue === 1) {
+                cell.style.backgroundColor = 'orange';
+            } else if (spaceValue === 2)  {
+                cell.style.backgroundColor = 'purple';
+            } else if (spaceValue === 3)  {
+                cell.style.backgroundColor = 'yellow';
+            } else if (spaceValue === 4)  {
+                cell.style.backgroundColor = 'green';
+            } else {
+                cell.style.backgroundColor = 'gray';
             }
         }
     }
