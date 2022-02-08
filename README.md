@@ -1,1 +1,3 @@
-# space-empires-js-cohort-2-gitpod
+Put your name here:
+- Justin S
+- 
