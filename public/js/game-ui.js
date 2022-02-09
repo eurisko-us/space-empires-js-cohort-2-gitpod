@@ -33,12 +33,16 @@ function updateBoard(board) {
                 cell.style.backgroundColor = 'black';
             } else if (spaceValue === 1) {
                 cell.style.backgroundColor = 'orange';
+                cell.textContent = 'O';
             } else if (spaceValue === 2)  {
                 cell.style.backgroundColor = 'purple';
+                cell.textContent = 'P';
             } else if (spaceValue === 3)  {
                 cell.style.backgroundColor = 'yellow';
+                cell.textContent = 'Y';
             } else if (spaceValue === 4)  {
                 cell.style.backgroundColor = 'green';
+                cell.textContent = 'G';
             } else {
                 cell.style.backgroundColor = 'gray';
             }
