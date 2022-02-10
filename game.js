@@ -36,7 +36,7 @@ class Game {
                 let r = this.getRandomInteger(1, 20);
                 board.spaces[i][j] = r;
             }
-        }    
+        }
 
         let gameState = {
             board
