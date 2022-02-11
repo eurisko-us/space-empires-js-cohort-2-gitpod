@@ -13,19 +13,12 @@ let turn = 0;
 
 function updateBoard(board) {
 
-    // let numBoxesLogs = {
-    //     "purple": 0,
-    //     "orange": 0,
-    //     "yellow": 0,
-    //     "green" : 0
-    // }
-
-    // let boxesCoordsLogs = {
-    //     "purple": [],
-    //     "orange": [],
-    //     "yellow": [],
-    //     "green" : []
-    // }
+    let logs = {
+        "purple": [0, []],
+        "orange": [0, []],
+        "yellow": [0, []],
+        "green" : [0, []]
+    }
 
     // turn counter
 
@@ -54,7 +47,7 @@ function updateBoard(board) {
             cell.className = 'boardSpace';
 
             let coords = `(${i}, ${j})`;
-            // let updateLogs = false;
+            let updateLogs = false;
 
             if ((i < 2 || i >= board.numRows - 2) && (j < 2 || j >= board.numCols - 2)) {
 
@@ -64,46 +57,46 @@ function updateBoard(board) {
 
                 cell.style.backgroundColor = 'orange';
                 cell.textContent = 'O';
-                // updateLogs = true;
+                updateLogs = true;
 
             } else if (spaceValue === 2)  {
 
                 cell.style.backgroundColor = 'purple';
                 cell.textContent = 'P';
-                // updateLogs = true;
+                updateLogs = true;
 
             } else if (spaceValue === 3)  {
 
                 cell.style.backgroundColor = 'yellow';
                 cell.textContent = 'Y';
-                // updateLogs = true;
+                updateLogs = true;
 
             } else if (spaceValue === 4)  {
 
                 cell.style.backgroundColor = 'green';
                 cell.textContent = 'G';
-                // updateLogs = true;
+                updateLogs = true;
 
             } else {
 
                 cell.style.backgroundColor = 'gray';
             }
 
-            // if (updateLogs) {
-            //     // numBoxesLog[cell.style.backgroundColor]++;
-            //     // boxesCoordsLogs[cell.style.backgroundColor].append(coords);
-            // }
+            if (updateLogs) {
+                logs[cell.style.backgroundColor][0]++;
+                logs[cell.style.backgroundColor][1].push(coords);
+            }
 
         }
     }
 
     // logs
 
-    // const logsHTML = document.getElementById("logs");
-    // logsHTML.innerHTML = '';
+    const logsHTML = document.getElementById("logs");
+    logsHTML.innerHTML = '';
 
-    // for (const color of ["purple", "orange", "yellow", "green"]) {
-    //     logsHTML.innerHTML += `${numBoxesLog[color]} ${color} boxes: {boxesCoordsLogs[color]} <br>`;
-    // }
+    for (const color of ["purple", "orange", "yellow", "green"]) {
+        logsHTML.innerHTML += `${logs[color][0]} ${color} boxes: ${logs[color][1]} <br>`;
+    }
 
 }
