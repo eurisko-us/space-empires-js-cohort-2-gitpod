@@ -16,10 +16,11 @@ class Game {
                     gameState: this.state
                 });        
             }
-        }, 1000);  
+        }, 1000);
     }
 
     generateRandomGameState() {
+        
         let board = {
             numRows: 10,
             numCols: 15,
