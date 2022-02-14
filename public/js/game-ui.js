@@ -94,7 +94,7 @@ function updateBoard(board) {
 
                 if (updateLogs) {
                     logs[cell.style.backgroundColor][0]++;
-                    logs[cell.style.backgroundColor][1].push(`(${i}, ${j})`);
+                    logs[cell.style.backgroundColor][1].push(` (${j}, ${i})`);
                 }
 
             }
@@ -107,7 +107,7 @@ function updateBoard(board) {
     const logsHTML = document.getElementById("logs");
     logsHTML.innerHTML = '';
 
-    for (const color of ["purple", "orange", "yellow", "green"]) {
+    for (const color in logs) {
         logsHTML.innerHTML += `${logs[color][0]} ${color} boxes: ${logs[color][1]} <br>`;
     }
 
