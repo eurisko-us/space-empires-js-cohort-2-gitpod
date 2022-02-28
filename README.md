@@ -4,4 +4,5 @@ Put your name here:
 - Cayden L
 - William
 - Charlie
-- Anton 
+- Anton
+- Maia
