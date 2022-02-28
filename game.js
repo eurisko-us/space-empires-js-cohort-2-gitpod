@@ -1,4 +1,3 @@
-
 class Ship {
     constructor(coords) {
         this.coords = coords;
@@ -64,13 +63,6 @@ class Game {
     initializeGame() {
         //make board
         //give ships to players
-        let board = []
-
-        for(let i = 0; i < board.numRows; i++) {
-            for(let j = 0; j < board.numCols; j++) {
-                board[j][i] = [];
-            }
-        }
         
         this.ships.push(new Ship([3,0]))
     }
