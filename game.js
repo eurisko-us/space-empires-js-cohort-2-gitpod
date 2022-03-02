@@ -1,24 +1,14 @@
-#testing branch words
-class Ship {
-    constructor(coords) {
-        this.coords = coords;
-    }
-};
+const Ship = require('./ships');
+const Player = require('./player');
 
 class Game {
-    constructor(clientSockets) {
+    constructor(clientSockets, dimensions, players) {
         this.clientSockets = clientSockets;
-
+        this.dims = dimensions
         this.board = [];
-
-        for(let i = 0; i < 7; i++){
-            this.board.push([])
-            
-            for(let j = 0; j < 7; j++){
-                this.board[i].push([])
-            }
-        }
-        this.ships = []
+        this.turn = 0
+        this.players = players
+        this.winner = null;
     }
 
     start() {
@@ -29,7 +19,8 @@ class Game {
                 let socket = this.clientSockets[socketId];
 
                 socket.emit('gameState', { 
-                    gameState: this.state
+                    gameBoard: this.board,
+                    gameTurn: this.turn
                 });        
             }
         }, 200);  
@@ -61,27 +52,86 @@ class Game {
     //     return gameState;
     // }
 
-    initializeGame() {
-        //make board
-        //give ships to players
-        let board = []
+    checkInBounds(coords){
+        x = coords[0]
+        y = coords[1]
+        x_bound = this.dims[0]
+        y_bound = this.dims[1]
+        return (x >= 0 && x< x_bound) && (y >= 0 && y< y_bound)
+    }
 
-        for(let i = 0; i < board.numRows; i++) {
-            for(let j = 0; j < board.numCols; j++) {
-                board[j][i] = [];
+    possibleTranslations(coords){
+        options = [[0,0],[0,1],[1,0],[-1,0],[0,-1]]
+        translations = []
+
+        for (let option in options) {
+            new_coords = [option[0] + coords[0], option[1] + coords[1]]
+
+            if (this.checkInBounds(new_coords)) {
+                translations.push(option)
             }
         }
+
+        return translations
+    }
+
+    addShipToBoard(ship){
+        x = ship.coords[0]
+        y = ship.coords[1]
+
+        this.board[y][x].push(ship)
+    }
+
+    initializeGame() {
+        //make board
+        x_bound = this.bounds[0]
+        y_bound = this.bounds[1]
+
+        for(let i = 0; i < x_bound; i++){
+            this.board.push([])
+            
+            for(let j = 0; j < y_bound; j++){
+                this.board[i].push([])
+            }
+        }
+        //give ships to players
+        for (let i = 0; i<this.players.length; i++) {
+            this.players[i].addShip(new Ship([3,6*i]))
+            this.addShipToBoard(ship)
+        }
         
-        this.ships.push(new Ship([3,0]))
     }
 
     movementPhase() {
-        this.ships[0].coords[1] += 1 
+        for (let player in this.players) {
+            for (let ship in player.ships) {
+                player.chooseTranslation()
+            }
+        }
+
+        this.turn ++
+    }
+
+    checkForWinner() {
+        for (let player in this.players) {
+            for (let ship in player.ships) {
+                if (player.playerNum === 1) {
+                    if (ship.coords === [6, 3]) {
+                        this.winner = 1
+                    }
+                
+                if (player.playerNum === 2) {
+                    if (ship.coords === )
+                }
+
+                }
+            }
+        }
     }
 
     run(numTurns) {
         this.initializeGame()
-        for(let i = 0; i<numTurns; i++){
+        for(let i = 0; i < numTurns; i++){
             this.movementPhase()
             this.turn ++;
         }
