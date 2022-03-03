@@ -3,12 +3,6 @@ const Player = require('./player');
 const Logger = require('./logger.js')
 
 
-class Ship {
-    constructor(coords) {
-        this.coords = coords;
-    }
-};
-
 class Game {
     constructor(clientSockets, dimensions, players) {
         this.clientSockets = clientSockets;
