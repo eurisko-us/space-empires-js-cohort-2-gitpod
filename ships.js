@@ -1,5 +1,7 @@
 class Ship {
     constructor(coords) {
-        this.coords = null
+        this.coords = coords;
     }
-}
+};
+
+module.exports = Ship;

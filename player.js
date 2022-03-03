@@ -15,8 +15,8 @@ class Player {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    chooseTranslation(translations){
-        rand_i = this.getRandomInteger(0,translations.length-1)
+    chooseTranslation(ship, translations){
+        rand_i = this.getRandomInteger(0, translations.length-1)
         return translations[rand_i]
     }
 };
