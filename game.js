@@ -6,14 +6,13 @@ class Game {
         this.clientSockets = clientSockets;
         this.dims = dimensions
         this.board = [];
-        this.turn = 0
+        this.turn = 0;
         this.players = players
         this.winner = null;
     }
 
     start() {
         setInterval(() => {
-            this.state = this.generateRandomGameState();
 
             for(let socketId in this.clientSockets) {
                 let socket = this.clientSockets[socketId];
@@ -75,17 +74,26 @@ class Game {
         return translations
     }
 
-    addShipToBoard(ship){
-        x = ship.coords[0]
-        y = ship.coords[1]
+    removeFromBoard(obj, coords) {
+        let x = coords[0]
+        let y = coords[1]
 
-        this.board[y][x].push(ship)
+        let index = this.board[y][x].indexOf(obj)
+
+        this.board[y][x].splice(index, 1)
+    }
+
+    addToBoard(obj){
+        let x = obj.coords[0]
+        let y = obj.coords[1]
+
+        this.board[y][x].push(obj)
     }
 
     initializeGame() {
         //make board
-        x_bound = this.bounds[0]
-        y_bound = this.bounds[1]
+        const x_bound = this.dims[0]
+        const y_bound = this.dims[1]
 
         for(let i = 0; i < x_bound; i++){
             this.board.push([])
@@ -96,8 +104,9 @@ class Game {
         }
         //give ships to players
         for (let i = 0; i<this.players.length; i++) {
-            this.players[i].addShip(new Ship([3,6*i]))
-            this.addShipToBoard(ship)
+            let ship = new Ship([3,6*i])
+            this.players[i].addShip(ship)
+            this.addToBoard(ship)
         }
         
     }
@@ -105,7 +114,15 @@ class Game {
     movementPhase() {
         for (let player in this.players) {
             for (let ship in player.ships) {
-                player.chooseTranslation()
+                old_coords = ship.coords
+                
+                options = this.possibleTranslations(ship.coords)
+                option = player.chooseTranslation(ship, options)
+                ship.coords[0] += option[0]
+                ship.coords[1] += option[1]
+                ship.updateCoords(ship.coords)
+                this.addToBoard(ship)
+                this.removeFromBoard(ship, old_coords)
             }
         }
 
@@ -115,25 +132,32 @@ class Game {
     checkForWinner() {
         for (let player in this.players) {
             for (let ship in player.ships) {
-                if (player.playerNum === 1) {
-                    if (ship.coords === [6, 3]) {
+                if (player.playerNum == 1) {
+                    if (ship.coords == [3, 6]) {
                         this.winner = 1
                     }
+                }
                 
-                if (player.playerNum === 2) {
-                    if (ship.coords === )
+                if (player.playerNum == 2) {
+                    if (ship.coords == [3, 0]) {
+                        this.winner = 2
+                    }
                 }
-
-                }
+            
             }
         }
     }
 
-    run(numTurns) {
+    run(maxTurns) {
         this.initializeGame()
-        for(let i = 0; i < numTurns; i++){
-            this.movementPhase()
-            this.turn ++;
+        for(let i = 0; i < maxTurns; i++){
+            if (this.checkForWinner() == null){
+                this.movementPhase()
+            }
+        }
+
+        if (this.winner == null) {
+            this.winner = "Tie"
         }
     }
 

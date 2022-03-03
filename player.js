@@ -5,6 +5,7 @@ class Player {
     }
     
     addShip(ship){
+        ship.playerNum = this.playerNum
         this.ships.push(ship)
     }
 
