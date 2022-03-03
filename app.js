@@ -3,6 +3,8 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const Game = require('./game');
+const Player = require('./player');
+
 
 app.use(express.static('public'))
 
@@ -29,5 +31,7 @@ http.listen(3000, () => {
     console.log('Listening on *:3000');
 });
 
-const game = new Game(clientSockets);
-game.start();
+const game = new Game(clientSockets, [7, 7], [new Player(1), new Player(2)])
+
+game.initializeGame();
+game.run(5)
