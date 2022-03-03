@@ -32,7 +32,7 @@ class Game {
         }, 200);  
     }
 
-    checkInBounds(coords){
+    checkInBounds(coords) {
         x = coords[0]
         y = coords[1]
         x_bound = this.dims[0]
@@ -40,7 +40,7 @@ class Game {
         return (x >= 0 && x< x_bound) && (y >= 0 && y< y_bound)
     }
 
-    possibleTranslations(coords){
+    possibleTranslations(coords) {
         options = [[0,0],[0,1],[1,0],[-1,0],[0,-1]]
         translations = []
 
@@ -64,7 +64,7 @@ class Game {
         this.board[y][x].splice(index, 1)
     }
 
-    addToBoard(obj){
+    addToBoard(obj) {
         let x = obj.coords[0]
         let y = obj.coords[1]
 
@@ -89,14 +89,10 @@ class Game {
             this.players[i].addShip(ship)
             this.addToBoard(ship)
         }
-
-    initializeGame() {
-        //make board
-        //give ships to players
-        
     }
 
     movementPhase() {
+        this.log.begin_phase('Movement')
         for (let player in this.players) {
             for (let ship in player.ships) {
                 old_coords = ship.coords
@@ -112,6 +108,8 @@ class Game {
         }
 
         this.turn ++
+
+        this.log.end_phase('Movement')
     }
 
     checkForWinner() {
@@ -131,15 +129,6 @@ class Game {
             
             }
         }
-
-        this.log.begin_phase('Movement')
-        let orig_coords = this.ships[0].coords 
-        this.ships[0].coords[1] += 1
-        
-        this.log.ship_movement(orig_coords, this.ships[0].coords)
-
-        this.log.end_phase('Movement')
-
     }
 
     run(maxTurns) {
@@ -152,10 +141,11 @@ class Game {
 
         if (this.winner == null) {
             this.winner = "Tie"
-        for(let i = 0; i<numTurns; i++){
+        for(let i = 0; i<maxTurns; i++){
             this.log.turn(i+1)
             this.movementPhase()
             this.turn ++;
+        }
         }
     }
 
