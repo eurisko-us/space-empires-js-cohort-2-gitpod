@@ -6,7 +6,7 @@ class Logger {
     }
 
     clear() {
-        fs.writeFile(this.filename, '', err => {
+        fs.writeFileSync(this.filename, '', err => {
             if (err) {
               console.error(err)
               return
@@ -15,7 +15,7 @@ class Logger {
     }
 
     write(string) {
-        fs.appendFile(this.filename, string, err => {
+        fs.appendFileSync(this.filename, string, err => {
             if (err) {
               console.error(err)
               return
