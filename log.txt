@@ -4,18 +4,22 @@ Turn 1
 	Begin Movement Phase
 		Ship moved from 3,1 to 3,1
 	End Movement Phase
+
 Turn 2
 	Begin Movement Phase
 		Ship moved from 3,2 to 3,2
 	End Movement Phase
+
 Turn 3
 	Begin Movement Phase
 		Ship moved from 3,3 to 3,3
 	End Movement Phase
+
 Turn 4
 	Begin Movement Phase
 		Ship moved from 3,4 to 3,4
 	End Movement Phase
+
 Turn 5
 	Begin Movement Phase
 		Ship moved from 3,5 to 3,5

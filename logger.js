@@ -24,11 +24,11 @@ class Logger {
     }
 
     initialize() {
-        this.write('Begin Game\n\n')
+        this.write('Begin Game\n')
     }
 
     turn(turn_num) {
-        this.write(`Turn ${turn_num}\n`)
+        this.write(`\nTurn ${turn_num}\n`)
     }
 
     begin_phase(phase) {
