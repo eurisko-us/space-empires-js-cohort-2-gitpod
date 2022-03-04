@@ -5,7 +5,6 @@ const io = require('socket.io')(http);
 const Game = require('./game');
 const Player = require('./player');
 
-
 app.use(express.static('public'))
 
 app.get('/', function(req, res) {
@@ -15,6 +14,7 @@ app.get('/', function(req, res) {
 let clientSockets = {};
 
 io.on('connection', (socket) => {
+
     let socketId = socket.id;
     clientSockets[socketId] = socket;
 
@@ -22,16 +22,16 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log('Client socket disconnected: ' + socketId);
-
         delete clientSockets[socketId];
-    });  
+    });
+
 });
 
 http.listen(3000, () => {
     console.log('Listening on *:3000');
 });
 
-const game = new Game(clientSockets, [7, 7], [new Player(1), new Player(2)])
-
+const maxTurns = 10;
+const game = new Game(clientSockets, [7, 7], [new Player(1), new Player(2)], maxTurns);
 game.initializeGame();
-game.run(5)
+game.start();

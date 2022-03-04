@@ -1,12 +1,6 @@
 Begin Game
-	Begin Movement Phase
-	End Movement Phase
-	Begin Movement Phase
-	End Movement Phase
-	Begin Movement Phase
-	End Movement Phase
-	Begin Movement Phase
-	End Movement Phase
+
+Turn 0
 	Begin Movement Phase
 	End Movement Phase
 
@@ -15,17 +9,5 @@ Turn 1
 	End Movement Phase
 
 Turn 2
-	Begin Movement Phase
-	End Movement Phase
-
-Turn 3
-	Begin Movement Phase
-	End Movement Phase
-
-Turn 4
-	Begin Movement Phase
-	End Movement Phase
-
-Turn 5
 	Begin Movement Phase
 	End Movement Phase
