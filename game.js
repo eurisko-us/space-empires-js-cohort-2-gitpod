@@ -19,51 +19,12 @@ class Game {
         this.turn = 0;
         this.players = players;
         this.winner = null;
+        this.logs;
 
     }
 
     start() {
-        setInterval(() => {
-
-            for(let socketId in this.clientSockets) {
-                let socket = this.clientSockets[socketId];
-
-                fs.readFile('log.txt', (err, data) => {
-
-                    let encoder = new TextDecoder("utf-8");
-                    let logs = this.getLogs(encoder.decode(data));
-
-                    socket.emit('gameState', { 
-                        gameBoard: this.board,
-                        gameTurn: this.turn,
-                        gameLogs: logs
-                    });
-
-                });
-
-            }
-            
-            this.run(10);
-
-        }, 1000);
-    }
-
-    getLogs(data) {
-
-        let logs = [];
-        let currentLine = '';
-
-        for (let letter of data) {
-            if (letter == '\n') {
-                logs.push(currentLine);
-                currentLine = '';
-            } else {
-                currentLine += letter;
-            }
-        }
-
-        return logs;
-
+        setInterval(() => this.run(), 1000);
     }
 
     checkInBounds(coords) {
@@ -146,7 +107,6 @@ class Game {
             }
         }
 
-        this.turn++;
         this.log.end_phase('Movement');
 
     }
@@ -173,16 +133,53 @@ class Game {
 
     }
 
-    run(maxTurns) {
+    getLogs(data) {
+
+        let logs = [];
+        let currentLine = '';
+
+        for (let letter of data) {
+            if (letter == '\n') {
+                logs.push(currentLine);
+                currentLine = '';
+            } else {
+                currentLine += letter;
+            }
+        }
+
+        return logs;
+
+    }
+
+    run() { // only 1 turn for game-ui connection purposes
+
+        for(let socketId in this.clientSockets) {
+            let socket = this.clientSockets[socketId];
+
+            fs.readFile('log.txt', (err, data) => {
+
+                let encoder = new TextDecoder("utf-8");
+                this.logs = this.getLogs(encoder.decode(data));
+                
+                socket.emit('gameState', { 
+                    gameBoard: this.board,
+                    gameTurn: this.turn,
+                    gameLogs: this.logs
+                });
+
+            });
+
+        }
 
         this.checkForWinner();
 
-        if (this.turn < maxTurns) {
-            if (this.winner == null) {
+        if (this.turn < this.maxTurns) {
+            if (!this.winner) {
                 this.log.turn(this.turn);
                 this.movementPhase();
+                this.turn++;
             }
-        } else if (this.winner == null) {
+        } else if (!this.winner) {
             this.winner = "Tie";
         }
         

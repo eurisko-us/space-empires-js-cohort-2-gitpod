@@ -11,3 +11,31 @@ Turn 1
 Turn 2
 	Begin Movement Phase
 	End Movement Phase
+
+Turn 3
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 4
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 5
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 6
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 7
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 8
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 9
+	Begin Movement Phase
+	End Movement Phase
