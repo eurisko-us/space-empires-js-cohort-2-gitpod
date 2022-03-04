@@ -1,7 +1,7 @@
 let fs = require('fs');
 const Ship = require('./ships');
 const Player = require('./player');
-const Logger = require('./logger.js')
+const Logger = require('./logger.js');
 
 class Game {
 
@@ -19,7 +19,7 @@ class Game {
         this.turn = 0;
         this.players = players;
         this.winner = null;
-        this.logs;
+        this.logs = null;
 
     }
 
