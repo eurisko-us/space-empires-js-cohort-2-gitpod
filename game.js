@@ -8,7 +8,7 @@ class Game {
     constructor(clientSockets, dimensions, players, maxTurns) {
 
         this.clientSockets = clientSockets;
-        this.dims = dimensions;
+        this.boardSize = dimensions[0];
         this.maxTurns = maxTurns;
    
         this.log = new Logger();
@@ -30,9 +30,7 @@ class Game {
     checkInBounds(coords) {
         let x = coords[0];
         let y = coords[1];
-        let x_bound = this.dims[0];
-        let y_bound = this.dims[1];
-        return (0 <= x && x < x_bound) && (0 <= y && y < y_bound);
+        return (0 <= x && x < this.boardSize) && (0 <= y && y < this.boardSize);
     }
 
     possibleTranslations(coords) {
@@ -67,19 +65,17 @@ class Game {
     initializeGame() {
 
         // make board
-        const x_bound = this.dims[0];
-        const y_bound = this.dims[1];
 
-        for(let i = 0; i < x_bound; i++){
+        for(let i = 0; i < this.boardSize; i++){
             this.board.push([]);
-            for(let j = 0; j < y_bound; j++){
+            for(let j = 0; j < this.boardSize; j++){
                 this.board[i].push([]);
             }
         }
 
         // give ships to players
         for (let i = 0; i < this.players.length; i++) {
-            let ship = new Ship([3,6*i]);
+            let ship = new Ship([3, 6*i]);
             this.players[i].addShip(ship);
             this.addToBoard(ship);
         }
@@ -135,10 +131,13 @@ class Game {
 
     getLogs(data) {
 
+        let encoder = new TextDecoder("utf-8");
+        let lines = encoder.decode(data);
+
         let logs = [];
         let currentLine = '';
 
-        for (let letter of data) {
+        for (let letter of lines) {
             if (letter == '\n') {
                 logs.push(currentLine);
                 currentLine = '';
@@ -151,15 +150,14 @@ class Game {
 
     }
 
-    run() { // only 1 turn for game-ui connection purposes
+    run() {
 
         for(let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
 
             fs.readFile('log.txt', (err, data) => {
 
-                let encoder = new TextDecoder("utf-8");
-                this.logs = this.getLogs(encoder.decode(data));
+                this.logs = this.getLogs(data);
                 
                 socket.emit('gameState', { 
                     gameBoard: this.board,
