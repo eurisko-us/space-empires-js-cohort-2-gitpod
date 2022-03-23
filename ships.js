@@ -1,8 +1,9 @@
 class Ship {
 
-    constructor(coords) {
+    constructor(coords, shipNum) {
         this.coords = coords;
         this.playerNum = null;
+        this.shipNum = shipNum;
     }
 
     updateCoords(newCoords) {

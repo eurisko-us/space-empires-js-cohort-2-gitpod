@@ -23,24 +23,24 @@ class Logger {
         })
     }
 
-    initialize() {
+    initialize() { //works
         this.write('Begin Game\n')
     }
 
-    turn(turn_num) {
+    turn(turn_num) { //works
         this.write(`\nTurn ${turn_num}\n`)
     }
 
-    begin_phase(phase) {
+    begin_phase(phase) { //works
         this.write(`\tBegin ${phase} Phase\n`)
     }
 
-    end_phase(phase) {
+    end_phase(phase) { //works
         this.write(`\tEnd ${phase} Phase\n`)
     }
 
-    ship_movement(orig_coords, new_coords) {
-        this.write(`\t\tShip moved from ${orig_coords} to ${new_coords}\n`)
+    ship_movement(origCoords, newCoords, playerNum, shipNum) {
+        this.write(`\t\tPlayer ${playerNum} Ship ${shipNum} moved from (${origCoords}) to (${newCoords})\n`)
     }
 
 }
