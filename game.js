@@ -1,6 +1,7 @@
 let fs = require('fs');
 const Ship = require('./ships');
 const Player = require('./player');
+const Colony = require('./colony');
 const Logger = require('./logger.js');
 
 class Game {
@@ -73,11 +74,20 @@ class Game {
             }
         }
 
-        // give ships to players
         for (let i = 0; i < this.players.length; i++) {
-            let ship = new Ship([3, 6*i]);
+            
+            // ships
+
+            let ship = new Ship([3,6*i], i+1, 1);
             this.players[i].addShip(ship);
             this.addToBoard(ship);
+
+            // home colony
+
+            let homeColony = new Colony([3,6*i], i+1);
+            this.players[i].homeColony = homeColony;
+            this.addToBoard(homeColony);
+
         }
 
     }
@@ -95,6 +105,8 @@ class Game {
 
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
+
+                this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.shipNum);
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);

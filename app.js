@@ -31,7 +31,7 @@ http.listen(3000, () => {
     console.log('Listening on *:3000');
 });
 
-const maxTurns = 10;
+const maxTurns = 1000;
 const game = new Game(clientSockets, [7, 7], [new Player(1), new Player(2)], maxTurns);
 game.initializeGame();
 game.start();

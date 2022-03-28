@@ -3,6 +3,7 @@ class Player {
     constructor(playerNum) {
         this.playerNum = playerNum;
         this.ships = [];
+        this.homeColony = null;
     }
     
     addShip(ship){

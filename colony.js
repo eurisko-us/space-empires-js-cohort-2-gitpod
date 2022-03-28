@@ -1,9 +1,9 @@
 class Colony {
 
-    constructor(playerNum, coords) {
+    constructor(coords, playerNum) {
 
-        this.playerNum = playerNum;
         this.coords = coords;
+        this.playerNum = playerNum;
 
         this.isHomeColony = false;
         this.objType = "Colony";
@@ -11,3 +11,5 @@ class Colony {
     }
     
 }
+
+module.exports = Colony
