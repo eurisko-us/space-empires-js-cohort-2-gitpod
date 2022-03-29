@@ -39,8 +39,8 @@ class Logger {
         this.write(`\tEnd ${phase} Phase\n`)
     }
 
-    ship_movement(origCoords, newCoords, playerNum, shipNum) {
-        this.write(`\t\tPlayer ${playerNum} Ship ${shipNum} moved from (${origCoords}) to (${newCoords})\n`)
+    ship_movement(origCoords, newCoords, playerNum, shipName, shipNum) {
+        this.write(`\t\tPlayer ${playerNum} ${shipName} ${shipNum} moved from (${origCoords}) to (${newCoords})\n`)
     }
 
 }

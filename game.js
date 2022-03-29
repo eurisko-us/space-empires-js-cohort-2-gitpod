@@ -1,5 +1,11 @@
 let fs = require('fs');
-const Ship = require('./ships');
+const ships = require('./ships');
+const Scout = ships.Scout;
+const BattleCruiser = ships.BattleCruiser;
+const BattleShip = ships.BattleShip;
+const Cruiser = ships.Cruiser;
+const Destroyer = ships.Destroyer;
+const Dreadnaught = ships.Dreadnaught;
 const Player = require('./player');
 const Logger = require('./logger.js');
 
@@ -79,9 +85,9 @@ class Game {
 
         // give ships to players
         for (let i = 0; i < this.players.length; i++) {
-            let ship = new Ship([3,6*i], 1);
-            this.players[i].addShip(ship);
-            this.addToBoard(ship);
+            let scout = new Scout(i + 1, [3,6*i], 1);
+            this.players[i].addShip(scout);
+            this.addToBoard(scout);
         }
 
     }
@@ -99,7 +105,7 @@ class Game {
 
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
-                this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.shipNum)
+                this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.name, ship.shipNum)
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
