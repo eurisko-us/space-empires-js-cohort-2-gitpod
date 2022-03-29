@@ -36,7 +36,8 @@ class Game {
 
     possibleTranslations(coords) {
 
-        let options = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        // let options = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        let options = [[0,0], [0,1]];
         let translations = [];
 
         for (let option of options) {
@@ -50,9 +51,9 @@ class Game {
 
     }
 
-    removeFromBoard(obj, coords) {
-        let x = coords[0];
-        let y = coords[1];
+    removeFromBoard(obj) {
+        let x = obj.coords[0];
+        let y = obj.coords[1];
         let index = this.board[y][x].indexOf(obj);
         this.board[y][x].splice(index, 1);
     }
@@ -102,7 +103,9 @@ class Game {
                 let old_coords = [...ship.coords];
                 let options = this.possibleTranslations(ship.coords);
                 let option = player.chooseTranslation(ship, options);
-
+                
+                this.removeFromBoard(ship);
+                
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
 
@@ -110,7 +113,7 @@ class Game {
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
-                this.removeFromBoard(ship, old_coords);
+                
 
             }
         }
@@ -119,26 +122,35 @@ class Game {
 
     }
 
+    checkForOpponentShips(obj) {
+        return true;
+
+
+    }
+    
+    removePlayer(player){
+        for(let ship of player.ships){
+           this.removeFromBoard(ship)
+        }
+        this.removeFromBoard(player.home_colony)
+
+        let index = this.players.indexOf(player));
+        this.players.splice(index, 1)
+    }
+
     checkForWinner() {
 
         for (let player of this.players) {
-            for (let ship of player.ships) {
-
-                if (player.playerNum == 1) {
-                    if (ship.coords == [3, 6]) {
-                        this.winner = 1;
-                    }
-                }
-                
-                if (player.playerNum == 2) {
-                    if (ship.coords == [3, 0]) {
-                        this.winner = 2;
-                    }
-                }
-            
+            if (this.checkForOpponentShips(player.homeColony)) {
+                this.removePlayer(player)
             }
         }
-
+        if(this.players.length == 1){
+            return this.players[0].playerNum
+        }
+        if(this.players.length == 0){
+            return 'Tie'
+        }
     }
 
     getLogs(data) {
