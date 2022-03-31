@@ -124,33 +124,37 @@ class Game {
 
     checkForOpponentShips(obj) {
         return true;
-
-
     }
     
-    removePlayer(player){
-        for(let ship of player.ships){
-           this.removeFromBoard(ship)
-        }
-        this.removeFromBoard(player.home_colony)
+    removePlayer(player) {
 
-        let index = this.players.indexOf(player));
-        this.players.splice(index, 1)
+        for(let ship of player.ships) {
+           this.removeFromBoard(ship);
+        }
+
+        this.removeFromBoard(player.home_colony);
+
+        let index = this.players.indexOf(player);
+        this.players.splice(index, 1);
+
     }
 
     checkForWinner() {
 
         for (let player of this.players) {
             if (this.checkForOpponentShips(player.homeColony)) {
-                this.removePlayer(player)
+                this.removePlayer(player);
             }
         }
-        if(this.players.length == 1){
-            return this.players[0].playerNum
+
+        if(this.players.length == 1) {
+            return this.players[0].playerNum;
         }
-        if(this.players.length == 0){
-            return 'Tie'
+
+        if(this.players.length == 0) {
+            return 'Tie';
         }
+
     }
 
     getLogs(data) {
