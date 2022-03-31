@@ -1,14 +1,15 @@
 let fs = require('fs');
 const Ship = require('./ships');
 const Player = require('./player');
+const Colony = require('./colony');
 const Logger = require('./logger.js');
 
 class Game {
 
-    constructor(clientSockets, dimensions, players, maxTurns) {
+    constructor(clientSockets, boardSize, players, maxTurns) {
 
         this.clientSockets = clientSockets;
-        this.dims = dimensions;
+        this.boardSize = boardSize;
         this.maxTurns = maxTurns;
    
         this.log = new Logger();
@@ -19,7 +20,6 @@ class Game {
         this.turn = 0;
         this.players = players;
         this.winner = null;
-        this.logs = null;
 
     }
 
@@ -30,9 +30,7 @@ class Game {
     checkInBounds(coords) {
         let x = coords[0];
         let y = coords[1];
-        let x_bound = this.dims[0];
-        let y_bound = this.dims[1];
-        return (0 <= x && x < x_bound) && (0 <= y && y < y_bound);
+        return (0 <= x && x < this.boardSize) && (0 <= y && y < this.boardSize);
     }
 
     possibleTranslations(coords) {
@@ -67,21 +65,28 @@ class Game {
     initializeGame() {
 
         // make board
-        const x_bound = this.dims[0];
-        const y_bound = this.dims[1];
 
-        for(let i = 0; i < x_bound; i++){
+        for(let i = 0; i < this.boardSize; i++){
             this.board.push([]);
-            for(let j = 0; j < y_bound; j++){
+            for(let j = 0; j < this.boardSize; j++){
                 this.board[i].push([]);
             }
         }
 
-        // give ships to players
         for (let i = 0; i < this.players.length; i++) {
-            let ship = new Ship([3,6*i]);
+
+            // ships
+
+            let ship = new Ship([3,6*i], i+1, 1);
             this.players[i].addShip(ship);
             this.addToBoard(ship);
+
+            // home colony
+
+            let homeColony = new Colony([3,6*i], i+1);
+            this.players[i].homeColony = homeColony;
+            this.addToBoard(homeColony);
+
         }
 
     }
@@ -99,6 +104,8 @@ class Game {
 
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
+
+                this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.shipNum);
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
@@ -135,10 +142,13 @@ class Game {
 
     getLogs(data) {
 
+        let decoder = new TextDecoder("utf-8");
+        let decodedData = decoder.decode(data);
+
         let logs = [];
         let currentLine = '';
 
-        for (let letter of data) {
+        for (let letter of decodedData) {
             if (letter == '\n') {
                 logs.push(currentLine);
                 currentLine = '';
@@ -151,20 +161,17 @@ class Game {
 
     }
 
-    run() { // only 1 turn for game-ui connection purposes
+    run() {
 
         for(let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
 
             fs.readFile('log.txt', (err, data) => {
-
-                let encoder = new TextDecoder("utf-8");
-                this.logs = this.getLogs(encoder.decode(data));
                 
                 socket.emit('gameState', { 
                     gameBoard: this.board,
                     gameTurn: this.turn,
-                    gameLogs: this.logs
+                    gameLogs: this.getLogs(data)
                 });
 
             });
