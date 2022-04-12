@@ -83,14 +83,12 @@ class Game {
           
             //ships
             let scout = new Scout(i + 1, [3,6*i], 1);
+            let cruiser = new Cruiser(i + 1, [3, 6*i], 1);
             this.players[i].addShip(scout);
             this.addToBoard(scout);
+            this.players[i].addShip(cruiser);
+            this.addToBoard(cruiser);
 
-            // ships
-
-            let ship = new Ship([3,6*i], i+1, 1);
-            this.players[i].addShip(ship);
-            this.addToBoard(ship);
 
             // home colony
 
@@ -116,8 +114,6 @@ class Game {
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
                 this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.name, ship.shipNum)
-
-                this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.shipNum);
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
