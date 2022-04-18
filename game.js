@@ -122,17 +122,25 @@ class Game {
 
     }
 
+    getAllShips(coords) {
+        return this.board[coords[1]][coords[0]].filter(elem => elem instanceof Ship);
+    }
+
     checkForOpponentShips(obj) {
-        return true;
+        for (let thing of this.board[obj.coords[1]][obj.coords[0]]) {
+            if (thing instanceof Ship && thing.playerNum != obj.playerNum) {
+                return true;
+            }
+        }
     }
     
     removePlayer(player) {
 
         for(let ship of player.ships) {
-           this.removeFromBoard(ship);
+            this.removeFromBoard(ship);
         }
 
-        this.removeFromBoard(player.home_colony);
+        this.removeFromBoard(player.homeColony);
 
         let index = this.players.indexOf(player);
         this.players.splice(index, 1);
@@ -147,13 +155,8 @@ class Game {
             }
         }
 
-        if(this.players.length == 1) {
-            return this.players[0].playerNum;
-        }
-
-        if(this.players.length == 0) {
-            return 'Tie';
-        }
+        if(this.players.length == 1) return this.players[0].playerNum;
+        if(this.players.length == 0) return 'Tie';
 
     }
 
@@ -197,7 +200,7 @@ class Game {
 
         }
 
-        this.checkForWinner();
+        this.winner = this.checkForWinner();
 
         if (this.turn < this.maxTurns) {
             if (!this.winner) {
