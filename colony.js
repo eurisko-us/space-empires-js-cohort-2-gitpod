@@ -12,4 +12,4 @@ class Colony {
     
 }
 
-module.exports = Colony
+module.exports = Colony;

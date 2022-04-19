@@ -32,16 +32,16 @@ class Logger {
         this.write(`\nTurn ${turnNum}\n`);
     }
 
-    begin_phase(phase) {
+    beginPhase(phase) {
         this.write(`\tBegin ${phase} Phase\n`);
     }
 
-    end_phase(phase) {
+    endPhase(phase) {
         this.write(`\tEnd ${phase} Phase\n`);
     }
 
-    ship_movement(oldCoords, newCoords, playerNum, shipNum) {
-        this.write(`\t\tPlayer ${playerNum} Ship ${shipNum} moved from (${oldCoords}) to (${newCoords})\n`);
+    shipMovement(oldCoords, newCoords, playerNum, shipName, shipNum) {
+        this.write(`\t\tPlayer ${playerNum} ${shipName} ${shipNum} moved from (${oldCoords}) to (${newCoords})\n`);
     }
 
 }

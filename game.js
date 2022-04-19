@@ -105,12 +105,12 @@ class Game {
 
     movementPhase() {
 
-        this.log.begin_phase('Movement');
+        this.log.beginPhase('Movement');
 
         for (let player of this.players) {
             for (let ship of player.ships) {
 
-                let old_coords = [...ship.coords];
+                let oldCoords = [...ship.coords];
                 let options = this.possibleTranslations(ship.coords);
                 let option = player.chooseTranslation(ship, options);
                 
@@ -119,7 +119,7 @@ class Game {
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
 
-                this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.shipNum);
+                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
@@ -127,7 +127,7 @@ class Game {
             }
         }
 
-        this.log.end_phase('Movement');
+        this.log.endPhase('Movement');
 
     }
 
