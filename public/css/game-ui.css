@@ -3,3 +3,24 @@ td.cell {
     height: 50px;
     text-align: center;
 }
+
+#title {
+    text-align: center;
+}
+
+#board {
+    position: relative;
+    left: 25px;
+    top: 20;
+}
+
+.logs {
+    position: absolute;
+    left: 500px;
+    top: 82px;
+    height: 400px;
+    width: 300px;
+    border: 1px solid;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+}

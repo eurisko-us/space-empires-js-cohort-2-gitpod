@@ -58,7 +58,7 @@ class BattleCruiser extends Ship {
     }
 }
 
-class BattleShip extends Ship {
+class Battleship extends Ship {
     constructor(coords, playerNum, shipNum) {
         
         super(Ship);
@@ -150,7 +150,7 @@ class Dreadnaught extends Ship {
 module.exports.Ship = Ship;
 module.exports.Scout = Scout;
 module.exports.BattleCruiser = BattleCruiser;
-module.exports.BattleShip = BattleShip;
+module.exports.Battleship = Battleship;
 module.exports.Cruiser = Cruiser;
 module.exports.Destroyer = Destroyer;
 module.exports.Dreadnaught = Dreadnaught;

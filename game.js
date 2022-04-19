@@ -1,5 +1,11 @@
 let fs = require('fs');
-const Ship = require('./ships');
+const ships = require('./ships');
+const Scout = ships.Scout;
+const BattleCruiser = ships.BattleCruiser;
+const Battleship = ships.Battleship;
+const Cruiser = ships.Cruiser;
+const Destroyer = ships.Destroyer;
+const Dreadnaught = ships.Dreadnaught;
 const Player = require('./player');
 const Colony = require('./colony');
 const Logger = require('./logger.js');
@@ -79,9 +85,13 @@ class Game {
             
             // ships
 
-            let ship = new Ship([3,6*i], i+1, 1);
+            let ship = new Scout([3,6*i], i+1, 1);
             this.players[i].addShip(ship);
             this.addToBoard(ship);
+
+            let cruiser = new Cruiser([3,6*i], i+1, 1);
+            this.players[i].addShip(cruiser);
+            this.addToBoard(cruiser);
 
             // home colony
 
@@ -114,7 +124,6 @@ class Game {
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
                 
-
             }
         }
 
@@ -122,13 +131,22 @@ class Game {
 
     }
 
+    isAShip(obj) {
+        return obj instanceof Scout 
+            || obj instanceof BattleCruiser
+            || obj instanceof Battleship
+            || obj instanceof Cruiser
+            || obj instanceof Destroyer
+            || obj instanceof Dreadnaught;
+    }
+
     getAllShips(coords) {
-        return this.board[coords[1]][coords[0]].filter(elem => elem instanceof Ship);
+        return this.board[coords[1]][coords[0]].filter(elem => this.isAShip(elem));
     }
 
     checkForOpponentShips(obj) {
-        for (let thing of this.board[obj.coords[1]][obj.coords[0]]) {
-            if (thing instanceof Ship && thing.playerNum != obj.playerNum) {
+        for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
+            if (this.isAShip(elem) && elem.playerNum != obj.playerNum) {
                 return true;
             }
         }
@@ -162,21 +180,31 @@ class Game {
 
     getLogs(data) {
 
-        let encoder = new TextDecoder("utf-8");
-        let lines = encoder.decode(data);
+        let decoder = new TextDecoder("utf-8");
+        let decodedData = decoder.decode(data);
 
         let logs = [];
         let currentLine = '';
+        let turn = [];
 
-        for (let letter of lines) {
+        for(let i = 0; i < decodedData.length; i++) {
+            
+            let letter = decodedData[i];
+
+            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n") {
+                logs.push(turn);
+                turn = [];
+            }
+            
             if (letter == '\n') {
-                logs.push(currentLine);
+                turn.push(currentLine);
                 currentLine = '';
             } else {
                 currentLine += letter;
             }
-        }
 
+        }
+        
         return logs;
 
     }
@@ -186,16 +214,12 @@ class Game {
         for(let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
 
-            fs.readFile('log.txt', (err, data) => {
-
-                this.logs = this.getLogs(data);
-                
+            fs.readFile('log.txt', (err, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
                     gameTurn: this.turn,
-                    gameLogs: this.logs
+                    gameLogs: this.getLogs(data)
                 });
-
             });
 
         }

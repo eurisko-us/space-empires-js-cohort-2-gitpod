@@ -1,6 +1,7 @@
-const fs = require('fs')
+const fs = require('fs');
 
 class Logger {
+
     constructor(filename='log.txt') {
         this.filename = filename;
     }
@@ -8,45 +9,44 @@ class Logger {
     clear() {
         fs.writeFileSync(this.filename, '', err => {
             if (err) {
-              console.error(err)
-              return
-            }
+                console.error(err);
+                return;
+            };
         })
     }
 
     write(string) {
         fs.appendFileSync(this.filename, string, err => {
             if (err) {
-              console.error(err)
-              return
-            }
+                console.error(err);
+                return;
+            };
         })
     }
 
     initialize() {
-        this.write('Begin Game\n')
+        this.write('Begin Game\n');
     }
 
-    turn(turn_num) {
-        this.write(`\nTurn ${turn_num}\n`)
+    turn(turnNum) {
+        this.write(`\nTurn ${turnNum}\n`);
     }
 
     begin_phase(phase) {
-        this.write(`\tBegin ${phase} Phase\n`)
+        this.write(`\tBegin ${phase} Phase\n`);
     }
 
     end_phase(phase) {
-        this.write(`\tEnd ${phase} Phase\n`)
+        this.write(`\tEnd ${phase} Phase\n`);
     }
 
-    ship_movement(origCoords, newCoords, playerNum, shipNum) {
-        this.write(`\t\tPlayer ${playerNum} Ship ${shipNum} moved from (${origCoords}) to (${newCoords})\n`)
+    ship_movement(oldCoords, newCoords, playerNum, shipNum) {
+        this.write(`\t\tPlayer ${playerNum} Ship ${shipNum} moved from (${oldCoords}) to (${newCoords})\n`);
     }
 
 }
 
 module.exports = Logger;
-
 
 //     def log_move_ship(self, ship, orig, new):
 //       self.write(f'\tPlayer {ship.player_num}, {ship.name} {ship.ship_num}: {orig} -> {new}\n')
