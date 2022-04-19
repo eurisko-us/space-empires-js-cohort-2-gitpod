@@ -42,8 +42,7 @@ class Game {
 
     possibleTranslations(coords) {
 
-        // let options = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
-        let options = [[0,0], [0,1]];
+        let options = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
         let translations = [];
 
         for (let option of options) {

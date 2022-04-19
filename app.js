@@ -31,7 +31,10 @@ http.listen(3000, () => {
     console.log('Listening on *:3000');
 });
 
+const boardSize = 7;
+const players = [new Player(1), new Player(2)];
 const maxTurns = 1000;
-const game = new Game(clientSockets, 7, [new Player(1), new Player(2)], maxTurns);
+
+const game = new Game(clientSockets, boardSize, players, maxTurns);
 game.initializeGame();
 game.start();

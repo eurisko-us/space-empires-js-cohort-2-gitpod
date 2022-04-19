@@ -23,7 +23,7 @@ function updateUI() {
 
     if (boardHTML.rows.length === 0) { createBoard(); }
     updateShips();
-    //updateTurn();
+    // updateTurn();
     updateLogs();
 
 }
@@ -101,7 +101,6 @@ function resetBoard() {
     for(let i = 0; i < board.length; i++) {
         for(let j = 0; j < board.length; j++) {
             let cell = boardHTML.rows[i].cells[j];
-            
             cell.style.backgroundColor = 'gray';
             cell.innerHTML = '';
         }
@@ -111,14 +110,6 @@ function resetBoard() {
 
 function updateTurn() {
     turnHTML.innerHTML = `turn: ${turn}`;
-
-    //var scrollbox = document.getElementById('scrollbox');
-
-    // Create some element, e.g. div
-    //var newElement = document.createElement('div');
-    //newElement.innerHTML = 'New element has been added!';
-
-    //scrollbox.appendChild(newElement);
 }
 
 function updateLogs() {
