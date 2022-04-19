@@ -116,8 +116,6 @@ class Game {
                 
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
-                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum)
-
                 this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
 
                 ship.updateCoords(ship.coords);
