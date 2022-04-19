@@ -4,7 +4,7 @@ td.cell {
     text-align: center;
 }
 
-#title {
+/* #title {
     text-align: center;
 }
 
@@ -14,7 +14,7 @@ td.cell {
     top: 20;
 }
 
-.logs {
+#logs {
     position: absolute;
     left: 500px;
     top: 82px;
@@ -23,4 +23,4 @@ td.cell {
     border: 1px solid;
     font: 16px/26px Georgia, Garamond, Serif;
     overflow: auto;
-}
+} */

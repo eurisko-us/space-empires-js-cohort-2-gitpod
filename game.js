@@ -12,10 +12,10 @@ const Logger = require('./logger.js');
 
 class Game {
 
-    constructor(clientSockets, dimensions, players, maxTurns) {
+    constructor(clientSockets, boardSize, players, maxTurns) {
 
         this.clientSockets = clientSockets;
-        this.boardSize = dimensions[0];
+        this.boardSize = boardSize;
         this.maxTurns = maxTurns;
    
         this.log = new Logger();
