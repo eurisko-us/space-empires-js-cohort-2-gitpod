@@ -23,7 +23,7 @@ function updateUI() {
 
     if (boardHTML.rows.length === 0) { createBoard(); }
     updateShips();
-    updateTurn();
+    // updateTurn();
     updateLogs();
 
 }
@@ -51,25 +51,50 @@ function updateShips() {
 
     for(let i = 0; i < board.length; i++) {
         for(let j = 0; j < board.length; j++) {
+            for(let obj of board[j][i]) {
+                if (obj.objType == "Ship") {
 
-            if (board[j][i].length !== 0) {
+                    let shipColorMap = {
+                        1: 'red',
+                        2: 'blue'
+                    }
 
-                let shipColorMap = {
-                    1: 'red',
-                    2: 'blue'
+                    let shipNum = board[j][i][0].playerNum;
+                    let cell = boardHTML.rows[j].cells[i];
+
+                    cell.style.backgroundColor = shipColorMap[shipNum];
+                    cell.innerHTML = `P${shipNum}`;
+
                 }
+            }
+        }
+    }
 
-                let shipNum = board[j][i][0].playerNum;
-                let cell = boardHTML.rows[j].cells[i];
+}
 
-                cell.style.backgroundColor = shipColorMap[shipNum];
-                cell.innerHTML = `P${shipNum}`;
+function placeColonies() {
+    
+    for(let i = 0; i < board.length; i++) {
+        for(let j = 0; j < board.length; j++) {
+            for(let obj of board[j][i]) {
+                if (obj.objType == "Colony") {
 
+                    let colonyColorMap = {
+                        1: 'red',
+                        2: 'blue'
+                    }
+
+                    let colonyNum = board[j][i][0].playerNum;
+                    let cell = boardHTML.rows[j].cells[i];
+
+                    cell.style.backgroundColor = colonyColorMap[colonyNum];
+                    cell.innerHTML = `PC${colonyNum}`;
+
+                }
             }
 
         }
     }
-
 }
 
 function resetBoard() {
@@ -80,6 +105,7 @@ function resetBoard() {
             cell.innerHTML = '';
         }
     }
+    placeColonies();
 }
 
 function updateTurn() {
@@ -88,7 +114,9 @@ function updateTurn() {
 
 function updateLogs() {
     logsHTML.innerHTML = '';
-    for (let line of logs) {
-        logsHTML.innerHTML += `${line}<br>`;
+    for (let turn of logs.reverse()) {
+        for (let line of turn) {
+            logsHTML.innerHTML += `  ${line}<br>`;
+        }
     }
 }

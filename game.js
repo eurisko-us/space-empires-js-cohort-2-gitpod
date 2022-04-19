@@ -2,7 +2,7 @@ let fs = require('fs');
 const ships = require('./ships');
 const Scout = ships.Scout;
 const BattleCruiser = ships.BattleCruiser;
-const BattleShip = ships.BattleShip;
+const Battleship = ships.Battleship;
 const Cruiser = ships.Cruiser;
 const Destroyer = ships.Destroyer;
 const Dreadnaught = ships.Dreadnaught;
@@ -55,9 +55,9 @@ class Game {
 
     }
 
-    removeFromBoard(obj, coords) {
-        let x = coords[0];
-        let y = coords[1];
+    removeFromBoard(obj) {
+        let x = obj.coords[0];
+        let y = obj.coords[1];
         let index = this.board[y][x].indexOf(obj);
         this.board[y][x].splice(index, 1);
     }
@@ -80,15 +80,16 @@ class Game {
         }
 
         for (let i = 0; i < this.players.length; i++) {
-          
-            //ships
-            let scout = new Scout(i + 1, [3,6*i], 1);
-            let cruiser = new Cruiser(i + 1, [3, 6*i], 1);
-            this.players[i].addShip(scout);
-            this.addToBoard(scout);
+            
+            // ships
+
+            let ship = new Scout([3,6*i], i+1, 1);
+            this.players[i].addShip(ship);
+            this.addToBoard(ship);
+
+            let cruiser = new Cruiser([3,6*i], i+1, 1);
             this.players[i].addShip(cruiser);
             this.addToBoard(cruiser);
-
 
             // home colony
 
@@ -102,49 +103,77 @@ class Game {
 
     movementPhase() {
 
-        this.log.begin_phase('Movement');
+        this.log.beginPhase('Movement');
 
         for (let player of this.players) {
             for (let ship of player.ships) {
 
-                let old_coords = [...ship.coords];
+                let oldCoords = [...ship.coords];
                 let options = this.possibleTranslations(ship.coords);
                 let option = player.chooseTranslation(ship, options);
-
+                
+                this.removeFromBoard(ship);
+                
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
                 this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.name, ship.shipNum)
 
+                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
+
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
-                this.removeFromBoard(ship, old_coords);
-
+                
             }
         }
 
-        this.log.end_phase('Movement');
+        this.log.endPhase('Movement');
+
+    }
+
+    isAShip(obj) {
+        return obj instanceof Scout 
+            || obj instanceof BattleCruiser
+            || obj instanceof Battleship
+            || obj instanceof Cruiser
+            || obj instanceof Destroyer
+            || obj instanceof Dreadnaught;
+    }
+
+    getAllShips(coords) {
+        return this.board[coords[1]][coords[0]].filter(elem => this.isAShip(elem));
+    }
+
+    checkForOpponentShips(obj) {
+        for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
+            if (this.isAShip(elem) && elem.playerNum != obj.playerNum) {
+                return true;
+            }
+        }
+    }
+    
+    removePlayer(player) {
+
+        for(let ship of player.ships) {
+            this.removeFromBoard(ship);
+        }
+
+        this.removeFromBoard(player.homeColony);
+
+        let index = this.players.indexOf(player);
+        this.players.splice(index, 1);
 
     }
 
     checkForWinner() {
 
         for (let player of this.players) {
-            for (let ship of player.ships) {
-
-                if (player.playerNum == 1) {
-                    if (ship.coords == [3, 6]) {
-                        this.winner = 1;
-                    }
-                }
-                
-                if (player.playerNum == 2) {
-                    if (ship.coords == [3, 0]) {
-                        this.winner = 2;
-                    }
-                }
-            
+            if (this.checkForOpponentShips(player.homeColony)) {
+                this.removePlayer(player);
             }
         }
+
+        if(this.players.length == 1) return this.players[0].playerNum;
+        if(this.players.length == 0) return 'Tie';
 
     }
 
@@ -155,16 +184,26 @@ class Game {
 
         let logs = [];
         let currentLine = '';
+        let turn = [];
 
-        for (let letter of decodedData) {
+        for(let i = 0; i < decodedData.length; i++) {
+            
+            let letter = decodedData[i];
+
+            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n") {
+                logs.push(turn);
+                turn = [];
+            }
+            
             if (letter == '\n') {
-                logs.push(currentLine);
+                turn.push(currentLine);
                 currentLine = '';
             } else {
                 currentLine += letter;
             }
-        }
 
+        }
+        
         return logs;
 
     }
@@ -173,20 +212,18 @@ class Game {
 
         for(let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-
-            fs.readFile('log.txt', (err, data) => {
-                
+            
+            fs.readFile('log.txt', (err, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
                     gameTurn: this.turn,
                     gameLogs: this.getLogs(data)
                 });
-
             });
 
         }
 
-        this.checkForWinner();
+        this.winner = this.checkForWinner();
 
         if (this.turn < this.maxTurns) {
             if (!this.winner) {
