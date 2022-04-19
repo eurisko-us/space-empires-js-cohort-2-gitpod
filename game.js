@@ -26,7 +26,6 @@ class Game {
         this.turn = 0;
         this.players = players;
         this.winner = null;
-        this.logs = null;
 
     }
 
@@ -117,6 +116,7 @@ class Game {
                 
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
+                this.log.ship_movement(old_coords, ship.coords, ship.playerNum, ship.name, ship.shipNum)
 
                 this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
 
@@ -212,7 +212,7 @@ class Game {
 
         for(let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-
+            
             fs.readFile('log.txt', (err, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,

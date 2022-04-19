@@ -42,28 +42,32 @@ class Logger {
 
     shipMovement(oldCoords, newCoords, playerNum, shipName, shipNum) {
         this.write(`\t\tPlayer ${playerNum} ${shipName} ${shipNum} moved from (${oldCoords}) to (${newCoords})\n`);
+
     }
 
 }
 
 module.exports = Logger;
 
-//     def log_move_ship(self, ship, orig, new):
-//       self.write(f'\tPlayer {ship.player_num}, {ship.name} {ship.ship_num}: {orig} -> {new}\n')
+/*
+
+    def log_move_ship(self, ship, orig, new):
+      self.write(f'\tPlayer {ship.player_num}, {ship.name} {ship.ship_num}: {orig} -> {new}\n')
     
-//     def log_combat_location(self, coords):
-//       self.write(f'\tCombat at: {coords}\n\n')
+    def log_combat_location(self, coords):
+      self.write(f'\tCombat at: {coords}\n\n')
           
-//     def combat_ships(self, attacker, defender):
-//       self.write(f'\t\tAttacker: Player {attacker.player_num} {attacker.name} {attacker.ship_num}\n')
-//       self.write(f'\t\tDefender: Player {defender.player_num} {defender.name} {defender.ship_num}\n')
+    def combat_ships(self, attacker, defender):
+      self.write(f'\t\tAttacker: Player {attacker.player_num} {attacker.name} {attacker.ship_num}\n')
+      self.write(f'\t\tDefender: Player {defender.player_num} {defender.name} {defender.ship_num}\n')
     
-//     def ship_hit(self, attacker, defender, dmg):
-//       self.write(f'\t\tPlayer {attacker.player_num} {attacker.name} {attacker.ship_num} dealt {dmg} dmg to Player {defender.player_num} {defender.name} {defender.ship_num}\n\n')
+    def ship_hit(self, attacker, defender, dmg):
+      self.write(f'\t\tPlayer {attacker.player_num} {attacker.name} {attacker.ship_num} dealt {dmg} dmg to Player {defender.player_num} {defender.name} {defender.ship_num}\n\n')
 
-//     def ship_destroyed(self, ship):
-//       self.write(f'\t\tPlayer {ship.player_num} {ship.name} {ship.ship_num} was destroyed\n\n')
+    def ship_destroyed(self, ship):
+      self.write(f'\t\tPlayer {ship.player_num} {ship.name} {ship.ship_num} was destroyed\n\n')
 
-//     def player_win(self, winner_num):
-//       self.write(f'\nWinner: Player {winner_num}')
-// }
+    def player_win(self, winner_num):
+      self.write(f'\nWinner: Player {winner_num}')
+
+*/

@@ -10,7 +10,6 @@ class Ship {
     
 };
 
-
 class Scout extends Ship {
     constructor(coords, playerNum, shipNum) {
 
