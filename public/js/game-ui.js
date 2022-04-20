@@ -80,8 +80,8 @@ function placeColonies() {
                 if (obj.objType == "Colony") {
 
                     let colonyColorMap = {
-                        1: 'red',
-                        2: 'blue'
+                        1: '#ff8080',
+                        2: '#a080ff'
                     }
 
                     let colonyNum = board[j][i][0].playerNum;

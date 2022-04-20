@@ -6,10 +6,10 @@ const Game = require('./game');
 const Player = require('./player');
 const Strategy = require('./strategy');
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/public/index.html');
+	res.sendFile(`${__dirname}/public/index.html`);
 });
 
 let clientSockets = {};
@@ -19,10 +19,10 @@ io.on('connection', (socket) => {
     let socketId = socket.id;
     clientSockets[socketId] = socket;
 
-    console.log('Client socket connected:' + socket.id);
+    console.log(`Client socket connected: ${socket.id}`);
 
     socket.on('disconnect', () => {
-        console.log('Client socket disconnected: ' + socketId);
+        console.log(`Client socket disconnected: ${socketId}`);
         delete clientSockets[socketId];
     });
 

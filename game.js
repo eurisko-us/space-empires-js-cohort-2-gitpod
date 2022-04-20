@@ -247,6 +247,7 @@ class Game {
     run() {
 
         for (let socketId in this.clientSockets) {
+
             let socket = this.clientSockets[socketId];
             
             fs.readFile('log.txt', (err, data) => {                
