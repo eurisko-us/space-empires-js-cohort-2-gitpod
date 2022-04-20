@@ -1,7 +1,7 @@
 class Strategy {
     
     constructor() {
-        this.board = null;
+        this.simpleBoard = null;
         this.turn = 0;
         this.player = null;
     }
@@ -35,10 +35,10 @@ class Strategy {
 
     getOpponentHomeColonyCoords(ship) {
         
-        for (let i = 0; i < this.board.length; i++) {
-            for (let j = 0; j < this.board.length; j++) {
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
 
-                for (let obj of this.board[j][i]) {
+                for (let obj of this.simpleBoard[j][i]) {
                     if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
                         return [i, j];
                     }
@@ -50,8 +50,9 @@ class Strategy {
     }
 
     chooseTranslation(ship, choices) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
-        return this.minDistanceTranslation(ship, choices, targetCoords);
+        // let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        // return this.minDistanceTranslation(ship, choices, targetCoords);
+        return [1, 0];
     }
 
 }

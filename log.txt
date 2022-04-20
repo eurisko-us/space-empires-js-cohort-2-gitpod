@@ -2,48 +2,532 @@ Begin Game
 
 Turn 0
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,0) to (3,1)
-		Player 1 Cruiser 1 moved from (3,0) to (3,1)
-		Player 2 Scout 1 moved from (3,6) to (3,5)
-		Player 2 Cruiser 1 moved from (3,6) to (3,5)
+		Player 1 Scout 1 moved from (3,0) to (4,0)
+		Player 1 Cruiser 1 moved from (3,0) to (4,0)
+		Player 2 Scout 1 moved from (3,6) to (4,6)
+		Player 2 Cruiser 1 moved from (3,6) to (4,6)
 	End Movement Phase
 
 Turn 1
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,1) to (3,2)
-		Player 1 Cruiser 1 moved from (3,1) to (3,2)
-		Player 2 Scout 1 moved from (3,5) to (3,4)
-		Player 2 Cruiser 1 moved from (3,5) to (3,4)
+		Player 1 Scout 1 moved from (4,0) to (5,0)
+		Player 1 Cruiser 1 moved from (4,0) to (5,0)
+		Player 2 Scout 1 moved from (4,6) to (5,6)
+		Player 2 Cruiser 1 moved from (4,6) to (5,6)
 	End Movement Phase
 
 Turn 2
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,2) to (3,3)
-		Player 1 Cruiser 1 moved from (3,2) to (3,3)
-		Player 2 Scout 1 moved from (3,4) to (3,3)
-		Player 2 Cruiser 1 moved from (3,4) to (3,3)
+		Player 1 Scout 1 moved from (5,0) to (6,0)
+		Player 1 Cruiser 1 moved from (5,0) to (6,0)
+		Player 2 Scout 1 moved from (5,6) to (6,6)
+		Player 2 Cruiser 1 moved from (5,6) to (6,6)
 	End Movement Phase
 
 Turn 3
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,3) to (3,4)
-		Player 1 Cruiser 1 moved from (3,3) to (3,4)
-		Player 2 Scout 1 moved from (3,3) to (3,2)
-		Player 2 Cruiser 1 moved from (3,3) to (3,2)
 	End Movement Phase
 
 Turn 4
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,4) to (3,5)
-		Player 1 Cruiser 1 moved from (3,4) to (3,5)
-		Player 2 Scout 1 moved from (3,2) to (3,1)
-		Player 2 Cruiser 1 moved from (3,2) to (3,1)
 	End Movement Phase
 
 Turn 5
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,5) to (3,6)
-		Player 1 Cruiser 1 moved from (3,5) to (3,6)
-		Player 2 Scout 1 moved from (3,1) to (3,0)
-		Player 2 Cruiser 1 moved from (3,1) to (3,0)
+	End Movement Phase
+
+Turn 6
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 7
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 8
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 9
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 10
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 11
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 12
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 13
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 14
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 15
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 16
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 17
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 18
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 19
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 20
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 21
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 22
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 23
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 24
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 25
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 26
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 27
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 28
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 29
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 30
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 31
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 32
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 33
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 34
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 35
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 36
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 37
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 38
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 39
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 40
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 41
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 42
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 43
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 44
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 45
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 46
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 47
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 48
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 49
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 50
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 51
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 52
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 53
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 54
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 55
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 56
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 57
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 58
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 59
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 60
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 61
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 62
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 63
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 64
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 65
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 66
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 67
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 68
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 69
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 70
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 71
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 72
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 73
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 74
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 75
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 76
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 77
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 78
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 79
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 80
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 81
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 82
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 83
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 84
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 85
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 86
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 87
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 88
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 89
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 90
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 91
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 92
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 93
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 94
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 95
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 96
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 97
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 98
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 99
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 100
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 101
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 102
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 103
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 104
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 105
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 106
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 107
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 108
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 109
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 110
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 111
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 112
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 113
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 114
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 115
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 116
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 117
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 118
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 119
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 120
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 121
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 122
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 123
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 124
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 125
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 126
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 127
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 128
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 129
+	Begin Movement Phase
 	End Movement Phase

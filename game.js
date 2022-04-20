@@ -33,6 +33,10 @@ class Game {
         setInterval(() => this.run(), 1000);
     }
 
+    translate(x, y) {
+        return [x[0] + y[0], x[1] + y[1]];
+    }
+
     checkInBounds(coords) {
         let x = coords[0];
         let y = coords[1];
@@ -100,15 +104,36 @@ class Game {
 
         }
 
-        this.updateBoardInStrategy();
+        this.updateSimpleBoard();
 
     }
 
-    updateBoardInStrategy() {
+    updateSimpleBoard() {
+
         for (let player of this.players) {
-            player.strategy.board = this.board;
+
+            let simpleBoard = [];
+
+            for (let i = 0; i < this.boardSize; i++) {
+                for (let j = 0; j < this.boardSize; j++) {
+                    for (let obj of this.board[j][i]) {
+
+                        let simpleObj = {};
+                        for (const [attr, v] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
+                            simpleObj[attr] = v.value;
+                        }
+
+                        simpleBoard.push(simpleObj);
+
+                    }
+                }
+            }
+
+            player.strategy.simpleBoard = simpleBoard;
             player.strategy.turn = this.turn;
+
         }
+
     }
 
     movementPhase() {
@@ -119,20 +144,21 @@ class Game {
             for (let ship of player.ships) {
 
                 let oldCoords = [...ship.coords];
-                let options = this.possibleTranslations(ship.coords);
-                let option = player.strategy.chooseTranslation(ship, options);
-                
-                this.removeFromBoard(ship);
-                
-                ship.coords[0] += option[0];
-                ship.coords[1] += option[1];
-                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
+                let translations = this.possibleTranslations(ship.coords);
+                let translation = player.strategy.chooseTranslation(ship, translations);            
+                let newCoords = this.translate(oldCoords, translation);
 
-                ship.updateCoords(ship.coords);
+                if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) {
+                    continue;
+                }
+
+                this.removeFromBoard(ship);
+                ship.coords = newCoords;
                 this.addToBoard(ship);
 
-                this.updateBoardInStrategy();
-                
+                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
+                this.updateSimpleBoard();
+
             }
         }
 
