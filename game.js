@@ -72,9 +72,9 @@ class Game {
 
         // make board
 
-        for(let i = 0; i < this.boardSize; i++){
+        for (let i = 0; i < this.boardSize; i++) {
             this.board.push([]);
-            for(let j = 0; j < this.boardSize; j++){
+            for (let j = 0; j < this.boardSize; j++) {
                 this.board[i].push([]);
             }
         }
@@ -94,11 +94,21 @@ class Game {
             // home colony
 
             let homeColony = new Colony([3,6*i], i+1);
+            homeColony.isHomeColony = true;
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
         }
 
+        this.updateBoardInStrategy();
+
+    }
+
+    updateBoardInStrategy() {
+        for (let player of this.players) {
+            player.strategy.board = this.board;
+            player.strategy.turn = this.turn;
+        }
     }
 
     movementPhase() {
@@ -110,7 +120,7 @@ class Game {
 
                 let oldCoords = [...ship.coords];
                 let options = this.possibleTranslations(ship.coords);
-                let option = player.chooseTranslation(ship, options);
+                let option = player.strategy.chooseTranslation(ship, options);
                 
                 this.removeFromBoard(ship);
                 
@@ -120,6 +130,8 @@ class Game {
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
+
+                this.updateBoardInStrategy();
                 
             }
         }
@@ -151,7 +163,7 @@ class Game {
     
     removePlayer(player) {
 
-        for(let ship of player.ships) {
+        for (let ship of player.ships) {
             this.removeFromBoard(ship);
         }
 
@@ -184,7 +196,7 @@ class Game {
         let currentLine = '';
         let turn = [];
 
-        for(let i = 0; i < decodedData.length; i++) {
+        for (let i = 0; i < decodedData.length; i++) {
             
             let letter = decodedData[i];
 
@@ -208,7 +220,7 @@ class Game {
 
     run() {
 
-        for(let socketId in this.clientSockets) {
+        for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
             
             fs.readFile('log.txt', (err, data) => {                

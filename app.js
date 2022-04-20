@@ -4,6 +4,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const Game = require('./game');
 const Player = require('./player');
+const Strategy = require('./strategy');
 
 app.use(express.static('public'))
 
@@ -32,7 +33,7 @@ http.listen(3000, () => {
 });
 
 const boardSize = 7;
-const players = [new Player(1), new Player(2)];
+const players = [new Player(1, new Strategy()), new Player(2, new Strategy())];
 const maxTurns = 1000;
 
 const game = new Game(clientSockets, boardSize, players, maxTurns);
