@@ -1,6 +1,6 @@
 View all branches ------------------------ git branch
-Create new branch ------------------------ git branch -b [branch name]
 Switch branch ---------------------------- git branch [branch name]
+Create new branch ------------------------ git branch -b [branch name]
 
 Update workspace to most recent commit --- git pull
 Merge two branches ----------------------- (use github)
