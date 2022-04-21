@@ -21,6 +21,5 @@ td.cell {
     height: 400px;
     width: 300px;
     border: 1px solid;
-    font: 16px/26px Georgia, Garamond, Serif;
     overflow: auto;
 }

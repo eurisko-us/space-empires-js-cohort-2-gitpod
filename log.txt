@@ -43,3 +43,35 @@ Turn 6
 Turn 7
 	Begin Movement Phase
 	End Movement Phase
+
+Turn 8
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 9
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 10
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 11
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 12
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 13
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 14
+	Begin Movement Phase
+	End Movement Phase
+
+Turn 15
+	Begin Movement Phase
+	End Movement Phase
