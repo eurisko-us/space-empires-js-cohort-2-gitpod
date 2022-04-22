@@ -1,0 +1,11 @@
+View all branches ------------------------ git branch
+Switch branch ---------------------------- git checkout [branch name]
+Create new branch ------------------------ git checkout -b [branch name]
+
+Update workspace to most recent commit --- git pull
+Merge two branches ----------------------- (use github)
+Commit ----------------------------------- git add [filename or .]
+                                           git commit -m '[commit message]'
+                                           git push origin [branch name]
+ 
+List changes since last commit ----------- git status

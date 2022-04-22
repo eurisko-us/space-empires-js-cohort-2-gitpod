@@ -63,15 +63,3 @@ Turn 11
 Turn 12
 	Begin Movement Phase
 	End Movement Phase
-
-Turn 13
-	Begin Movement Phase
-	End Movement Phase
-
-Turn 14
-	Begin Movement Phase
-	End Movement Phase
-
-Turn 15
-	Begin Movement Phase
-	End Movement Phase

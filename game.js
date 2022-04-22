@@ -111,11 +111,14 @@ class Game {
     updateSimpleBoard() {
 
         for (let player of this.players) {
-
             let simpleBoard = [];
 
             for (let i = 0; i < this.boardSize; i++) {
+                let simpleRow = [];
+
                 for (let j = 0; j < this.boardSize; j++) {
+                    let simpleSquare = [];
+
                     for (let obj of this.board[j][i]) {
 
                         let simpleObj = {};
@@ -123,10 +126,11 @@ class Game {
                             simpleObj[attr] = v.value;
                         }
 
-                        simpleBoard.push(simpleObj);
-
+                        simpleSquare.push(simpleObj);
                     }
+                    simpleRow.push(simpleSquare);
                 }
+                simpleBoard.push(simpleRow);
             }
 
             player.strategy.simpleBoard = simpleBoard;
