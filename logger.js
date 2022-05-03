@@ -1,7 +1,6 @@
 const fs = require('fs');
 
 class Logger {
-
     constructor(filename='log.txt') {
         this.filename = filename;
     }
@@ -9,18 +8,18 @@ class Logger {
     clear() {
         fs.writeFileSync(this.filename, '', err => {
             if (err) {
-                console.error(err);
-                return;
-            };
+              console.error(err);
+              return;
+            }
         })
     }
 
     write(string) {
         fs.appendFileSync(this.filename, string, err => {
             if (err) {
-                console.error(err);
-                return;
-            };
+              console.error(err);
+              return;
+            }
         })
     }
 
@@ -40,34 +39,36 @@ class Logger {
         this.write(`\tEnd ${phase} Phase\n`);
     }
 
-    shipMovement(oldCoords, newCoords, playerNum, shipName, shipNum) {
-        this.write(`\t\tPlayer ${playerNum} ${shipName} ${shipNum} moved from (${oldCoords}) to (${newCoords})\n`);
+    shipMovement(oldCoords, newCoords) {
+        this.write(`\t\tShip moved from ${oldCoords} to ${newCoords}\n`);
+    }
 
+    combatLocation(coords) {
+        this.write(`\tCombat at: ${coords}\n\n`);
+    }
+
+    combat(attacker, defender) {
+        this.write(`\t\tAttacker: Player ${attacker.playerNum} ${attacker.name} ${attacker.shipNum}\n`);
+        this.write(`\t\tDefender: Player ${defender.playerNum} ${defender.name} ${defender.shipNum}\n`);
+    }
+
+    shipHit(defender) {
+        this.write('\t\tHit!\n');
+        this.write(`\t\tPlayer ${defender.playerNum} ${defender.name} ${defender.shipNum}: ${defender.hp} -> ${defender.hp - 1}`);
+    }
+
+    shipMiss() {
+        this.write('\t\tMiss!\n');
+    }
+
+    shipDestroyed(ship) {
+        self.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} was destroyed\n\n`);
+    }
+
+    playerWin(self, winnerNum) {
+        self.write(`\nWinner: Player ${winnerNum}`);
     }
 
 }
 
 module.exports = Logger;
-
-/*
-
-    def log_move_ship(self, ship, orig, new):
-      self.write(f'\tPlayer {ship.player_num}, {ship.name} {ship.ship_num}: {orig} -> {new}\n')
-    
-    def log_combat_location(self, coords):
-      self.write(f'\tCombat at: {coords}\n\n')
-          
-    def combat_ships(self, attacker, defender):
-      self.write(f'\t\tAttacker: Player {attacker.player_num} {attacker.name} {attacker.ship_num}\n')
-      self.write(f'\t\tDefender: Player {defender.player_num} {defender.name} {defender.ship_num}\n')
-    
-    def ship_hit(self, attacker, defender, dmg):
-      self.write(f'\t\tPlayer {attacker.player_num} {attacker.name} {attacker.ship_num} dealt {dmg} dmg to Player {defender.player_num} {defender.name} {defender.ship_num}\n\n')
-
-    def ship_destroyed(self, ship):
-      self.write(f'\t\tPlayer {ship.player_num} {ship.name} {ship.ship_num} was destroyed\n\n')
-
-    def player_win(self, winner_num):
-      self.write(f'\nWinner: Player {winner_num}')
-
-*/

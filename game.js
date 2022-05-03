@@ -152,9 +152,8 @@ class Game {
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
 
-                if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) {
-                    continue;
-                }
+                if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
+        
 
                 this.removeFromBoard(ship);
                 ship.coords = newCoords;
@@ -167,6 +166,68 @@ class Game {
         }
 
         this.log.endPhase('Movement');
+
+    }
+
+    /*
+
+    this.removeDeadShip(target)
+
+    */
+
+    roll() {
+        return Math.floor(Math.random() * 10);
+    }
+
+    hit(attacker, defender) {
+
+        let roll = this.roll();
+        this.log.combat(attacker, defender);
+
+        if (roll <= attacker.atk - defender.df || roll === 1) {
+            this.log.shipHit(defender);
+            return true;
+        } else {
+            this.log.shipMiss();
+            return false;
+        }
+
+    }
+
+    combatPhase() {
+
+        this.log.beginPhase('Combat');
+
+        let combatCoords = this.getCombatCoords();
+
+        for (let coord of combatCoords) {
+
+            let combatOrder = this.sortCombatOrder(coord);
+
+            while (this.checkForEnemyShips(coord)) {
+
+                for (let ship of combatOrder) {
+                    if (board[coord[1]][coord[0]].includes(ship)) {
+
+                        let player = this.players[ship.playerNum - 1];
+                        let target = player.chooseTarget(ship);
+
+                        if (this.hit(ship, target)) {
+                            target.hp -= 1;
+                            if (target.hp <= 0) {
+                                this.log.shipDestroyed(target);
+                                this.removeDeadShip(target);
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+        this.log.endPhase('Combat');
 
     }
 

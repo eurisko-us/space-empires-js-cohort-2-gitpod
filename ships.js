@@ -1,7 +1,7 @@
 class Ship {
 
     constructor() {
-        this.objType = "Ship";
+        this.objType = 'Ship';
     }
 
     updateCoords(newCoords) {
