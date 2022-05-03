@@ -118,15 +118,22 @@ class Game {
         let combat_coords = this.getCombatCoords();
         for (let coord of combat_coords) {
             let combat_order = this.sortCombatOrder(coord);
+            
             while (this.check_for_enemy_ships(coord) == True) {
                 for (let ship of combat_order) {
+
                     if (board[coord[1]][coord[0]].includes(ship)) {
                         let player = this.players[ship.player_num-1];
                         let target = player.choose_target(ship);
+                        this.log.combat(ship, target);
+                        
                         if (this.roll(ship, target)) {
                             this.hit(target);
+                            this.log.hit(target);
+
                             if (target.hp <= 0) {
-                                this.remove_dead_ship(target)
+                                this.log.ship_destroyed(target);
+                                this.remove_dead_ship(target);
                             }
                         }
                     }
