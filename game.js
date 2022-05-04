@@ -137,6 +137,16 @@ class Game {
             || obj instanceof Dreadnaught;
     }
 
+    checkAllSameTeam(shipList){
+        playerNum = shipList[0].playerNum
+        for(let ship of shipList){
+            if(ship.playerNum != playerNum){
+                return false
+            }
+        }
+        return true
+    }
+
     getAllShips(coords) {
         return this.board[coords[1]][coords[0]].filter(elem => this.isAShip(elem));
     }
@@ -147,8 +157,27 @@ class Game {
                 return true;
             }
         }
+        return false
     }
     
+    getCombatCoords(){
+        combatCoords = []
+        for(let y = 0; y < this.boardSize; y++){
+            for(let x = 0; x < this.boardSize; x++){
+                if(!this.checkAllSameTeam(this.board[y][x])){
+                    combatCoords.push([x,y])
+                }
+            }
+        }
+        return combatCoords
+    }
+
+    sortCombatOrder(coord){
+        combatOrder = [...this.board[coord[1]][coord[0]]]
+        combatOrder.sort((a, b) => a.shipClass.localeCompare(b.shipClass))
+        return combatOrder
+    }
+
     removePlayer(player) {
 
         for(let ship of player.ships) {
@@ -161,6 +190,7 @@ class Game {
         this.players.splice(index, 1);
 
     }
+
 
     checkForWinner() {
 
@@ -244,3 +274,7 @@ class Game {
 };
 
 module.exports = Game;
+
+//getCombatCoords()
+//sortCombatOrder(coord)
+//checkForEnemyShips(coord, player_num)
