@@ -3,7 +3,9 @@ Switch branch ---------------------------- git branch [branch name]
 Create new branch ------------------------ git branch -b [branch name]
 
 Update workspace to most recent commit --- git pull
-Merge two branches ----------------------- (use github)
+Merge two branches ----------------------- git checkout [master branch name]
+                                           git merge [slave branch name]
+                                           (use github to merge to main)
 Commit ----------------------------------- git add [filename or .]
                                            git commit -m '[commit message]'
                                            git push origin [branch name]
