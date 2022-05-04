@@ -1,4 +1,4 @@
-class Player {
+class TestPlayer {
 
     constructor(playerNum) {
         this.playerNum = playerNum;
@@ -17,13 +17,6 @@ class Player {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    chooseTranslation(ship, translations) {
-        let randonIndex = this.getRandomInteger(0, translations.length-1);
-        return translations[randonIndex];
-    }
-};
-
-/*
     getDistance(point1, point2) {
         let dx = Math.pow((point1[0] - point2[0]), 2)
         let dy = Math.pow((point1[1] - point2[1]), 2)
@@ -55,6 +48,7 @@ class Player {
     chooseTranslation(ship, translations) {
         return this.getDesiredLocation([3, 3], ship, translations)
     }
-*/
+};
+
 
 module.exports = Player;

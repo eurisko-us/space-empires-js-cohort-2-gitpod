@@ -2,204 +2,60 @@ Begin Game
 
 Turn 0
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,0) to (2,0)
-		Player 1 Scout 1 moved from (3,0) to (2,0)
-		Player 1 Cruiser 1 moved from (3,0) to (2,0)
-		Player 1 Cruiser 1 moved from (3,0) to (2,0)
-		Player 2 Scout 1 moved from (3,6) to (3,6)
-		Player 2 Scout 1 moved from (3,6) to (3,6)
-		Player 2 Cruiser 1 moved from (3,6) to (3,5)
-		Player 2 Cruiser 1 moved from (3,6) to (3,5)
+		Player 1 Dreadnaught 1 moved from (3,0) to (3,0)
+		Player 2 Dreadnaught 1 moved from (3,6) to (3,6)
 	End Movement Phase
 
 Turn 1
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (2,0) to (2,1)
-		Player 1 Scout 1 moved from (2,0) to (2,1)
-		Player 1 Cruiser 1 moved from (2,0) to (2,0)
-		Player 1 Cruiser 1 moved from (2,0) to (2,0)
-		Player 2 Scout 1 moved from (3,6) to (4,6)
-		Player 2 Scout 1 moved from (3,6) to (4,6)
-		Player 2 Cruiser 1 moved from (3,5) to (2,5)
-		Player 2 Cruiser 1 moved from (3,5) to (2,5)
+		Player 1 Dreadnaught 1 moved from (3,0) to (4,0)
+		Player 2 Dreadnaught 1 moved from (3,6) to (4,6)
 	End Movement Phase
 
 Turn 2
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (2,1) to (2,0)
-		Player 1 Scout 1 moved from (2,1) to (2,0)
-		Player 1 Cruiser 1 moved from (2,0) to (2,1)
-		Player 1 Cruiser 1 moved from (2,0) to (2,1)
-		Player 2 Scout 1 moved from (4,6) to (4,5)
-		Player 2 Scout 1 moved from (4,6) to (4,5)
-		Player 2 Cruiser 1 moved from (2,5) to (1,5)
-		Player 2 Cruiser 1 moved from (2,5) to (1,5)
+		Player 1 Dreadnaught 1 moved from (4,0) to (4,0)
+		Player 2 Dreadnaught 1 moved from (4,6) to (4,5)
 	End Movement Phase
 
 Turn 3
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (2,0) to (1,0)
-		Player 1 Scout 1 moved from (2,0) to (1,0)
-		Player 1 Cruiser 1 moved from (2,1) to (3,1)
-		Player 1 Cruiser 1 moved from (2,1) to (3,1)
-		Player 2 Scout 1 moved from (4,5) to (4,5)
-		Player 2 Scout 1 moved from (4,5) to (4,5)
-		Player 2 Cruiser 1 moved from (1,5) to (1,4)
-		Player 2 Cruiser 1 moved from (1,5) to (1,4)
+		Player 1 Dreadnaught 1 moved from (4,0) to (5,0)
+		Player 2 Dreadnaught 1 moved from (4,5) to (5,5)
 	End Movement Phase
 
 Turn 4
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (1,0) to (1,1)
-		Player 1 Scout 1 moved from (1,0) to (1,1)
-		Player 1 Cruiser 1 moved from (3,1) to (2,1)
-		Player 1 Cruiser 1 moved from (3,1) to (2,1)
-		Player 2 Scout 1 moved from (4,5) to (4,5)
-		Player 2 Scout 1 moved from (4,5) to (4,5)
-		Player 2 Cruiser 1 moved from (1,4) to (1,5)
-		Player 2 Cruiser 1 moved from (1,4) to (1,5)
+		Player 1 Dreadnaught 1 moved from (5,0) to (5,0)
+		Player 2 Dreadnaught 1 moved from (5,5) to (6,5)
 	End Movement Phase
 
 Turn 5
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (1,1) to (1,1)
-		Player 1 Scout 1 moved from (1,1) to (1,1)
-		Player 1 Cruiser 1 moved from (2,1) to (3,1)
-		Player 1 Cruiser 1 moved from (2,1) to (3,1)
-		Player 2 Scout 1 moved from (4,5) to (5,5)
-		Player 2 Scout 1 moved from (4,5) to (5,5)
-		Player 2 Cruiser 1 moved from (1,5) to (1,4)
-		Player 2 Cruiser 1 moved from (1,5) to (1,4)
+		Player 1 Dreadnaught 1 moved from (5,0) to (6,0)
+		Player 2 Dreadnaught 1 moved from (6,5) to (6,4)
 	End Movement Phase
 
 Turn 6
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (1,1) to (1,0)
-		Player 1 Scout 1 moved from (1,1) to (1,0)
-		Player 1 Cruiser 1 moved from (3,1) to (3,1)
-		Player 1 Cruiser 1 moved from (3,1) to (3,1)
-		Player 2 Scout 1 moved from (5,5) to (6,5)
-		Player 2 Scout 1 moved from (5,5) to (6,5)
-		Player 2 Cruiser 1 moved from (1,4) to (2,4)
-		Player 2 Cruiser 1 moved from (1,4) to (2,4)
+		Player 1 Dreadnaught 1 moved from (6,0) to (5,0)
+		Player 2 Dreadnaught 1 moved from (6,4) to (5,4)
 	End Movement Phase
 
 Turn 7
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (1,0) to (0,0)
-		Player 1 Scout 1 moved from (1,0) to (0,0)
-		Player 1 Cruiser 1 moved from (3,1) to (3,0)
-		Player 1 Cruiser 1 moved from (3,1) to (3,0)
-		Player 2 Scout 1 moved from (6,5) to (6,4)
-		Player 2 Scout 1 moved from (6,5) to (6,4)
-		Player 2 Cruiser 1 moved from (2,4) to (2,4)
-		Player 2 Cruiser 1 moved from (2,4) to (2,4)
+		Player 1 Dreadnaught 1 moved from (5,0) to (5,0)
+		Player 2 Dreadnaught 1 moved from (5,4) to (5,5)
 	End Movement Phase
 
 Turn 8
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (0,0) to (0,0)
-		Player 1 Scout 1 moved from (0,0) to (0,0)
-		Player 1 Cruiser 1 moved from (3,0) to (3,1)
-		Player 1 Cruiser 1 moved from (3,0) to (3,1)
-		Player 2 Scout 1 moved from (6,4) to (6,5)
-		Player 2 Scout 1 moved from (6,4) to (6,5)
-		Player 2 Cruiser 1 moved from (2,4) to (2,5)
-		Player 2 Cruiser 1 moved from (2,4) to (2,5)
+		Player 1 Dreadnaught 1 moved from (5,0) to (5,1)
+		Player 2 Dreadnaught 1 moved from (5,5) to (4,5)
 	End Movement Phase
 
 Turn 9
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (0,0) to (0,1)
-		Player 1 Scout 1 moved from (0,0) to (0,1)
-		Player 1 Cruiser 1 moved from (3,1) to (3,0)
-		Player 1 Cruiser 1 moved from (3,1) to (3,0)
-		Player 2 Scout 1 moved from (6,5) to (6,5)
-		Player 2 Scout 1 moved from (6,5) to (6,5)
-		Player 2 Cruiser 1 moved from (2,5) to (2,5)
-		Player 2 Cruiser 1 moved from (2,5) to (2,5)
-	End Movement Phase
-
-Turn 10
-	Begin Movement Phase
-		Player 1 Scout 1 moved from (0,1) to (1,1)
-		Player 1 Scout 1 moved from (0,1) to (1,1)
-		Player 1 Cruiser 1 moved from (3,0) to (3,1)
-		Player 1 Cruiser 1 moved from (3,0) to (3,1)
-		Player 2 Scout 1 moved from (6,5) to (6,4)
-		Player 2 Scout 1 moved from (6,5) to (6,4)
-		Player 2 Cruiser 1 moved from (2,5) to (2,5)
-		Player 2 Cruiser 1 moved from (2,5) to (2,5)
-	End Movement Phase
-
-Turn 11
-	Begin Movement Phase
-		Player 1 Scout 1 moved from (1,1) to (2,1)
-		Player 1 Scout 1 moved from (1,1) to (2,1)
-		Player 1 Cruiser 1 moved from (3,1) to (4,1)
-		Player 1 Cruiser 1 moved from (3,1) to (4,1)
-		Player 2 Scout 1 moved from (6,4) to (6,3)
-		Player 2 Scout 1 moved from (6,4) to (6,3)
-		Player 2 Cruiser 1 moved from (2,5) to (1,5)
-		Player 2 Cruiser 1 moved from (2,5) to (1,5)
-	End Movement Phase
-
-Turn 12
-	Begin Movement Phase
-		Player 1 Scout 1 moved from (2,1) to (2,0)
-		Player 1 Scout 1 moved from (2,1) to (2,0)
-		Player 1 Cruiser 1 moved from (4,1) to (3,1)
-		Player 1 Cruiser 1 moved from (4,1) to (3,1)
-		Player 2 Scout 1 moved from (6,3) to (6,2)
-		Player 2 Scout 1 moved from (6,3) to (6,2)
-		Player 2 Cruiser 1 moved from (1,5) to (2,5)
-		Player 2 Cruiser 1 moved from (1,5) to (2,5)
-	End Movement Phase
-
-Turn 13
-	Begin Movement Phase
-		Player 1 Scout 1 moved from (2,0) to (2,0)
-		Player 1 Scout 1 moved from (2,0) to (2,0)
-		Player 1 Cruiser 1 moved from (3,1) to (2,1)
-		Player 1 Cruiser 1 moved from (3,1) to (2,1)
-		Player 2 Scout 1 moved from (6,2) to (6,1)
-		Player 2 Scout 1 moved from (6,2) to (6,1)
-		Player 2 Cruiser 1 moved from (2,5) to (2,5)
-		Player 2 Cruiser 1 moved from (2,5) to (2,5)
-	End Movement Phase
-
-Turn 14
-	Begin Movement Phase
-		Player 1 Scout 1 moved from (2,0) to (2,0)
-		Player 1 Scout 1 moved from (2,0) to (2,0)
-		Player 1 Cruiser 1 moved from (2,1) to (1,1)
-		Player 1 Cruiser 1 moved from (2,1) to (1,1)
-		Player 2 Scout 1 moved from (6,1) to (6,2)
-		Player 2 Scout 1 moved from (6,1) to (6,2)
-		Player 2 Cruiser 1 moved from (2,5) to (2,4)
-		Player 2 Cruiser 1 moved from (2,5) to (2,4)
-	End Movement Phase
-
-Turn 15
-	Begin Movement Phase
-		Player 1 Scout 1 moved from (2,0) to (1,0)
-		Player 1 Scout 1 moved from (2,0) to (1,0)
-		Player 1 Cruiser 1 moved from (1,1) to (1,2)
-		Player 1 Cruiser 1 moved from (1,1) to (1,2)
-		Player 2 Scout 1 moved from (6,2) to (5,2)
-		Player 2 Scout 1 moved from (6,2) to (5,2)
-		Player 2 Cruiser 1 moved from (2,4) to (1,4)
-		Player 2 Cruiser 1 moved from (2,4) to (1,4)
-	End Movement Phase
-
-Turn 16
-	Begin Movement Phase
-		Player 1 Scout 1 moved from (1,0) to (2,0)
-		Player 1 Scout 1 moved from (1,0) to (2,0)
-		Player 1 Cruiser 1 moved from (1,2) to (2,2)
-		Player 1 Cruiser 1 moved from (1,2) to (2,2)
-		Player 2 Scout 1 moved from (5,2) to (4,2)
-		Player 2 Scout 1 moved from (5,2) to (4,2)
-		Player 2 Cruiser 1 moved from (1,4) to (0,4)
-		Player 2 Cruiser 1 moved from (1,4) to (0,4)
+		Player 1 Dreadnaught 1 moved from (5,1) to (4,1)
+		Player 2 Dreadnaught 1 moved from (4,5) to (4,5)
 	End Movement Phase
