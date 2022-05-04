@@ -48,21 +48,21 @@ class Logger {
     }
 
     combat(attacker, defender) {
-        this.write(`\t\tAttacker: Player ${attacker.playerNum} ${attacker.name} ${attacker.shipNum}\n`)
-        this.write(`\t\tDefender: Player ${defender.playerNum} ${defender.name} ${defender.shipNum}\n`)
+        this.write(`\t\tAttacker: Player ${attacker.playerNum} ${attacker.name} ${attacker.shipNum}\n`);
+        this.write(`\t\tDefender: Player ${defender.playerNum} ${defender.name} ${defender.shipNum}\n`);
     }
 
     ship_hit(defender) {
-        this.write('\t\tHit!\n')
-        this.write(`\t\tPlayer ${defender.playerNum} ${defender.name} ${defender.shipNum}: ${defender.hp+1} -> ${defender.hp}`)
+        this.write('\t\tHit!\n');
+        this.write(`\t\tPlayer ${defender.playerNum} ${defender.name} ${defender.shipNum}: ${defender.hp+1} -> ${defender.hp}`);
     }
 
     ship_destroyed(ship) {
-        self.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} was destroyed\n\n`)
+        self.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} was destroyed\n\n`);
     }
 
     player_win(self, winner_num) {
-        self.write(`\nWinner: Player ${winner_num}`)
+        self.write(`\nWinner: Player ${winner_num}`);
     }
 }
 
