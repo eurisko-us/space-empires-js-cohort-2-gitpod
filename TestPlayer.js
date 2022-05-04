@@ -46,9 +46,15 @@ class TestPlayer {
     }
 
     chooseTranslation(ship, translations) {
-        return this.getDesiredLocation([3, 3], ship, translations)
+        if (this.playerNum == 1) {
+            return this.getDesiredLocation([3, 6], ship, translations)
+        }
+
+        if (this.playerNum == 2) {
+            return this.getDesiredLocation([3, 0], ship, translations)
+        }
     }
 };
 
 
-module.exports = Player;
+module.exports = TestPlayer;

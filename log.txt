@@ -2,60 +2,6 @@ Begin Game
 
 Turn 0
 	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3,0) to (3,0)
-		Player 2 Dreadnaught 1 moved from (3,6) to (3,6)
-	End Movement Phase
-
-Turn 1
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3,0) to (4,0)
-		Player 2 Dreadnaught 1 moved from (3,6) to (4,6)
-	End Movement Phase
-
-Turn 2
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (4,0) to (4,0)
-		Player 2 Dreadnaught 1 moved from (4,6) to (4,5)
-	End Movement Phase
-
-Turn 3
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (4,0) to (5,0)
-		Player 2 Dreadnaught 1 moved from (4,5) to (5,5)
-	End Movement Phase
-
-Turn 4
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (5,0) to (5,0)
-		Player 2 Dreadnaught 1 moved from (5,5) to (6,5)
-	End Movement Phase
-
-Turn 5
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (5,0) to (6,0)
-		Player 2 Dreadnaught 1 moved from (6,5) to (6,4)
-	End Movement Phase
-
-Turn 6
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (6,0) to (5,0)
-		Player 2 Dreadnaught 1 moved from (6,4) to (5,4)
-	End Movement Phase
-
-Turn 7
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (5,0) to (5,0)
-		Player 2 Dreadnaught 1 moved from (5,4) to (5,5)
-	End Movement Phase
-
-Turn 8
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (5,0) to (5,1)
-		Player 2 Dreadnaught 1 moved from (5,5) to (4,5)
-	End Movement Phase
-
-Turn 9
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (5,1) to (4,1)
-		Player 2 Dreadnaught 1 moved from (4,5) to (4,5)
+		Player 1 Scout 1 moved from (3,2) to (3,3)
+		Player 2 Scout 1 moved from (3,3) to (3,2)
 	End Movement Phase
