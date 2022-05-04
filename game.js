@@ -111,14 +111,15 @@ class Game {
                 let oldCoords = [...ship.coords];
                 let options = this.possibleTranslations(ship.coords);
                 let option = player.chooseTranslation(ship, options);
+                let newCoords = [...oldCoords];
                 
                 this.removeFromBoard(ship);
                 
-                ship.coords[0] += option[0];
-                ship.coords[1] += option[1];
-                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
-
-                ship.updateCoords(ship.coords);
+                newCoords[0] += option[0];
+                newCoords[1] += option[1];
+                
+                ship.updateCoords(newCoords);
+                this.log.shipMovement(ship, oldCoords, newCoords);
                 this.addToBoard(ship);
                 
             }
@@ -126,6 +127,79 @@ class Game {
 
         this.log.endPhase('Movement');
 
+    }
+
+    combatPhase() {
+        
+        this.log.beginPhase('Combat');
+        let combat_coords = this.getCombatCoords();
+
+        for (let coord of combat_coords) {
+            let combat_order = this.sortCombatOrder(coord);
+            
+            while (this.checkForOpponentShips(coord) == True) {
+                for (let ship of combat_order) {
+                    if (board[coord[1]][coord[0]].includes(ship)) {
+                        let player = this.players[ship.player_num-1];
+                        let target = player.chooseTarget(ship);
+                        this.log.combat(ship, target);
+
+                        if (this.roll(ship, target)) {
+                            this.hit(target);
+                            this.log.hit(target);
+                            target.hp -= 1;
+                            if (target.hp <= 0) {
+                                this.log.shipDestroyed(target);
+                                this.removeObjFromBoard(ship);
+                                this.removeShipFromPlayer(player, ship);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this.log.endPhase('Combat');
+    }
+
+    roll(attacker, defender) {
+
+        let roll = Math.floor(Math.random() * 10);
+
+        if (roll <= attacker.atk - defender.df || roll === 1) {
+            this.log.shipHit(defender);
+            return true;
+        } else {
+            this.log.shipMiss();
+            return false;
+        }
+
+    }
+
+    getCombatCoords() {
+        let combatCoords = [];
+        for(let y = 0; y < this.boardSize; y++) {
+            for(let x = 0; x < this.boardSize; x++) {
+                if (!this.checkAllSameTeam(this.board[y][x])) {
+                    combatCoords.push([x, y]);
+                }
+            }
+        }
+        return combatCoords;
+    }
+
+    sortCombatOrder(coord) {
+        let combatOrder = [...this.board[coord[1]][coord[0]]];
+        combatOrder.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
+        return combatOrder;
+    }
+
+    checkForOpponentShips(obj) {
+        for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
+            if (this.isAShip(elem) && elem.playerNum != obj.playerNum) {
+                return true;
+            }
+        }
+        return false;
     }
 
     isAShip(obj) {
