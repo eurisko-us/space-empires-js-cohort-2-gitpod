@@ -112,7 +112,6 @@ class Game {
                 
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
-                //change so that it takes ship and everything else happens in logger
                 this.log.shipMovement(oldCoords, ship);
 
                 ship.updateCoords(ship.coords);
@@ -135,8 +134,9 @@ class Game {
     }
 
     checkForOpponentShips(obj) {
-        for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
-            if (this.isAShip(elem) && elem.playerNum != obj.playerNum) {
+        //for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
+        for (let elem of this.getAllShips(obj.coords)) {
+            if (elem.playerNum != obj.playerNum) {
                 return true;
             }
         }
