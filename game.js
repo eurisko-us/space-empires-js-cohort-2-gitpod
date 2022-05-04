@@ -59,7 +59,7 @@ class Game {
 
     }
 
-    removeFromBoard(obj) {
+    removeObjFromBoard(obj) {
         let x = obj.coords[0];
         let y = obj.coords[1];
         let index = this.board[y][x].indexOf(obj);
@@ -153,9 +153,8 @@ class Game {
                 let newCoords = this.translate(oldCoords, translation);
 
                 if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
-        
 
-                this.removeFromBoard(ship);
+                this.removeObjFromBoard(ship);
                 ship.coords = newCoords;
                 this.addToBoard(ship);
 
@@ -169,20 +168,9 @@ class Game {
 
     }
 
-    /*
+    roll(attacker, defender) {
 
-    this.removeDeadShip(target)
-
-    */
-
-    roll() {
-        return Math.floor(Math.random() * 10);
-    }
-
-    hit(attacker, defender) {
-
-        let roll = this.roll();
-        this.log.combat(attacker, defender);
+        let roll = Math.floor(Math.random() * 10);
 
         if (roll <= attacker.atk - defender.df || roll === 1) {
             this.log.shipHit(defender);
@@ -192,6 +180,11 @@ class Game {
             return false;
         }
 
+    }
+
+    removeShipFromPlayer(player, ship) {
+        let index = player.ships.indexOf(ship);
+        player.ships.splice(index, 1);
     }
 
     combatPhase() {
@@ -211,12 +204,14 @@ class Game {
 
                         let player = this.players[ship.playerNum - 1];
                         let target = player.chooseTarget(ship);
+                        this.log.combat(ship, target);
 
-                        if (this.hit(ship, target)) {
+                        if (this.roll(ship, target)) {
                             target.hp -= 1;
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
-                                this.removeDeadShip(target);
+                                this.removeObjFromBoard(ship);
+                                this.removeShipFromPlayer(target, ship);
                             }
                         }
 
@@ -240,6 +235,15 @@ class Game {
             || obj instanceof Dreadnaught;
     }
 
+    checkAllSameTeam(shipList) {
+        for (let ship of shipList) {
+            if (ship.playerNum !== shipList[0].playerNum) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     getAllShips(coords) {
         return this.board[coords[1]][coords[0]].filter(elem => this.isAShip(elem));
     }
@@ -250,15 +254,34 @@ class Game {
                 return true;
             }
         }
+        return false;
+    }
+
+    getCombatCoords() {
+        let combatCoords = [];
+        for(let y = 0; y < this.boardSize; y++) {
+            for(let x = 0; x < this.boardSize; x++) {
+                if (!this.checkAllSameTeam(this.board[y][x])) {
+                    combatCoords.push([x, y]);
+                }
+            }
+        }
+        return combatCoords;
+    }
+
+    sortCombatOrder(coord) {
+        let combatOrder = [...this.board[coord[1]][coord[0]]];
+        combatOrder.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
+        return combatOrder;
     }
     
     removePlayer(player) {
 
         for (let ship of player.ships) {
-            this.removeFromBoard(ship);
+            this.removeObjFromBoard(ship);
         }
 
-        this.removeFromBoard(player.homeColony);
+        this.removeObjFromBoard(player.homeColony);
 
         let index = this.players.indexOf(player);
         this.players.splice(index, 1);
@@ -291,7 +314,7 @@ class Game {
             
             let letter = decodedData[i];
 
-            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n") {
+            if (letter === 'T' && decodedData[i+1] === 'u' && decodedData[i+2] === 'r' && decodedData[i+3] === 'n') {
                 logs.push(turn);
                 turn = [];
             }
@@ -331,6 +354,7 @@ class Game {
             if (!this.winner) {
                 this.log.turn(this.turn);
                 this.movementPhase();
+                this.combatPhase();
                 this.turn++;
             }
         } else if (!this.winner) {

@@ -2,64 +2,888 @@ Begin Game
 
 Turn 0
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3,0) to (4,0)
-		Player 1 Cruiser 1 moved from (3,0) to (4,0)
-		Player 2 Scout 1 moved from (3,6) to (4,6)
-		Player 2 Cruiser 1 moved from (3,6) to (4,6)
+		Ship moved from 3,0 to 4,0
+		Ship moved from 3,0 to 4,0
+		Ship moved from 3,6 to 4,6
+		Ship moved from 3,6 to 4,6
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 1
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (4,0) to (5,0)
-		Player 1 Cruiser 1 moved from (4,0) to (5,0)
-		Player 2 Scout 1 moved from (4,6) to (5,6)
-		Player 2 Cruiser 1 moved from (4,6) to (5,6)
+		Ship moved from 4,0 to 5,0
+		Ship moved from 4,0 to 5,0
+		Ship moved from 4,6 to 5,6
+		Ship moved from 4,6 to 5,6
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 2
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (5,0) to (6,0)
-		Player 1 Cruiser 1 moved from (5,0) to (6,0)
-		Player 2 Scout 1 moved from (5,6) to (6,6)
-		Player 2 Cruiser 1 moved from (5,6) to (6,6)
+		Ship moved from 5,0 to 6,0
+		Ship moved from 5,0 to 6,0
+		Ship moved from 5,6 to 6,6
+		Ship moved from 5,6 to 6,6
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 3
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 4
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 5
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 6
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 7
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 8
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 9
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 10
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 11
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
 
 Turn 12
 	Begin Movement Phase
 	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 13
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 14
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 15
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 16
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 17
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 18
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 19
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 20
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 21
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 22
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 23
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 24
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 25
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 26
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 27
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 28
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 29
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 30
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 31
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 32
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 33
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 34
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 35
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 36
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 37
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 38
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 39
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 40
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 41
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 42
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 43
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 44
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 45
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 46
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 47
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 48
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 49
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 50
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 51
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 52
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 53
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 54
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 55
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 56
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 57
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 58
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 59
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 60
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 61
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 62
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 63
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 64
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 65
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 66
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 67
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 68
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 69
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 70
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 71
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 72
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 73
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 74
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 75
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 76
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 77
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 78
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 79
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 80
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 81
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 82
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 83
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 84
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 85
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 86
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 87
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 88
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 89
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 90
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 91
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 92
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 93
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 94
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 95
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 96
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 97
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 98
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 99
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 100
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 101
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 102
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 103
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 104
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 105
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 106
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 107
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 108
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 109
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 110
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 111
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 112
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 113
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 114
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 115
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 116
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 117
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 118
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 119
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 120
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 121
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 122
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 123
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 124
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 125
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 126
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 127
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 128
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 129
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 130
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 131
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 132
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 133
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 134
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 135
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 136
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 137
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 138
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 139
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 140
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 141
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 142
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 143
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 144
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 145
+	Begin Movement Phase
+	End Movement Phase
+	Begin Combat Phase
+	End Combat Phase
