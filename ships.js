@@ -10,10 +10,13 @@ class Ship {
     
 };
 
+//extends makes the class a child class
+//super makes it so that the child class inherits the this from the parent class, makes an instance of parent
+
 class Scout extends Ship {
     constructor(coords, playerNum, shipNum) {
 
-        super(Ship);
+        super(Ship); 
 
         this.hp = 1;
         this.atk = 3;

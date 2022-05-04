@@ -30,17 +30,15 @@ class Game {
     }
 
     start() {
-        setInterval(() => this.run(), 1000);
+        setInterval(() => this.run(), 1000); //second number sets delay
     }
 
     checkInBounds(coords) {
-        let x = coords[0];
-        let y = coords[1];
+        let [x, y] = [coords[0], coords[1]];
         return (0 <= x && x < this.boardSize) && (0 <= y && y < this.boardSize);
     }
 
     possibleTranslations(coords) {
-
         let options = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
         let translations = [];
 
@@ -56,15 +54,13 @@ class Game {
     }
 
     removeFromBoard(obj) {
-        let x = obj.coords[0];
-        let y = obj.coords[1];
+        let [x, y] = [obj.coords[0], obj.coords[1]];
         let index = this.board[y][x].indexOf(obj);
-        this.board[y][x].splice(index, 1);
+        this.board[y][x].splice(index, 1); //first sets array index, second sets how many are removed from there
     }
 
     addToBoard(obj) {
-        let x = obj.coords[0];
-        let y = obj.coords[1];
+        let [x, y] = [obj.coords[0], obj.coords[1]];
         this.board[y][x].push(obj);
     }
 
@@ -80,9 +76,9 @@ class Game {
         }
 
         for (let i = 0; i < this.players.length; i++) {
+            //if more players added, need to change the stuff dependent on i
             
             // ships
-
             let ship = new Scout([3,6*i], i+1, 1);
             this.players[i].addShip(ship);
             this.addToBoard(ship);
@@ -108,7 +104,7 @@ class Game {
         for (let player of this.players) {
             for (let ship of player.ships) {
 
-                let oldCoords = [...ship.coords];
+                let oldCoords = [...ship.coords]; //more or less creates a copy of the array
                 let options = this.possibleTranslations(ship.coords);
                 let option = player.chooseTranslation(ship, options);
                 
@@ -116,7 +112,8 @@ class Game {
                 
                 ship.coords[0] += option[0];
                 ship.coords[1] += option[1];
-                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
+                //change so that it takes ship and everything else happens in logger
+                this.log.shipMovement(oldCoords, ship);
 
                 ship.updateCoords(ship.coords);
                 this.addToBoard(ship);
@@ -129,12 +126,8 @@ class Game {
     }
 
     isAShip(obj) {
-        return obj instanceof Scout 
-            || obj instanceof BattleCruiser
-            || obj instanceof Battleship
-            || obj instanceof Cruiser
-            || obj instanceof Destroyer
-            || obj instanceof Dreadnaught;
+        return obj instanceof ships.Ship; 
+        //child classes are an instance of the parent, this is checking if the object passed is a of the ship class
     }
 
     getAllShips(coords) {
