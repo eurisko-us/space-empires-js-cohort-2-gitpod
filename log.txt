@@ -30,37 +30,50 @@ Turn 2
 	Begin Combat Phase
 		Attacker: Player 1 Cruiser 1
 		Defender: Player 2 Scout 1
-		Hit!
-		Player 2 Scout 1 hp: 1 -> 0
-		Player 2 Scout 1 was destroyed
+		Miss!
 		Attacker: Player 2 Cruiser 1
 		Defender: Player 1 Cruiser 1
 		Miss!
 		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
+		Hit!
+		Player 2 Scout 1 hp: 1 -> 0
+		Player 2 Scout 1 was destroyed
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Cruiser 1
+		Miss!
+		Attacker: Player 1 Cruiser 1
 		Defender: Player 2 Cruiser 1
+		Miss!
+		Attacker: Player 2 Cruiser 1
+		Defender: Player 1 Cruiser 1
 		Miss!
 		Attacker: Player 2 Scout 1
 		Defender: Player 1 Cruiser 1
+		Miss!
+		Attacker: Player 1 Cruiser 1
+		Defender: Player 2 Cruiser 1
+		Hit!
+		Player 2 Cruiser 1 hp: 2 -> 1
+		Attacker: Player 2 Cruiser 1
+		Defender: Player 1 Cruiser 1
+		Hit!
+		Player 1 Cruiser 1 hp: 2 -> 1
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Cruiser 1
+		Miss!
+		Attacker: Player 1 Cruiser 1
+		Defender: Player 2 Cruiser 1
 		Miss!
 		Attacker: Player 2 Cruiser 1
 		Defender: Player 1 Scout 1
 		Hit!
 		Player 1 Scout 1 hp: 1 -> 0
 		Player 1 Scout 1 was destroyed
-		Attacker: Player 1 Scout 1
-		Defender: Player 2 Cruiser 1
-		Miss!
 		Attacker: Player 2 Scout 1
 		Defender: Player 1 Cruiser 1
 		Miss!
-		Attacker: Player 1 Scout 1
-		Defender: Player 2 Cruiser 1
-		Hit!
-		Player 2 Cruiser 1 hp: 2 -> 1
-		Attacker: Player 2 Scout 1
-		Defender: Player 1 Cruiser 1
-		Miss!
-		Attacker: Player 1 Scout 1
+		Attacker: Player 1 Cruiser 1
 		Defender: Player 2 Cruiser 1
 		Hit!
 		Player 2 Cruiser 1 hp: 1 -> 0

@@ -312,7 +312,9 @@ class Game {
             if (decodedData[i] === 'T' && decodedData[i+1] === 'u' && decodedData[i+2] === 'r' && decodedData[i+3] === 'n') {
                 logs.push(turn);
                 turn = [];
-            } else if (decodedData[i] === '\n') {
+            }
+            
+            if (decodedData[i] === '\n') {
                 turn.push(currentLine);
                 currentLine = '';
             } else {
