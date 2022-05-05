@@ -17,6 +17,7 @@ class Game {
         this.clientSockets = clientSockets;
         this.boardSize = boardSize;
         this.maxTurns = maxTurns;
+        this.refreshRate = 1000;
    
         this.log = new Logger();
         this.log.clear();
@@ -30,7 +31,7 @@ class Game {
     }
 
     start() {
-        setInterval(() => this.run(), 1000);
+        setInterval(() => this.run(), this.refreshRate);
     }
 
     translate(x, y) {
@@ -45,13 +46,13 @@ class Game {
 
     possibleTranslations(coords) {
 
-        let options = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
         let translations = [];
 
-        for (let option of options) {
-            let newCoords = [option[0] + coords[0], option[1] + coords[1]];
+        for (let translation of allTranslations) {
+            let newCoords = this.translate(translation, coords);
             if (this.checkInBounds(newCoords)) {
-                translations.push(option);
+                translations.push(translation);
             }
         }
 
@@ -187,23 +188,31 @@ class Game {
         player.ships.splice(index, 1);
     }
 
+    checkForBothPlayersShips(coords) {
+        let playerNums = [];
+        for (let elem of this.board[coords[1]][coords[0]]) {
+            if (this.isAShip(elem)) playerNums.push(elem.playerNum);
+        }
+        return !playerNums.every((elem) => elem === playerNums[0]);
+    }
+
     combatPhase() {
 
         this.log.beginPhase('Combat');
 
         let combatCoords = this.getCombatCoords();
 
-        for (let coord of combatCoords) {
+        for (let coords of combatCoords) {
 
-            let combatOrder = this.sortCombatOrder(coord);
+            let combatOrder = this.sortCombatOrder(coords);
 
-            while (this.checkForEnemyShips(coord)) {
+            while (this.checkForBothPlayersShips(coords)) {
 
                 for (let ship of combatOrder) {
-                    if (board[coord[1]][coord[0]].includes(ship)) {
+                    if (this.board[coords[1]][coords[0]].includes(ship)) {
 
                         let player = this.players[ship.playerNum - 1];
-                        let target = player.chooseTarget(ship);
+                        let target = player.strategy.chooseTarget(ship, combatOrder);
                         this.log.combat(ship, target);
 
                         if (this.roll(ship, target)) {
@@ -211,7 +220,7 @@ class Game {
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
                                 this.removeObjFromBoard(ship);
-                                this.removeShipFromPlayer(target, ship);
+                                this.removeShipFromPlayer(player, ship);
                             }
                         }
 
@@ -227,12 +236,7 @@ class Game {
     }
 
     isAShip(obj) {
-        return obj instanceof Scout 
-            || obj instanceof BattleCruiser
-            || obj instanceof Battleship
-            || obj instanceof Cruiser
-            || obj instanceof Destroyer
-            || obj instanceof Dreadnaught;
+        return obj.objType === 'Ship';
     }
 
     checkAllSameTeam(shipList) {
@@ -261,7 +265,7 @@ class Game {
         let combatCoords = [];
         for(let y = 0; y < this.boardSize; y++) {
             for(let x = 0; x < this.boardSize; x++) {
-                if (!this.checkAllSameTeam(this.board[y][x])) {
+                if (!this.checkAllSameTeam(this.getAllShips([x, y]))) {
                     combatCoords.push([x, y]);
                 }
             }
@@ -272,20 +276,13 @@ class Game {
     sortCombatOrder(coord) {
         let combatOrder = [...this.board[coord[1]][coord[0]]];
         combatOrder.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
-        return combatOrder;
+        return [...combatOrder];
     }
     
     removePlayer(player) {
-
-        for (let ship of player.ships) {
-            this.removeObjFromBoard(ship);
-        }
-
+        for (let ship of player.ships) this.removeObjFromBoard(ship);
         this.removeObjFromBoard(player.homeColony);
-
-        let index = this.players.indexOf(player);
-        this.players.splice(index, 1);
-
+        this.players.splice(this.players.indexOf(player), 1);
     }
 
     checkForWinner() {
@@ -296,8 +293,8 @@ class Game {
             }
         }
 
-        if(this.players.length == 1) return this.players[0].playerNum;
-        if(this.players.length == 0) return 'Tie';
+        if(this.players.length === 1) return this.players[0].playerNum;
+        if(this.players.length === 0) return 'Tie';
 
     }
 
@@ -312,18 +309,14 @@ class Game {
 
         for (let i = 0; i < decodedData.length; i++) {
             
-            let letter = decodedData[i];
-
-            if (letter === 'T' && decodedData[i+1] === 'u' && decodedData[i+2] === 'r' && decodedData[i+3] === 'n') {
+            if (decodedData[i] === 'T' && decodedData[i+1] === 'u' && decodedData[i+2] === 'r' && decodedData[i+3] === 'n') {
                 logs.push(turn);
                 turn = [];
-            }
-            
-            if (letter == '\n') {
+            } else if (decodedData[i] === '\n') {
                 turn.push(currentLine);
                 currentLine = '';
             } else {
-                currentLine += letter;
+                currentLine += decodedData[i];
             }
 
         }
@@ -332,12 +325,9 @@ class Game {
 
     }
 
-    run() {
-
+    emitDataToUI() {
         for (let socketId in this.clientSockets) {
-
             let socket = this.clientSockets[socketId];
-            
             fs.readFile('log.txt', (err, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
@@ -345,21 +335,24 @@ class Game {
                     gameLogs: this.getLogs(data)
                 });
             });
-
         }
+    }
 
-        this.winner = this.checkForWinner();
+    run() {
 
-        if (this.turn < this.maxTurns) {
-            if (!this.winner) {
-                this.log.turn(this.turn);
-                this.movementPhase();
-                this.combatPhase();
-                this.turn++;
-            }
-        } else if (!this.winner) {
-            this.winner = "Tie";
+        this.emitDataToUI();
+        if (this.winner) return;
+
+        if (this.turn < this.maxTurns && !this.winner) {
+            this.log.turn(this.turn);
+            this.movementPhase();
+            this.combatPhase();
+            this.winner = this.checkForWinner();
+            this.turn++;
         }
+        
+        if (this.turn > this.maxTurns) this.winner = 'Tie';
+        if (this.winner) this.log.playerWin(this.winner);
         
     }
 

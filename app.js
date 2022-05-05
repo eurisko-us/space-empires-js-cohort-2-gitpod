@@ -7,10 +7,7 @@ const Player = require('./player');
 const Strategy = require('./strategy');
 
 app.use(express.static('public'));
-
-app.get('/', function(req, res) {
-	res.sendFile(`${__dirname}/public/index.html`);
-});
+app.get('/', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 let clientSockets = {};
 
@@ -28,13 +25,11 @@ io.on('connection', (socket) => {
 
 });
 
-http.listen(3000, () => {
-    console.log('Listening on *:3000');
-});
+http.listen(3000, () => console.log('Listening on *:3000'));
 
 const boardSize = 7;
-const players = [new Player(1, new Strategy()), new Player(2, new Strategy())];
 const maxTurns = 1000;
+const players = [new Player(1, new Strategy()), new Player(2, new Strategy())];
 
 const game = new Game(clientSockets, boardSize, players, maxTurns);
 game.initializeGame();

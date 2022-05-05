@@ -11,7 +11,7 @@ class Logger {
               console.error(err);
               return;
             }
-        })
+        });
     }
 
     write(string) {
@@ -20,7 +20,7 @@ class Logger {
               console.error(err);
               return;
             }
-        })
+        });
     }
 
     initialize() {
@@ -54,7 +54,7 @@ class Logger {
 
     shipHit(defender) {
         this.write('\t\tHit!\n');
-        this.write(`\t\tPlayer ${defender.playerNum} ${defender.name} ${defender.shipNum}: ${defender.hp} -> ${defender.hp - 1}`);
+        this.write(`\t\tPlayer ${defender.playerNum} ${defender.name} ${defender.shipNum} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
     }
 
     shipMiss() {
@@ -62,11 +62,11 @@ class Logger {
     }
 
     shipDestroyed(ship) {
-        self.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} was destroyed\n\n`);
+        this.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} was destroyed\n`);
     }
 
-    playerWin(self, winnerNum) {
-        self.write(`\nWinner: Player ${winnerNum}`);
+    playerWin(winner) {
+        this.write(`\nWinner: Player ${winner}`);
     }
 
 }

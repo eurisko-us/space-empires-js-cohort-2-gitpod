@@ -13,19 +13,6 @@ class Player {
         this.ships.push(ship);
     }
 
-    chooseTarget(shipInfo, combatOrder) {
-        
-        let opponentShips = [];
-        for (let opponentShip of combatOrder) {
-            if (opponentShip.playerNum != shipInfo.playerNum && opponentShip.hp > 0) {
-                opponentShips.push(opponentShip);
-            }
-        }
-
-        return opponentShips[Math.floor(Math.random() * opponentShips.length)];
-
-    }
-
     getRandomInteger(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
