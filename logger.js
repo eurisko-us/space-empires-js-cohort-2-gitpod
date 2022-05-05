@@ -29,7 +29,7 @@ class Logger {
     }
 
     turn(turnNum) {
-        this.write(`\nTurn ${turnNum}\n`);
+        this.write(`Turn ${turnNum}\n`);
     }
 
     beginPhase(phase) {
@@ -37,7 +37,7 @@ class Logger {
     }
 
     endPhase(phase) {
-        this.write(`\tEnd ${phase} Phase\n`);
+        this.write(`\tEnd ${phase} Phase\n\n`);
     }
 
     shipMovement(oldCoords, ship) {

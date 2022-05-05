@@ -30,7 +30,7 @@ class Game {
     }
 
     start() {
-        setInterval(() => this.run(), 1000); //second number sets delay
+        setInterval(() => this.run(), 100); //second number sets delay
     }
 
     checkInBounds(coords) {
@@ -163,7 +163,9 @@ class Game {
             }
         }
 
-        if(this.players.length == 1) return this.players[0].playerNum;
+        if(this.players.length == 1) {
+            return this.players[0].playerNum;
+        }
         if(this.players.length == 0) return 'Tie';
 
     }
@@ -180,11 +182,6 @@ class Game {
         for(let i = 0; i < decodedData.length; i++) {
             
             let letter = decodedData[i];
-
-            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n") {
-                logs.push(turn);
-                turn = [];
-            }
             
             if (letter == '\n') {
                 turn.push(currentLine);
@@ -193,13 +190,19 @@ class Game {
                 currentLine += letter;
             }
 
+            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n" || i == decodedData.length-1) {
+                //if you don't add that 'end letter' section, it doesn't write the final turn as there is no "turn" afterwards
+                logs.push(turn);
+                turn = [];
+            }
+
         }
         
         return logs;
 
     }
 
-    run() {
+    display() {
 
         for(let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
@@ -213,7 +216,11 @@ class Game {
             });
 
         }
+    }
 
+    run() {
+        this.display()
+        
         this.winner = this.checkForWinner();
 
         if (this.turn < this.maxTurns) {
@@ -225,7 +232,6 @@ class Game {
         } else if (!this.winner) {
             this.winner = "Tie";
         }
-        
     }
 
     getRandomInteger(min, max) {
