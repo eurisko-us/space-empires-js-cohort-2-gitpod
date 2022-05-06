@@ -28,7 +28,7 @@ class Logger {
     }
 
     turn(turnNum) {
-        this.write(`\nTurn ${turnNum}\n`);
+        this.write(`Turn ${turnNum}\n`);
     }
 
     beginPhase(phase) {
@@ -36,11 +36,11 @@ class Logger {
     }
 
     endPhase(phase) {
-        this.write(`\tEnd ${phase} Phase\n`);
+        this.write(`\tEnd ${phase} Phase\n\n`);
     }
 
-    shipMovement(oldCoords, newCoords) {
-        this.write(`\t\tShip moved from ${oldCoords} to ${newCoords}\n`);
+    shipMovement(oldCoords, ship) {
+        this.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} moved from (${oldCoords}) to (${ship.coords})\n`);
     }
 
     combatLocation(coords) {
@@ -66,7 +66,7 @@ class Logger {
     }
 
     playerWin(winner) {
-        this.write(`\nWinner: Player ${winner}`);
+        this.write(`Winner: Player ${winner}`);
     }
 
 }

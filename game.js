@@ -12,12 +12,13 @@ const Logger = require('./logger.js');
 
 class Game {
 
-    constructor(clientSockets, boardSize, players, maxTurns) {
+    constructor(clientSockets, boardSize, maxTurns, refreshRate, players, initialShips) {
 
         this.clientSockets = clientSockets;
         this.boardSize = boardSize;
         this.maxTurns = maxTurns;
-        this.refreshRate = 1000;
+        this.initialShips = initialShips;
+        this.refreshRate = refreshRate;
    
         this.log = new Logger();
         this.log.clear();
@@ -39,8 +40,7 @@ class Game {
     }
 
     checkInBounds(coords) {
-        let x = coords[0];
-        let y = coords[1];
+        let [x, y] = [...coords];
         return (0 <= x && x < this.boardSize) && (0 <= y && y < this.boardSize);
     }
 
@@ -61,16 +61,23 @@ class Game {
     }
 
     removeObjFromBoard(obj) {
-        let x = obj.coords[0];
-        let y = obj.coords[1];
+        let [x, y] = [...obj.coords];
         let index = this.board[y][x].indexOf(obj);
         this.board[y][x].splice(index, 1);
     }
 
     addToBoard(obj) {
-        let x = obj.coords[0];
-        let y = obj.coords[1];
+        let [x, y] = [...obj.coords];
         this.board[y][x].push(obj);
+    }
+
+    getNewShip(shipName, i) {
+        if (shipName === 'Scout') return new Scout([3,6*i], i+1, 1);
+        if (shipName === 'BattleCruiser') return new BattleCruiser([3,6*i], i+1, 1);
+        if (shipName === 'Battleship') return new Battleship([3,6*i], i+1, 1);
+        if (shipName === 'Cruiser') return new Cruiser([3,6*i], i+1, 1);
+        if (shipName === 'Destroyer') return new Destroyer([3,6*i], i+1, 1);
+        if (shipName === 'Dreadnaught') return new Dreadnaught([3,6*i], i+1, 1);
     }
 
     initializeGame() {
@@ -88,13 +95,13 @@ class Game {
             
             // ships
 
-            let ship = new Scout([3,6*i], i+1, 1);
-            this.players[i].addShip(ship);
-            this.addToBoard(ship);
-
-            let cruiser = new Cruiser([3,6*i], i+1, 1);
-            this.players[i].addShip(cruiser);
-            this.addToBoard(cruiser);
+            for (const [shipName, numOfShip] of Object.entries(this.initialShips)) {
+                for (let j = 0; j < numOfShip; j++) {
+                    let ship = this.getNewShip(shipName, i);
+                    this.players[i].addShip(ship);
+                    this.addToBoard(ship);
+                }
+            }
 
             // home colony
 
@@ -159,7 +166,7 @@ class Game {
                 ship.coords = newCoords;
                 this.addToBoard(ship);
 
-                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
+                this.log.shipMovement(oldCoords, ship);
                 this.updateSimpleBoard();
 
             }
@@ -253,12 +260,11 @@ class Game {
     }
 
     checkForOpponentShips(obj) {
-        for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
-            if (this.isAShip(elem) && elem.playerNum != obj.playerNum) {
+        for (let elem of this.getAllShips(obj.coords)) {
+            if (elem.playerNum != obj.playerNum) {
                 return true;
             }
         }
-        return false;
     }
 
     getCombatCoords() {
@@ -309,7 +315,7 @@ class Game {
 
         for (let i = 0; i < decodedData.length; i++) {
             
-            if (decodedData[i] === 'T' && decodedData[i+1] === 'u' && decodedData[i+2] === 'r' && decodedData[i+3] === 'n') {
+            if ((decodedData[i] === 'T' && decodedData[i+1] === 'u' && decodedData[i+2] === 'r' && decodedData[i+3] === 'n') || i === decodedData.length - 1) {
                 logs.push(turn);
                 turn = [];
             }
@@ -327,7 +333,7 @@ class Game {
 
     }
 
-    emitDataToUI() {
+    display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
             fs.readFile('log.txt', (err, data) => {                
@@ -342,7 +348,7 @@ class Game {
 
     run() {
 
-        this.emitDataToUI();
+        this.display();
         if (this.winner) return;
 
         if (this.turn < this.maxTurns && !this.winner) {
@@ -355,7 +361,7 @@ class Game {
         
         if (this.turn > this.maxTurns) this.winner = 'Tie';
         if (this.winner) this.log.playerWin(this.winner);
-        
+
     }
 
     getRandomInteger(min, max) {
