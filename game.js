@@ -12,11 +12,13 @@ const Logger = require('./logger.js');
 
 class Game {
 
-    constructor(clientSockets, boardSize, players, maxTurns) {
+    constructor(clientSockets, boardSize, maxTurns, refreshRate, players, initialShips) {
 
         this.clientSockets = clientSockets;
         this.boardSize = boardSize;
         this.maxTurns = maxTurns;
+        this.initialShips = initialShips;
+        this.refreshRate = refreshRate;
    
         this.log = new Logger();
         this.log.clear();
@@ -30,24 +32,27 @@ class Game {
     }
 
     start() {
-        setInterval(() => this.run(), 1000);
+        setInterval(() => this.run(), this.refreshRate);
+    }
+
+    translate(x, y) {
+        return [x[0] + y[0], x[1] + y[1]];
     }
 
     checkInBounds(coords) {
-        let x = coords[0];
-        let y = coords[1];
+        let [x, y] = [...coords];
         return (0 <= x && x < this.boardSize) && (0 <= y && y < this.boardSize);
     }
 
     possibleTranslations(coords) {
 
-        let options = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
         let translations = [];
 
-        for (let option of options) {
-            let newCoords = [option[0] + coords[0], option[1] + coords[1]];
+        for (let translation of allTranslations) {
+            let newCoords = this.translate(translation, coords);
             if (this.checkInBounds(newCoords)) {
-                translations.push(option);
+                translations.push(translation);
             }
         }
 
@@ -55,26 +60,33 @@ class Game {
 
     }
 
-    removeFromBoard(obj) {
-        let x = obj.coords[0];
-        let y = obj.coords[1];
+    removeObjFromBoard(obj) {
+        let [x, y] = [...obj.coords];
         let index = this.board[y][x].indexOf(obj);
         this.board[y][x].splice(index, 1);
     }
 
     addToBoard(obj) {
-        let x = obj.coords[0];
-        let y = obj.coords[1];
+        let [x, y] = [...obj.coords];
         this.board[y][x].push(obj);
+    }
+
+    getNewShip(shipName, i) {
+        if (shipName === 'Scout') return new Scout([3,6*i], i+1, 1);
+        if (shipName === 'BattleCruiser') return new BattleCruiser([3,6*i], i+1, 1);
+        if (shipName === 'Battleship') return new Battleship([3,6*i], i+1, 1);
+        if (shipName === 'Cruiser') return new Cruiser([3,6*i], i+1, 1);
+        if (shipName === 'Destroyer') return new Destroyer([3,6*i], i+1, 1);
+        if (shipName === 'Dreadnaught') return new Dreadnaught([3,6*i], i+1, 1);
     }
 
     initializeGame() {
 
         // make board
 
-        for(let i = 0; i < this.boardSize; i++){
+        for (let i = 0; i < this.boardSize; i++) {
             this.board.push([]);
-            for(let j = 0; j < this.boardSize; j++){
+            for (let j = 0; j < this.boardSize; j++) {
                 this.board[i].push([]);
             }
         }
@@ -83,19 +95,54 @@ class Game {
             
             // ships
 
-            let ship = new Scout([3,6*i], i+1, 1);
-            this.players[i].addShip(ship);
-            this.addToBoard(ship);
-
-            let cruiser = new Cruiser([3,6*i], i+1, 1);
-            this.players[i].addShip(cruiser);
-            this.addToBoard(cruiser);
+            for (const [shipName, numOfShip] of Object.entries(this.initialShips)) {
+                for (let j = 0; j < numOfShip; j++) {
+                    let ship = this.getNewShip(shipName, i);
+                    this.players[i].addShip(ship);
+                    this.addToBoard(ship);
+                }
+            }
 
             // home colony
 
             let homeColony = new Colony([3,6*i], i+1);
+            homeColony.isHomeColony = true;
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
+
+        }
+
+        this.updateSimpleBoard();
+
+    }
+
+    updateSimpleBoard() {
+
+        for (let player of this.players) {
+            let simpleBoard = [];
+
+            for (let i = 0; i < this.boardSize; i++) {
+                let simpleRow = [];
+
+                for (let j = 0; j < this.boardSize; j++) {
+                    let simpleSquare = [];
+
+                    for (let obj of this.board[j][i]) {
+
+                        let simpleObj = {};
+                        for (const [attr, v] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
+                            simpleObj[attr] = v.value;
+                        }
+
+                        simpleSquare.push(simpleObj);
+                    }
+                    simpleRow.push(simpleSquare);
+                }
+                simpleBoard.push(simpleRow);
+            }
+
+            player.strategy.simpleBoard = simpleBoard;
+            player.strategy.turn = this.turn;
 
         }
 
@@ -109,18 +156,19 @@ class Game {
             for (let ship of player.ships) {
 
                 let oldCoords = [...ship.coords];
-                let options = this.possibleTranslations(ship.coords);
-                let option = player.chooseTranslation(ship, options);
-                
-                this.removeFromBoard(ship);
-                
-                ship.coords[0] += option[0];
-                ship.coords[1] += option[1];
-                this.log.shipMovement(oldCoords, ship.coords, ship.playerNum, ship.name, ship.shipNum);
+                let translations = this.possibleTranslations(ship.coords);
+                let translation = player.strategy.chooseTranslation(ship, translations);            
+                let newCoords = this.translate(oldCoords, translation);
 
-                ship.updateCoords(ship.coords);
+                if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
+
+                this.removeObjFromBoard(ship);
+                ship.coords = newCoords;
                 this.addToBoard(ship);
-                
+
+                this.log.shipMovement(oldCoords, ship);
+                this.updateSimpleBoard();
+
             }
         }
 
@@ -128,13 +176,83 @@ class Game {
 
     }
 
+    roll(attacker, defender) {
+
+        let roll = Math.floor(Math.random() * 10);
+
+        if (roll <= attacker.atk - defender.df || roll === 1) {
+            this.log.shipHit(defender);
+            return true;
+        } else {
+            this.log.shipMiss();
+            return false;
+        }
+
+    }
+
+    removeShipFromPlayer(player, ship) {
+        let index = player.ships.indexOf(ship);
+        player.ships.splice(index, 1);
+    }
+
+    checkForBothPlayersShips(coords) {
+        let playerNums = [];
+        for (let elem of this.board[coords[1]][coords[0]]) {
+            if (this.isAShip(elem)) playerNums.push(elem.playerNum);
+        }
+        return !playerNums.every((elem) => elem === playerNums[0]);
+    }
+
+    combatPhase() {
+
+        this.log.beginPhase('Combat');
+
+        let combatCoords = this.getCombatCoords();
+
+        for (let coords of combatCoords) {
+
+            let combatOrder = this.sortCombatOrder(coords);
+
+            while (this.checkForBothPlayersShips(coords)) {
+
+                for (let ship of combatOrder) {
+                    if (this.board[coords[1]][coords[0]].includes(ship)) {
+
+                        let player = this.players[ship.playerNum - 1];
+                        let target = player.strategy.chooseTarget(ship, combatOrder);
+                        this.log.combat(ship, target);
+
+                        if (this.roll(ship, target)) {
+                            target.hp -= 1;
+                            if (target.hp <= 0) {
+                                this.log.shipDestroyed(target);
+                                this.removeObjFromBoard(ship);
+                                this.removeShipFromPlayer(player, ship);
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+        this.log.endPhase('Combat');
+
+    }
+
     isAShip(obj) {
-        return obj instanceof Scout 
-            || obj instanceof BattleCruiser
-            || obj instanceof Battleship
-            || obj instanceof Cruiser
-            || obj instanceof Destroyer
-            || obj instanceof Dreadnaught;
+        return obj.objType === 'Ship';
+    }
+
+    checkAllSameTeam(shipList) {
+        for (let ship of shipList) {
+            if (ship.playerNum !== shipList[0].playerNum) {
+                return false;
+            }
+        }
+        return true;
     }
 
     getAllShips(coords) {
@@ -142,24 +260,35 @@ class Game {
     }
 
     checkForOpponentShips(obj) {
-        for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
-            if (this.isAShip(elem) && elem.playerNum != obj.playerNum) {
+        for (let elem of this.getAllShips(obj.coords)) {
+            if (elem.playerNum != obj.playerNum) {
                 return true;
             }
         }
     }
+
+    getCombatCoords() {
+        let combatCoords = [];
+        for(let y = 0; y < this.boardSize; y++) {
+            for(let x = 0; x < this.boardSize; x++) {
+                if (!this.checkAllSameTeam(this.getAllShips([x, y]))) {
+                    combatCoords.push([x, y]);
+                }
+            }
+        }
+        return combatCoords;
+    }
+
+    sortCombatOrder(coord) {
+        let combatOrder = [...this.board[coord[1]][coord[0]]];
+        combatOrder.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
+        return [...combatOrder];
+    }
     
     removePlayer(player) {
-
-        for(let ship of player.ships) {
-            this.removeFromBoard(ship);
-        }
-
-        this.removeFromBoard(player.homeColony);
-
-        let index = this.players.indexOf(player);
-        this.players.splice(index, 1);
-
+        for (let ship of player.ships) this.removeObjFromBoard(ship);
+        this.removeObjFromBoard(player.homeColony);
+        this.players.splice(this.players.indexOf(player), 1);
     }
 
     checkForWinner() {
@@ -170,8 +299,8 @@ class Game {
             }
         }
 
-        if(this.players.length == 1) return this.players[0].playerNum;
-        if(this.players.length == 0) return 'Tie';
+        if(this.players.length === 1) return this.players[0].playerNum;
+        if(this.players.length === 0) return 'Tie';
 
     }
 
@@ -184,20 +313,18 @@ class Game {
         let currentLine = '';
         let turn = [];
 
-        for(let i = 0; i < decodedData.length; i++) {
+        for (let i = 0; i < decodedData.length; i++) {
             
-            let letter = decodedData[i];
-
-            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n") {
+            if ((decodedData[i] === 'T' && decodedData[i+1] === 'u' && decodedData[i+2] === 'r' && decodedData[i+3] === 'n') || i === decodedData.length - 1) {
                 logs.push(turn);
                 turn = [];
             }
             
-            if (letter == '\n') {
+            if (decodedData[i] === '\n') {
                 turn.push(currentLine);
                 currentLine = '';
             } else {
-                currentLine += letter;
+                currentLine += decodedData[i];
             }
 
         }
@@ -206,11 +333,9 @@ class Game {
 
     }
 
-    run() {
-
-        for(let socketId in this.clientSockets) {
+    display() {
+        for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            
             fs.readFile('log.txt', (err, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
@@ -218,21 +343,25 @@ class Game {
                     gameLogs: this.getLogs(data)
                 });
             });
-
         }
+    }
 
-        this.winner = this.checkForWinner();
+    run() {
 
-        if (this.turn < this.maxTurns) {
-            if (!this.winner) {
-                this.log.turn(this.turn);
-                this.movementPhase();
-                this.turn++;
-            }
-        } else if (!this.winner) {
-            this.winner = "Tie";
+        this.display();
+        if (this.winner) return;
+
+        if (this.turn < this.maxTurns && !this.winner) {
+            this.log.turn(this.turn);
+            this.movementPhase();
+            this.combatPhase();
+            this.winner = this.checkForWinner();
+            this.turn++;
         }
         
+        if (this.turn > this.maxTurns) this.winner = 'Tie';
+        if (this.winner) this.log.playerWin(this.winner);
+
     }
 
     getRandomInteger(min, max) {

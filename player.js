@@ -1,12 +1,14 @@
 class Player {
 
-    constructor(playerNum) {
+    constructor(playerNum, strategy) {
         this.playerNum = playerNum;
         this.ships = [];
         this.homeColony = null;
+        this.strategy = strategy;
+        this.strategy.player = this;
     }
     
-    addShip(ship){
+    addShip(ship) {
         ship.playerNum = this.playerNum;
         this.ships.push(ship);
     }
@@ -15,11 +17,6 @@ class Player {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    chooseTranslation(ship, translations) {
-        let randonIndex = this.getRandomInteger(0, translations.length-1);
-        return translations[randonIndex];
     }
 };
 

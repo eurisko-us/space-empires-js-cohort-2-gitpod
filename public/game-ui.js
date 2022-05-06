@@ -22,7 +22,10 @@ function updateUI() {
     logsHTML  = document.getElementById("logs");
 
     if (boardHTML.rows.length === 0) { createBoard(); }
+    
+    resetBoard();
     updateShips();
+    updateColonies();
     // updateTurn();
     updateLogs();
 
@@ -47,8 +50,6 @@ function createBoard() {
 
 function updateShips() {
 
-    resetBoard();
-
     for(let i = 0; i < board.length; i++) {
         for(let j = 0; j < board.length; j++) {
             for(let obj of board[j][i]) {
@@ -72,7 +73,7 @@ function updateShips() {
 
 }
 
-function placeColonies() {
+function updateColonies() {
     
     for(let i = 0; i < board.length; i++) {
         for(let j = 0; j < board.length; j++) {
@@ -80,8 +81,8 @@ function placeColonies() {
                 if (obj.objType == "Colony") {
 
                     let colonyColorMap = {
-                        1: 'red',
-                        2: 'blue'
+                        1: '#ff8080',
+                        2: '#a080ff'
                     }
 
                     let colonyNum = board[j][i][0].playerNum;
@@ -105,8 +106,7 @@ function resetBoard() {
             cell.innerHTML = '';
         }
     }
-    placeColonies();
-}
+};
 
 function updateTurn() {
     turnHTML.innerHTML = `turn: ${turn}`;
