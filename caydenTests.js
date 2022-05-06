@@ -17,6 +17,7 @@ var assert = require('assert');
 const game = new Game(clientSockets=null, boardSize, players, maxTurns);
 game.initializeGame();
 
+/*
 for (let i = 0; i < players.length; i++) {
     game.removeFromBoard(players[i].ships[0]);
     game.removeFromBoard(players[i].ships[1]);
@@ -44,7 +45,9 @@ for (let i = 0; i < 1; i++) {
     game.turn++;
 }
 
+*/
 
+game.start()
 //check defender first rule and that combat runs until only one players ship is left, use desired_coord as [3, 3]
 //assert player 2 ship is first in combat order
 //initiate combat b4 player 2 moves, ie player 2 ships cant move off of coordinate if player 1 ship in there (can be down at same time as previous test)
