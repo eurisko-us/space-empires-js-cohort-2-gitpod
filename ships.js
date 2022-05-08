@@ -2,12 +2,17 @@ class Ship {
 
     constructor() {
         this.objType = 'Ship';
+        this.shipId = null;
     }
 
     updateCoords(newCoords) {
         this.coords = newCoords;
     }
-    
+
+    setShipId() {
+        this.shipId = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
+    }
+
 };
 
 class Scout extends Ship {
@@ -143,10 +148,4 @@ class Dreadnaught extends Ship {
     }
 }
 
-module.exports.Ship = Ship;
-module.exports.Scout = Scout;
-module.exports.BattleCruiser = BattleCruiser;
-module.exports.Battleship = Battleship;
-module.exports.Cruiser = Cruiser;
-module.exports.Destroyer = Destroyer;
-module.exports.Dreadnaught = Dreadnaught;
+export { Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught };
