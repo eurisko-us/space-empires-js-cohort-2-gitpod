@@ -27,13 +27,9 @@ io.on('connection', (socket) => {
 
 http.listen(3000, () => console.log('Listening on *:3000'));
 
-const boardSize = 7;
-const maxTurns = 1000;
-const refreshRate = 1000;
-
 const players = [new Player(1, new Strategy()), new Player(2, new Strategy())];
 const initialShips = {'Scout': 1, 'Cruiser': 1};
 
-const game = new Game(clientSockets, boardSize, maxTurns, refreshRate, players, initialShips);
+const game = new Game(clientSockets, players, initialShips);
 game.initializeGame();
 game.start();

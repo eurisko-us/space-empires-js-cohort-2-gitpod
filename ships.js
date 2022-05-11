@@ -2,10 +2,15 @@ class Ship {
 
     constructor() {
         this.objType = 'Ship';
+        this.shipId = null;
     }
 
     updateCoords(newCoords) {
         this.coords = newCoords;
+    }
+
+    setShipId() {
+        this.shipId = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
     }
     
 };

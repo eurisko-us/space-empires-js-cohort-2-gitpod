@@ -32,19 +32,15 @@ class Strategy {
     }
 
     getOpponentHomeColonyCoords(ship) {
-        
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
-
                 for (let obj of this.simpleBoard[j][i]) {
                     if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
                         return [j, i];
                     }
                 }
-
             }
         }
-        
     }
 
     chooseTranslation(ship, translations) {
@@ -53,16 +49,8 @@ class Strategy {
     }
 
     chooseTarget(shipInfo, combatOrder) {
-        
-        let opponentShips = [];
-        for (let opponentShip of combatOrder) {
-            if (opponentShip.playerNum != shipInfo.playerNum && opponentShip.hp > 0) {
-                opponentShips.push(opponentShip);
-            }
-        }
-
+        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
         return opponentShips[Math.floor(Math.random() * opponentShips.length)];
-
     }
 
 }

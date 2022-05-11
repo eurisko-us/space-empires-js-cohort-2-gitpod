@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 class Logger {
+    
     constructor(filename='log.txt') {
         this.filename = filename;
     }
@@ -24,7 +25,7 @@ class Logger {
     }
 
     initialize() {
-        this.write('Begin Game\n');
+        this.write(`Begin Game\n`);
     }
 
     turn(turnNum) {
@@ -40,7 +41,7 @@ class Logger {
     }
 
     shipMovement(oldCoords, ship) {
-        this.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} moved from (${oldCoords}) to (${ship.coords})\n`);
+        this.write(`\t\t${ship.shipId} moved from (${oldCoords[0]}, ${oldCoords[1]}) to (${ship.coords[0]}, ${ship.coords[1]})\n`);
     }
 
     combatLocation(coords) {
@@ -48,21 +49,21 @@ class Logger {
     }
 
     combat(attacker, defender) {
-        this.write(`\t\tAttacker: Player ${attacker.playerNum} ${attacker.name} ${attacker.shipNum}\n`);
-        this.write(`\t\tDefender: Player ${defender.playerNum} ${defender.name} ${defender.shipNum}\n`);
+        this.write(`\t\tAttacker: ${attacker.shipId}\n`);
+        this.write(`\t\tDefender: ${defender.shipId}\n`);
     }
 
     shipHit(defender) {
-        this.write('\t\tHit!\n');
-        this.write(`\t\tPlayer ${defender.playerNum} ${defender.name} ${defender.shipNum} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
+        this.write(`\t\tHit!\n`);
+        this.write(`\t\t${defender.shipId} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
     }
 
     shipMiss() {
-        this.write('\t\tMiss!\n');
+        this.write(`\t\tMiss!\n`);
     }
 
     shipDestroyed(ship) {
-        this.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} was destroyed\n`);
+        this.write(`\t\t${ship.shipId} was destroyed\n`);
     }
 
     playerWin(winner) {
