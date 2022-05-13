@@ -1,12 +1,8 @@
+const socket = io();
+
 let board;
 let turn;
 let logs;
-
-let boardHTML;
-let turnHTML;
-let logsHTML;
-
-const socket = io();
 
 socket.on('gameState', (data) => {
     board = data.gameBoard;
@@ -14,6 +10,10 @@ socket.on('gameState', (data) => {
     logs = data.gameLogs;
     updateUI();
 });
+
+let boardHTML;
+let turnHTML;
+let logsHTML;
 
 function updateUI() {
 

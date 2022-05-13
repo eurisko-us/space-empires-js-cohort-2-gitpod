@@ -12,7 +12,7 @@ class Ship {
     setShipId() {
         this.shipId = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
     }
-
+    
 };
 
 class Scout extends Ship {
@@ -148,4 +148,10 @@ class Dreadnaught extends Ship {
     }
 }
 
-export { Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught };
+module.exports.Ship = Ship;
+module.exports.Scout = Scout;
+module.exports.BattleCruiser = BattleCruiser;
+module.exports.Battleship = Battleship;
+module.exports.Cruiser = Cruiser;
+module.exports.Destroyer = Destroyer;
+module.exports.Dreadnaught = Dreadnaught;

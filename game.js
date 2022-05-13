@@ -1,41 +1,46 @@
-import { readFile } from 'fs';
-import Player from './player.js';
-import { Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught } from './ships.js';
-import Colony from './colony.js';
-import Logger from './logger.js';
+let fs = require('fs');
+const ships = require('./ships');
+const Scout = ships.Scout;
+const BattleCruiser = ships.BattleCruiser;
+const Battleship = ships.Battleship;
+const Cruiser = ships.Cruiser;
+const Destroyer = ships.Destroyer;
+const Dreadnaught = ships.Dreadnaught;
+const Player = require('./player');
+const Colony = require('./colony');
+const Logger = require('./logger.js');
 
 class Game {
 
-    constructor(clientSockets, strategies, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000) {
+    constructor(clientSockets, players, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000) {
 
         this.clientSockets = clientSockets;
-        this.initialShips = initialShips;
         this.boardSize = boardSize;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
    
-        this.strategies = strategies;
-        this.players = [...Object.entries(this.strategies)].map(strategy => new Player(...strategy));
-
         this.log = new Logger();
         this.log.clear();
         this.log.initialize();
+
+        this.players = players;
+        this.initialShips = initialShips;
 
         this.board = [];
         this.turn = 0;
         this.winner = null;
 
         this.boardRange = [...Array(this.boardSize).keys()];
-        this.allCoords = this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]));
+        this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
 
     }
 
     start() {
-        setInterval(this.run(), this.refreshRate);
+        setInterval(() => this.run(), this.refreshRate);
     }
 
     translate(x, y) {
-        return [x[0] + y[0], x[1] + y[1]];
+        return x.map((_, i) => x[i] + y[i]);
     }
 
     checkInBounds(coords) {
@@ -48,13 +53,13 @@ class Game {
     }
 
     removeObjFromBoard(obj) {
-        let [x, y] = obj.coords;
+        let [x, y] = [...obj.coords];
         let index = this.board[y][x].indexOf(obj);
         this.board[y][x].splice(index, 1);
     }
 
     addToBoard(obj) {
-        let [x, y] = obj.coords;
+        let [x, y] = [...obj.coords];
         this.board[y][x].push(obj);
     }
 
@@ -104,24 +109,23 @@ class Game {
 
     }
 
-    makeSimple(obj) {
-        let attributes = {};
+    getSimpleObj(obj) {
+        let simpleObj = {};
         for (const [attr, v] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
-            attributes[attr] = v.value;
+            simpleObj[attr] = v.value;
         }
-        return attributes;
+        return simpleObj;
     }
 
     updateSimpleBoard() {
 
-        let simpleBoard = [];
-
-        for (let i = 0; i < this.boardSize; i++) {
-            simpleBoard.push([]);
-            for (let j = 0; j < this.boardSize; j++) {
-                simpleBoard[i] = this.board[j][i].map(obj => makeSimple(obj));
-            }
-        }
+        let simpleBoard = this.boardRange.map(
+            i => this.boardRange.map(
+                j => this.board[j][i].map(
+                    obj => this.getSimpleObj(obj)
+                )
+            )
+        );
 
         for (let player of this.players) {
             player.strategy.simpleBoard = simpleBoard;
@@ -139,7 +143,7 @@ class Game {
 
                 let oldCoords = [...ship.coords];
                 let translations = this.possibleTranslations(ship.coords);
-                let translation = player.strategy.chooseTranslation(onlyAttributesOfObj(ship), translations);            
+                let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
 
                 if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
@@ -181,15 +185,14 @@ class Game {
         for (let coords of combatCoords) {
 
             let combatOrder = this.sortCombatOrder(coords);
-            let simpleCombatOrder = combatOrder.map(ship => makeSimple(ship));
 
-            while (this.checkForOpponentShips(coords)) {
+            while (this.checkForCombat(coords)) {
 
                 for (let ship of combatOrder) {
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
 
                         let player = this.players[ship.playerNum - 1];
-                        let target = player.strategy.chooseTarget(makeSimple(ship), simpleCombatOrder);
+                        let target = player.strategy.chooseTarget(ship, combatOrder);
                         this.log.combat(ship, target);
 
                         if (this.roll(ship, target)) {
@@ -200,8 +203,6 @@ class Game {
                                 this.removeShipFromPlayer(player, ship);
                             }
                         }
-
-                        this.updateSimpleBoard();
 
                     }
                 }
@@ -215,20 +216,25 @@ class Game {
     }
 
     getAllShips(coords) {
-        return this.board[coords[1]][coords[0]].filter(elem => elem.objType === 'Ship');
+        return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship');
     }
 
-    checkForOpponentShips(coords) {
-        let objs = this.getAllShips(coords);
-        return !objs.some(obj => obj.playerNum !== objs[0].playerNum);
+    checkForOpponentShips(obj) {
+        let ships = this.getAllShips(obj.coords);
+        return !ships.every(ship => ship.playerNum === obj.playerNum);
+    }
+
+    checkForCombat(coords) {
+        let ships = this.getAllShips(coords);
+        return !ships.every(obj => obj.playerNum === ships[0].playerNum);
     }
 
     getCombatCoords() {
-        return this.allCoords.filter(coords => this.checkForOpponentShips(coords));
+        return this.allCoords.filter(coords => this.checkForCombat(coords));
     }
 
-    sortCombatOrder(coords) {
-        let combatOrder = [...this.board[coords[1]][coords[0]]];
+    sortCombatOrder(coord) {
+        let combatOrder = [...this.board[coord[1]][coord[0]]];
         combatOrder.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
         return [...combatOrder];
     }
@@ -242,12 +248,11 @@ class Game {
         player.ships.forEach(ship => this.removeObjFromBoard(ship));
         this.removeObjFromBoard(player.homeColony);
         this.players.splice(this.players.indexOf(player), 1);
-
     }
 
     checkForWinner() {
 
-        this.players.filter(player => this.checkForOpponentShips(player.homeColony.coords))
+        this.players.filter(player => this.checkForOpponentShips(player.homeColony))
                     .forEach(player => this.removePlayer(player));
 
         if(this.players.length === 1) return this.players[0].playerNum;
@@ -287,7 +292,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            readFile('log.txt', (err, data) => {
+            fs.readFile('log.txt', (err, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
                     gameTurn: this.turn,
@@ -323,4 +328,4 @@ class Game {
     
 };
 
-export default Game;
+module.exports = Game;
