@@ -19,8 +19,9 @@ td.cell {
     left: 500px;
     top: 82px;
     height: 400px;
-    width: 300px;
+    width: 350px;
     border: 1px solid;
+    padding: 15px;
     font: 16px/26px Georgia, Garamond, Serif;
     overflow: auto;
 }

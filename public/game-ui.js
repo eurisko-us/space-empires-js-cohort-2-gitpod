@@ -22,37 +22,32 @@ function updateUI() {
     logsHTML  = document.getElementById("logs");
 
     if (boardHTML.rows.length === 0) { createBoard(); }
+    
+    resetBoard();
     updateShips();
+    updateColonies();
     // updateTurn();
     updateLogs();
 
 }
 
 function createBoard() {
-
-    for(let i = 0; i < board.length; i++) {
-
+    for (let i = 0; i < board.length; i++) {
         let row = boardHTML.insertRow();
-
-        for(let j = 0; j < board.length; j++) {
-        
+        for (let j = 0; j < board.length; j++) {
             let cell = row.insertCell();
             cell.className = 'cell';
             cell.style.backgroundColor = 'gray';
-
         }
     }
-
 }
 
 function updateShips() {
 
-    resetBoard();
-
-    for(let i = 0; i < board.length; i++) {
-        for(let j = 0; j < board.length; j++) {
-            for(let obj of board[j][i]) {
-                if (obj.objType == "Ship") {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board.length; j++) {
+            for (let obj of board[j][i]) {
+                if (obj.objType === "Ship") {
 
                     let shipColorMap = {
                         1: 'red',
@@ -72,16 +67,16 @@ function updateShips() {
 
 }
 
-function placeColonies() {
+function updateColonies() {
     
-    for(let i = 0; i < board.length; i++) {
-        for(let j = 0; j < board.length; j++) {
-            for(let obj of board[j][i]) {
-                if (obj.objType == "Colony") {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board.length; j++) {
+            for (let obj of board[j][i]) {
+                if (obj.objType === "Colony") {
 
                     let colonyColorMap = {
-                        1: 'red',
-                        2: 'blue'
+                        1: '#ff8080',
+                        2: '#a080ff'
                     }
 
                     let colonyNum = board[j][i][0].playerNum;
@@ -98,15 +93,14 @@ function placeColonies() {
 }
 
 function resetBoard() {
-    for(let i = 0; i < board.length; i++) {
-        for(let j = 0; j < board.length; j++) {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board.length; j++) {
             let cell = boardHTML.rows[i].cells[j];
             cell.style.backgroundColor = 'gray';
             cell.innerHTML = '';
         }
     }
-    placeColonies();
-}
+};
 
 function updateTurn() {
     turnHTML.innerHTML = `turn: ${turn}`;
