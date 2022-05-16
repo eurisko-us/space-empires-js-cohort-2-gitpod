@@ -9,47 +9,28 @@ const Cruiser = ships.Cruiser;
 const Destroyer = ships.Destroyer;
 const Dreadnaught = ships.Dreadnaught;
 const boardSize = 7;
-const players = [new TestPlayer(1), new TestPlayer(2)];
+const Strategy = require('./strategy');
+const players = [new Player(1, new Strategy()), new Player(2, new Strategy())];
 const maxTurns = 10;
 var assert = require('assert');
 
 
-const game = new Game(clientSockets=null, boardSize, players, maxTurns);
+const game = new Game(clientSockets=null, players, {'Scout': 1});
 game.initializeGame();
 
-/*
-for (let i = 0; i < players.length; i++) {
-    game.removeFromBoard(players[i].ships[0]);
-    game.removeFromBoard(players[i].ships[1]);
-    players[i].ships = [];
+let turn = 0
 
-    if (players[i].playerNum == 1) {
-        let ship = new Scout([3, 2], i + 1, 1);
-        players[i].addShip(ship);
-        game.addToBoard(ship);
-    }
-
-    if (players[i].playerNum == 2) { 
-        let ship = new Scout([3, 3], i + 1, 1);
-        players[i].addShip(ship);
-        game.addToBoard(ship);
-    }
-    
-
-}
-
-
-for (let i = 0; i < 1; i++) {
-    game.log.turn(game.turn);
+for (let i = 0; i < 3; i++) {
+    game.log.turn(turn);
     game.movementPhase();
-    game.turn++;
+    turn ++
 }
+let combatCoords = game.getCombatCoords()
+let combatOrder = game.sortCombatOrder(combatCoords[0])
+assert (combatOrder[0].playerNum == 1)
+console.log("Defenders First Rule Works Correctly")
 
-*/
 
-game.start()
-//check defender first rule and that combat runs until only one players ship is left, use desired_coord as [3, 3]
-//assert player 2 ship is first in combat order
 //initiate combat b4 player 2 moves, ie player 2 ships cant move off of coordinate if player 1 ship in there (can be down at same time as previous test)
 //set ships in front of eachother, player 1 moves, run movement, make sure player 2 isnt moving
 
