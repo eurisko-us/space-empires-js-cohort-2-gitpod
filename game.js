@@ -60,6 +60,7 @@ class Game {
 
     addToBoard(obj) {
         let [x, y] = [...obj.coords];
+
         this.board[y][x].push(obj);
     }
 
@@ -151,7 +152,6 @@ class Game {
                 this.removeObjFromBoard(ship);
                 ship.coords = newCoords;
                 this.addToBoard(ship);
-
                 this.log.shipMovement(oldCoords, ship);
                 this.updateSimpleBoard();
 
@@ -234,7 +234,7 @@ class Game {
     }
 
     sortCombatOrder(coord) {
-        let combatOrder = [...this.board[coord[1]][coord[0]]];
+        let combatOrder = this.getAllShips(coord)
         combatOrder.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
         return [...combatOrder];
     }
