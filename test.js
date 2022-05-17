@@ -1,6 +1,5 @@
 const Game = require('./game');
 const Player = require('./player');
-const TestPlayer = require('./testPlayer')
 const ships = require('./ships');
 const Scout = ships.Scout;
 const BattleCruiser = ships.BattleCruiser;
@@ -9,7 +8,8 @@ const Cruiser = ships.Cruiser;
 const Destroyer = ships.Destroyer;
 const Dreadnaught = ships.Dreadnaught;
 const boardSize = 7;
-const players = [new Player(1), new Player(2)];
+const testStrat = require('./justinTestStrat')
+const players = [new Player(1, new testStrat()), new Player(2, new testStrat())];
 const maxTurns = 10;
 var assert = require('assert');
 
@@ -19,4 +19,7 @@ var assert = require('assert');
 // test that dead ship cant attack
 // test tie condition
 
+const game = new Game(clientSockets=null, players, {'Scout': 1});
+game.initializeGame();
 
+game.start()
