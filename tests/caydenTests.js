@@ -106,5 +106,5 @@ for (let i = 0; i < game2.players.length; i++) {
 }
 
 game2.movementPhase()
-assert (game2.players[1].ships[0].coords == [3, 4], "Player 2 can still move if player 1 has moved into their space")
+assert (game2.players[1].ships[0].coords[0] == 3 && game2.players[1].ships[0].coords[1] == 4, "Player 2 can still move if player 1 has moved into their space")
 console.log("Player 2 Cannot Move if Player 1 Has Moved Into Their Space")
