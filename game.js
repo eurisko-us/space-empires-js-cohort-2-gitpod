@@ -60,6 +60,7 @@ class Game {
 
     addToBoard(obj) {
         let [x, y] = [...obj.coords];
+
         this.board[y][x].push(obj);
     }
 
