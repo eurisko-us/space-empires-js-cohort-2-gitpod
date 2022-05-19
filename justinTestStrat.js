@@ -51,7 +51,7 @@ class TestStrat {
         }
 
         if (ship.playerNum == 1) {
-            return [0, 1]
+            return [0, -1]
         }
     }
 
