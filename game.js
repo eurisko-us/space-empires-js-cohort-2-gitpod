@@ -219,9 +219,10 @@ class Game {
     }
 
     run() {
-        this.display()
-        
+
         this.winner = this.checkForWinner();
+
+        this.display()
 
         if (this.turn < this.maxTurns) {
             if (!this.winner) {
