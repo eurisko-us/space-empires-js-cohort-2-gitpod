@@ -36,7 +36,7 @@ class Game {
     }
 
     start() {
-        setInterval(() => this.run(), this.refreshRate);
+        setInterval(() => this.run(), this.refreshRate); //second number sets delay
     }
 
     translate(x, y) {
@@ -55,7 +55,7 @@ class Game {
     removeObjFromBoard(obj) {
         let [x, y] = [...obj.coords];
         let index = this.board[y][x].indexOf(obj);
-        this.board[y][x].splice(index, 1);
+        this.board[y][x].splice(index, 1); //first sets array index, second sets how many are removed from there
     }
 
     addToBoard(obj) {
@@ -85,6 +85,7 @@ class Game {
         }
 
         for (let i = 0; i < this.players.length; i++) {
+            //if more players added, need to change the stuff dependent on i
             
             // ships
 
@@ -142,7 +143,7 @@ class Game {
         for (let player of this.players) {
             for (let ship of player.ships) {
 
-                let oldCoords = [...ship.coords];
+                let oldCoords = [...ship.coords]; //... accesses each element of the array. Can be used for functions too.
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
@@ -281,6 +282,12 @@ class Game {
                 currentLine = '';
             } else {
                 currentLine += decodedData[i];
+            }
+
+            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n" || i == decodedData.length-1) {
+                //if you don't add that 'end letter' section, it doesn't write the final turn as there is no "turn" afterwards
+                logs.push(turn);
+                turn = [];
             }
 
         }
