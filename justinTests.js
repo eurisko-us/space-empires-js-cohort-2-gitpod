@@ -17,7 +17,7 @@ var assert = require('assert');
 // test friendly fire - Done
 // test that ships cant move off board - Done
 // test win condition - Done
-// test that dead ship cant attack
+// test that dead ship cant attack - Combat doesnt work right
 // test tie condition - Done
 
 const game = new Game(clientSockets=null, players, {'Scout': 1});
