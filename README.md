@@ -4,6 +4,8 @@
   - If you are running node app.js, clientSockets is already defined in the file. If you are writing tests, put null for the clientSockets input
   - players is a list of 2 players, which each require a strategy as an input
   - initialShips is a dictionary {"Ship name": Number of this type of ship you want}
+ - game.run() will run a single turn of the game, but will only show in log.txt but not have a display on another tab
+ - game.start() will run the full game, default maxTurns is 1000 and will have a display in another tab
 
 
 ## What are the main classes/groups of interacting functions and how they get used
