@@ -148,10 +148,4 @@ class Dreadnaught extends Ship {
     }
 }
 
-module.exports.Ship = Ship;
-module.exports.Scout = Scout;
-module.exports.BattleCruiser = BattleCruiser;
-module.exports.Battleship = Battleship;
-module.exports.Cruiser = Cruiser;
-module.exports.Destroyer = Destroyer;
-module.exports.Dreadnaught = Dreadnaught;
+export { Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught };

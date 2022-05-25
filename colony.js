@@ -9,4 +9,4 @@ class Colony {
     
 }
 
-module.exports = Colony;
+export default Colony;

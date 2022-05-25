@@ -1,18 +1,12 @@
-let fs = require('fs');
-const ships = require('./ships');
-const Scout = ships.Scout;
-const BattleCruiser = ships.BattleCruiser;
-const Battleship = ships.Battleship;
-const Cruiser = ships.Cruiser;
-const Destroyer = ships.Destroyer;
-const Dreadnaught = ships.Dreadnaught;
-const Player = require('./player');
-const Colony = require('./colony');
-const Logger = require('./logger.js');
+import { readFile } from 'fs';
+import Player from './player.js';
+import { Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught } from './ships.js';
+import Colony from './colony.js';
+import Logger from './logger.js';
 
 class Game {
 
-    constructor(clientSockets, players, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000) {
+    constructor(clientSockets, strategies, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000) {
 
         this.clientSockets = clientSockets;
         this.boardSize = boardSize;
@@ -23,7 +17,8 @@ class Game {
         this.log.clear();
         this.log.initialize();
 
-        this.players = players;
+        this.strategies = strategies;
+        this.players = this.strategies.map((strategy, i) => new Player(i + 1, strategy));
         this.initialShips = initialShips;
 
         this.board = [];
@@ -204,6 +199,8 @@ class Game {
                             }
                         }
 
+                        this.updateSimpleBoard();
+
                     }
                 }
 
@@ -226,7 +223,7 @@ class Game {
 
     checkForCombat(coords) {
         let ships = this.getAllShips(coords);
-        return !ships.every(obj => obj.playerNum === ships[0].playerNum);
+        return !ships.every(ship => ship.playerNum === ships[0].playerNum);
     }
 
     getCombatCoords() {
@@ -292,7 +289,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            fs.readFile('log.txt', (err, data) => {                
+            readFile('log.txt', (_, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
                     gameTurn: this.turn,
@@ -328,4 +325,4 @@ class Game {
     
 };
 
-module.exports = Game;
+export default Game;

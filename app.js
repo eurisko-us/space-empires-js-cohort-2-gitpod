@@ -1,13 +1,16 @@
-const express = require('express');
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const Game = require('./game');
-const Player = require('./player');
-const Strategy = require('./strategy');
+const httpServer = http.Server(app);
+const io = new Server(httpServer);
+
+import Game from './game.js';
+import Strategy from './strategy.js';
 
 app.use(express.static('public'));
-app.get('/', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+app.get('/', (_, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 let clientSockets = {};
 
@@ -25,11 +28,11 @@ io.on('connection', (socket) => {
 
 });
 
-http.listen(3000, () => console.log('Listening on *:3000'));
+httpServer.listen(3000, () => console.log('Listening on *:3000'));
 
-const players = [new Player(1, new Strategy()), new Player(2, new Strategy())];
+const strategies = [new Strategy(), new Strategy()];
 const initialShips = {'Scout': 1, 'Cruiser': 1};
-const game = new Game(clientSockets, players, initialShips);
+const game = new Game(clientSockets, strategies, initialShips);
 
 game.initializeGame();
 game.start();

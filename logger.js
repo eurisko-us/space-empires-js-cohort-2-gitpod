@@ -1,4 +1,4 @@
-const fs = require('fs');
+import { writeFileSync, appendFileSync } from 'fs';
 
 class Logger {
     
@@ -7,19 +7,19 @@ class Logger {
     }
 
     clear() {
-        fs.writeFileSync(this.filename, '', err => {
+        writeFileSync(this.filename, '', err => {
             if (err) {
-              console.error(err);
-              return;
+                console.error(err);
+                return;
             }
         });
     }
 
     write(string) {
-        fs.appendFileSync(this.filename, string, err => {
+        appendFileSync(this.filename, string, err => {
             if (err) {
-              console.error(err);
-              return;
+                console.error(err);
+                return;
             }
         });
     }
@@ -72,4 +72,4 @@ class Logger {
 
 }
 
-module.exports = Logger;
+export default Logger;

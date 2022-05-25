@@ -21,11 +21,11 @@ function updateUI() {
     turnHTML  = document.getElementById("turn");
     logsHTML  = document.getElementById("logs");
 
-    if (boardHTML.rows.length === 0) { createBoard(); }
+    if (boardHTML.rows.length === 0) createBoard();
     
     resetBoard();
-    updateShips();
-    updateColonies();
+    updateObjType('Ship', ['red', 'blue'], 'P');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
     // updateTurn();
     updateLogs();
 
@@ -42,54 +42,29 @@ function createBoard() {
     }
 }
 
-function updateShips() {
+function updateObjType(objType, colors, innerHTML) {
 
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board.length; j++) {
             for (let obj of board[j][i]) {
-                if (obj.objType === "Ship") {
+                if (obj.objType === objType) {
 
                     let shipColorMap = {
-                        1: 'red',
-                        2: 'blue'
+                        1: colors[0],
+                        2: colors[1]
                     }
 
                     let shipNum = board[j][i][0].playerNum;
                     let cell = boardHTML.rows[j].cells[i];
 
                     cell.style.backgroundColor = shipColorMap[shipNum];
-                    cell.innerHTML = `P${shipNum}`;
+                    cell.innerHTML = `${innerHTML}${shipNum}`;
 
                 }
             }
         }
     }
 
-}
-
-function updateColonies() {
-    
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board.length; j++) {
-            for (let obj of board[j][i]) {
-                if (obj.objType === "Colony") {
-
-                    let colonyColorMap = {
-                        1: '#ff8080',
-                        2: '#a080ff'
-                    }
-
-                    let colonyNum = board[j][i][0].playerNum;
-                    let cell = boardHTML.rows[j].cells[i];
-
-                    cell.style.backgroundColor = colonyColorMap[colonyNum];
-                    cell.innerHTML = `PC${colonyNum}`;
-
-                }
-            }
-
-        }
-    }
 }
 
 function resetBoard() {
