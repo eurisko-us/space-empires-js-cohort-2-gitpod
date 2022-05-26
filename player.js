@@ -17,9 +17,60 @@ class Player {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
+
     chooseTranslation(ship, translations) {
-        let randonIndex = this.getRandomInteger(0, translations.length-1);
-        return translations[randonIndex];
+        let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        return this.minDistanceTranslation(ship, translations, targetCoords);
+    }
+
+    getOpponentHomeColonyCoords(ship) {
+        
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
+
+                for (let obj of this.simpleBoard[j][i]) {
+                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
+                        return [j, i];
+                    }
+                }
+
+            }
+        }
+        
+    }
+
+    minDistanceTranslation(ship, translations, targetCoords) {
+            
+        let minTranslation = null;
+        let minDistance = 999;
+
+        for (let translation of translations) {
+
+            let newPoint = [ship.coords[0] + translation[0], ship.coords[1] + translation[1]];
+            let distance = this.dist(newPoint, targetCoords);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                minTranslation = [...translation];
+            }
+
+        }
+
+        return minTranslation;
+
+    }
+
+    chooseTarget(shipInfo, combatOrder) {
+        
+        let opponentShips = [];
+        for (let opponentShip of combatOrder) {
+            if (opponentShip.playerNum != shipInfo.playerNum && opponentShip.hp > 0) {
+                opponentShips.push(opponentShip);
+            }
+        }
+
+        return opponentShips[Math.floor(Math.random() * opponentShips.length)];
+
     }
 };
 

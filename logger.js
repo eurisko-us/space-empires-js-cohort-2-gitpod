@@ -65,8 +65,8 @@ class Logger {
         self.write(`\t\tPlayer ${ship.playerNum} ${ship.name} ${ship.shipNum} was destroyed\n\n`);
     }
 
-    playerWin(self, player) {
-        self.write(`\nWinner: Player ${player.playerNum}`);
+    playerWin(self, playeNum) {
+        self.write(`\nWinner: Player ${playerNum}`);
     }
 
 }

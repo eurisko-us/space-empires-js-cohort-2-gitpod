@@ -132,16 +132,17 @@ class Game {
     combatPhase() {
         
         this.log.beginPhase('Combat');
-        let combat_coords = this.getCombatCoords();
+        let combatCoords = this.getCombatCoords();
 
-        for (let coord of combat_coords) {
-            let combat_order = this.sortCombatOrder(coord);
+        for (let coord of combatCoords) {
+            let combatOrder = this.sortCombatOrder(coord);
             
-            while (this.checkForOpponentShips(coord) == True) {
-                for (let ship of combat_order) {
-                    if (board[coord[1]][coord[0]].includes(ship)) {
+            while (this.checkForBothPlayersShips(coord)) {
+                for (let ship of combatOrder) {
+                    if (this.board[coord[1]][coord[0]].includes(ship)) {
+                        console.log(this.players)
                         let player = this.players[ship.player_num-1];
-                        let target = player.chooseTarget(ship);
+                        let target = player.chooseTarget(ship, combatOrder);
                         this.log.combat(ship, target);
 
                         if (this.roll(ship, target)) {
@@ -202,6 +203,23 @@ class Game {
         return false;
     }
 
+    checkForBothPlayersShips(coords) {
+        let playerNums = [];
+        for (let elem of this.board[coords[1]][coords[0]]) {
+            if (this.isAShip(elem)) playerNums.push(elem.playerNum);
+        }
+        return !playerNums.every((elem) => elem === playerNums[0]);
+    }
+
+    checkAllSameTeam(shipList) {
+        for (let ship of shipList) {
+            if (ship.playerNum !== shipList[0].playerNum) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     isAShip(obj) {
         return obj instanceof Scout 
             || obj instanceof BattleCruiser
@@ -213,14 +231,6 @@ class Game {
 
     getAllShips(coords) {
         return this.board[coords[1]][coords[0]].filter(elem => this.isAShip(elem));
-    }
-
-    checkForOpponentShips(obj) {
-        for (let elem of this.board[obj.coords[1]][obj.coords[0]]) {
-            if (this.isAShip(elem) && elem.playerNum != obj.playerNum) {
-                return true;
-            }
-        }
     }
     
     removePlayer(player) {
@@ -280,11 +290,9 @@ class Game {
 
     }
 
-    run() {
-
-        for(let socketId in this.clientSockets) {
+    emitDataToUI() {
+        for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            
             fs.readFile('log.txt', (err, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
@@ -292,20 +300,24 @@ class Game {
                     gameLogs: this.getLogs(data)
                 });
             });
-
         }
+    }
 
-        this.winner = this.checkForWinner();
+    run() {
 
-        if (this.turn < this.maxTurns) {
-            if (!this.winner) {
-                this.log.turn(this.turn);
-                this.movementPhase();
-                this.turn++;
-            }
-        } else if (!this.winner) {
-            this.winner = "Tie";
+        this.emitDataToUI();
+        if (this.winner) return;
+
+        if (this.turn < this.maxTurns && !this.winner) {
+            this.log.turn(this.turn);
+            this.movementPhase();
+            this.combatPhase();
+            this.winner = this.checkForWinner();
+            this.turn++;
         }
+        
+        if (this.turn > this.maxTurns) this.winner = 'Tie';
+        if (this.winner) this.log.playerWin(this.winner);
         
     }
 
