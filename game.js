@@ -12,10 +12,9 @@ const Logger = require('./logger.js');
 
 class Game {
 
-    // constructor(clientSockets, players, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000) {
-    constructor(players, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000) {
+    constructor(clientSockets, players, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000) {
 
-        // this.clientSockets = clientSockets;
+        this.clientSockets = clientSockets;
         this.boardSize = boardSize;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
@@ -191,9 +190,6 @@ class Game {
             while (this.checkForCombat(coords)) {
 
                 for (let ship of combatOrder) {
-                    
-                    // console.log(this.board[coords[1]][coords[0]]);
-
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
 
                         let attacker = this.players[ship.playerNum - 1];
@@ -201,13 +197,9 @@ class Game {
                         let defender = this.players[target.playerNum - 1];
                         this.log.combat(ship, target);
 
-                        // console.log(`ship: ${ship.shipId}`);
-                        // console.log(`target: ${target.shipId}`);
-
                         if (this.roll(ship, target)) {
                             target.hp -= 1;
                             if (target.hp <= 0) {
-                                // console.log(`${target.shipId} was destroyed`);
                                 this.log.shipDestroyed(target);
                                 this.removeObjFromBoard(target);
                                 this.removeShipFromPlayer(defender, target);
@@ -299,28 +291,28 @@ class Game {
 
     }
 
-    // display() {
-    //     for (let socketId in this.clientSockets) {
-    //         let socket = this.clientSockets[socketId];
-    //         fs.readFile('log.txt', (err, data) => {                
-    //             socket.emit('gameState', { 
-    //                 gameBoard: this.board,
-    //                 gameTurn: this.turn,
-    //                 gameLogs: this.getLogs(data)
-    //             });
-    //         });
-    //     }
-    // }
+    display() {
+        for (let socketId in this.clientSockets) {
+            let socket = this.clientSockets[socketId];
+            fs.readFile('log.txt', (_, data) => {                
+                socket.emit('gameState', { 
+                    gameBoard: this.board,
+                    gameTurn: this.turn,
+                    gameLogs: this.getLogs(data)
+                });
+            });
+        }
+    }
 
     run() {
 
+        this.display();
+
         if (this.winner) {
             this.log.playerWin(this.winner);
-            clearInterval(stopInterval);
+            clearInterval(this.stopInterval);
             return;
         }
-
-        // this.display();
 
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
@@ -331,7 +323,7 @@ class Game {
         } else {
             this.winner = 'Tie';
         }
-        
+
     }
 
     getRandomInteger(min, max) {
