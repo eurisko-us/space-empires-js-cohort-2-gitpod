@@ -250,6 +250,35 @@ class Game {
         this.players.splice(this.players.indexOf(player), 1);
     }
 
+    economicPhase(){
+    
+        for (player of this.players){
+            player.cp += 10
+            
+            this.maintenance(player)
+
+            playerShips = player.buyShips(player.cp)
+            totalCost = this.calcTotalCost(playerShips)
+            if (totalCost > player.cp){
+                continue;
+            }
+            player.cp -= totalCost
+            if (player_ships != None){
+                for (var i = 0; i<playerShips.length; i++){
+                    for (var j = 0; j<playerShips[i][1]; j++){
+                        initCoords = player.homeColony.coords
+                        ship = shipObjects(playerShips[i][0], initCoords)
+                        if (ship == null){
+                            continue;
+                        }
+                        player.addShip(ship)
+                        this.addToBoard(ship)
+                    }
+                }
+            }
+        }
+    }
+
     checkForWinner() {
 
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
@@ -311,6 +340,7 @@ class Game {
             this.log.turn(this.turn);
             this.movementPhase();
             this.combatPhase();
+            this.economicPhase();
             this.winner = this.checkForWinner();
             this.turn++;
         }
