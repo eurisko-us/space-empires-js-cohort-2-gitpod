@@ -36,7 +36,7 @@ class Game {
     }
 
     start() {
-        setInterval(() => this.run(), this.refreshRate); //second number sets delay
+        setInterval(() => this.run(), this.refreshRate); //second number sets how frequently this.run() runs
     }
 
     translate(x, y) {
@@ -282,12 +282,6 @@ class Game {
                 currentLine = '';
             } else {
                 currentLine += decodedData[i];
-            }
-
-            if (letter == 'T' && decodedData[i+1] == 'u' && decodedData[i+2] == "r" && decodedData[i+3] == "n" || i == decodedData.length-1) {
-                //if you don't add that 'end letter' section, it doesn't write the final turn as there is no "turn" afterwards
-                logs.push(turn);
-                turn = [];
             }
 
         }
