@@ -45,14 +45,8 @@ class TestStrat {
 
     chooseTranslation(ship, translations) {
         let targetCoords = this.getOpponentHomeColonyCoords(ship);
-
-        if (ship.playerNum == 2) {
-            return this.minDistanceTranslation(ship, translations, targetCoords);
-        }
-
-        if (ship.playerNum == 1) {
-            return [0, 0]
-        }
+        if (ship.playerNum == 1) return [0, 0];
+        if (ship.playerNum == 2) return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
     chooseTarget(shipInfo, combatOrder) {
