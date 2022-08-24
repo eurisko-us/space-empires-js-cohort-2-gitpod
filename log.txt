@@ -1,5 +1,0 @@
-Begin Game
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3, 3) to (3, 4)
-	End Movement Phase
-

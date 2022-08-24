@@ -147,8 +147,9 @@ class Game {
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
-
+                
                 if (this.checkForOpponentShips(ship)) continue;
+
                 if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
 
                 this.removeObjFromBoard(ship);
@@ -176,6 +177,19 @@ class Game {
             return false;
         }
 
+    }
+
+    checkEnemyShipInCoord(ship, coord) {
+        
+        const enemy = this.board[coord[1]][coord[0]].some(element => {
+            
+            if (element.playerNum === 3-ship.playerNum) {
+                return true;
+            }
+            return false;
+        });
+        
+        return enemy;
     }
 
     combatPhase() {
