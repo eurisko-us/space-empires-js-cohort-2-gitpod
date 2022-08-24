@@ -250,27 +250,61 @@ class Game {
         this.players.splice(this.players.indexOf(player), 1);
     }
 
+    listSum(inpArr) {
+        let total = 0
+        for (i of inpArr) {
+            total += i
+        }
+        return total
+    }
+
+    maintOrder(shipArr) {
+        let orderedShips = shipArr.sort((a,b) => a.maintCost-b.maintCost)
+        return orderedShips
+    }
+
+    calcMaintCost(shipArr) {
+        const maintCosts = shipArr.map((ship) =>  ship.maintCost)
+        const totalCost = this.listSum(maintCosts)
+        return totalCost
+    }
+
+    maintenence(player) {
+        let totalCost = this.calcMaintCost(player.ships)
+        let orderedShips = this.maintOrder(player.ships)
+
+        while (totalCost > player.cp) {
+            orderedShips.shift()
+            totalCost = this.calcMaintCost(orderedShips)
+        }
+
+        player.cp -= totalCost
+        player.ships = orderedShips
+    }
+
+    calcTotalCost(shipArr) {
+        const shipCosts = shipArr.map((ship) => ship.cpCost)
+        const totalCost = this.listSum(shipCosts)
+        return totalCost
+    }
+
     economicPhase(){
     
         for (player of this.players){
             player.cp += 10
             
-            this.maintenance(player)
+            this.maintenence(player) //done
 
             playerShips = player.buyShips(player.cp)
-            totalCost = this.calcTotalCost(playerShips)
-            if (totalCost > player.cp){
-                continue;
-            }
+            totalCost = this.calcTotalCost(playerShips) //done
+            if (totalCost > player.cp) continue;
             player.cp -= totalCost
             if (player_ships != None){
                 for (var i = 0; i<playerShips.length; i++){
                     for (var j = 0; j<playerShips[i][1]; j++){
                         initCoords = player.homeColony.coords
                         ship = shipObjects(playerShips[i][0], initCoords)
-                        if (ship == null){
-                            continue;
-                        }
+                        if (ship == null) continue;
                         player.addShip(ship)
                         this.addToBoard(ship)
                     }
