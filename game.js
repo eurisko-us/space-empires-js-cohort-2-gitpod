@@ -179,19 +179,6 @@ class Game {
 
     }
 
-    checkEnemyShipInCoord(ship, coord) {
-        
-        const enemy = this.board[coord[1]][coord[0]].some(element => {
-            
-            if (element.playerNum === 3-ship.playerNum) {
-                return true;
-            }
-            return false;
-        });
-        
-        return enemy;
-    }
-
     combatPhase() {
 
         this.log.beginPhase('Combat');
