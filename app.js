@@ -8,7 +8,7 @@ const Player = require('./player');
 const Strategy = require('./strategy');
 
 app.use(express.static('public'));
-app.get('/', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+app.get('/', (_, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 let clientSockets = {};
 
