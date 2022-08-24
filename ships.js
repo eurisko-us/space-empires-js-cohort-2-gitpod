@@ -15,6 +15,10 @@ class Ship {
     
 };
 
+// extends makes the class a child class of the parent class
+// super() makes it so that the child class inherits and constructs everything from the parent class
+// When checking, ships are referred to by player number (playerNum), ship name (name), and ship number (shipNum)
+
 class Scout extends Ship {
     constructor(coords, playerNum, shipNum) {
 

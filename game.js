@@ -6,8 +6,8 @@ const Battleship = ships.Battleship;
 const Cruiser = ships.Cruiser;
 const Destroyer = ships.Destroyer;
 const Dreadnaught = ships.Dreadnaught;
-const Player = require('./player');
-const Colony = require('./colony');
+const Player = require('./player.js');
+const Colony = require('./colony.js');
 const Logger = require('./logger.js');
 
 class Game {
@@ -148,6 +148,7 @@ class Game {
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
 
+                if (this.checkForOpponentShips(ship)) continue;
                 if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
 
                 this.removeObjFromBoard(ship);
