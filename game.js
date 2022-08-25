@@ -6,8 +6,8 @@ const Battleship = ships.Battleship;
 const Cruiser = ships.Cruiser;
 const Destroyer = ships.Destroyer;
 const Dreadnaught = ships.Dreadnaught;
-const Player = require('./player');
-const Colony = require('./colony');
+const Player = require('./player.js');
+const Colony = require('./colony.js');
 const Logger = require('./logger.js');
 
 class Game {
@@ -18,6 +18,7 @@ class Game {
         this.boardSize = boardSize;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
+        this.stopInterval = null;
    
         this.log = new Logger();
         this.log.clear();
@@ -149,6 +150,8 @@ class Game {
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
+                
+                if (this.checkForOpponentShips(ship)) continue;
 
                 if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
 
@@ -194,16 +197,17 @@ class Game {
                 for (let ship of combatOrder) {
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
 
-                        let player = this.players[ship.playerNum - 1];
-                        let target = player.strategy.chooseTarget(ship, combatOrder);
+                        let attacker = this.players[ship.playerNum - 1];
+                        let target = attacker.strategy.chooseTarget(ship, combatOrder);
+                        let defender = this.players[target.playerNum - 1];
                         this.log.combat(ship, target);
 
                         if (this.roll(ship, target)) {
                             target.hp -= 1;
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
-                                this.removeObjFromBoard(ship);
-                                this.removeShipFromPlayer(player, ship);
+                                this.removeObjFromBoard(target);
+                                this.removeShipFromPlayer(defender, target);
                             }
                         }
 
@@ -294,7 +298,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            fs.readFile('log.txt', (err, data) => {                
+            fs.readFile('log.txt', (_, data) => {                
                 socket.emit('gameState', { 
                     gameBoard: this.board,
                     gameTurn: this.turn,
@@ -307,18 +311,22 @@ class Game {
     run() {
 
         this.display();
-        if (this.winner) return;
 
-        if (this.turn < this.maxTurns && !this.winner) {
+        if (this.winner) {
+            this.log.playerWin(this.winner);
+            clearInterval(this.stopInterval);
+            return;
+        }
+
+        if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
             this.movementPhase();
             this.combatPhase();
             this.winner = this.checkForWinner();
             this.turn++;
+        } else {
+            this.winner = 'Tie';
         }
-        
-        if (this.turn > this.maxTurns) this.winner = 'Tie';
-        if (this.winner) this.log.playerWin(this.winner);
 
     }
 
