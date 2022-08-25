@@ -25,6 +25,7 @@ class Game {
 
         this.players = players;
         this.initialShips = initialShips;
+        this.shipId = 1;
 
         this.board = [];
         this.turn = 0;
@@ -64,13 +65,14 @@ class Game {
         this.board[y][x].push(obj);
     }
 
-    getNewShip(shipName, i) {
-        if (shipName === 'Scout') return new Scout([3,6*i], i+1, 1);
-        if (shipName === 'BattleCruiser') return new BattleCruiser([3,6*i], i+1, 1);
-        if (shipName === 'Battleship') return new Battleship([3,6*i], i+1, 1);
-        if (shipName === 'Cruiser') return new Cruiser([3,6*i], i+1, 1);
-        if (shipName === 'Destroyer') return new Destroyer([3,6*i], i+1, 1);
-        if (shipName === 'Dreadnaught') return new Dreadnaught([3,6*i], i+1, 1);
+    getNewShip(shipName, i) { //i is player index
+        if (shipName === 'Scout') return new Scout([3,6*i], i+1, this.shipId);
+        if (shipName === 'BattleCruiser') return new BattleCruiser([3,6*i], i+1, this.shipId);
+        if (shipName === 'Battleship') return new Battleship([3,6*i], i+1, this.shipId);
+        if (shipName === 'Cruiser') return new Cruiser([3,6*i], i+1, this.shipId);
+        if (shipName === 'Destroyer') return new Destroyer([3,6*i], i+1, this.shipId);
+        if (shipName === 'Dreadnaught') return new Dreadnaught([3,6*i], i+1, this.shipId);
+        this.shipId += 1;
     }
 
     initializeGame() {
@@ -295,18 +297,18 @@ class Game {
             
             this.maintenence(player) //done
 
-            playerShips = player.buyShips(player.cp)
-            totalCost = this.calcTotalCost(playerShips) //done
+            let playerShips = player.buyShips(player.cp)
+            const totalCost = this.calcTotalCost(playerShips) //done
             if (totalCost > player.cp) continue;
             player.cp -= totalCost
             if (player_ships != None){
                 for (var i = 0; i<playerShips.length; i++){
                     for (var j = 0; j<playerShips[i][1]; j++){
                         initCoords = player.homeColony.coords
-                        ship = shipObjects(playerShips[i][0], initCoords)
+                        ship = this.getNewShip(playerShips[i][0],player.playerNum-1) //done
                         if (ship == null) continue;
-                        player.addShip(ship)
-                        this.addToBoard(ship)
+                        player.addShip(ship) //done
+                        this.addToBoard(ship) //done
                     }
                 }
             }
