@@ -1,4 +1,4 @@
-View all branches ------------------------ git branch
+View all branches ------------------------ git branch -a
 Switch branch ---------------------------- git checkout [branch name]
 Create new branch ------------------------ git checkout -b [branch name]
 
