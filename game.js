@@ -87,7 +87,7 @@ class Game {
         for (let i = 0; i < this.players.length; i++) {
             //if more players added, need to change the stuff dependent on i
             
-            // ships
+            // Creates initial ships (Will need to change for economic phase)
 
             for (const [shipName, numOfShip] of Object.entries(this.initialShips)) {
                 for (let j = 0; j < numOfShip; j++) {
@@ -98,7 +98,7 @@ class Game {
                 }
             }
 
-            // home colony
+            // Creates home colony for each player
 
             let homeColony = new Colony([3,6*i], i+1);
             homeColony.isHomeColony = true;
@@ -118,6 +118,8 @@ class Game {
         }
         return simpleObj;
     }
+
+    //exists to prevent cheating in the stratagies
 
     updateSimpleBoard() {
 
@@ -271,12 +273,6 @@ class Game {
         let turn = [];
 
         for (let i = 0; i < decodedData.length; i++) {
-            
-            if (decodedData.slice(i, i+4) === 'Turn' || i === decodedData.length - 1) {
-                logs.push(turn);
-                turn = [];
-            }
-            
             if (decodedData[i] === '\n') {
                 turn.push(currentLine);
                 currentLine = '';
@@ -284,8 +280,13 @@ class Game {
                 currentLine += decodedData[i];
             }
 
+            if (decodedData.slice(i, i+4) === 'Turn' || i == decodedData.length - 1) {
+                logs.push(turn); //length - 1 needed for the last turn
+                turn = [];
+            }
+
         }
-        
+        logs.push([currentLine, '']) //needed for the winner declaration
         return logs;
 
     }

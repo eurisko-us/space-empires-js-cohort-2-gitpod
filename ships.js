@@ -16,9 +16,9 @@ class Ship {
 };
 
 //extends makes the class a child class
-//super makes it so that the child class inherits and constructs everything from the parent clasd
+//super makes it so that the child class inherits and constructs everything from the parent class
 
-//When checking, ships are refered to by player number, ship name, ship number
+//could remove shipNum later if never used, only being used to make shipId
 class Scout extends Ship {
     constructor(coords, playerNum, shipNum) {
 
@@ -37,6 +37,8 @@ class Scout extends Ship {
 
         this.cpCost = 6;
         this.maintCost = 1;
+
+        this.setShipId();
 
     }
 }
@@ -60,6 +62,8 @@ class BattleCruiser extends Ship {
         this.cpCost = 15;
         this.maintCost = 2;
 
+        this.setShipId();
+
     }
 }
 
@@ -81,6 +85,8 @@ class Battleship extends Ship {
         
         this.cpCost = 20;
         this.maintCost = 3;
+
+        this.setShipId();
 
     }
 }
@@ -104,6 +110,8 @@ class Cruiser extends Ship {
         this.cpCost = 12;
         this.maintCost = 2;
 
+        this.setShipId();
+
     }
 }
 
@@ -125,6 +133,8 @@ class Destroyer extends Ship {
 
         this.cpCost = 9;
         this.maintCost = 1;
+
+        this.setShipId();
 
     }
 }
@@ -148,6 +158,8 @@ class Dreadnaught extends Ship {
 
         this.cpCost = 24;
         this.maintCost = 3;
+
+        this.setShipId();
 
     }
 }
