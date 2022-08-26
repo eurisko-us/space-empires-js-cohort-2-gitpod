@@ -1,4 +1,5 @@
 View all branches ------------------------ git branch -a
+Refresh remote branch list --------------- git remote update origin --prune
 Switch branch ---------------------------- git checkout [branch name]
 Create new branch ------------------------ git checkout -b [branch name]
 
