@@ -9,3 +9,6 @@ Commit ----------------------------------- git add [filename or .]
                                            git push origin [branch name]
  
 List changes since last commit ----------- git status
+
+Push branch ------------------------------ git push
+Auto create remote branch when pushing --- git config --global --add push.autoSetupRemote true
