@@ -37,7 +37,7 @@ class Game {
     }
 
     start() {
-        this.stopInterval = setInterval(() => this.run(), this.refreshRate);
+        setInterval(() => this.run(), this.refreshRate); //second number sets how frequently this.run() runs
     }
 
     translate(x, y) {
@@ -56,7 +56,7 @@ class Game {
     removeObjFromBoard(obj) {
         let [x, y] = [...obj.coords];
         let index = this.board[y][x].indexOf(obj);
-        this.board[y][x].splice(index, 1);
+        this.board[y][x].splice(index, 1); //first sets array index, second sets how many are removed from there
     }
 
     addToBoard(obj) {
@@ -86,8 +86,9 @@ class Game {
         }
 
         for (let i = 0; i < this.players.length; i++) {
+            //if more players added, need to change the stuff dependent on i
             
-            // ships
+            // Creates initial ships (Will need to change for economic phase)
 
             for (const [shipName, numOfShip] of Object.entries(this.initialShips)) {
                 for (let j = 0; j < numOfShip; j++) {
@@ -98,7 +99,7 @@ class Game {
                 }
             }
 
-            // home colony
+            // Creates home colony for each player
 
             let homeColony = new Colony([3,6*i], i+1);
             homeColony.isHomeColony = true;
@@ -118,6 +119,8 @@ class Game {
         }
         return simpleObj;
     }
+
+    //exists to prevent cheating in the stratagies
 
     updateSimpleBoard() {
 
@@ -143,7 +146,7 @@ class Game {
         for (let player of this.players) {
             for (let ship of player.ships) {
 
-                let oldCoords = [...ship.coords];
+                let oldCoords = [...ship.coords]; //... accesses each element of the array. Can be used for functions too.
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
@@ -274,12 +277,6 @@ class Game {
         let turn = [];
 
         for (let i = 0; i < decodedData.length; i++) {
-            
-            if (decodedData.slice(i, i+4) === 'Turn' || i === decodedData.length - 1) {
-                logs.push(turn);
-                turn = [];
-            }
-            
             if (decodedData[i] === '\n') {
                 turn.push(currentLine);
                 currentLine = '';
@@ -287,8 +284,13 @@ class Game {
                 currentLine += decodedData[i];
             }
 
+            if (decodedData.slice(i, i+4) === 'Turn' || i == decodedData.length - 1) {
+                logs.push(turn); //length - 1 needed for the last turn
+                turn = [];
+            }
+
         }
-        
+        logs.push([currentLine, '']) //needed for the winner declaration
         return logs;
 
     }
