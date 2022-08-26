@@ -1,20 +1,12 @@
 Begin Game
 Turn 0
 	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3, 2) to (3, 3)
-		Player 1 Dreadnaught 2 moved from (3, 2) to (3, 3)
-		Player 1 Dreadnaught 3 moved from (3, 2) to (3, 3)
-		Player 1 Dreadnaught 4 moved from (3, 2) to (3, 3)
-		Player 2 Scout 1 moved from (3, 4) to (3, 3)
+		Player 1 Scout 1 moved from (3, 0) to (3, 1)
+		Player 1 Cruiser 1 moved from (3, 0) to (3, 1)
+		Player 2 Scout 1 moved from (3, 6) to (3, 5)
+		Player 2 Cruiser 1 moved from (3, 6) to (3, 5)
 	End Movement Phase
 
 	Begin Combat Phase
-		Attacker: Player 1 Dreadnaught 1
-		Defender: Player 2 Scout 1
-		Miss!
-		Attacker: Player 1 Dreadnaught 2
-		Defender: Player 2 Scout 1
-		Hit!
-		Player 2 Scout 1 hp: 1 -> 0
-		Player 2 Scout 1 was destroyed
-		Attacker: Player 1 Dreadnaught 3
+	End Combat Phase
+

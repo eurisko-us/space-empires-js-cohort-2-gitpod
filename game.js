@@ -254,7 +254,7 @@ class Game {
 
     listSum(inpArr) {
         let total = 0
-        for (i of inpArr) {
+        for (let i of inpArr) {
             total += i
         }
         return total
@@ -292,7 +292,7 @@ class Game {
 
     economicPhase(){
     
-        for (player of this.players){
+        for (let player of this.players){
             player.cp += 10
             
             this.maintenence(player) //done
@@ -301,7 +301,7 @@ class Game {
             const totalCost = this.calcTotalCost(playerShips) //done
             if (totalCost > player.cp) continue;
             player.cp -= totalCost
-            if (player_ships != None){
+            if (player_ships != null){
                 for (var i = 0; i<playerShips.length; i++){
                     for (var j = 0; j<playerShips[i][1]; j++){
                         initCoords = player.homeColony.coords
