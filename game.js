@@ -9,6 +9,7 @@ const Dreadnaught = ships.Dreadnaught;
 const Player = require('./player.js');
 const Colony = require('./colony.js');
 const Logger = require('./logger.js');
+var assert = require('assert');
 
 class Game {
 
@@ -37,7 +38,7 @@ class Game {
     }
 
     start() {
-        setInterval(() => this.run(), this.refreshRate); //second number sets how frequently this.run() runs
+        this.stopInterval = setInterval(() => this.run(), this.refreshRate); //second number sets how frequently this.run() runs
     }
 
     translate(x, y) {
@@ -201,6 +202,9 @@ class Game {
                         let target = attacker.strategy.chooseTarget(ship, combatOrder);
                         let defender = this.players[target.playerNum - 1];
                         this.log.combat(ship, target);
+                        
+                        assert (ship.hp > 0, 'Aborting... attacker is dead');
+                        assert (target.hp > 0, 'Aborting... defender is already dead');
 
                         if (this.roll(ship, target)) {
                             target.hp -= 1;
