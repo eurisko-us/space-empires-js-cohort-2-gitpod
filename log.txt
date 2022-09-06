@@ -10,7 +10,6 @@ Turn 0
 	Begin Combat Phase
 	End Combat Phase
 
-<<<<<<< HEAD
 	Begin Economic Phase
 		Player 1 initially has 150 CP
 		Player 1 gained 10 CP and now has 160 CP
@@ -134,12 +133,12 @@ Turn 1
 		Player 2 initially has 25 CP
 		Player 2 gained 10 CP and now has 35 CP
 		Player 2 now has 10 CP after paying maintenece
-		Player 2 bought a Destroyer
-		Player 2 bought a Destroyer
-		Player 2 bought a Destroyer
-		Player 2 bought a Destroyer
-		Player 2 bought a Destroyer
-		Player 2 has -35 CP remaining
+		Player 2 bought a Destroyer 
+		Player 2 bought a Destroyer 
+		Player 2 bought a Destroyer 
+		Player 2 bought a Destroyer 
+		Player 2 bought a Destroyer 
+		Player 2 has -35 CP remaining 
 	End Economic Phase
 
 Turn 2
@@ -213,30 +212,7 @@ Turn 2
 		Defender: Player 1 Cruiser 1
 		Miss!
 		Attacker: Player 1 Scout 1
-		Defender: Player 2 Cruiser 1
-		Miss!
-		Attacker: Player 2 Scout 1
-		Defender: Player 1 Scout 1
-		Miss!
-		Attacker: Player 1 Cruiser 1
-		Defender: Player 2 Cruiser 1
-		Miss!
-		Attacker: Player 2 Cruiser 1
-		Defender: Player 1 Cruiser 1
-		Miss!
-		Attacker: Player 1 Scout 1
-		Defender: Player 2 Cruiser 1
-		Miss!
-		Attacker: Player 2 Scout 1
-		Defender: Player 1 Scout 1
-		Hit!
-		Player 1 Scout 1 hp: 1 -> 0
-		Player 1 Scout 1 was destroyed
-		Attacker: Player 1 Cruiser 1
-		Defender: Player 2 Cruiser 1
-		Miss!
-		Attacker: Player 2 Cruiser 1
-		Defender: Player 1 Cruiser 1
+		Defender: Player 2 Scout 1
 		Miss!
 		Attacker: Player 2 Scout 1
 		Defender: Player 1 Cruiser 1
@@ -247,8 +223,63 @@ Turn 2
 		Miss!
 		Attacker: Player 2 Cruiser 1
 		Defender: Player 1 Cruiser 1
+		Miss!
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
+		Hit!
+		Player 2 Scout 1 hp: 1 -> 0
+		Player 2 Scout 1 was destroyed
+		Attacker: Player 1 Cruiser 1
+		Defender: Player 2 Cruiser 1
+		Miss!
+		Attacker: Player 2 Cruiser 1
+		Defender: Player 1 Cruiser 1
 		Hit!
 		Player 1 Cruiser 1 hp: 1 -> 0
 		Player 1 Cruiser 1 was destroyed
-=======
->>>>>>> 78f2fe0a04d5f26fc3dbc818ee454ed1a1ec6b32
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Cruiser 1
+		Miss!
+		Attacker: Player 2 Cruiser 1
+		Defender: Player 1 Scout 1
+		Miss!
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Cruiser 1
+		Miss!
+		Attacker: Player 2 Cruiser 1
+		Defender: Player 1 Scout 1
+		Hit!
+		Player 1 Scout 1 hp: 1 -> 0
+		Player 1 Scout 1 was destroyed
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has -35 CP
+		Player 1 gained 10 CP and now has -25 CP
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Scout due to insufficient CP to pay maintenance
+		Player 1 lost Destroyer due to insufficient CP to pay maintenance
+		Player 1 lost Destroyer due to insufficient CP to pay maintenance
+		Player 1 lost Destroyer due to insufficient CP to pay maintenance
+		Player 1 lost Destroyer due to insufficient CP to pay maintenance
+		Player 1 lost Destroyer due to insufficient CP to pay maintenance
