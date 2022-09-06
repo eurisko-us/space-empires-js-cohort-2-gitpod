@@ -308,7 +308,7 @@ class Game {
             let playerShips = player.buyShips(player.cp)
             const totalCost = this.calcTotalCost(playerShips) //done
             if (totalCost > player.cp) continue;
-            //player.cp -= totalCost
+            //player.cp -= totalCost commented out bc player.cp = NaN in logs at every point after
             if (playerShips != null){
                 for (var i = 0; i<playerShips.length; i++){
                     for (var j = 0; j<playerShips[i][1]; j++){
