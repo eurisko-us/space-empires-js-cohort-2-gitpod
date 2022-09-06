@@ -133,12 +133,12 @@ Turn 1
 		Player 2 initially has 25 CP
 		Player 2 gained 10 CP and now has 35 CP
 		Player 2 now has 10 CP after paying maintenece
-		Player 2 bought a Destroyer 
-		Player 2 bought a Destroyer 
-		Player 2 bought a Destroyer 
-		Player 2 bought a Destroyer 
-		Player 2 bought a Destroyer 
-		Player 2 has -35 CP remaining 
+		Player 2 bought a Destroyer
+		Player 2 bought a Destroyer
+		Player 2 bought a Destroyer
+		Player 2 bought a Destroyer
+		Player 2 bought a Destroyer
+		Player 2 has -35 CP remaining
 	End Economic Phase
 
 Turn 2
