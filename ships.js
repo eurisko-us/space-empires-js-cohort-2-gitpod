@@ -12,7 +12,7 @@ class Ship {
     setShipId() {
         this.shipId = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
     }
-    
+
 };
 
 //extends makes the class a child class

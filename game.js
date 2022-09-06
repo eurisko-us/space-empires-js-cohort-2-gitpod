@@ -193,16 +193,17 @@ class Game {
                 for (let ship of combatOrder) {
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
 
-                        let player = this.players[ship.playerNum - 1];
-                        let target = player.strategy.chooseTarget(ship, combatOrder);
+                        let attacker = this.players[ship.playerNum - 1];
+                        let target = attacker.strategy.chooseTarget(ship, combatOrder);
+                        let defender = this.players[target.playerNum - 1];
                         this.log.combat(ship, target);
 
                         if (this.roll(ship, target)) {
                             target.hp -= 1;
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
-                                this.removeObjFromBoard(ship);
-                                this.removeShipFromPlayer(player, ship);
+                                this.removeObjFromBoard(target);
+                                this.removeShipFromPlayer(defender, target);
                             }
                         }
 
@@ -218,7 +219,7 @@ class Game {
     }
 
     getAllShips(coords) {
-        return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship');
+        return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
     }
 
     checkForOpponentShips(obj) {
@@ -254,7 +255,7 @@ class Game {
 
     listSum(inpArr) {
         let total = 0
-        for (i of inpArr) {
+        for (let i of inpArr) {
             total += i
         }
         return total
@@ -276,6 +277,7 @@ class Game {
         let orderedShips = this.maintOrder(player.ships)
 
         while (totalCost > player.cp) {
+            this.log.write(`\t\tPlayer ${player.playerNum} lost ${orderedShips[0]} due to insufficient CP to pay maintenance\n`)
             orderedShips.shift()
             totalCost = this.calcMaintCost(orderedShips)
         }
@@ -291,28 +293,41 @@ class Game {
     }
 
     economicPhase(){
+
+        this.log.beginPhase('Economic');
     
-        for (player of this.players){
+        for (let player of this.players){
+            this.log.write(`\t\tPlayer ${player.playerNum} initially has ${player.cp} CP\n`)
             player.cp += 10
-            
+
+            this.log.write(`\t\tPlayer ${player.playerNum} gained 10 CP and now has ${player.cp} CP\n`)
+
             this.maintenence(player) //done
+            this.log.write(`\t\tPlayer ${player.playerNum} now has ${player.cp} CP after paying maintenece\n`)
 
             let playerShips = player.buyShips(player.cp)
             const totalCost = this.calcTotalCost(playerShips) //done
             if (totalCost > player.cp) continue;
-            player.cp -= totalCost
-            if (player_ships != None){
+            //player.cp -= totalCost
+            if (playerShips != null){
                 for (var i = 0; i<playerShips.length; i++){
                     for (var j = 0; j<playerShips[i][1]; j++){
-                        initCoords = player.homeColony.coords
-                        ship = this.getNewShip(playerShips[i][0],player.playerNum-1) //done
+                        let initCoords = player.homeColony.coords
+                        let ship = this.getNewShip(playerShips[i][0],player.playerNum-1) //done
+                        ship.setShipId()
                         if (ship == null) continue;
                         player.addShip(ship) //done
                         this.addToBoard(ship) //done
+                        player.cp -= ship.cpCost
+                        this.log.write(`\t\tPlayer ${player.playerNum} bought a ${ship.name} \n`)
                     }
                 }
+
+            this.log.write(`\t\tPlayer ${player.playerNum} has ${player.cp} CP remaining \n`)
             }
         }
+
+        this.log.endPhase("Economic")
     }
 
     checkForWinner() {

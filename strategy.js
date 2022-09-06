@@ -55,10 +55,10 @@ class Strategy {
 
     buyShips(cp_budget) {
         if (this.turn == 0) {
-            return [["Scout", 3]]
+            return [["Scout", 22]]
         }
 
-        return [["Destroyer", 1]]
+        return [["Destroyer", 5]]
 
     }
 
