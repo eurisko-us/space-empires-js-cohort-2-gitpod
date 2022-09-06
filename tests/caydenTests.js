@@ -12,7 +12,7 @@ const Strategy = require('../strategy');
 const TestStrat = require('./testStrat')
 const players = [new Player(1, new Strategy()), new Player(2, new Strategy())];
 const maxTurns = 10;
-w
+var assert = require('assert');
 
 
 const game = new Game(clientSockets=null, players, {'Scout': 1});
