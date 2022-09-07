@@ -7,7 +7,7 @@ class Player {
         this.strategy = strategy;
         this.cp = cp
         this.strategy.player = this;
-        this.ship_counter = [['Scout', 0], ['BattleCruiser', 0], ['Battleship', 0], ['Cruiser', 0], ['Destroyer', 0], ['Dreadnaught', 0]]
+        this.shipCounter = {'Scout': 0, 'BattleCruiser': 0, 'Battleship': 0,  'Cruiser': 0, 'Destroyer': 0, 'Dreadnaught': 0}
     }
     
     addShip(ship) {

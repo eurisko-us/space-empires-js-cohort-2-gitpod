@@ -64,14 +64,19 @@ class Game {
  
        this.board[y][x].push(obj);
    }
+
+   getShipNum(newShipName, player){
+    player.shipCounter[newShipName] += 1
+    return player.shipCounter[newShipName]
+   }
  
    getNewShip(shipName, i) { //i is player index
-       if (shipName === 'Scout') return new Scout([3,6*i], i+1, this.shipId);
-       if (shipName === 'BattleCruiser') return new BattleCruiser([3,6*i], i+1, this.shipId);
-       if (shipName === 'Battleship') return new Battleship([3,6*i], i+1, this.shipId);
-       if (shipName === 'Cruiser') return new Cruiser([3,6*i], i+1, this.shipId);
-       if (shipName === 'Destroyer') return new Destroyer([3,6*i], i+1, this.shipId);
-       if (shipName === 'Dreadnaught') return new Dreadnaught([3,6*i], i+1, this.shipId);
+       if (shipName === 'Scout') return new Scout([3,6*i], i+1, this.getShipNum(shipName, this.players[i]));
+       if (shipName === 'BattleCruiser') return new BattleCruiser([3,6*i], i+1, this.getShipNum(shipName, this.players[i]));
+       if (shipName === 'Battleship') return new Battleship([3,6*i], i+1, this.getShipNum(shipName, this.players[i]));
+       if (shipName === 'Cruiser') return new Cruiser([3,6*i], i+1, this.getShipNum(shipName, this.players[i]));
+       if (shipName === 'Destroyer') return new Destroyer([3,6*i], i+1, this.getShipNum(shipName, this.players[i]));
+       if (shipName === 'Dreadnaught') return new Dreadnaught([3,6*i], i+1, this.getShipNum(shipName, this.players[i]));
        this.shipId += 1;
    }
  
@@ -277,7 +282,7 @@ class Game {
        let orderedShips = this.maintOrder(player.ships)
  
        while (totalCost > player.cp) {
-           this.log.write(`\t\tPlayer ${player.playerNum} lost ${orderedShips[0].name} due to insufficient CP to pay maintenance\n`)
+           this.log.write(`\t\tPlayer ${player.playerNum} lost ${orderedShips[0].shipId} due to insufficient CP to pay maintenance\n`)
            orderedShips.shift()
            totalCost = this.calcMaintCost(orderedShips)
        }
@@ -286,6 +291,31 @@ class Game {
        player.ships = orderedShips
    }
  
+    calcShipCost(shipName) {
+        if (shipName == "Scout") {
+            return 6
+        }
+
+        if (shipName == "BattleCruiser"){
+            return 15
+        }
+
+        if (shipName == "Battleship") {
+            return 20
+        }
+
+        if (shipName == "Cruiser") {
+            return 12
+        }
+
+        if (shipName == "Destroyer") {
+            return 9
+        }
+
+        if (shipName == "Dreadnaught") {
+            return 24
+        }
+    }
    calcTotalCost(shipArr) {
        //const shipCosts = shipArr.map((ship) => ship.cpCost)
        //const totalCost = this.listSum(shipCosts)
@@ -293,7 +323,7 @@ class Game {
 
        for (let ship of shipArr) {
             for (var i = 0; i<ship[1]; i++) {
-                totalCost += ship.cpCost
+                totalCost += this.calcShipCost(ship[0])
             }
        }
        return totalCost
@@ -316,19 +346,22 @@ class Game {
            let totalCost = this.calcTotalCost(playerShips) //done
 
            if (totalCost > player.cp){
-            this.log.write(`\t\tPlayer ${player.playerNum} tried to go over budget`)
+            this.log.write(`\t\tPlayer ${player.playerNum} tried to go over budget \n`)
+
            } else {
+            player.cp -= totalCost
 
            if (playerShips != null){
                for (var i = 0; i<playerShips.length; i++){
                    for (var j = 0; j<playerShips[i][1]; j++){
                        let initCoords = player.homeColony.coords
+                       //coords, playernum, ship_num
                        let ship = this.getNewShip(playerShips[i][0],player.playerNum-1) //done
                        ship.setShipId()
                        if (ship == null) continue;
                        player.addShip(ship) //done
                        this.addToBoard(ship) //done
-                       player.cp -= ship.cpCost
+                       //player.cp -= ship.cpCost
                        this.log.write(`\t\tPlayer ${player.playerNum} bought a ${ship.name} \n`)
                    }
                }
