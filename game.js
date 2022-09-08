@@ -6,8 +6,8 @@ const Battleship = ships.Battleship;
 const Cruiser = ships.Cruiser;
 const Destroyer = ships.Destroyer;
 const Dreadnaught = ships.Dreadnaught;
-const Player = require('./player');
-const Colony = require('./colony');
+const Player = require('./player.js');
+const Colony = require('./colony.js');
 const Logger = require('./logger.js');
 var assert = require('assert');
 
@@ -20,6 +20,11 @@ constructor(clientSockets, players, initialShips, boardSize=7, maxTurns=1000, re
     this.boardSize = boardSize;
     this.maxTurns = maxTurns;
     this.refreshRate = refreshRate;
+    this.stopInterval = null;
+   
+    this.log = new Logger();
+    this.log.clear();
+    this.log.initialize();
 
     this.log = new Logger();
     this.log.clear();
@@ -37,10 +42,9 @@ constructor(clientSockets, players, initialShips, boardSize=7, maxTurns=1000, re
     this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
 
 }
-
 start() {
-    setInterval(() => this.run(), this.refreshRate);
-}
+    this.stopInterval = setInterval(() => this.run(), this.refreshRate); //second number sets how frequently this.run() runs
+    }
 
 translate(x, y) {
     return x.map((_, i) => x[i] + y[i]);
@@ -58,8 +62,9 @@ possibleTranslations(coords) {
 removeObjFromBoard(obj) {
     let [x, y] = [...obj.coords];
     let index = this.board[y][x].indexOf(obj);
-    this.board[y][x].splice(index, 1);
-}
+    this.board[y][x].splice(index, 1); //first sets array index, second sets how many are removed from there
+    }
+
 
 addToBoard(obj) {
     let [x, y] = [...obj.coords];
@@ -94,8 +99,9 @@ initializeGame() {
     }
 
     for (let i = 0; i < this.players.length; i++) {
-        
-        // ships
+            //if more players added, need to change the stuff dependent on i
+            
+            // Creates initial ships (Will need to change for economic phase)
 
         for (const [shipName, numOfShip] of Object.entries(this.initialShips)) {
             for (let j = 0; j < numOfShip; j++) {
@@ -106,7 +112,8 @@ initializeGame() {
             }
         }
 
-        // home colony
+
+            // Creates home colony for each player
 
         let homeColony = new Colony([3,6*i], i+1);
         homeColony.isHomeColony = true;
@@ -127,8 +134,8 @@ getSimpleObj(obj) {
     return simpleObj;
 }
 
+    //exists to prevent cheating in the stratagies
 updateSimpleBoard() {
-
     let simpleBoard = this.boardRange.map(
         i => this.boardRange.map(
             j => this.board[j][i].map(
@@ -145,16 +152,17 @@ updateSimpleBoard() {
 }
 
 movementPhase() {
-
     this.log.beginPhase('Movement');
 
     for (let player of this.players) {
         for (let ship of player.ships) {
 
-            let oldCoords = [...ship.coords];
+            let oldCoords = [...ship.coords]; //... accesses each element of the array. Can be used for functions too.
             let translations = this.possibleTranslations(ship.coords);
-            let translation = player.strategy.chooseTranslation(ship, translations);           
+            let translation = player.strategy.chooseTranslation(ship, translations);            
             let newCoords = this.translate(oldCoords, translation);
+                
+            if (this.checkForOpponentShips(ship)) continue;
 
             if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
 
@@ -206,22 +214,20 @@ combatPhase() {
                     let attacker = this.players[ship.playerNum - 1];
                     let target = attacker.strategy.chooseTarget(ship, combatOrder);
                     let defender = this.players[target.playerNum - 1];
-
                     this.log.combat(ship, target);
-
+                        
                     assert (ship.hp > 0, 'Aborting... attacker is dead');
                     assert (target.hp > 0, 'Aborting... defender is already dead');
 
                     if (this.roll(ship, target)) {
                         target.hp -= 1;
                         if (target.hp <= 0) {
-                            this.log.shipDestroyed(target);
-                            combatOrder.splice(combatOrder.indexOf(target), 1)
-                            this.removeObjFromBoard(target);
-                            this.removeShipFromPlayer(defender, target);
+                             this.log.shipDestroyed(target);
+                             combatOrder.splice(combatOrder.indexOf(target), 1)
+                             this.removeObjFromBoard(target);
+                             this.removeShipFromPlayer(defender, target);
+                            }
                         }
-                    }
-
                 }
             }
 
@@ -398,32 +404,31 @@ checkForWinner() {
 
 getLogs(data) {
 
-    let decoder = new TextDecoder("utf-8");
-    let decodedData = decoder.decode(data);
+        let decoder = new TextDecoder("utf-8");
+        let decodedData = decoder.decode(data);
 
-    let logs = [];
-    let currentLine = '';
-    let turn = [];
+        let logs = [];
+        let currentLine = '';
+        let turn = [];
 
-    for (let i = 0; i < decodedData.length; i++) {
-        
-        if (decodedData.slice(i, i+4) === 'Turn' || i === decodedData.length - 1) {
-            logs.push(turn);
-            turn = [];
+        for (let i = 0; i < decodedData.length; i++) {
+            if (decodedData[i] === '\n') {
+                turn.push(currentLine);
+                currentLine = '';
+            } else {
+                currentLine += decodedData[i];
+            }
+
+            if (decodedData.slice(i, i+4) === 'Turn' || i == decodedData.length - 1) {
+                logs.push(turn); //length - 1 needed for the last turn
+                turn = [];
+            }
+
         }
-        
-        if (decodedData[i] === '\n') {
-            turn.push(currentLine);
-            currentLine = '';
-        } else {
-            currentLine += decodedData[i];
-        }
+        logs.push([currentLine, '']) //needed for the winner declaration
+        return logs;
 
     }
-    
-    return logs;
-
-}
 
 display() {
     for (let socketId in this.clientSockets) {
