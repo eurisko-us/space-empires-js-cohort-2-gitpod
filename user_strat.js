@@ -51,8 +51,8 @@ class UserStrategy {
     }
 
     transInput(ship, translations) {
-        let input = prompt("Can you see me? ")
-        console.log(input)
+        let input = prompt("USER INPUT: Choose your move? ");
+        console.log(`Received user input "${input}"`);
     }
 
     chooseTarget(shipInfo, combatOrder) {

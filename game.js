@@ -300,14 +300,19 @@ class Game {
     }
 
     display() {
+        console.log(`Running game.display()`);
+
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            fs.readFile('log.txt', (_, data) => {                
-                socket.emit('gameState', { 
-                    gameBoard: this.board,
-                    gameTurn: this.turn,
-                    gameLogs: this.getLogs(data)
-                });
+            console.log(`About to emit gameState to socket ${socketId}`);
+
+            let data = fs.readFileSync('log.txt');
+
+            console.log(`Actually emitting gameState to socket ${socketId}`);              
+            socket.emit('gameState', { 
+                gameBoard: this.board,
+                gameTurn: this.turn,
+                gameLogs: this.getLogs(data)
             });
         }
     }
