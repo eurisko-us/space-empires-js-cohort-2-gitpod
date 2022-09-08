@@ -1,3 +1,0 @@
-Begin Game
-Turn 0
-	Begin Movement Phase

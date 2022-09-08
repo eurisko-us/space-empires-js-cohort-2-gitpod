@@ -12,7 +12,7 @@ class Ship {
     setShipId() {
         this.shipId = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
     }
-    
+
 };
 
 //extends makes the class a child class of the parent class
@@ -166,6 +166,8 @@ class Dreadnaught extends Ship {
     }
 }
 
+let allShips = [Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught];
+
 module.exports.Ship = Ship;
 module.exports.Scout = Scout;
 module.exports.BattleCruiser = BattleCruiser;
@@ -173,3 +175,4 @@ module.exports.Battleship = Battleship;
 module.exports.Cruiser = Cruiser;
 module.exports.Destroyer = Destroyer;
 module.exports.Dreadnaught = Dreadnaught;
+module.exports.allShips = allShips;

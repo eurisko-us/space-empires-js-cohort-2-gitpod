@@ -53,6 +53,15 @@ class Strategy {
         return opponentShips[Math.floor(Math.random() * opponentShips.length)];
     }
 
+    buyShips(cp_budget) {
+        if (this.turn == 0) {
+            return [["Scout", 5]]
+        }
+
+        return [["Dreadnaught", 5]]
+
+    }
+
 }
 
 module.exports = Strategy;
