@@ -1,1 +1,29 @@
 Begin Game
+Turn 0
+	Begin Movement Phase
+		Player 1 Dreadnaught 1 moved from (3, 2) to (3, 3)
+		Player 1 Dreadnaught 2 moved from (3, 2) to (3, 3)
+		Player 1 Dreadnaught 3 moved from (3, 2) to (3, 3)
+		Player 1 Dreadnaught 4 moved from (3, 2) to (3, 3)
+		Player 2 Scout 1 moved from (3, 4) to (3, 3)
+	End Movement Phase
+
+	Begin Combat Phase
+		Attacker: Player 1 Dreadnaught 1
+		Defender: Player 2 Scout 1
+		Hit!
+		Player 2 Scout 1 hp: 1 -> 0
+		Player 2 Scout 1 was destroyed
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 150 CP
+		Player 1 gained 10 CP and now has 160 CP
+		Player 1 now has 148 CP after paying maintenance
+		Player 1 has 118 CP remaining
+		Player 2 initially has 150 CP
+		Player 2 gained 10 CP and now has 160 CP
+		Player 2 now has 160 CP after paying maintenance
+		Player 2 has 130 CP remaining
+	End Economic Phase
+

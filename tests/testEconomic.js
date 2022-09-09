@@ -22,3 +22,4 @@ player2.cp = -10;
 game2.economicPhase();
 
 assert(player2.ships.length == 0);
+console.log('player ships get removed if cannot pay maint')

@@ -1,31 +1,31 @@
 import Game from '../src/game.js';
-import { Scout, Dreadnaught } from '../src/ships.js';
-import testStrat from '../strategies/justinTestStrat.js';
+import { Scout, Cruiser, Dreadnaught } from '../src/ships.js';
+import TestStrat from '../strategies/testStrat.js';
 import Strategy from '../strategies/strategy.js';
 import assert, { deepEqual } from 'assert';
 
-// test friendly fire - Done
-// test that ships cant move off board - Done
-// test win condition - Done
-// test that dead ship cant attack - Combat doesnt work right
-// test tie condition - Done
+// test 1, defenders first rule
 
-// test 1
-
-const strats = [new testStrat(), new testStrat()];
-const game = new Game(null, strats, {'Scout': 1});
+const strats1 = [new Strategy(), new Strategy()];
+const game = new Game(null, strats1, {'Scout': 1});
 game.initializeGame();
 
+let turn = 0;
+
 for (let i = 0; i < 3; i++) {
-    game.run();
+    game.log.turn(turn);
+    game.movementPhase();
+    turn++;
 }
 
-deepEqual(game.players[0].ships[0].coords, [3, 0]);
-console.log("ship cannot move off of board");
+let combatCoords = game.getCombatCoords();
+let combatOrder = game.sortCombatOrder(combatCoords[0]);
+assert (combatOrder[0].playerNum == 1);
+console.log("Defenders First Rule Works Correctly");
 
-// test 2
+// test 2, ship class combat priority
 
-const strats2 = [new Strategy(), new Strategy()];
+const strats2 = [new TestStrat(), new TestStrat()];
 const game2 = new Game(null, strats2, {'Scout': 1});
 game2.initializeGame();
 
@@ -35,50 +35,52 @@ for (let i = 0; i < game2.players.length; i++) {
     game2.players[i].ships.splice(0, 1);
 
     if (i == 0) {
-        let ship = new Dreadnaught([3, 6], 1, 1);
+        let ship = new Scout([3, 3], 1, 1);
         game2.players[i].addShip(ship);
         game2.addToBoard(ship);
     }
-
+    
     if (i == 1) { 
-        let ship = new Dreadnaught([3, 0], 2, 1);
+        let ship = new Cruiser([3, 4], 2, 1);
         game2.players[i].addShip(ship);
         game2.addToBoard(ship);
     }
 
 }
 
-game2.run();
-deepEqual(game2.winner, 'Tie');
-console.log('tie condition met');
+game2.movementPhase();
+let combatCoords2 = game2.getCombatCoords();
+let combatOrder2 = game2.sortCombatOrder(combatCoords2[0]);
+assert (combatOrder2[0].name == "Cruiser", "High class ship did not attack first");
+console.log("Higher class ships attack first");
 
-// test 3
+// test 3, combat on colony coord
 
-const strats3 = [new Strategy(), new Strategy()];
+const strats3 = [new TestStrat(), new TestStrat()];
 const game3 = new Game(null, strats3, {'Scout': 1});
 game3.initializeGame();
 
-for (let i = 0; i < game3.players.length; i++) {
-
-    game3.removeObjFromBoard(game3.players[i].ships[0]);
-    game3.players[i].ships.splice(0, 1);
-
-    if (i == 0) {
-        let ship = new Dreadnaught([3, 6], 1, 1);
-        game3.players[i].addShip(ship);
-        game3.addToBoard(ship);
-    }
-
+for (let i = 0; i < 7; i++) {
+    game3.movementPhase()
+    game3.combatPhase()
+    game3.checkForWinner()
 }
 
-game3.run();
-deepEqual(game3.winner, 1)
-console.log('win condition met')
+let playerNums = [];
 
-// test 4
+for (let ship of game3.getAllShips([3, 0])) {
+    if (!playerNums.includes(ship.playerNum)) {
+        playerNums.push(ship.playerNum);
+    }
+}
+
+assert (playerNums.length == 1, "There is no combat on colony square");
+console.log("There is combat on colony square");
+
+// test 4, friendly fire
 
 const strats4 = [new Strategy(), new Strategy()];
-const game4 = new Game(null, strats4, {'Scout': 1});
+const game4 = new Game(null, strats3, {'Scout': 1});
 game4.initializeGame();
 
 for (let i = 0; i < game4.players.length; i++) {
@@ -103,7 +105,7 @@ for (let i = 0; i < game4.players.length; i++) {
 assert(!game4.checkForCombat([3,6]))
 console.log('friendly ships do not engage in combat')
 
-// test 5
+// test 5, dead ships can't attack
 
 const strats5 = [new Strategy(), new Strategy()];
 const game5 = new Game(null, strats5, {'Scout': 1});
@@ -133,14 +135,24 @@ for (let i = 0; i < game5.players.length; i++) {
         game5.addToBoard(d4);
 
     }
+}
 
-    if (i == 1) {
-        let s1 = new Scout([3,4], 2, 1);
-        game5.players[i].addShip(s1);
-        game5.addToBoard(s1);
+let s1 = new Scout([3,4], 2, 1);
+game5.players[1].addShip(s1);
+game5.addToBoard(s1);
+
+function containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i] === obj) {
+            return true;
+        }
     }
+
+    return false;
 }
 
 game5.run()
-
-// combat doesnt work if all opponents get destroyed
+const combatOrderCurr = game5.sortCombatOrder([3,3])
+assert(!containsObject(s1, combatOrderCurr))
+console.log('dead ships are not in combat order')
