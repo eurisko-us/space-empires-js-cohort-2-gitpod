@@ -99,17 +99,9 @@ class Game {
         // If more players added, we'll need to change some stuff dependent on i
 
         for (let i = 0; i < this.players.length; i++) {
-            for (const ship of this.buyShips(this.players[i])) {
-                const [shipName, numOfShip] = Object.entries(ship);
-                for (let j = 0; j < numOfShip; j++) {
-                    let ship = this.getNewShip(shipName, i); //makes new ship
-                    this.players[i].addShip(ship);
-                    this.addToBoard(ship);
-                }
-            }
+            this.buyShips(this.players[i])
 
             // Creates home colony for each player
-
             let homeColony = new Colony([3,6*i], i+1);
             homeColony.isHomeColony = true;
             this.players[i].homeColony = homeColony;
@@ -325,8 +317,6 @@ class Game {
     }
 
     buyShips(player) {
-        //console.log(player)
-
         let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
         let totalCost = this.calcTotalCost(playerShips);
 
@@ -338,18 +328,18 @@ class Game {
         player.cp -= totalCost; 
 
         if (playerShips) {
-            for (const ship of playerShips) {
-                const [shipName, numOfShip] = Object.entries(ship);
-                for (let i = 0; i < numOfShip; i++) {
-                    let ship = this.getNewShip(shipName, player.playerNum - 1); // makes new ship
-                    if (!ship) continue;
+            for (let ship of playerShips) {
+                for (let shipName in ship){
+                    for (let i = 0; i < ship[shipName]; i++) {
+                        let ship = this.getNewShip(shipName, player.playerNum - 1); // makes new ship
+                        if (!ship) continue;
 
-                    player.addShip(ship);
-                    this.addToBoard(ship);
-                    this.log.buyShip(player, ship);
+                        player.addShip(ship);
+                        this.addToBoard(ship);
+                        this.log.buyShip(player, ship);
 
+                    }
                 }
-
             }
 
         }
