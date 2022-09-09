@@ -1,4 +1,4 @@
-const fs = require('fs');
+import { writeFileSync, appendFileSync } from 'fs';
 
 class Logger {
     
@@ -7,7 +7,7 @@ class Logger {
     }
 
     clear() {
-        fs.writeFileSync(this.filename, '', err => {
+        writeFileSync(this.filename, '', err => {
             if (err) {
               console.error(err);
               return;
@@ -16,7 +16,7 @@ class Logger {
     }
 
     write(string) {
-        fs.appendFileSync(this.filename, string, err => {
+        appendFileSync(this.filename, string, err => {
             if (err) {
               console.error(err);
               return;
@@ -66,10 +66,38 @@ class Logger {
         this.write(`\t\t${ship.shipId} was destroyed\n`);
     }
 
+    playerCP(player) {
+        this.write(`\t\tPlayer ${player.playerNum} initially has ${player.cp} CP\n`);
+    }
+
+    newPlayerCP(player, cpPerRound) {
+        this.write(`\t\tPlayer ${player.playerNum} gained ${cpPerRound} CP and now has ${player.cp} CP\n`);
+    }
+
+    playerCPAfterMaintenance(player) {
+        this.write(`\t\tPlayer ${player.playerNum} now has ${player.cp} CP after paying maintenance\n`);
+    }
+
+    shipIsNotMaintained(player, ship) {
+        this.write(`\t\tPlayer ${player.playerNum} lost ${ship.shipId} due to insufficient CP to pay maintenance\n`);
+    }
+    
+    playerWentOverBudget(player) {
+        this.write(`\t\tPlayer ${player.playerNum} tried to go over budget\n`);
+    }
+
+    buyShip(player, ship) {
+        this.write(`\t\tPlayer ${player.playerNum} bought a ${ship.name}\n`);
+    }
+
+    playerCPRemaining(player) {
+        this.write(`\t\tPlayer ${player.playerNum} has ${player.cp} CP remaining\n`);
+    }
+
     playerWin(winner) {
         this.write(`Winner: Player ${winner}`);
     }
 
 }
 
-module.exports = Logger;
+export default Logger;

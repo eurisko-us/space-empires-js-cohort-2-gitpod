@@ -1,18 +1,32 @@
+import { allShips } from './ships.js';
+
 class Player {
 
     constructor(playerNum, strategy, cp=150) {
+        
         this.playerNum = playerNum;
         this.ships = [];
         this.homeColony = null;
+        
         this.strategy = strategy;
-        this.cp = cp
         this.strategy.player = this;
-        this.ship_counter = [['Scout', 0], ['BattleCruiser', 0], ['Battleship', 0], ['Cruiser', 0], ['Destroyer', 0], ['Dreadnaught', 0]]
+        
+        this.cp = cp;
+        
+        this.shipCounter = {}; //used to get new ship nums when buying ships
+        for (let shipClass of allShips) {
+            this.shipCounter[shipClass.name] = 0;
+        }
+    
     }
     
     addShip(ship) {
         ship.playerNum = this.playerNum;
         this.ships.push(ship);
+    }
+
+    buyShips() {
+        return this.strategy.buyShips(this.cp);
     }
 
     getRandomInteger(min, max) {
@@ -21,9 +35,6 @@ class Player {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    buyShips(cp_budget) {
-        return this.strategy.buyShips(cp_budget)
-    }
 };
 
-module.exports = Player;
+export default Player;

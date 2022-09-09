@@ -1,4 +1,5 @@
 Begin Game
+<<<<<<< HEAD
 Turn 0
 	Begin Movement Phase
 		Player 1 Scout 1 moved from (3, 0) to (3, 1)
@@ -184,3 +185,5 @@ Turn 15
 	Begin Combat Phase
 	End Combat Phase
 
+=======
+>>>>>>> cb19207c385aece4494d61d321d24ebaf5f67534
