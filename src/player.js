@@ -13,7 +13,7 @@ class Player {
         
         this.cp = cp;
         
-        this.shipCounter = {}; //used to get new ship nums when buying ships
+        this.shipCounter = {}; //used to get new ship nums when
         for (let shipClass of allShips) {
             this.shipCounter[shipClass.name] = 0;
         }

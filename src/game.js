@@ -7,7 +7,7 @@ import assert from 'assert';
 
 class Game {
 
-    constructor(clientSockets, strategies, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000, cpPerRound=10) {
+    constructor(clientSockets, strategies, boardSize=7, maxTurns=1000, refreshRate=1000, cpPerRound=10) {
 
         this.clientSockets = clientSockets;
         this.boardSize = boardSize;
@@ -21,7 +21,6 @@ class Game {
         this.log.initialize();
 
         this.players = strategies.map((strategy, i) => new Player(i + 1, strategy));
-        this.initialShips = initialShips;
 
         this.board = [];
         this.turn = 0;
@@ -100,10 +99,8 @@ class Game {
         // If more players added, we'll need to change some stuff dependent on i
 
         for (let i = 0; i < this.players.length; i++) {
-            
-            // Creates initial ships (Will need to change for economic phase)
-
-            for (const [shipName, numOfShip] of Object.entries(this.initialShips)) {
+            for (const ship of this.buyShips(this.players[i])) {
+                const [shipName, numOfShip] = Object.entries(ship);
                 for (let j = 0; j < numOfShip; j++) {
                     let ship = this.getNewShip(shipName, i); //makes new ship
                     this.players[i].addShip(ship);
@@ -119,7 +116,7 @@ class Game {
             this.addToBoard(homeColony);
 
         }
-
+        this.turn = 1
         this.updateSimpleBoard();
 
     }
@@ -328,8 +325,9 @@ class Game {
     }
 
     buyShips(player) {
+        //console.log(player)
 
-        let playerShips = player.buyShips(); // list of lists (i.e [["Scout", 1], etc])
+        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
         let totalCost = this.calcTotalCost(playerShips);
 
         if (totalCost > player.cp) {
@@ -340,10 +338,10 @@ class Game {
         player.cp -= totalCost; 
 
         if (playerShips) {
-            for (let i = 0; i < playerShips.length; i++) {
-                for (let j = 0; j < playerShips[i][1]; j++) {
-                    
-                    let ship = this.getNewShip(playerShips[i][0], player.playerNum - 1); // makes new ship
+            for (const ship of playerShips) {
+                const [shipName, numOfShip] = Object.entries(ship);
+                for (let i = 0; i < numOfShip; i++) {
+                    let ship = this.getNewShip(shipName, player.playerNum - 1); // makes new ship
                     if (!ship) continue;
 
                     player.addShip(ship);
@@ -351,9 +349,11 @@ class Game {
                     this.log.buyShip(player, ship);
 
                 }
+
             }
-        
+
         }
+        
 
         this.log.playerCPRemaining(player);
 
