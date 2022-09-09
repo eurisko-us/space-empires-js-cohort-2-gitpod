@@ -1,4 +1,4 @@
-class Strategy {
+class TestStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -45,7 +45,8 @@ class Strategy {
 
     chooseTranslation(ship, translations) {
         let targetCoords = this.getOpponentHomeColonyCoords(ship);
-        return this.minDistanceTranslation(ship, translations, targetCoords);
+        if (ship.playerNum == 1) return [0, 0];
+        if (ship.playerNum == 2) return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -53,15 +54,6 @@ class Strategy {
         return opponentShips[Math.floor(Math.random() * opponentShips.length)];
     }
 
-    buyShips(cp_budget) {
-        if (this.turn == 0) {
-            return [["Scout", 5]]
-        }
-
-        return [["Dreadnaught", 5]]
-
-    }
-
 }
 
-module.exports = Strategy;
+export default TestStrat;

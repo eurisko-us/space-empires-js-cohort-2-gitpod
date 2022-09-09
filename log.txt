@@ -1,0 +1,151 @@
+Begin Game
+Turn 0
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 0) to (3, 1)
+		Player 2 Scout 1 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 150 CP
+		Player 1 gained 10 CP and now has 160 CP
+		Player 1 now has 159 CP after paying maintenance
+		Player 1 has 159 CP remaining
+		Player 2 initially has 150 CP
+		Player 2 gained 10 CP and now has 160 CP
+		Player 2 now has 159 CP after paying maintenance
+		Player 2 has 159 CP remaining
+	End Economic Phase
+
+Turn 1
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 1) to (3, 2)
+		Player 2 Scout 1 moved from (3, 5) to (3, 4)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 159 CP
+		Player 1 gained 10 CP and now has 169 CP
+		Player 1 now has 168 CP after paying maintenance
+		Player 1 has 168 CP remaining
+		Player 2 initially has 159 CP
+		Player 2 gained 10 CP and now has 169 CP
+		Player 2 now has 168 CP after paying maintenance
+		Player 2 has 168 CP remaining
+	End Economic Phase
+
+Turn 2
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 2) to (3, 3)
+		Player 2 Scout 1 moved from (3, 4) to (3, 3)
+	End Movement Phase
+
+	Begin Combat Phase
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
+		Miss!
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Scout 1
+		Miss!
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
+		Miss!
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Scout 1
+		Miss!
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
+		Miss!
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Scout 1
+		Miss!
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
+		Miss!
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Scout 1
+		Miss!
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
+		Miss!
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Scout 1
+		Hit!
+		Player 1 Scout 1 hp: 1 -> 0
+		Player 1 Scout 1 was destroyed
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 168 CP
+		Player 1 gained 10 CP and now has 178 CP
+		Player 1 now has 178 CP after paying maintenance
+		Player 1 has 178 CP remaining
+		Player 2 initially has 168 CP
+		Player 2 gained 10 CP and now has 178 CP
+		Player 2 now has 177 CP after paying maintenance
+		Player 2 has 177 CP remaining
+	End Economic Phase
+
+Turn 3
+	Begin Movement Phase
+		Player 2 Scout 1 moved from (3, 3) to (3, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 178 CP
+		Player 1 gained 10 CP and now has 188 CP
+		Player 1 now has 188 CP after paying maintenance
+		Player 1 has 188 CP remaining
+		Player 2 initially has 177 CP
+		Player 2 gained 10 CP and now has 187 CP
+		Player 2 now has 186 CP after paying maintenance
+		Player 2 has 186 CP remaining
+	End Economic Phase
+
+Turn 4
+	Begin Movement Phase
+		Player 2 Scout 1 moved from (3, 2) to (3, 1)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 188 CP
+		Player 1 gained 10 CP and now has 198 CP
+		Player 1 now has 198 CP after paying maintenance
+		Player 1 has 198 CP remaining
+		Player 2 initially has 186 CP
+		Player 2 gained 10 CP and now has 196 CP
+		Player 2 now has 195 CP after paying maintenance
+		Player 2 has 195 CP remaining
+	End Economic Phase
+
+Turn 5
+	Begin Movement Phase
+		Player 2 Scout 1 moved from (3, 1) to (3, 0)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 198 CP
+		Player 1 gained 10 CP and now has 208 CP
+		Player 1 now has 208 CP after paying maintenance
+		Player 1 has 208 CP remaining
+		Player 2 initially has 195 CP
+		Player 2 gained 10 CP and now has 205 CP
+		Player 2 now has 204 CP after paying maintenance
+		Player 2 has 204 CP remaining
+	End Economic Phase
+
+Winner: Player 2

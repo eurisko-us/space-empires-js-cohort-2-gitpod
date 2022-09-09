@@ -6,9 +6,10 @@ class Buy100 {
         this.player = null;
     }
 
-    buyShips() {
-        return [["Scout", 100]]
+    buyShips(cpBudget) {
+        return [{"Scout": 100}];
     }  
+
 }
 
 class BuyNone {
@@ -19,10 +20,10 @@ class BuyNone {
         this.player = null;
     }
 
-    buyShips() {
-        return []
-    }  
+    buyShips(cpBudget) {
+        return [];
+    }
+
 }
 
-module.exports.Buy100 = Buy100;
-module.exports.BuyNone = BuyNone;
+export { Buy100, BuyNone };
