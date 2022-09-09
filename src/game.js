@@ -5,11 +5,6 @@ import Colony from './colony.js';
 import Logger from './logger.js';
 import assert from 'assert';
 
-// rearrange game file so methods are in order of use
-// get rid of initialShips
-// make sure simpleBoard is fully/correctly implemented
-// add all of maia's comments
-
 class Game {
 
     constructor(clientSockets, strategies, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000, cpPerRound=10) {
@@ -165,7 +160,7 @@ class Game {
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
-                    
+                
                 if (this.checkForOpponentShips(ship)) continue;
                 if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
 
@@ -310,18 +305,11 @@ class Game {
     }
 
     calcShipCost(shipName) {
-
-        console.log(allShips.filter(shipClass => shipName == shipClass.name).forEach(shipClass => shipClass.cpCost));
-
-        return allShips.filter(shipClass => shipName == shipClass.name)
-                       .forEach(shipClass => shipClass.cpCost);
-
-        // for (let shipClass of allShips) {
-        //     if (shipName == shipClass.name) {
-        //         return shipClass.cpCost;
-        //     }
-        // }
-
+        for (let shipClass of allShips) {
+            if (shipName == shipClass.name) {
+                return new shipClass([0, 0], 0, 0).cpCost;
+            }
+        }
     }
 
     calcTotalCost(ships) {
@@ -329,10 +317,12 @@ class Game {
         let totalCost = 0;
 
         for (const ship of ships) {
-            for (let i = 0; i < ship[1]; i++) {
-                totalCost += this.calcShipCost(ship[0]);
+            const [shipName, numShips] = Object.entries(ship)[0];
+            for (let i = 0; i < numShips; i++) {
+                totalCost += this.calcShipCost(shipName);
             }
         }
+
         return totalCost;
 
     }
@@ -475,4 +465,3 @@ class Game {
 };
 
 export default Game;
-

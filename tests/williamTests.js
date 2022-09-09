@@ -1,5 +1,5 @@
 import Game from '../src/game.js';
-import Strategy from '../strategy.js';
+import Strategy from '../strategies/strategy.js';
 import { Buy100, BuyNone } from '../strategies/williamTestStrat.js';
 import assert from 'assert';
 

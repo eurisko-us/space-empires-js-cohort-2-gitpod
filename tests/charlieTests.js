@@ -1,5 +1,5 @@
 import Game from '../src/game.js';
-import Strategy from '../strategy.js';
+import Strategy from '../strategies/strategy.js';
 import assert from 'assert';
 
 // If a player buys a ship, it is added to board and player’s ship list

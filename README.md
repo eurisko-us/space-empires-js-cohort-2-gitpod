@@ -1,6 +1,6 @@
 ## How to run a game
 - node.js file is where the game will be run unless you are doing tests
-- game class requires clientSockets, strategies, and initialShips as inputs
+- game class requires clientSockets and strategies as parameters
   - If you are running node app.js, clientSockets is already defined in the file. If you are writing tests, put null for the clientSockets input
   - strategies is a list of 2 strategies
   - initialShips is a dictionary {"Ship name": Number of this type of ship you want}

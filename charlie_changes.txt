@@ -1,0 +1,19 @@
+Summary of changes to the main branch:
+
+- made sure all tests work (will have to run again after making other changes below)
+- organized files into folders
+- Game class now takes in strategies instead of player
+- converted imports to ES6
+- made all imports related to ships dependent on allShips instead of the individual ship classes
+
+Still to do:
+
+- run tests/randomStratTest.js
+    - when I run it, after 350000 games, I get an error that basically says we don't have enough space to run the game for 5 minutes ("FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory")
+- get rid of initialShips
+- rearrange game file so methods are in order of use
+- make sure simpleBoard is fully/correctly implemented
+- add all of maia's comments
+- update UI
+    - make game look better (because now we'll have multiple ships in one coord, which don't all show up currently)
+    - make logs update on time (instead of 1 or more turns late)

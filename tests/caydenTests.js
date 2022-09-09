@@ -1,7 +1,7 @@
-import Game from '../game.js';
-import { Scout, Cruiser, Dreadnaught } from '../ships.js';
-import Strategy from '../strategy.js';
-import TestStrat from './testStrat.js';
+import Game from '../src/game.js';
+import { Scout, Cruiser, Dreadnaught } from '../src/ships.js';
+import Strategy from '../strategies/strategy.js';
+import TestStrat from '../strategies/testStrat.js';
 import assert from 'assert';
 
 // test 1

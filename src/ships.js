@@ -162,4 +162,4 @@ class Dreadnaught extends Ship {
 }
 
 const allShips = [Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught];
-export { allShips };
+export { allShips, Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught };

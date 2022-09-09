@@ -1,7 +1,7 @@
 import Game from '../src/game.js';
-import { Scout, Dreadnaught } from '../ships.js';
+import { Scout, Dreadnaught } from '../src/ships.js';
 import testStrat from '../strategies/justinTestStrat.js';
-import Strategy from '../strategy.js';
+import Strategy from '../strategies/strategy.js';
 import assert, { deepEqual } from 'assert';
 
 // test friendly fire - Done
