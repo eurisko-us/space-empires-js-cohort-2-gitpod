@@ -300,15 +300,15 @@ class Game {
     }
 
     display() {
-        console.log(`Running game.display()`);
+        //console.log(`Running game.display()`);
 
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            console.log(`About to emit gameState to socket ${socketId}`);
+            //console.log(`About to emit gameState to socket ${socketId}`);
 
             let data = fs.readFileSync('log.txt');
 
-            console.log(`Actually emitting gameState to socket ${socketId}`);              
+            //console.log(`Actually emitting gameState to socket ${socketId}`);              
             socket.emit('gameState', { 
                 gameBoard: this.board,
                 gameTurn: this.turn,
@@ -324,6 +324,7 @@ class Game {
         if (this.winner) {
             this.log.playerWin(this.winner);
             clearInterval(this.stopInterval);
+            this.display();
             return;
         }
 

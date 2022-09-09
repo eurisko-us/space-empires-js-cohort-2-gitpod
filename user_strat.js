@@ -45,14 +45,35 @@ class UserStrategy {
     }
 
     chooseTranslation(ship, translations) {
-        this.transInput(ship, translations);
+        console.log(`${ship.id} is at ${ship.coords}`)
+        trans = this.transInput(ship, translations);
         let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        if (!(trans in translations)) {
+            console.log('')
+        }
         return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
     transInput(ship, translations) {
-        let input = prompt("USER INPUT: Choose your move? ");
-        console.log(`Received user input "${input}"`);
+        let input = prompt("Pick a direction (up, down, left, right, stay) : ");
+        switch (input) {
+            case 'up' :
+                return [1,0];
+            case 'down' :
+                return [-1,0]
+            case 'left' :
+                return [0,-1];
+            case 'right' :
+                return [0,1];
+            case 'stay' :
+                return [0,0]
+            case defult :
+                
+
+        }
+        
+        //let input = prompt("USER INPUT: Choose your move? ");
+        //console.log(`Received user input "${input}"`);
     }
 
     chooseTarget(shipInfo, combatOrder) {
