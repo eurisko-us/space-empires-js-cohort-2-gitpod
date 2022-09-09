@@ -13,6 +13,12 @@ app.get('/', (_, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 let clientSockets = {};
 
+const players = [new Player(1, new Strategy()), new Player(2, new UserStrategy())];
+const initialShips = {'Scout': 1};
+const game = new Game(clientSockets, players, initialShips);
+
+game.initializeGame();
+
 io.on('connection', (socket) => {
 
     let socketId = socket.id;
@@ -25,13 +31,8 @@ io.on('connection', (socket) => {
         delete clientSockets[socketId];
     });
 
+    game.start(); // so that game doesn't start until socket connects
+
 });
 
 http.listen(3000, () => console.log('Listening on *:3000'));
-
-const players = [new Player(1, new Strategy()), new Player(2, new UserStrategy())];
-const initialShips = {'Scout': 1};
-const game = new Game(clientSockets, players, initialShips);
-
-game.initializeGame();
-game.start();
