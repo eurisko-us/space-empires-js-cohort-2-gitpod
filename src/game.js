@@ -7,10 +7,10 @@ import assert from 'assert';
 
 class Game {
 
-    constructor(clientSockets, strategies, initialShips, boardSize=7, maxTurns=1000, refreshRate=1000, cpPerRound=10) {
+    constructor(clientSockets, strategies, initialShips, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
 
         this.clientSockets = clientSockets;
-        this.boardSize = boardSize;
+        this.boardSize = 7;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
