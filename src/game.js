@@ -6,7 +6,7 @@ import Logger from './logger.js';
 import assert from 'assert';
 
 class Game {
-    constructor(clientSockets, strategies, initialShips, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
+    constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
         this.clientSockets = clientSockets;
         this.boardSize = 7;
         this.maxTurns = maxTurns;
