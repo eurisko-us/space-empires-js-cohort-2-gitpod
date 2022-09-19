@@ -7,6 +7,9 @@ class Buy100 {
     }
 
     buyShips(cpBudget) {
+        if (this.turn == 0) {
+            return [{"Scout": 1}]
+        }
         return [{"Scout": 100}];
     }  
 
@@ -21,6 +24,9 @@ class BuyNone {
     }
 
     buyShips(cpBudget) {
+        if (this.turn == 0) {
+            return [{"Scout": 1}]
+        }
         return [];
     }
 
