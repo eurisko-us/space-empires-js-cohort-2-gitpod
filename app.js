@@ -35,8 +35,7 @@ httpServer.listen(3000, () => console.log('Listening on *:3000'));
 // run game
 
 const strategies = [new Strategy(), new Strategy()];
-const initialShips = {'Scout': 1};
-const game = new Game(clientSockets, strategies, initialShips);
+const game = new Game(clientSockets, strategies);
 
 game.initializeGame();
 game.start();
