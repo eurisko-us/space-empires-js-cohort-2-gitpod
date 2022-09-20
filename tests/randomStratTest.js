@@ -5,9 +5,13 @@ import RandomStrategy from '../strategies/randomStrat.js';
 // let strats = [new Strategy(), new Strategy()]
 let strats = [new RandomStrategy(), new RandomStrategy()]
 
-for (let i = 0; i < 1000; i++) {
+// const game = new Game(null, strats, 1);
+// game.initializeGame();
+// game.start();
 
-    const game = new Game(null, strats, {'Scout': 1}, 1);
+for (let i = 0; i < 30; i++) { // each game is roughly 1.5 - 2 seconds
+
+    const game = new Game(null, strats, 1);
     game.initializeGame();
     game.start();
 
