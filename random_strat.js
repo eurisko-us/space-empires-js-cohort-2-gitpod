@@ -49,6 +49,9 @@ class RandomStrategy {
                 break;
             }
         }
+        if (this.turn==0 && length(shipList)==0) {
+            return this.buyShips(cpBudget)
+        }
         return shipList
     }
 
