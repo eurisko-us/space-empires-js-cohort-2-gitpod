@@ -283,11 +283,16 @@ class Game {
         while (totalCost > player.cp) {
             this.log.shipIsNotMaintained(player, orderedShips[0]);
             this.removeObjFromBoard(orderedShips[0])
+            assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board')
+
+            let deletedShip = orderedShips.shift()
             orderedShips.shift();
+            assert (!(orderedShips.includes(deletedShip)), 'Ship lost to maintenance still in player.ships')
             totalCost = this.calcMaintCost(orderedShips);
         }
 
         player.cp -= totalCost;
+        assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP')
         player.ships = orderedShips;
 
     }
@@ -324,7 +329,8 @@ class Game {
             return; //stops function, player gets nothing
         }
 
-        player.cp -= totalCost; 
+        player.cp -= totalCost;
+        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships')
 
         if (playerShips) {
             for (let ship of playerShips) {
@@ -334,7 +340,9 @@ class Game {
                         if (!ship) continue;
 
                         player.addShip(ship);
+                        assert (player.ships.includes(ship), 'Ship was not added to player.ships')
                         this.addToBoard(ship);
+                        assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board')
                         this.log.buyShip(player, ship);
 
                     }
