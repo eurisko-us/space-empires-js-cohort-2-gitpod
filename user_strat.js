@@ -45,31 +45,62 @@ class UserStrategy {
     }
 
     chooseTranslation(ship, translations) {
-        console.log(`${ship.id} is at ${ship.coords}`)
-        trans = this.transInput(ship, translations);
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
-        if (!(trans in translations)) {
-            console.log('')
+        console.log('\n\n')
+        console.log(`${ship.shipId} is at ${ship.coords}`)
+        console.log(`Possible movements are Check The Damn Board`)
+
+        let trans = this.transInput(ship, translations);
+        //let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        if (translations.find(el => this.sameArray(trans, el)) == undefined) {
+            console.log('That doesnt work, turn forfit')
+            trans = [0,0]
         }
-        return this.minDistanceTranslation(ship, translations, targetCoords);
+        return trans
     }
 
-    transInput(ship, translations) {
+    sameArray(array1, array2) {
+        for (let i=0; i < array1.length; i++){
+            if (array1[i] != array2[i]) {
+                return false
+            }
+        }
+        return true
+    }
+
+    directionFromTrans (trans) {
+        switch (trans) {
+            case this.sameArray([0,-1], trans) :
+                return 'up';
+            case this.sameArray([0,1],trans) :
+                return 'down';
+            case this.sameArray([-1,0],trans) :
+                return 'left';
+            case this.sameArray([1,0],trans) :
+                return 'right';
+            case this.sameArray([0,0],trans) :
+                return 'stay';
+        }
+    }
+
+    transInput() {
+        console.log('')
         let input = prompt("Pick a direction (up, down, left, right, stay) : ");
         switch (input) {
             case 'up' :
-                return [1,0];
-            case 'down' :
-                return [-1,0]
-            case 'left' :
                 return [0,-1];
-            case 'right' :
+            case 'down' :
                 return [0,1];
+            case 'left' :
+                return [-1,0];
+            case 'right' :
+                return [1,0];
             case 'stay' :
+                return [0,0];
+            default :
+                console.log('ye')
                 return [0,0]
-            case defult :
-                
-
+                //console.log('Try again, it might be mispelled');
+                //return this.transInput()
         }
         
         //let input = prompt("USER INPUT: Choose your move? ");
