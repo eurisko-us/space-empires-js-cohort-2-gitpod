@@ -7,7 +7,7 @@ import assert, { deepEqual } from 'assert';
 // If a player buys a ship, it is added to board and player’s ship list
 
 const strats = [new Strategy(), new Strategy()];
-const game1 = new Game(null, strats, {'Scout': 1});
+const game1 = new Game(null, strats);
 game1.initializeGame();
 
 const player1 = game1.players[0];
@@ -42,7 +42,6 @@ for (let i = 0; i < game1.board.length; i++) {
 
 assert (newShipInBoard, "ship is not added to board");
 assert (oldPlayerShips != player1.ships.length, "ship is not added to player's ship list");
-
 // test 2, tie condition
 
 const strats2 = [new Strategy(), new Strategy()];

@@ -282,6 +282,7 @@ class Game {
 
         while (totalCost > player.cp) {
             this.log.shipIsNotMaintained(player, orderedShips[0]);
+            this.removeObjFromBoard(orderedShips[0])
             orderedShips.shift();
             totalCost = this.calcMaintCost(orderedShips);
         }
