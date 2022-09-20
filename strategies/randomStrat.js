@@ -25,6 +25,7 @@ class RandomStrategy {
     }
 
     chooseTranslation(ship, translations) {
+
         return translations[Math.floor(Math.random() * translations.length)];
     }
 
@@ -44,7 +45,7 @@ class RandomStrategy {
             totalCost += randomShip.cpCost;
             if (totalCost >= randCostLim) break;
             let shipName = randomShip.name;
-            shipList.push({shipName: 1});
+            shipList.push({[shipName]: 1});
         }
 
         return shipList;
