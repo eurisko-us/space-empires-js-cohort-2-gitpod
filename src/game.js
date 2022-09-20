@@ -284,10 +284,7 @@ class Game {
             this.log.shipIsNotMaintained(player, orderedShips[0]);
             this.removeObjFromBoard(orderedShips[0])
             assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board')
-
-            let deletedShip = orderedShips.shift()
             orderedShips.shift();
-            assert (!(orderedShips.includes(deletedShip)), 'Ship lost to maintenance still in player.ships')
             totalCost = this.calcMaintCost(orderedShips);
         }
 
