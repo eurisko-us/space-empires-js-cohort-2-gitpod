@@ -3,7 +3,7 @@ import Strategy from '../strategies/strategy.js';
 import RandomStrategy from '../strategies/randomStrat.js';
 
 // let strats = [new Strategy(), new Strategy()]
-let strats = [new RandomStrategy(), new RandomStrategy()]
+let strats = [new RandomStrategy(), new Strategy()]
 
 // const game = new Game(null, strats, 1);
 // game.initializeGame();
