@@ -44,6 +44,12 @@ Turn 2
 		Miss!
 		Attacker: Player 1 Scout 1
 		Defender: Player 2 Scout 1
+		Miss!
+		Attacker: Player 2 Scout 1
+		Defender: Player 1 Scout 1
+		Miss!
+		Attacker: Player 1 Scout 1
+		Defender: Player 2 Scout 1
 		Hit!
 		Player 2 Scout 1 hp: 1 -> 0
 		Player 2 Scout 1 was destroyed
