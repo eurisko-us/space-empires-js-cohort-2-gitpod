@@ -11,7 +11,7 @@ td.cell {
 #board {
     position: relative;
     left: 25px;
-    top: 20;
+    top: 20px;
 }
 
 #logs {
@@ -23,5 +23,16 @@ td.cell {
     border: 1px solid;
     padding: 15px;
     font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+}
+
+#info {
+    position: absolute;
+    left: 1000px;
+    top: 82px;
+    height: 400px;
+    width: 200px;
+    border: 1px solid;
+    padding: 15px;
     overflow: auto;
 }
