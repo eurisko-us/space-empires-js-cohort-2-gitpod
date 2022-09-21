@@ -1,33 +1,37 @@
 const socket = io();
 
 let board;
-let turn;
 let logs;
 
 socket.on('gameState', (data) => {
     board = data.gameBoard;
-    turn = data.gameTurn;
     logs = data.gameLogs;
     updateUI();
 });
 
 let boardHTML;
-let turnHTML;
 let logsHTML;
+let infoHTML;
+
+let clicked = null;
 
 function updateUI() {
 
     boardHTML = document.getElementById("board");
-    turnHTML  = document.getElementById("turn");
     logsHTML  = document.getElementById("logs");
+    infoHTML  = document.getElementById("info");
 
-    if (boardHTML.rows.length === 0) { createBoard(); }
+    if (boardHTML.rows.length === 0) {
+        createBoard();
+        createEventListener();
+    }
     
     resetBoard();
-    updateShips();
-    updateColonies();
-    // updateTurn();
+    updateObjType('Ship', ['red', 'blue'], 'P');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
     updateLogs();
+
+    if (clicked) updateInfo();
 
 }
 
@@ -42,54 +46,35 @@ function createBoard() {
     }
 }
 
-function updateShips() {
+function createEventListener() {
+
+    boardHTML.addEventListener('click', e => {
+        clicked = [
+            e.target.parentElement.rowIndex,
+            e.target.cellIndex
+        ];
+    });
+
+}
+
+function updateObjType(objType, colors, innerHTML) {
 
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board.length; j++) {
             for (let obj of board[j][i]) {
-                if (obj.objType === "Ship") {
-
-                    let shipColorMap = {
-                        1: 'red',
-                        2: 'blue'
-                    }
+                if (obj.objType === objType) {
 
                     let shipNum = board[j][i][0].playerNum;
                     let cell = boardHTML.rows[j].cells[i];
 
-                    cell.style.backgroundColor = shipColorMap[shipNum];
-                    cell.innerHTML = `P${shipNum}`;
+                    cell.style.backgroundColor = colors[shipNum - 1];
+                    cell.innerHTML = `${innerHTML}${shipNum}`;
 
                 }
             }
         }
     }
 
-}
-
-function updateColonies() {
-    
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board.length; j++) {
-            for (let obj of board[j][i]) {
-                if (obj.objType === "Colony") {
-
-                    let colonyColorMap = {
-                        1: '#ff8080',
-                        2: '#a080ff'
-                    }
-
-                    let colonyNum = board[j][i][0].playerNum;
-                    let cell = boardHTML.rows[j].cells[i];
-
-                    cell.style.backgroundColor = colonyColorMap[colonyNum];
-                    cell.innerHTML = `PC${colonyNum}`;
-
-                }
-            }
-
-        }
-    }
 }
 
 function resetBoard() {
@@ -100,10 +85,6 @@ function resetBoard() {
             cell.innerHTML = '';
         }
     }
-};
-
-function updateTurn() {
-    turnHTML.innerHTML = `turn: ${turn}`;
 }
 
 function updateLogs() {
@@ -111,6 +92,16 @@ function updateLogs() {
     for (let turn of logs.reverse()) {
         for (let line of turn) {
             logsHTML.innerHTML += `  ${line}<br>`;
+        }
+    }
+}
+
+function updateInfo() {
+    const [y, x] = clicked;
+    infoHTML.innerHTML = `Ships on coordinate (${x}, ${y}):<br><br>`;
+    for (let obj of board[y][x]) {
+        if (obj.objType == 'Ship') {
+            infoHTML.innerHTML += `${obj.shipId}<br>`;
         }
     }
 }
