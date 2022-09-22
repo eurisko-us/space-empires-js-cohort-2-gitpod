@@ -90,6 +90,10 @@ class Logger {
         this.write(`\t\tPlayer ${player.playerNum} bought a ${ship.name}\n`);
     }
 
+    boughtNoShips(player) {
+        this.write(`\t\tPlayer ${player.playerNum} decided to buy no ships \n`)
+    }
+
     playerCPRemaining(player) {
         this.write(`\t\tPlayer ${player.playerNum} has ${player.cp} CP remaining\n`);
     }

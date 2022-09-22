@@ -319,6 +319,14 @@ class Game {
 
     buyShips(player) {
         let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
+
+        if (player.buyShips() == null) {
+            this.log.boughtNoShips(player)
+        }
+
+        if (player.buyShips() != null) {
+
+        
         let totalCost = this.calcTotalCost(playerShips);
 
         if (totalCost > player.cp) {
@@ -347,7 +355,7 @@ class Game {
             }
 
         }
-        
+        }
 
         this.log.playerCPRemaining(player);
 
