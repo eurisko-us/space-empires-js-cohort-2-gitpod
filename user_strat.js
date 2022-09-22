@@ -91,6 +91,7 @@ class UserStrategy {
     }
 
     chooseTarget(shipInfo, combatOrder) {
+        console.log(`${shipInfo.shipId} is in combat at ${shipInfo.coords}`)
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
         //console.log('(Auto assumes enemy player)');
         let target = this.combatInput(opponentShips);
