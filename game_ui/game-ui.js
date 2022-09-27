@@ -3,23 +3,25 @@ const socket = io();
 let board;
 let logs;
 
-socket.on('gameState', (data) => {
-    board = data.gameBoard;
-    logs = data.gameLogs;
+socket.on('state', (data) => {
+    board = data.board;
+    logs = data.logs;
     updateUI();
 });
 
 let boardHTML;
 let logsHTML;
-let infoHTML;
+let gameInfoHTML;
+let squareInfoHTML;
 
 let clicked = null;
 
 function updateUI() {
 
-    boardHTML = document.getElementById("board");
-    logsHTML  = document.getElementById("logs");
-    infoHTML  = document.getElementById("info");
+    boardHTML      = document.getElementById("board");
+    logsHTML       = document.getElementById("logs");
+    gameInfoHTML   = document.getElementById("gameInfo");
+    squareInfoHTML = document.getElementById("squareInfo");
 
     if (boardHTML.rows.length === 0) {
         createBoard();
@@ -31,7 +33,7 @@ function updateUI() {
     updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
     updateLogs();
 
-    if (clicked) updateInfo();
+    if (clicked) updateSquareInfo();
 
 }
 
@@ -96,12 +98,12 @@ function updateLogs() {
     }
 }
 
-function updateInfo() {
+function updateSquareInfo() {
     const [y, x] = clicked;
-    infoHTML.innerHTML = `Ships on coordinate (${x}, ${y}):<br><br>`;
+    squareInfoHTML.innerHTML = `Ships on coordinate (${x}, ${y}):<br><br>`;
     for (let obj of board[y][x]) {
         if (obj.objType == 'Ship') {
-            infoHTML.innerHTML += `${obj.shipId}<br>`;
+            squareInfoHTML.innerHTML += `${obj.shipId}<br>`;
         }
     }
 }

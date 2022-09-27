@@ -403,13 +403,13 @@ class Game {
             }
 
             if (decodedData.slice(i, i+4) === 'Turn' || i == decodedData.length - 1) {
-                logs.push(turn); // decodedData.length - 1 is needed for the last turn
+                logs.push(turn);
                 turn = [];
             }
 
         }
         
-        logs.push([currentLine, '']); // this is needed for the winner declaration
+        if (this.winner) logs.push([`Winner: Player ${this.winner}<br>`]);
         return logs;
 
     }
@@ -418,10 +418,9 @@ class Game {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
             readFile('log.txt', (_, data) => {               
-                socket.emit('gameState', {
-                    gameBoard: this.board,
-                    gameTurn: this.turn,
-                    gameLogs: this.getLogs(data)
+                socket.emit('state', {
+                    board: this.board,
+                    logs: this.getLogs(data)
                 });
             });
         }
