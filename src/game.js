@@ -32,8 +32,7 @@ class Game {
     }
 
     start() {
-        this.stopInterval = setInterval(() => this.run(), this.refreshRate);
-        // this.refreshRate is how often this.run() runs, in milliseconds
+        this.stopInterval = setInterval(() => this.run(), this.refreshRate); // this.refreshRate is how often this.run() runs (in milliseconds)
     }
 
     translate(x, y) {
@@ -52,8 +51,7 @@ class Game {
     removeObjFromBoard(obj) {
         let [x, y] = [...obj.coords];
         let index = this.board[y][x].indexOf(obj);
-        this.board[y][x].splice(index, 1);
-        // the first parameter sets the array index, the second sets how many are removed
+        this.board[y][x].splice(index, 1); // first parameter sets the array index, second sets how many are removed
     }
 
     addToBoard(obj) {
@@ -61,9 +59,9 @@ class Game {
         this.board[y][x].push(obj);
     }
 
-    getShipNum(newShipName, player) { //gets new ship num to prevent repeats within 
-        player.shipCounter[newShipName] += 1
-        return player.shipCounter[newShipName]
+    getShipNum(newShipName, player) { // gets new ship num to prevent repeats within 
+        player.shipCounter[newShipName] += 1;
+        return player.shipCounter[newShipName];
     }
 
     getNewShip(shipName, i) { // i is the player index
@@ -87,7 +85,7 @@ class Game {
 
     initializeGame() {
 
-        // make board
+        // create board
 
         for (let i = 0; i < this.boardSize; i++) {
             this.board.push([]);
@@ -99,9 +97,9 @@ class Game {
         // If more players added, we'll need to change some stuff dependent on i
 
         for (let i = 0; i < this.players.length; i++) {
-            this.buyShips(this.players[i])
 
-            // Creates home colony for each player
+            this.buyShips(this.players[i]);
+            
             let homeColony = new Colony([3,6*i], i+1);
             homeColony.isHomeColony = true;
             this.players[i].homeColony = homeColony;
@@ -145,7 +143,7 @@ class Game {
         for (let player of this.players) {
             for (let ship of player.ships) {
 
-                let oldCoords = [...ship.coords]; // ... accesses each element of the array. It can also be used for functions
+                let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
@@ -188,12 +186,10 @@ class Game {
             
             let combatOrder = this.sortCombatOrder(coords); 
             
-            while (this.numPlayersOnCoords(combatOrder) > 1) {
-            // while (this.checkForCombat(coords) > 1) {
+            while (this.numPlayersInCombatOrder(combatOrder) > 1) {
                 for (let ship of combatOrder) {
 
-                    if (this.numPlayersOnCoords(combatOrder) == 1) break;
-                    // if (this.checkForCombat(coords) == 1) break;
+                    if (this.numPlayersInCombatOrder(combatOrder) == 1) break;
 
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
                         
@@ -230,7 +226,7 @@ class Game {
         return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
     }
 
-    numPlayersOnCoords(combatOrder) {
+    numPlayersInCombatOrder(combatOrder) {
         return (new Set(combatOrder.map(ship => ship.playerNum))).size;
     }
 
@@ -291,7 +287,7 @@ class Game {
         while (totalCost > player.cp) {
             
             this.log.shipIsNotMaintained(player, orderedShips[0]);
-            this.removeObjFromBoard(orderedShips[0])
+            this.removeObjFromBoard(orderedShips[0]);
             assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board');
             
             orderedShips.shift();

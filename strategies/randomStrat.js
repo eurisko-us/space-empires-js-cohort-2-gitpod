@@ -46,9 +46,8 @@ class RandomStrategy {
             
             if (totalCost >= randCostLim) break;
 
-            let shipDict = {};
-            shipDict[randomShip.name] = 1;
-            shipList.push(shipDict);
+            let randomShipName = randomShip.name;
+            shipList.push({ randomShipName: 1 });
 
         }
 
