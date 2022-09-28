@@ -6,7 +6,9 @@ import Logger from './logger.js';
 import assert from 'assert';
 
 class Game {
+    
     constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
+        
         this.clientSockets = clientSockets;
         this.boardSize = 7;
         this.maxTurns = maxTurns;
@@ -185,11 +187,13 @@ class Game {
         for (let coords of this.getCombatCoords()) {
             
             let combatOrder = this.sortCombatOrder(coords); 
-            //while loop condition = if there is more than one player num in the set of player nums, keep going
-            while ((new Set(combatOrder.map(ship => ship.playerNum))).size > 1) {
+            
+            while (this.numPlayersOnCoords(combatOrder) > 1) {
+            // while (this.checkForCombat(coords) > 1) {
                 for (let ship of combatOrder) {
 
-                    if ((new Set(combatOrder.map(ship => ship.playerNum))).size == 1) break;
+                    if (this.numPlayersOnCoords(combatOrder) == 1) break;
+                    // if (this.checkForCombat(coords) == 1) break;
 
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
                         
@@ -197,7 +201,7 @@ class Game {
                         let target = attacker.strategy.chooseTarget(ship, combatOrder);
                         let defender = this.players[target.playerNum - 1];
                         this.log.combat(ship, target);
-                            
+                        
                         assert (ship.hp > 0, 'Aborting... attacker is dead');
                         assert (target.hp > 0, 'Aborting... defender is already dead');
 
@@ -224,6 +228,10 @@ class Game {
 
     getAllShips(coords) {
         return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+    }
+
+    numPlayersOnCoords(combatOrder) {
+        return (new Set(combatOrder.map(ship => ship.playerNum))).size;
     }
 
     checkForOpponentShips(obj) {
@@ -281,15 +289,18 @@ class Game {
         let orderedShips = this.maintOrder(player.ships);
 
         while (totalCost > player.cp) {
+            
             this.log.shipIsNotMaintained(player, orderedShips[0]);
             this.removeObjFromBoard(orderedShips[0])
-            assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board')
+            assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board');
+            
             orderedShips.shift();
             totalCost = this.calcMaintCost(orderedShips);
+        
         }
 
         player.cp -= totalCost;
-        assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP')
+        assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP');
         player.ships = orderedShips;
 
     }
@@ -318,28 +329,32 @@ class Game {
     }
 
     buyShips(player) {
-        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
+        
+        let playerShips = player.buyShips(); // returns a list of dicts: [{"Scout", 1}, {"Battleship", 2}, ...]
         let totalCost = this.calcTotalCost(playerShips);
 
         if (totalCost > player.cp) {
-            this.log.playerWentOverBudget(player);
-            return; //stops function, player gets nothing
+            this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
+            return;
         }
 
         player.cp -= totalCost;
-        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships')
+        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
 
         if (playerShips) {
             for (let ship of playerShips) {
-                for (let shipName in ship){
+                for (let shipName in ship) {
                     for (let i = 0; i < ship[shipName]; i++) {
-                        let ship = this.getNewShip(shipName, player.playerNum - 1); // makes new ship
+                        
+                        let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
                         if (!ship) continue;
 
                         player.addShip(ship);
-                        assert (player.ships.includes(ship), 'Ship was not added to player.ships')
+                        assert (player.ships.includes(ship), 'Ship was not added to player.ships');
+                        
                         this.addToBoard(ship);
-                        assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board')
+                        assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
+                        
                         this.log.buyShip(player, ship);
 
                     }
@@ -354,20 +369,20 @@ class Game {
     }
 
     economicPhase() { 
-    //Order: Players gain +10 cp for each colony (at least in official book), players pay maintenence, players buy ships
-
+        
         this.log.beginPhase('Economic');
 
         for (let player of this.players) {
             
-            this.log.playerCP(player);
-            player.cp += this.cpPerRound; // 
+            this.log.playerCP(player); // gain cp
+            player.cp += this.cpPerRound; 
             this.log.newPlayerCP(player, this.cpPerRound);
 
-            this.maintenance(player); // takes care of paying maintenence and removing ships if there isn't enough cp
+            this.maintenance(player); // pay maintenance
             this.log.playerCPAfterMaintenance(player);
 
-            this.buyShips(player); //asked player for ships they want and buys them if the player has enough cp
+            this.buyShips(player); // buy ships
+
         }
 
         this.log.endPhase("Economic");

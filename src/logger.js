@@ -9,8 +9,8 @@ class Logger {
     clear() {
         writeFileSync(this.filename, '', err => {
             if (err) {
-              console.error(err);
-              return;
+                console.error(err);
+                return;
             }
         });
     }
@@ -18,8 +18,8 @@ class Logger {
     write(string) {
         appendFileSync(this.filename, string, err => {
             if (err) {
-              console.error(err);
-              return;
+                console.error(err);
+                return;
             }
         });
     }

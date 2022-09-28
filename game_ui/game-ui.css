@@ -31,7 +31,7 @@ td.cell {
 
 #logs {
     font: 16px/26px Georgia, Garamond, Serif;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 footer {
