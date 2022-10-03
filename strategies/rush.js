@@ -56,7 +56,7 @@ class RushStrat {
     buyShips(cpBudget) {
         if (this.turn == 0) return [{"Battleship": 5}];
 
-        if (cpBudget > 50) return [{"BattleShip": 1}];
+        if (cpBudget > 45) return [{"Battleship": 1}];
     }
 
 }
