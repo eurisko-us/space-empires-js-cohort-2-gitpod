@@ -54,6 +54,10 @@ class TestStrat {
         return opponentShips[Math.floor(Math.random() * opponentShips.length)];
     }
 
+    buyShips(cpBudget) {
+        return [];
+    }
+
 }
 
 export default TestStrat;

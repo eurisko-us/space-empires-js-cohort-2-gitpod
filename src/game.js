@@ -6,7 +6,9 @@ import Logger from './logger.js';
 import assert from 'assert';
 
 class Game {
+    
     constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
+        
         this.clientSockets = clientSockets;
         this.boardSize = 7;
         this.maxTurns = maxTurns;
@@ -30,8 +32,7 @@ class Game {
     }
 
     start() {
-        this.stopInterval = setInterval(() => this.run(), this.refreshRate);
-        // this.refreshRate is how often this.run() runs, in milliseconds
+        this.stopInterval = setInterval(() => this.run(), this.refreshRate); // this.refreshRate is how often this.run() runs (in milliseconds)
     }
 
     translate(x, y) {
@@ -50,8 +51,7 @@ class Game {
     removeObjFromBoard(obj) {
         let [x, y] = [...obj.coords];
         let index = this.board[y][x].indexOf(obj);
-        this.board[y][x].splice(index, 1);
-        // the first parameter sets the array index, the second sets how many are removed
+        this.board[y][x].splice(index, 1); // first parameter sets the array index, second sets how many are removed
     }
 
     addToBoard(obj) {
@@ -59,9 +59,9 @@ class Game {
         this.board[y][x].push(obj);
     }
 
-    getShipNum(newShipName, player) { //gets new ship num to prevent repeats within 
-        player.shipCounter[newShipName] += 1
-        return player.shipCounter[newShipName]
+    getShipNum(newShipName, player) { // gets new ship num to prevent repeats within 
+        player.shipCounter[newShipName] += 1;
+        return player.shipCounter[newShipName];
     }
 
     getNewShip(shipName, i) { // i is the player index
@@ -85,7 +85,7 @@ class Game {
 
     initializeGame() {
 
-        // make board
+        // create board
 
         for (let i = 0; i < this.boardSize; i++) {
             this.board.push([]);
@@ -97,9 +97,9 @@ class Game {
         // If more players added, we'll need to change some stuff dependent on i
 
         for (let i = 0; i < this.players.length; i++) {
-            this.buyShips(this.players[i])
 
-            // Creates home colony for each player
+            this.buyShips(this.players[i]);
+            
             let homeColony = new Colony([3,6*i], i+1);
             homeColony.isHomeColony = true;
             this.players[i].homeColony = homeColony;
@@ -143,7 +143,7 @@ class Game {
         for (let player of this.players) {
             for (let ship of player.ships) {
 
-                let oldCoords = [...ship.coords]; // ... accesses each element of the array. It can also be used for functions
+                let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
                 let newCoords = this.translate(oldCoords, translation);
@@ -185,11 +185,11 @@ class Game {
         for (let coords of this.getCombatCoords()) {
             
             let combatOrder = this.sortCombatOrder(coords); 
-            //while loop condition = if there is more than one player num in the set of player nums, keep going
-            while ((new Set(combatOrder.map(ship => ship.playerNum))).size > 1) {
+            
+            while (this.numPlayersInCombatOrder(combatOrder) > 1) {
                 for (let ship of combatOrder) {
 
-                    if ((new Set(combatOrder.map(ship => ship.playerNum))).size == 1) break;
+                    if (this.numPlayersInCombatOrder(combatOrder) == 1) break;
 
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
                         
@@ -197,7 +197,7 @@ class Game {
                         let target = attacker.strategy.chooseTarget(ship, combatOrder);
                         let defender = this.players[target.playerNum - 1];
                         this.log.combat(ship, target);
-                            
+                        
                         assert (ship.hp > 0, 'Aborting... attacker is dead');
                         assert (target.hp > 0, 'Aborting... defender is already dead');
 
@@ -224,6 +224,10 @@ class Game {
 
     getAllShips(coords) {
         return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+    }
+
+    numPlayersInCombatOrder(combatOrder) {
+        return (new Set(combatOrder.map(ship => ship.playerNum))).size;
     }
 
     checkForOpponentShips(obj) {
@@ -281,15 +285,18 @@ class Game {
         let orderedShips = this.maintOrder(player.ships);
 
         while (totalCost > player.cp) {
+            
             this.log.shipIsNotMaintained(player, orderedShips[0]);
-            this.removeObjFromBoard(orderedShips[0])
-            assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board')
+            this.removeObjFromBoard(orderedShips[0]);
+            assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board');
+            
             orderedShips.shift();
             totalCost = this.calcMaintCost(orderedShips);
+        
         }
 
         player.cp -= totalCost;
-        assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP')
+        assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP');
         player.ships = orderedShips;
 
     }
@@ -325,36 +332,37 @@ class Game {
         }
 
         if (player.buyShips() != null) {
+            let totalCost = this.calcTotalCost(playerShips);
 
-        
-        let totalCost = this.calcTotalCost(playerShips);
-
-        if (totalCost > player.cp) {
-            this.log.playerWentOverBudget(player);
-            return; //stops function, player gets nothing
-        }
-
-        player.cp -= totalCost;
-        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships')
-
-        if (playerShips) {
-            for (let ship of playerShips) {
-                for (let shipName in ship){
-                    for (let i = 0; i < ship[shipName]; i++) {
-                        let ship = this.getNewShip(shipName, player.playerNum - 1); // makes new ship
-                        if (!ship) continue;
-
-                        player.addShip(ship);
-                        assert (player.ships.includes(ship), 'Ship was not added to player.ships')
-                        this.addToBoard(ship);
-                        assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board')
-                        this.log.buyShip(player, ship);
-
-                    }
-                }
+            if (totalCost > player.cp) {
+                this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
+                return;
             }
 
-        }
+            player.cp -= totalCost;
+            assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
+
+            if (playerShips) {
+                for (let ship of playerShips) {
+                    for (let shipName in ship) {
+                        for (let i = 0; i < ship[shipName]; i++) {
+
+                            let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
+                            if (!ship) continue;
+
+                            player.addShip(ship);
+                            assert (player.ships.includes(ship), 'Ship was not added to player.ships');
+
+                            this.addToBoard(ship);
+                            assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
+
+                            this.log.buyShip(player, ship);
+
+                        }
+                    }
+                }
+
+            }
         }
 
         this.log.playerCPRemaining(player);
@@ -362,20 +370,20 @@ class Game {
     }
 
     economicPhase() { 
-    //Order: Players gain +10 cp for each colony (at least in official book), players pay maintenence, players buy ships
-
+        
         this.log.beginPhase('Economic');
 
         for (let player of this.players) {
             
-            this.log.playerCP(player);
-            player.cp += this.cpPerRound; // 
+            this.log.playerCP(player); // gain cp
+            player.cp += this.cpPerRound; 
             this.log.newPlayerCP(player, this.cpPerRound);
 
-            this.maintenance(player); // takes care of paying maintenence and removing ships if there isn't enough cp
+            this.maintenance(player); // pay maintenance
             this.log.playerCPAfterMaintenance(player);
 
-            this.buyShips(player); //asked player for ships they want and buys them if the player has enough cp
+            this.buyShips(player); // buy ships
+
         }
 
         this.log.endPhase("Economic");
@@ -411,13 +419,13 @@ class Game {
             }
 
             if (decodedData.slice(i, i+4) === 'Turn' || i == decodedData.length - 1) {
-                logs.push(turn); // decodedData.length - 1 is needed for the last turn
+                logs.push(turn);
                 turn = [];
             }
 
         }
         
-        logs.push([currentLine, '']); // this is needed for the winner declaration
+        if (this.winner) logs.push([`Winner: Player ${this.winner}<br>`]);
         return logs;
 
     }
@@ -426,10 +434,9 @@ class Game {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
             readFile('log.txt', (_, data) => {               
-                socket.emit('gameState', {
-                    gameBoard: this.board,
-                    gameTurn: this.turn,
-                    gameLogs: this.getLogs(data)
+                socket.emit('state', {
+                    board: this.board,
+                    logs: this.getLogs(data)
                 });
             });
         }

@@ -21,4 +21,4 @@ let player2 = game2.players[0];
 player2.cp = -10;
 game2.economicPhase();
 
-assert(player2.ships.length == 0, 'Player ship survived without paying maintenence cost');
+assert(player2.ships.length == 0, 'Player ship survived without paying maintenance cost');
