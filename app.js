@@ -17,9 +17,8 @@ app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
 let clientSockets = {};
 
-//const players = [new Player(1, new Strategy()), new Player(2, new UserStrategy())];
-//const initialShips = {'Scout': 1, 'Cruiser': 1};
-//const game = new Game(clientSockets, players, initialShips);
+const strategies = [new Strategy(), new Strategy()];
+const game = new Game(clientSockets, strategies);
 
 game.initializeGame();
 
@@ -41,11 +40,3 @@ io.on('connection', (socket) => {
 
 httpServer.listen(3000, () => console.log('Listening on *:3000'));
 
-// run game
-
-//const strategies = [new Strategy(), new UserStrategy()];
-const strategies = [new Strategy(), new Strategy()];
-const game = new Game(clientSockets, strategies);
-
-game.initializeGame();
-game.start();
