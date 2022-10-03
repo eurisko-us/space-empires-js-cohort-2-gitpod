@@ -14,8 +14,6 @@ let logsHTML;
 let gameInfoHTML;
 let squareInfoHTML;
 
-let clicked = null;
-
 function updateUI() {
 
     boardHTML      = document.getElementById("board");
@@ -33,8 +31,6 @@ function updateUI() {
     updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
     updateLogs();
 
-    if (clicked) updateSquareInfo();
-
 }
 
 function createBoard() {
@@ -49,12 +45,9 @@ function createBoard() {
 }
 
 function createEventListener() {
-
+    
     boardHTML.addEventListener('click', e => {
-        clicked = [
-            e.target.parentElement.rowIndex,
-            e.target.cellIndex
-        ];
+        updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
     });
 
 }
@@ -98,8 +91,7 @@ function updateLogs() {
     }
 }
 
-function updateSquareInfo() {
-    const [y, x] = clicked;
+function updateSquareInfo(x, y) {
     squareInfoHTML.innerHTML = `Ships on coordinate (${x}, ${y}):<br><br>`;
     for (let obj of board[y][x]) {
         if (obj.objType == 'Ship') {
