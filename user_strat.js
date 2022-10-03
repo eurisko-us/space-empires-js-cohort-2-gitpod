@@ -1,4 +1,5 @@
 const prompt = require('prompt-sync')();
+const { nullInstances } = require('.ships.js');
 
 class UserStrategy {
     
@@ -6,42 +7,6 @@ class UserStrategy {
         this.simpleBoard = null;
         this.turn = 0;
         this.player = null;
-    }
-    dist(coords1, coords2) {
-        return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]);
-    }
-
-    minDistanceTranslation(ship, translations, targetCoords) {
-            
-        let minTranslation = null;
-        let minDistance = 999;
-
-        for (let translation of translations) {
-
-            let newPoint = [ship.coords[0] + translation[0], ship.coords[1] + translation[1]];
-            let distance = this.dist(newPoint, targetCoords);
-
-            if (distance < minDistance) {
-                minDistance = distance;
-                minTranslation = [...translation];
-            }
-
-        }
-
-        return minTranslation;
-
-    }
-
-    getOpponentHomeColonyCoords(ship) {
-        for (let i = 0; i < this.simpleBoard.length; i++) {
-            for (let j = 0; j < this.simpleBoard.length; j++) {
-                for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
-                        return [j, i];
-                    }
-                }
-            }
-        }
     }
 
     chooseTranslation(ship, translations) {
@@ -100,10 +65,9 @@ class UserStrategy {
     }
 
     combatInput(enemyShips) {
-        console.log(enemyShips)
         let input = prompt('Pick an enemy (shipType -space- shipNum): '); // Auto assumes enemy player
         let enemy = input.split(' ');
-        console.log(enemyShips)
+        console.log(enemyShips);
         for (var ship of enemyShips) {
             //console.log(ship)
             if (ship.name == enemy[0] && ship.shipNum == enemy[1]){
@@ -114,6 +78,45 @@ class UserStrategy {
         //return this.combatInput(enemyShips);
         console.log('just gonna skip that for now');
         return enemyShips[Math.floor(Math.random() * enemyShips.length)];
+    }
+
+    buyShips(cpBudget) {
+        const randCostLim = Math.floor(Math.random() * (cpBudget+1));
+        let shipList = [];
+        let totalCost = 0;
+        while (randCostLim>=totalCost){
+            let randomShip = nullInstances[Math.floor(Math.random() * nullInstances.length)];
+            totalCost += randomShip.cpCost
+            if (totalCost<randCostLim){
+                let shipDict = {}
+                let shipName = randomShip.name
+                shipDict[shipName] = 1
+                shipList.push(shipDict)
+            }
+            else{
+                break;
+            }
+        }
+        if (this.turn==0 && shipList.length==0) {
+            return this.buyShips(cpBudget)
+        }
+        return shipList
+    }
+
+    buyInput() {
+        let input = prompt('Please choose a ship and amount to buy "shipType -space- amount" OR "None": ');
+        let cart = input.split(' ');
+        let bought = this.findBought(cart[0])
+    }
+    
+    findBought(cart) {
+        for (var ship of nullInstances) {
+            if (cart == ship.name){
+                return ship
+            }
+        }
+        input = prompt('Please type a valid ship type: ')
+        return this.findBought(input)
     }
 
 }
