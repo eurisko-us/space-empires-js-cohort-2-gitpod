@@ -339,6 +339,9 @@ class Game {
                 return;
             }
 
+            if (totalCost <= player.cp){
+
+            
             player.cp -= totalCost;
             assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
 
@@ -363,6 +366,8 @@ class Game {
                 }
 
             }
+        }
+        
         }
 
         this.log.playerCPRemaining(player);
