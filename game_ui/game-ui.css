@@ -1,0 +1,43 @@
+header {
+    margin: 10px;
+    text-align: center;
+}
+  
+section {
+    display: -webkit-flex;
+    display: flex;
+}
+
+article {
+    display: flex;
+    flex: 3;
+    margin: 10px;
+    padding: 10px;
+    max-height: 420px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#board {
+    margin: auto;
+}
+
+td.cell {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+#logs {
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow-y: scroll;
+}
+
+footer {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+}

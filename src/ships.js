@@ -5,20 +5,15 @@ class Ship {
         this.shipId = null;
     }
 
-    updateCoords(newCoords) {
-        this.coords = newCoords;
-    }
-
     setShipId() {
         this.shipId = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
     }
-    
+
 };
 
-//extends makes the class a child class of the parent class
-//super () makes it so that the child class inherits and constructs everything from the parent class
-
-//could remove shipNum later if never used, only being used to make shipId
+// extends makes the class a child class of the parent class
+// super () makes it so that the child class inherits and constructs everything from the parent class
+// could remove shipNum later if never used, only being used to make shipId
 // When checking, ships are referred to by player number (playerNum), ship name (name), and ship number (shipNum)
 
 class Scout extends Ship {
@@ -166,10 +161,6 @@ class Dreadnaught extends Ship {
     }
 }
 
-module.exports.Ship = Ship;
-module.exports.Scout = Scout;
-module.exports.BattleCruiser = BattleCruiser;
-module.exports.Battleship = Battleship;
-module.exports.Cruiser = Cruiser;
-module.exports.Destroyer = Destroyer;
-module.exports.Dreadnaught = Dreadnaught;
+const nullInstances = [new Scout(null,null,null), new BattleCruiser(null,null,null), new Battleship(null,null,null), new Cruiser(null,null,null), new Destroyer(null,null,null), new Dreadnaught(null,null,null)];
+const allShips = [Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught];
+export { nullInstances, allShips, Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught };

@@ -1,21 +1,24 @@
-const express = require('express');
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+
+import Game from './src/game.js';
+import Strategy from './strategies/strategy.js';
+
+// connect to web socket (aka display on web browser)
+
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const httpServer = http.Server(app);
+const io = new Server(httpServer);
 
-const Game = require('./game');
-const Player = require('./player');
-const Strategy = require('./strategy');
-const UserStrategy = require('./user_strat');
-
-app.use(express.static('public'));
-app.get('/', (_, res) => res.sendFile(`${__dirname}/public/index.html`));
+app.use(express.static('game_ui'));
+app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
 let clientSockets = {};
 
-const players = [new Player(1, new Strategy()), new Player(2, new UserStrategy())];
-const initialShips = {'Scout': 1, 'Cruiser': 1};
-const game = new Game(clientSockets, players, initialShips);
+//const players = [new Player(1, new Strategy()), new Player(2, new UserStrategy())];
+//const initialShips = {'Scout': 1, 'Cruiser': 1};
+//const game = new Game(clientSockets, players, initialShips);
 
 game.initializeGame();
 
@@ -35,4 +38,12 @@ io.on('connection', (socket) => {
 
 });
 
-http.listen(3000, () => console.log('Listening on *:3000'));
+httpServer.listen(3000, () => console.log('Listening on *:3000'));
+
+// run game
+
+const strategies = [new Strategy(), new Strategy()];
+const game = new Game(clientSockets, strategies);
+
+game.initializeGame();
+game.start();

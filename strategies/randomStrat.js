@@ -1,4 +1,6 @@
-class Strategy {
+import { nullInstances } from '../src/ships.js'
+
+class RandomStrategy {
     
     constructor() {
         this.simpleBoard = null;
@@ -8,27 +10,6 @@ class Strategy {
 
     dist(coords1, coords2) {
         return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]);
-    }
-
-    minDistanceTranslation(ship, translations, targetCoords) {
-            
-        let minTranslation = null;
-        let minDistance = 999;
-
-        for (let translation of translations) {
-
-            let newPoint = [ship.coords[0] + translation[0], ship.coords[1] + translation[1]];
-            let distance = this.dist(newPoint, targetCoords);
-
-            if (distance < minDistance) {
-                minDistance = distance;
-                minTranslation = [...translation];
-            }
-
-        }
-
-        return minTranslation;
-
     }
 
     getOpponentHomeColonyCoords(ship) {
@@ -44,8 +25,7 @@ class Strategy {
     }
 
     chooseTranslation(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
-        return this.minDistanceTranslation(ship, translations, targetCoords);
+        return translations[Math.floor(Math.random() * translations.length)];
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -53,6 +33,32 @@ class Strategy {
         return opponentShips[Math.floor(Math.random() * opponentShips.length)];
     }
 
+    buyShips(cpBudget) {
+        
+        const randCostLim = Math.floor(Math.random() * (cpBudget + 1));
+        let shipList = [];
+        let totalCost = 0;
+        
+        while (randCostLim >= totalCost) {
+            
+            let randomShip = nullInstances[Math.floor(Math.random() * nullInstances.length)];
+            totalCost += randomShip.cpCost;
+            
+            if (totalCost >= randCostLim) break;
+
+            let randomShipName = randomShip.name;
+            shipList.push({ randomShipName: 1 });
+
+        }
+
+        if (this.turn == 0 && shipList.length == 0) {
+            return this.buyShips(cpBudget);
+        }
+        
+        return shipList;
+    
+    }
+
 }
 
-module.exports = Strategy;
+export default RandomStrategy;
