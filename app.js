@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 
 import Game from './src/game.js';
 import Strategy from './strategies/strategy.js';
+//import UserStrategy from './user_strat.js';
 
 // connect to web socket (aka display on web browser)
 
@@ -42,6 +43,7 @@ httpServer.listen(3000, () => console.log('Listening on *:3000'));
 
 // run game
 
+//const strategies = [new Strategy(), new UserStrategy()];
 const strategies = [new Strategy(), new Strategy()];
 const game = new Game(clientSockets, strategies);
 

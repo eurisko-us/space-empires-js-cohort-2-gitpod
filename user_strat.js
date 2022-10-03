@@ -1,5 +1,6 @@
-const prompt = require('prompt-sync')();
-const { nullInstances } = require('.ships.js');
+//import prompt from ''
+//const prompt = require('prompt-sync')();
+import { nullInstances } from '../src/ships.js'
 
 class UserStrategy {
     
@@ -44,9 +45,9 @@ class UserStrategy {
                 return [1,0];
             case 'stay' :
                 return [0,0];
-            default :
-                console.log('ye');
-                return [0,0];
+            //default :
+            //    console.log('ye');
+            //    return [0,0];
                 //console.log('Try again, it might be mispelled');
                 //return this.transInput();
         }
