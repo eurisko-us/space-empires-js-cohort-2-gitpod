@@ -44,7 +44,7 @@ class TurtleStrat {
     }
 
     chooseTranslation(ship, translations) {
-        if (this.turn == 0) {        
+        if (this.turn == 1) {        
             let targetCoords = this.getOpponentHomeColonyCoords(ship);
             return this.minDistanceTranslation(ship, translations, targetCoords);
         }

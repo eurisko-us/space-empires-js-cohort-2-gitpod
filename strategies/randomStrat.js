@@ -1,6 +1,6 @@
 import { nullInstances } from '../src/ships.js'
 
-class RandomStrategy {
+class RandomStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -61,4 +61,4 @@ class RandomStrategy {
 
 }
 
-export default RandomStrategy;
+export default RandomStrat;
