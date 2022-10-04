@@ -326,40 +326,50 @@ class Game {
     }
 
     buyShips(player) {
-        
-        let playerShips = player.buyShips(); // returns a list of dicts: [{"Scout", 1}, {"Battleship", 2}, ...]
-        let totalCost = this.calcTotalCost(playerShips);
+        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
 
-        if (totalCost > player.cp) {
-            this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
-            return;
+        if (player.buyShips() == null) {
+            this.log.boughtNoShips(player)
         }
 
-        player.cp -= totalCost;
-        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
+        if (player.buyShips() != null) {
+            let totalCost = this.calcTotalCost(playerShips);
 
-        if (playerShips) {
-            for (let ship of playerShips) {
-                for (let shipName in ship) {
-                    for (let i = 0; i < ship[shipName]; i++) {
-                        
-                        let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
-                        if (!ship) continue;
-
-                        player.addShip(ship);
-                        assert (player.ships.includes(ship), 'Ship was not added to player.ships');
-                        
-                        this.addToBoard(ship);
-                        assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
-                        
-                        this.log.buyShip(player, ship);
-
-                    }
-                }
+            if (totalCost > player.cp) {
+                this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
+                return;
             }
 
+            if (totalCost <= player.cp){
+
+            
+            player.cp -= totalCost;
+            assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
+
+            if (playerShips) {
+                for (let ship of playerShips) {
+                    for (let shipName in ship) {
+                        for (let i = 0; i < ship[shipName]; i++) {
+
+                            let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
+                            if (!ship) continue;
+
+                            player.addShip(ship);
+                            assert (player.ships.includes(ship), 'Ship was not added to player.ships');
+
+                            this.addToBoard(ship);
+                            assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
+
+                            this.log.buyShip(player, ship);
+
+                        }
+                    }
+                }
+
+            }
         }
         
+        }
 
         this.log.playerCPRemaining(player);
 
