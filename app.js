@@ -5,8 +5,6 @@ import { Server } from 'socket.io';
 import Game from './src/game.js';
 import Strategy from './strategies/strategy.js';
 
-// connect to web socket (aka display on web browser)
-
 const app = express();
 const httpServer = http.Server(app);
 const io = new Server(httpServer);
@@ -23,6 +21,26 @@ io.on('connection', (socket) => {
 
     console.log(`Client socket connected: ${socket.id}`);
 
+    socket.emit('initialize game');
+    // console.log('socket emitted');
+
+    socket.on('start game', () => {
+        console.log('start game app.js');
+        const strategies = [new Strategy(), new Strategy()];
+        const game = new Game(clientSockets, strategies);
+        game.initializeGame();
+        game.start();
+    });
+
+    // socket.on('run game automatically', () => {
+    //     console.log('run game automatically app.js');
+    //     if (game) game.start();
+    // });
+
+    // socket.on('next turn', () => {
+    //     console.log('next turn app.js');
+    // });
+
     socket.on('disconnect', () => {
         console.log(`Client socket disconnected: ${socketId}`);
         delete clientSockets[socketId];
@@ -32,10 +50,12 @@ io.on('connection', (socket) => {
 
 httpServer.listen(3000, () => console.log('Listening on *:3000'));
 
-// run game
+// io.on('start game', () => {
 
-const strategies = [new Strategy(), new Strategy()];
-const game = new Game(clientSockets, strategies);
+//     console.log('start game');
+//     const strategies = [new Strategy(), new Strategy()];
+//     const game = new Game(clientSockets, strategies);
+//     game.initializeGame();
+//     game.start();
 
-game.initializeGame();
-game.start();
+// });

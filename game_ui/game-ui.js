@@ -3,33 +3,70 @@ const socket = io();
 let board;
 let logs;
 
-socket.on('state', (data) => {
-    board = data.board;
-    logs = data.logs;
-    updateUI();
-});
+let gameHasStarted = false;
 
 let boardHTML;
 let logsHTML;
 let gameInfoHTML;
 let squareInfoHTML;
 
+let consoleHTML;
+
+let startGameButton;
+let nextTurnButton;
+let runGameAutomaticallyButton;
+
+socket.on('initialize game', () => {
+
+    document.getElementById("console").innerHTML += '<br>initialize game start';
+    
+    document.getElementById("startGame").addEventListener("click", () => {
+        if (!gameHasStarted) {
+            document.getElementById("console").innerHTML += '<br>start game button is clicked';
+            socket.emit('start game');
+            gameHasStarted = true;
+        }
+    });
+    
+    updateElementsById();
+    createBoard();
+    createEventListeners();
+
+    document.getElementById("console").innerHTML += '<br>initialize game end';
+});
+
+socket.on('state', (data) => {
+    board = data.board;
+    logs = data.logs;
+    updateUI();
+});
+
+// function initializeUI() {
+//     updateElementsById();
+//     createBoard();
+//     createEventListeners();
+// }
+
 function updateUI() {
+    updateElementsById();
+    resetBoard();
+    updateObjType('Ship', ['red', 'blue'], 'P');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
+    updateLogs();
+}
+
+function updateElementsById() {
 
     boardHTML      = document.getElementById("board");
     logsHTML       = document.getElementById("logs");
     gameInfoHTML   = document.getElementById("gameInfo");
     squareInfoHTML = document.getElementById("squareInfo");
-
-    if (boardHTML.rows.length === 0) {
-        createBoard();
-        createEventListener();
-    }
     
-    resetBoard();
-    updateObjType('Ship', ['red', 'blue'], 'P');
-    updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
-    updateLogs();
+    consoleHTML = document.getElementById("console");
+
+    startGameButton            = document.getElementById("startGame");
+    nextTurnButton             = document.getElementById("nextTurn");
+    runGameAutomaticallyButton = document.getElementById("runGameAutomatically");
 
 }
 
@@ -44,10 +81,32 @@ function createBoard() {
     }
 }
 
-function createEventListener() {
+function createEventListeners() {
     
     boardHTML.addEventListener('click', e => {
-        updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
+        if (gameHasStarted) updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
+    });
+
+    // startGameButton.addEventListener("click", () => {
+    //     if (!gameHasStarted) {
+    //         consoleHTML.innerHTML += '<br>start game button is clicked';
+    //         socket.emit('start game');
+    //         gameHasStarted = true;
+    //     }
+    // });
+
+    nextTurnButton.addEventListener("click", () => {
+        if (gameHasStarted) {
+            consoleHTML.innerHTML += '<br>next turn button is clicked';
+            // socket.emit('next turn');
+        }
+    });
+
+    runGameAutomaticallyButton.addEventListener("click", () => {
+        if (gameHasStarted) {
+            consoleHTML.innerHTML += '<br>run game automatically button is clicked';
+            // socket.emit('run game automatically');
+        }
     });
 
 }
