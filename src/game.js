@@ -21,7 +21,6 @@ class Game {
         this.log.initialize();
 
         this.players = strategies.map((strategy, i) => new Player(i + 1, strategy));
-        
 
         this.board = [];
         this.turn = 0;
