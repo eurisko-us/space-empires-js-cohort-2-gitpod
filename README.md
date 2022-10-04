@@ -16,6 +16,7 @@
 
 ## What are the next things we should implement
 
+- Shared strategy method file?
 - make input player
 - make sure simpleBoard is fully/correctly implemented
 - update UI
