@@ -4,7 +4,7 @@ import { Server } from 'socket.io';
 
 import Game from './src/game.js';
 import BasicStrat from './strategies/basicStrat.js';
-import RushStrat from './strategies/rush.js';
+import RushStrat from './strategies/rushStrat.js';
 import RandomStrategy from './strategies/randomStrat.js';
 
 
