@@ -37,7 +37,7 @@ httpServer.listen(3000, () => console.log('Listening on *:3000'));
 
 // run game
 
-const strategies = [new Strategy(), new RandomStrategy()];
+const strategies = [new RushStrat(), new RandomStrategy()];
 const game = new Game(clientSockets, strategies);
 
 game.initializeGame();
