@@ -31,57 +31,7 @@ class Game {
 
     }
 
-    start() {
-        this.stopInterval = setInterval(() => this.run(), this.refreshRate); // this.refreshRate is how often this.run() runs (in milliseconds)
-    }
-
-    translate(x, y) {
-        return x.map((_, i) => x[i] + y[i]);
-    }
-
-    checkInBounds(coords) {
-        return coords.every(coord => this.boardRange.includes(coord));
-    }
-
-    possibleTranslations(coords) {
-        let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
-        return allTranslations.filter(t => this.checkInBounds(this.translate(t, coords)));
-    }
-
-    removeObjFromBoard(obj) {
-        let [x, y] = [...obj.coords];
-        let index = this.board[y][x].indexOf(obj);
-        this.board[y][x].splice(index, 1); // first parameter sets the array index, second sets how many are removed
-    }
-
-    addToBoard(obj) {
-        let [x, y] = [...obj.coords];
-        this.board[y][x].push(obj);
-    }
-
-    getShipNum(newShipName, player) { // gets new ship num to prevent repeats within 
-        player.shipCounter[newShipName] += 1;
-        return player.shipCounter[newShipName];
-    }
-
-    getNewShip(shipName, i) { // i is the player index
-    
-        const shipNum = this.getShipNum(shipName, this.players[i]);
-
-        const spawnLocationMap = {
-            '1': [3, 0],
-            '2': [3, 6],
-            '3': [0, 3],
-            '4': [0, 6]
-        }
-
-        for (let shipClass of allShips) {
-            if (shipName == shipClass.name) {
-                return new shipClass(spawnLocationMap[(i+1).toString()], i+1, shipNum);
-            }
-        }
-
-    }
+    // Initializing and Running the Game
 
     initializeGame() {
 
@@ -111,30 +61,45 @@ class Game {
 
     }
 
-    getSimpleObj(obj) {
-        let simpleObj = {};
-        for (const [attr, v] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
-            simpleObj[attr] = v.value;
-        }
-        return simpleObj;
+    start() {
+        this.stopInterval = setInterval(() => this.run(), this.refreshRate); // this.refreshRate is how often this.run() runs (in milliseconds)
     }
 
-    updateSimpleBoard() { // prevents strategies from cheating
-    
-        let simpleBoard = this.boardRange.map(
-            i => this.boardRange.map(
-                j => this.board[j][i].map(
-                    obj => this.getSimpleObj(obj)
-                )
-            )
-        );
+    run() {
 
-        for (let player of this.players) {
-            player.strategy.simpleBoard = simpleBoard;
-            player.strategy.turn = this.turn;
+        this.display();
+
+        if (this.winner) {
+            this.log.playerWin(this.winner);
+            clearInterval(this.stopInterval);
+            return;
+        }
+
+        if (this.turn < this.maxTurns) {
+            this.log.turn(this.turn);
+            this.movementPhase();
+            this.combatPhase();
+            this.economicPhase();
+            this.winner = this.checkForWinner();
+            this.turn++;
+        } else {
+            this.winner = 'Tie';
         }
 
     }
+
+    checkForWinner() {
+
+        this.players.filter(player => this.checkForOpponentShips(player.homeColony))
+                    .forEach(player => this.removePlayer(player));
+
+        if(this.players.length === 1) return this.players[0].playerNum;
+        if(this.players.length === 0) return 'Tie';
+
+    }
+
+
+    // Phases
 
     movementPhase() {
 
@@ -151,7 +116,7 @@ class Game {
                 if (this.checkForOpponentShips(ship)) continue;
                 if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
 
-                this.removeObjFromBoard(ship);
+                this.removeFromBoard(ship);
                 ship.coords = newCoords;
                 this.addToBoard(ship);
                 this.log.shipMovement(oldCoords, ship);
@@ -161,20 +126,6 @@ class Game {
         }
 
         this.log.endPhase('Movement');
-
-    }
-
-    roll(attacker, defender) {
-
-        let roll = Math.floor(Math.random() * 10);
-
-        if (roll <= attacker.atk - defender.df || roll === 1) {
-            this.log.shipHit(defender);
-            return true;
-        } else {
-            this.log.shipMiss();
-            return false;
-        }
 
     }
 
@@ -206,7 +157,7 @@ class Game {
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
                                 combatOrder.splice(combatOrder.indexOf(target), 1)
-                                this.removeObjFromBoard(target);
+                                this.removeFromBoard(target);
                                 this.removeShipFromPlayer(defender, target);
                             }
                         }
@@ -222,18 +173,111 @@ class Game {
 
     }
 
-    getAllShips(coords) {
-        return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+    economicPhase() { 
+        
+        this.log.beginPhase('Economic');
+
+        for (let player of this.players) {
+            
+            this.log.playerCP(player); // gain cp
+            player.cp += this.cpPerRound; 
+            this.log.newPlayerCP(player, this.cpPerRound);
+
+            this.maintenance(player); // pay maintenance
+            this.log.playerCPAfterMaintenance(player);
+
+            this.buyShips(player); // buy ships
+
+        }
+
+        this.log.endPhase("Economic");
+
     }
 
-    numPlayersInCombatOrder(combatOrder) {
-        return (new Set(combatOrder.map(ship => ship.playerNum))).size;
+
+    // Object Manipulation/Calculation
+
+    addToBoard(obj) {
+        let [x, y] = [...obj.coords];
+        this.board[y][x].push(obj);
+    }
+
+    removeFromBoard(obj) {
+        let [x, y] = [...obj.coords];
+        let index = this.board[y][x].indexOf(obj);
+        this.board[y][x].splice(index, 1); // first parameter sets the array index, second sets how many are removed
+    }
+
+    getShipNum(newShipName, player) { // gets new ship num to prevent repeats within 
+        player.shipCounter[newShipName] += 1;
+        return player.shipCounter[newShipName];
+    }
+
+    getNewShip(shipName, i) { // i is the player index
+    
+        const shipNum = this.getShipNum(shipName, this.players[i]);
+
+        const spawnLocationMap = {
+            '1': [3, 0],
+            '2': [3, 6],
+            '3': [0, 3],
+            '4': [0, 6]
+        }
+
+        for (let shipClass of allShips) {
+            if (shipName == shipClass.name) {
+                return new shipClass(spawnLocationMap[(i+1).toString()], i+1, shipNum);
+            }
+        }
+
+    }
+
+    getSimpleObj(obj) {
+        let simpleObj = {};
+        for (const [attr, v] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
+            simpleObj[attr] = v.value;
+        }
+        return simpleObj;
+    }
+
+    getAllShips(coords) {
+        return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
     }
 
     checkForOpponentShips(obj) {
         let ships = this.getAllShips(obj.coords);
         return !ships.every(ship => ship.playerNum === obj.playerNum);
     }
+
+    removeShipFromPlayer(player, ship) {
+        let index = player.ships.indexOf(ship);
+        player.ships.splice(index, 1);
+    }
+
+    removePlayer(player) {
+        player.ships.forEach(ship => this.removeFromBoard(ship));
+        this.removeFromBoard(player.homeColony);
+        this.players.splice(this.players.indexOf(player), 1);
+    }
+
+
+    // Movement
+
+    translate(x, y) {
+        return x.map((_, i) => x[i] + y[i]);
+    }
+
+    checkInBounds(coords) {
+        return coords.every(coord => this.boardRange.includes(coord));
+    }
+
+    possibleTranslations(coords) {
+        let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        return allTranslations.filter(t => this.checkInBounds(this.translate(t, coords)));
+    }
+
+
+    // Combat
 
     checkForCombat(coords) {
         let ships = this.getAllShips(coords);
@@ -251,24 +295,26 @@ class Game {
         return [...combatOrder];
     }
 
-    removeShipFromPlayer(player, ship) {
-        let index = player.ships.indexOf(ship);
-        player.ships.splice(index, 1);
+    numPlayersInCombatOrder(combatOrder) {
+        return (new Set(combatOrder.map(ship => ship.playerNum))).size;
     }
 
-    removePlayer(player) {
-        player.ships.forEach(ship => this.removeObjFromBoard(ship));
-        this.removeObjFromBoard(player.homeColony);
-        this.players.splice(this.players.indexOf(player), 1);
-    }
+    roll(attacker, defender) {
 
-    sum(list) {
-        let total = 0;
-        for (const elem of list) {
-            total += elem;
+        let roll = Math.floor(Math.random() * 10);
+
+        if (roll <= attacker.atk - defender.df || roll === 1) {
+            this.log.shipHit(defender);
+            return true;
+        } else {
+            this.log.shipMiss();
+            return false;
         }
-        return total;
+
     }
+
+
+    // Economic
 
     maintOrder(ships) {
         return ships.sort((a, b) => a.maintCost - b.maintCost);
@@ -287,7 +333,7 @@ class Game {
         while (totalCost > player.cp) {
             
             this.log.shipIsNotMaintained(player, orderedShips[0]);
-            this.removeObjFromBoard(orderedShips[0]);
+            this.removeFromBoard(orderedShips[0]);
             assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board');
             
             orderedShips.shift();
@@ -374,35 +420,38 @@ class Game {
 
     }
 
-    economicPhase() { 
-        
-        this.log.beginPhase('Economic');
+
+    // Miscellaneous
+    
+    updateSimpleBoard() { // prevents strategies from cheating
+    
+        let simpleBoard = this.boardRange.map(
+            i => this.boardRange.map(
+                j => this.board[j][i].map(
+                    obj => this.getSimpleObj(obj)
+                )
+            )
+        );
 
         for (let player of this.players) {
-            
-            this.log.playerCP(player); // gain cp
-            player.cp += this.cpPerRound; 
-            this.log.newPlayerCP(player, this.cpPerRound);
-
-            this.maintenance(player); // pay maintenance
-            this.log.playerCPAfterMaintenance(player);
-
-            this.buyShips(player); // buy ships
-
+            player.strategy.simpleBoard = simpleBoard;
+            player.strategy.turn = this.turn;
         }
-
-        this.log.endPhase("Economic");
 
     }
 
-    checkForWinner() {
+    sum(list) {
+        let total = 0;
+        for (const elem of list) {
+            total += elem;
+        }
+        return total;
+    }
 
-        this.players.filter(player => this.checkForOpponentShips(player.homeColony))
-                    .forEach(player => this.removePlayer(player));
-
-        if(this.players.length === 1) return this.players[0].playerNum;
-        if(this.players.length === 0) return 'Tie';
-
+    getRandomInteger(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     getLogs(data) {
@@ -445,35 +494,6 @@ class Game {
                 });
             });
         }
-    }
-
-    run() {
-
-        this.display();
-
-        if (this.winner) {
-            this.log.playerWin(this.winner);
-            clearInterval(this.stopInterval);
-            return;
-        }
-
-        if (this.turn < this.maxTurns) {
-            this.log.turn(this.turn);
-            this.movementPhase();
-            this.combatPhase();
-            this.economicPhase();
-            this.winner = this.checkForWinner();
-            this.turn++;
-        } else {
-            this.winner = 'Tie';
-        }
-
-    }
-
-    getRandomInteger(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
 };
