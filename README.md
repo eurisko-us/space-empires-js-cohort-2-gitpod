@@ -10,17 +10,14 @@
 ## What are the main classes/groups of interacting functions and how they get used
 -
 
-## Input & Output formatting
+## I/O formatting
 - In strategy.buyShips(), it returns a list of dictionaries of the ships you want. i.e [{"Scout": 1}, {"Destroyer": 2}], do not include ships you don't want. If you don't want to buy any ships, return []
 
 ## What are the next things we should implement
 
-- write tests for random strategy
 - make input player
-- get rid of initialShips
 - rearrange game file so methods are in order of use
 - make sure simpleBoard is fully/correctly implemented
-- add all of maia's comments
 - update UI
     - make game look better (because now we'll have multiple ships in one coord, which don't all show up currently)
     - make logs update on time (instead of 1 or more turns late)
