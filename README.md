@@ -8,15 +8,15 @@
 - game.start() will run the full game, default maxTurns is 1000 and will have a display in another tab
 
 ## What are the main classes/groups of interacting functions and how they get used
--
+- 
 
 ## I/O formatting
 - In strategy.buyShips(), it returns a list of dictionaries of the ships you want. i.e [{"Scout": 1}, {"Destroyer": 2}], do not include ships you don't want. If you don't want to buy any ships, return []
+- Name new strategy files as functionStrat, and the class name as FunctionStrat, where function is the function of the strategy (this convention can be deviated in special circumstances)
 
 ## What are the next things we should implement
 
 - make input player
-- rearrange game file so methods are in order of use
 - make sure simpleBoard is fully/correctly implemented
 - update UI
     - make game look better (because now we'll have multiple ships in one coord, which don't all show up currently)
