@@ -1,12 +1,11 @@
 import Game from '../src/game.js';
 import { Scout, Dreadnaught } from '../src/ships.js';
-import testStrat from '../strategies/justinTestStrat.js';
-import Strategy from '../strategies/strategy.js';
+import BasicStrat from '../strategies/basicStrat.js';
 import assert, { deepEqual } from 'assert';
 
 // If a player buys a ship, it is added to board and player’s ship list
 
-const strats = [new Strategy(), new Strategy()];
+const strats = [new BasicStrat(), new BasicStrat()];
 const game1 = new Game(null, strats);
 game1.initializeGame();
 
@@ -44,7 +43,7 @@ assert (newShipInBoard, "ship is not added to board");
 assert (oldPlayerShips != player1.ships.length, "ship is not added to player's ship list");
 // test 2, tie condition
 
-const strats2 = [new Strategy(), new Strategy()];
+const strats2 = [new BasicStrat(), new BasicStrat()];
 const game2 = new Game(null, strats2, {'Scout': 1});
 game2.initializeGame();
 
@@ -73,7 +72,7 @@ console.log('tie condition met');
 
 // test 3, win condition
 
-const strats3 = [new Strategy(), new Strategy()];
+const strats3 = [new BasicStrat(), new BasicStrat()];
 const game3 = new Game(null, strats3, {'Scout': 1});
 game3.initializeGame();
 

@@ -1,4 +1,4 @@
-class Strategy {
+class BasicStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -60,4 +60,4 @@ class Strategy {
 
 }
 
-export default Strategy;
+export default BasicStrat;

@@ -1,4 +1,4 @@
-class TestStrat {
+class TurtleStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -44,9 +44,11 @@ class TestStrat {
     }
 
     chooseTranslation(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
-        if (ship.playerNum == 1) return [0, -1];
-        if (ship.playerNum == 2) return this.minDistanceTranslation(ship, translations, targetCoords);
+        if (this.turn == 1) {        
+            let targetCoords = this.getOpponentHomeColonyCoords(ship);
+            return this.minDistanceTranslation(ship, translations, targetCoords);
+        }
+        return [0,0]
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -55,9 +57,11 @@ class TestStrat {
     }
 
     buyShips(cpBudget) {
-        return [];
+        if (this.turn == 0) {return [{"Dreadnaught": 5}];}
+        if (cpBudget > 25) {return [{"Scout": 2}];}
+        return []
     }
 
 }
 
-export default TestStrat;
+export default TurtleStrat;
