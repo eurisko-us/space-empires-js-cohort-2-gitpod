@@ -136,7 +136,6 @@ class Destroyer extends Ship {
     }
 }
 
-
 class Dreadnaught extends Ship {
     constructor(coords, playerNum, shipNum) {
         
