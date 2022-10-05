@@ -5,7 +5,6 @@ let gameIsStarted = false;
 
 let boardHTML;
 let logsHTML;
-let gameInfoHTML;
 let squareInfoHTML;
 
 let initGameButton;
@@ -32,7 +31,6 @@ function updateElementsById() {
 
     boardHTML      = document.getElementById("board");
     logsHTML       = document.getElementById("logs");
-    gameInfoHTML   = document.getElementById("gameInfo");
     squareInfoHTML = document.getElementById("squareInfo");
     
     initGameButton = document.getElementById("initGame");
