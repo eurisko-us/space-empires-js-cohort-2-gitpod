@@ -22,7 +22,12 @@ io.on('connection', (socket) => {
 
     console.log(`Client socket connected: ${socket.id}`);
 
-    ///////////////////////////////////////////////////////////////////////////
+    socket.on('disconnect', () => {
+        console.log(`Client socket disconnected: ${socketId}`);
+        delete clientSockets[socketId];
+    });
+
+    // below is our code
 
     socket.emit('initialize UI');
 
@@ -46,13 +51,6 @@ io.on('connection', (socket) => {
 
     socket.on('auto run', () => {
         if (game) game.start();
-    });
-
-    ///////////////////////////////////////////////////////////////////////////
-
-    socket.on('disconnect', () => {
-        console.log(`Client socket disconnected: ${socketId}`);
-        delete clientSockets[socketId];
     });
 
 });
