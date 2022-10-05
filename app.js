@@ -4,7 +4,7 @@ import { Server } from 'socket.io';
 
 import Game from './src/game.js';
 import Strategy from './strategies/strategy.js';
-//import UserStrategy from './user_strat.js';
+import UserStrategy from './strategies/user_strat.js';
 
 // connect to web socket (aka display on web browser)
 
@@ -17,7 +17,7 @@ app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
 let clientSockets = {};
 
-const strategies = [new Strategy(), new Strategy()];
+const strategies = [new Strategy(), new UserStrategy()];
 const game = new Game(clientSockets, strategies);
 
 game.initializeGame();
@@ -32,6 +32,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log(`Client socket disconnected: ${socketId}`);
         delete clientSockets[socketId];
+        clearInterval(game.stopInterval);
     });
 
     game.start(); // so that game doesn't start until socket connects

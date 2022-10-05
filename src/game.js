@@ -1,4 +1,5 @@
-import { readFile } from 'fs';
+//import { readFile } from 'fs';
+import fs from 'fs';
 import { allShips } from './ships.js';
 import Player from './player.js';
 import Colony from './colony.js';
@@ -98,7 +99,7 @@ class Game {
 
         for (let i = 0; i < this.players.length; i++) {
 
-            this.buyShips(this.players[i]);
+            //this.buyShips(this.players[i]);
             
             let homeColony = new Colony([3,6*i], i+1);
             homeColony.isHomeColony = true;
@@ -212,7 +213,7 @@ class Game {
                         }
 
                     }
-
+                    this.display();
                 }
             }
 
@@ -435,17 +436,16 @@ class Game {
             let data = fs.readFileSync('log.txt');
 
             //console.log(`Actually emitting gameState to socket ${socketId}`);              
-            socket.emit('gameState', { 
-                gameBoard: this.board,
-                gameTurn: this.turn,
-                gameLogs: this.getLogs(data)
+            socket.emit('state', { 
+                board: this.board,
+                logs: this.getLogs(data)
             });
         }
     }
 
     run() {
 
-        this.display();
+        //this.display();
 
         if (this.winner) {
             this.log.playerWin(this.winner);
@@ -456,9 +456,12 @@ class Game {
 
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
-            this.movementPhase();
-            this.combatPhase();
+            this.display();
             this.economicPhase();
+            this.display();
+            this.movementPhase();
+            this.display();
+            this.combatPhase();
             this.winner = this.checkForWinner();
             this.turn++;
         } else {
