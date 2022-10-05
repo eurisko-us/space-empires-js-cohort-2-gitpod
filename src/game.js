@@ -162,6 +162,8 @@ class Game {
                             }
                         }
 
+                        this.updateSimpleBoard()
+
                     }
 
                 }
@@ -237,6 +239,7 @@ class Game {
         for (const [attr, v] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
             simpleObj[attr] = v.value;
         }
+        console.log(simpleObj)
         return simpleObj;
     }
 
@@ -406,6 +409,7 @@ class Game {
                             assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
 
                             this.log.buyShip(player, ship);
+                            this.updateSimpleBoard()
 
                         }
                     }

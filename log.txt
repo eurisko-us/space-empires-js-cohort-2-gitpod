@@ -1,129 +1,19 @@
 Begin Game
+		Player 1 bought a Battleship
+		Player 1 bought a BattleCruiser
+		Player 1 bought a Scout
 		Player 1 bought a Dreadnaught
-		Player 1 has 126 CP remaining
-		Player 2 bought a Dreadnaught
-		Player 2 bought a Scout
-		Player 2 bought a Scout
-		Player 2 bought a BattleCruiser
+		Player 1 has 85 CP remaining
 		Player 2 bought a Destroyer
-		Player 2 has 90 CP remaining
+		Player 2 bought a Battleship
+		Player 2 has 121 CP remaining
 Turn 1
 	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3, 0) to (2, 0)
-		Player 2 Dreadnaught 1 moved from (3, 6) to (2, 6)
-		Player 2 Scout 1 moved from (3, 6) to (3, 5)
-		Player 2 Scout 2 moved from (3, 6) to (3, 6)
-		Player 2 BattleCruiser 1 moved from (3, 6) to (3, 6)
-		Player 2 Destroyer 1 moved from (3, 6) to (2, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 126 CP
-		Player 1 gained 10 CP and now has 136 CP
-		Player 1 now has 133 CP after paying maintenance
-		Player 1 bought a Battleship
-		Player 1 bought a Dreadnaught
-		Player 1 bought a Cruiser
-		Player 1 bought a Cruiser
-		Player 1 bought a Battleship
-		Player 1 bought a Destroyer
-		Player 1 bought a Battleship
-		Player 1 has 16 CP remaining
-		Player 2 initially has 90 CP
-		Player 2 gained 10 CP and now has 100 CP
-		Player 2 now has 92 CP after paying maintenance
-		Player 2 has 92 CP remaining
-	End Economic Phase
-
-Turn 2
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (2, 0) to (3, 0)
-		Player 1 Battleship 1 moved from (3, 0) to (3, 1)
-		Player 1 Dreadnaught 2 moved from (3, 0) to (2, 0)
-		Player 1 Cruiser 1 moved from (3, 0) to (3, 0)
-		Player 1 Cruiser 2 moved from (3, 0) to (3, 0)
-		Player 1 Battleship 2 moved from (3, 0) to (3, 0)
-		Player 1 Destroyer 1 moved from (3, 0) to (3, 1)
-		Player 1 Battleship 3 moved from (3, 0) to (3, 0)
-		Player 2 Scout 1 moved from (3, 5) to (2, 5)
-		Player 2 Scout 2 moved from (3, 6) to (3, 6)
-		Player 2 Destroyer 1 moved from (2, 6) to (2, 6)
-		Player 2 BattleCruiser 1 moved from (3, 6) to (2, 6)
-		Player 2 Dreadnaught 1 moved from (2, 6) to (3, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 16 CP
-		Player 1 gained 10 CP and now has 26 CP
-		Player 1 now has 6 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 6 CP remaining
-		Player 2 initially has 92 CP
-		Player 2 gained 10 CP and now has 102 CP
-		Player 2 now has 94 CP after paying maintenance
-		Player 2 has 94 CP remaining
-	End Economic Phase
-
-Turn 3
-	Begin Movement Phase
-		Player 1 Destroyer 1 moved from (3, 1) to (3, 1)
-		Player 1 Cruiser 1 moved from (3, 0) to (3, 0)
-		Player 1 Cruiser 2 moved from (3, 0) to (3, 1)
+		Player 1 Battleship 1 moved from (3, 0) to (3, 0)
+		Player 1 BattleCruiser 1 moved from (3, 0) to (4, 0)
+		Player 1 Scout 1 moved from (3, 0) to (3, 0)
 		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 1)
-		Player 1 Battleship 1 moved from (3, 1) to (3, 0)
-		Player 1 Dreadnaught 2 moved from (2, 0) to (3, 0)
-		Player 1 Battleship 2 moved from (3, 0) to (2, 0)
-		Player 1 Battleship 3 moved from (3, 0) to (3, 1)
-		Player 2 Scout 1 moved from (2, 5) to (1, 5)
-		Player 2 Scout 2 moved from (3, 6) to (3, 6)
-		Player 2 Destroyer 1 moved from (2, 6) to (1, 6)
-		Player 2 BattleCruiser 1 moved from (2, 6) to (3, 6)
-		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 5)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 6 CP
-		Player 1 gained 10 CP and now has 16 CP
-		Player 1 lost Player 1 Destroyer 1 due to insufficient CP to pay maintenance
-		Player 1 lost Player 1 Cruiser 1 due to insufficient CP to pay maintenance
-		Player 1 lost Player 1 Cruiser 2 due to insufficient CP to pay maintenance
-		Player 1 now has 1 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 1 CP remaining
-		Player 2 initially has 94 CP
-		Player 2 gained 10 CP and now has 104 CP
-		Player 2 now has 96 CP after paying maintenance
-		Player 2 bought a Scout
-		Player 2 bought a Scout
-		Player 2 bought a Cruiser
-		Player 2 bought a Battleship
-		Player 2 has 52 CP remaining
-	End Economic Phase
-
-Turn 4
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3, 1) to (4, 1)
-		Player 1 Battleship 1 moved from (3, 0) to (4, 0)
-		Player 1 Dreadnaught 2 moved from (3, 0) to (4, 0)
-		Player 1 Battleship 2 moved from (2, 0) to (2, 0)
-		Player 1 Battleship 3 moved from (3, 1) to (3, 0)
-		Player 2 Scout 1 moved from (1, 5) to (0, 5)
-		Player 2 Scout 2 moved from (3, 6) to (2, 6)
-		Player 2 Destroyer 1 moved from (1, 6) to (1, 6)
-		Player 2 BattleCruiser 1 moved from (3, 6) to (3, 5)
-		Player 2 Dreadnaught 1 moved from (3, 5) to (3, 6)
-		Player 2 Scout 3 moved from (3, 6) to (3, 5)
-		Player 2 Scout 4 moved from (3, 6) to (4, 6)
-		Player 2 Cruiser 1 moved from (3, 6) to (3, 5)
+		Player 2 Destroyer 1 moved from (3, 6) to (2, 6)
 		Player 2 Battleship 1 moved from (3, 6) to (2, 6)
 	End Movement Phase
 
@@ -131,267 +21,223 @@ Turn 4
 	End Combat Phase
 
 	Begin Economic Phase
-		Player 1 initially has 1 CP
-		Player 1 gained 10 CP and now has 11 CP
-		Player 1 lost Player 1 Dreadnaught 1 due to insufficient CP to pay maintenance
-		Player 1 lost Player 1 Battleship 1 due to insufficient CP to pay maintenance
-		Player 1 now has 2 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 2 CP remaining
-		Player 2 initially has 52 CP
-		Player 2 gained 10 CP and now has 62 CP
-		Player 2 now has 47 CP after paying maintenance
-		Player 2 has 47 CP remaining
+		Player 1 initially has 85 CP
+		Player 1 gained 10 CP and now has 95 CP
+		Player 1 now has 86 CP after paying maintenance
+		Player 1 has 86 CP remaining
+		Player 2 initially has 121 CP
+		Player 2 gained 10 CP and now has 131 CP
+		Player 2 now has 127 CP after paying maintenance
+		Player 2 bought a Dreadnaught
+		Player 2 bought a Destroyer
+		Player 2 bought a Battleship
+		Player 2 has 74 CP remaining
+	End Economic Phase
+
+Turn 2
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 0) to (3, 0)
+		Player 1 BattleCruiser 1 moved from (4, 0) to (4, 0)
+		Player 1 Battleship 1 moved from (3, 0) to (4, 0)
+		Player 1 Dreadnaught 1 moved from (3, 1) to (3, 2)
+		Player 2 Destroyer 1 moved from (2, 6) to (2, 5)
+		Player 2 Battleship 1 moved from (2, 6) to (2, 6)
+		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 6)
+		Player 2 Destroyer 2 moved from (3, 6) to (4, 6)
+		Player 2 Battleship 2 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 86 CP
+		Player 1 gained 10 CP and now has 96 CP
+		Player 1 now has 87 CP after paying maintenance
+		Player 1 has 87 CP remaining
+		Player 2 initially has 74 CP
+		Player 2 gained 10 CP and now has 84 CP
+		Player 2 now has 73 CP after paying maintenance
+		Player 2 has 73 CP remaining
+	End Economic Phase
+
+Turn 3
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 0) to (2, 0)
+		Player 1 BattleCruiser 1 moved from (4, 0) to (4, 1)
+		Player 1 Battleship 1 moved from (4, 0) to (4, 0)
+		Player 1 Dreadnaught 1 moved from (3, 2) to (2, 2)
+		Player 2 Destroyer 1 moved from (2, 5) to (1, 5)
+		Player 2 Destroyer 2 moved from (4, 6) to (5, 6)
+		Player 2 Battleship 1 moved from (2, 6) to (2, 6)
+		Player 2 Dreadnaught 1 moved from (3, 6) to (2, 6)
+		Player 2 Battleship 2 moved from (3, 5) to (2, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 87 CP
+		Player 1 gained 10 CP and now has 97 CP
+		Player 1 now has 88 CP after paying maintenance
+		Player 1 bought a Scout
+		Player 1 has 82 CP remaining
+		Player 2 initially has 73 CP
+		Player 2 gained 10 CP and now has 83 CP
+		Player 2 now has 72 CP after paying maintenance
+		Player 2 bought a BattleCruiser
+		Player 2 bought a Scout
+		Player 2 bought a Dreadnaught
+		Player 2 has 27 CP remaining
+	End Economic Phase
+
+Turn 4
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (2, 0) to (1, 0)
+		Player 1 BattleCruiser 1 moved from (4, 1) to (4, 2)
+		Player 1 Battleship 1 moved from (4, 0) to (3, 0)
+		Player 1 Dreadnaught 1 moved from (2, 2) to (2, 1)
+		Player 1 Scout 2 moved from (3, 0) to (3, 1)
+		Player 2 Destroyer 1 moved from (1, 5) to (1, 5)
+		Player 2 Destroyer 2 moved from (5, 6) to (4, 6)
+		Player 2 Battleship 1 moved from (2, 6) to (2, 5)
+		Player 2 Dreadnaught 1 moved from (2, 6) to (3, 6)
+		Player 2 Battleship 2 moved from (2, 5) to (2, 5)
+		Player 2 BattleCruiser 1 moved from (3, 6) to (3, 5)
+		Player 2 Scout 1 moved from (3, 6) to (2, 6)
+		Player 2 Dreadnaught 2 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 82 CP
+		Player 1 gained 10 CP and now has 92 CP
+		Player 1 now has 82 CP after paying maintenance
+		Player 1 bought a Cruiser
+		Player 1 has 70 CP remaining
+		Player 2 initially has 27 CP
+		Player 2 gained 10 CP and now has 37 CP
+		Player 2 now has 20 CP after paying maintenance
+		Player 2 decided to buy no ships 
+		Player 2 bought a Scout
+		Player 2 has 14 CP remaining
 	End Economic Phase
 
 Turn 5
 	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (4, 0) to (4, 1)
-		Player 1 Battleship 2 moved from (2, 0) to (2, 0)
-		Player 1 Battleship 3 moved from (3, 0) to (4, 0)
-		Player 2 Scout 1 moved from (0, 5) to (0, 6)
-		Player 2 Scout 2 moved from (2, 6) to (3, 6)
-		Player 2 Destroyer 1 moved from (1, 6) to (0, 6)
-		Player 2 Scout 3 moved from (3, 5) to (3, 6)
-		Player 2 Scout 4 moved from (4, 6) to (3, 6)
-		Player 2 BattleCruiser 1 moved from (3, 5) to (3, 5)
-		Player 2 Cruiser 1 moved from (3, 5) to (3, 4)
-		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 5)
-		Player 2 Battleship 1 moved from (2, 6) to (2, 6)
+		Player 1 Scout 1 moved from (1, 0) to (2, 0)
+		Player 1 Scout 2 moved from (3, 1) to (3, 1)
+		Player 1 BattleCruiser 1 moved from (4, 2) to (4, 2)
+		Player 1 Battleship 1 moved from (3, 0) to (3, 1)
+		Player 1 Dreadnaught 1 moved from (2, 1) to (2, 0)
+		Player 1 Cruiser 1 moved from (3, 0) to (4, 0)
+		Player 2 Destroyer 1 moved from (1, 5) to (1, 6)
+		Player 2 Destroyer 2 moved from (4, 6) to (4, 6)
+		Player 2 Scout 1 moved from (2, 6) to (1, 6)
+		Player 2 BattleCruiser 1 moved from (3, 5) to (3, 6)
+		Player 2 Battleship 1 moved from (2, 5) to (1, 5)
+		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 6)
+		Player 2 Battleship 2 moved from (2, 5) to (1, 5)
+		Player 2 Dreadnaught 2 moved from (3, 6) to (2, 6)
+		Player 2 Scout 2 moved from (3, 6) to (4, 6)
 	End Movement Phase
 
 	Begin Combat Phase
 	End Combat Phase
 
 	Begin Economic Phase
-		Player 1 initially has 2 CP
-		Player 1 gained 10 CP and now has 12 CP
-		Player 1 now has 3 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 3 CP remaining
-		Player 2 initially has 47 CP
-		Player 2 gained 10 CP and now has 57 CP
-		Player 2 now has 42 CP after paying maintenance
-		Player 2 has 42 CP remaining
+		Player 1 initially has 70 CP
+		Player 1 gained 10 CP and now has 80 CP
+		Player 1 now has 68 CP after paying maintenance
+		Player 1 has 68 CP remaining
+		Player 2 initially has 14 CP
+		Player 2 gained 10 CP and now has 24 CP
+		Player 2 now has 6 CP after paying maintenance
+		Player 2 decided to buy no ships 
+		Player 2 has 6 CP remaining
 	End Economic Phase
 
 Turn 6
 	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (4, 1) to (4, 1)
-		Player 1 Battleship 2 moved from (2, 0) to (2, 0)
-		Player 1 Battleship 3 moved from (4, 0) to (4, 0)
-		Player 2 Scout 1 moved from (0, 6) to (0, 6)
-		Player 2 Scout 2 moved from (3, 6) to (2, 6)
-		Player 2 Destroyer 1 moved from (0, 6) to (0, 6)
-		Player 2 Scout 3 moved from (3, 6) to (3, 6)
-		Player 2 Scout 4 moved from (3, 6) to (3, 6)
-		Player 2 BattleCruiser 1 moved from (3, 5) to (3, 6)
-		Player 2 Cruiser 1 moved from (3, 4) to (3, 3)
-		Player 2 Dreadnaught 1 moved from (3, 5) to (3, 5)
-		Player 2 Battleship 1 moved from (2, 6) to (3, 6)
+		Player 1 Scout 1 moved from (2, 0) to (2, 1)
+		Player 1 Scout 2 moved from (3, 1) to (3, 0)
+		Player 1 BattleCruiser 1 moved from (4, 2) to (4, 2)
+		Player 1 Cruiser 1 moved from (4, 0) to (5, 0)
+		Player 1 Battleship 1 moved from (3, 1) to (4, 1)
+		Player 1 Dreadnaught 1 moved from (2, 0) to (2, 1)
+		Player 2 Destroyer 1 moved from (1, 6) to (1, 6)
+		Player 2 Destroyer 2 moved from (4, 6) to (3, 6)
+		Player 2 Scout 1 moved from (1, 6) to (1, 6)
+		Player 2 Scout 2 moved from (4, 6) to (4, 5)
+		Player 2 BattleCruiser 1 moved from (3, 6) to (3, 5)
+		Player 2 Battleship 1 moved from (1, 5) to (2, 5)
+		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 5)
+		Player 2 Battleship 2 moved from (1, 5) to (1, 4)
+		Player 2 Dreadnaught 2 moved from (2, 6) to (2, 5)
 	End Movement Phase
 
 	Begin Combat Phase
 	End Combat Phase
 
 	Begin Economic Phase
-		Player 1 initially has 3 CP
-		Player 1 gained 10 CP and now has 13 CP
-		Player 1 now has 4 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 4 CP remaining
-		Player 2 initially has 42 CP
-		Player 2 gained 10 CP and now has 52 CP
-		Player 2 now has 37 CP after paying maintenance
-		Player 2 has 37 CP remaining
+		Player 1 initially has 68 CP
+		Player 1 gained 10 CP and now has 78 CP
+		Player 1 now has 66 CP after paying maintenance
+		Player 1 bought a BattleCruiser
+		Player 1 bought a Destroyer
+		Player 1 bought a Cruiser
+		Player 1 bought a Cruiser
+		Player 1 has 18 CP remaining
+		Player 2 initially has 6 CP
+		Player 2 gained 10 CP and now has 16 CP
+		Player 2 lost Player 2 Destroyer 1 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Destroyer 2 due to insufficient CP to pay maintenance
+		Player 2 now has 0 CP after paying maintenance
+		Player 2 decided to buy no ships 
+		Player 2 has 0 CP remaining
 	End Economic Phase
 
 Turn 7
 	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (4, 1) to (4, 2)
-		Player 1 Battleship 2 moved from (2, 0) to (1, 0)
-		Player 1 Battleship 3 moved from (4, 0) to (4, 0)
-		Player 2 Scout 1 moved from (0, 6) to (1, 6)
-		Player 2 Scout 2 moved from (2, 6) to (1, 6)
-		Player 2 Destroyer 1 moved from (0, 6) to (0, 5)
-		Player 2 Scout 3 moved from (3, 6) to (2, 6)
-		Player 2 Scout 4 moved from (3, 6) to (3, 5)
-		Player 2 BattleCruiser 1 moved from (3, 6) to (3, 6)
-		Player 2 Cruiser 1 moved from (3, 3) to (2, 3)
-		Player 2 Dreadnaught 1 moved from (3, 5) to (2, 5)
-		Player 2 Battleship 1 moved from (3, 6) to (4, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 4 CP
-		Player 1 gained 10 CP and now has 14 CP
-		Player 1 now has 5 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 5 CP remaining
-		Player 2 initially has 37 CP
-		Player 2 gained 10 CP and now has 47 CP
-		Player 2 now has 32 CP after paying maintenance
-		Player 2 has 32 CP remaining
-	End Economic Phase
-
-Turn 8
-	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (4, 2) to (3, 2)
-		Player 1 Battleship 2 moved from (1, 0) to (1, 0)
-		Player 1 Battleship 3 moved from (4, 0) to (4, 1)
-		Player 2 Scout 1 moved from (1, 6) to (1, 5)
-		Player 2 Scout 2 moved from (1, 6) to (2, 6)
-		Player 2 Destroyer 1 moved from (0, 5) to (0, 5)
-		Player 2 Scout 3 moved from (2, 6) to (2, 6)
-		Player 2 Scout 4 moved from (3, 5) to (2, 5)
-		Player 2 BattleCruiser 1 moved from (3, 6) to (2, 6)
-		Player 2 Cruiser 1 moved from (2, 3) to (2, 3)
-		Player 2 Dreadnaught 1 moved from (2, 5) to (1, 5)
-		Player 2 Battleship 1 moved from (4, 6) to (5, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 5 CP
-		Player 1 gained 10 CP and now has 15 CP
-		Player 1 now has 6 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 6 CP remaining
-		Player 2 initially has 32 CP
-		Player 2 gained 10 CP and now has 42 CP
-		Player 2 now has 27 CP after paying maintenance
-		Player 2 decided to buy no ships 
-		Player 2 has 27 CP remaining
-	End Economic Phase
-
-Turn 9
-	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (3, 2) to (3, 1)
-		Player 1 Battleship 2 moved from (1, 0) to (1, 0)
-		Player 1 Battleship 3 moved from (4, 1) to (4, 0)
-		Player 2 Scout 1 moved from (1, 5) to (1, 6)
-		Player 2 Scout 2 moved from (2, 6) to (1, 6)
-		Player 2 Destroyer 1 moved from (0, 5) to (1, 5)
-		Player 2 Scout 3 moved from (2, 6) to (3, 6)
-		Player 2 Scout 4 moved from (2, 5) to (2, 6)
-		Player 2 BattleCruiser 1 moved from (2, 6) to (3, 6)
-		Player 2 Cruiser 1 moved from (2, 3) to (2, 2)
-		Player 2 Dreadnaught 1 moved from (1, 5) to (1, 5)
-		Player 2 Battleship 1 moved from (5, 6) to (4, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 6 CP
-		Player 1 gained 10 CP and now has 16 CP
-		Player 1 now has 7 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 7 CP remaining
-		Player 2 initially has 27 CP
-		Player 2 gained 10 CP and now has 37 CP
-		Player 2 now has 22 CP after paying maintenance
-		Player 2 has 22 CP remaining
-	End Economic Phase
-
-Turn 10
-	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (3, 1) to (4, 1)
-		Player 1 Battleship 2 moved from (1, 0) to (0, 0)
-		Player 1 Battleship 3 moved from (4, 0) to (4, 1)
+		Player 1 Scout 1 moved from (2, 1) to (2, 2)
+		Player 1 Scout 2 moved from (3, 0) to (2, 0)
+		Player 1 BattleCruiser 1 moved from (4, 2) to (5, 2)
+		Player 1 Cruiser 1 moved from (5, 0) to (5, 1)
+		Player 1 Battleship 1 moved from (4, 1) to (3, 1)
+		Player 1 Dreadnaught 1 moved from (2, 1) to (2, 2)
+		Player 1 BattleCruiser 2 moved from (3, 0) to (2, 0)
+		Player 1 Destroyer 1 moved from (3, 0) to (3, 0)
+		Player 1 Cruiser 2 moved from (3, 0) to (3, 0)
+		Player 1 Cruiser 3 moved from (3, 0) to (3, 1)
 		Player 2 Scout 1 moved from (1, 6) to (2, 6)
-		Player 2 Scout 2 moved from (1, 6) to (2, 6)
-		Player 2 Destroyer 1 moved from (1, 5) to (0, 5)
-		Player 2 Scout 3 moved from (3, 6) to (2, 6)
-		Player 2 Scout 4 moved from (2, 6) to (2, 6)
-		Player 2 BattleCruiser 1 moved from (3, 6) to (2, 6)
-		Player 2 Cruiser 1 moved from (2, 2) to (1, 2)
-		Player 2 Dreadnaught 1 moved from (1, 5) to (2, 5)
-		Player 2 Battleship 1 moved from (4, 6) to (4, 5)
+		Player 2 Scout 2 moved from (4, 5) to (4, 4)
+		Player 2 BattleCruiser 1 moved from (3, 5) to (3, 4)
+		Player 2 Battleship 1 moved from (2, 5) to (3, 5)
+		Player 2 Dreadnaught 1 moved from (3, 5) to (2, 5)
+		Player 2 Battleship 2 moved from (1, 4) to (0, 4)
+		Player 2 Dreadnaught 2 moved from (2, 5) to (3, 5)
 	End Movement Phase
 
 	Begin Combat Phase
 	End Combat Phase
 
 	Begin Economic Phase
-		Player 1 initially has 7 CP
-		Player 1 gained 10 CP and now has 17 CP
-		Player 1 now has 8 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 8 CP remaining
-		Player 2 initially has 22 CP
-		Player 2 gained 10 CP and now has 32 CP
-		Player 2 now has 17 CP after paying maintenance
-		Player 2 decided to buy no ships 
-		Player 2 has 17 CP remaining
-	End Economic Phase
-
-Turn 11
-	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (4, 1) to (3, 1)
-		Player 1 Battleship 2 moved from (0, 0) to (0, 1)
-		Player 1 Battleship 3 moved from (4, 1) to (3, 1)
-		Player 2 Scout 1 moved from (2, 6) to (3, 6)
-		Player 2 Scout 2 moved from (2, 6) to (2, 5)
-		Player 2 Destroyer 1 moved from (0, 5) to (1, 5)
-		Player 2 Scout 3 moved from (2, 6) to (2, 6)
-		Player 2 Scout 4 moved from (2, 6) to (2, 5)
-		Player 2 BattleCruiser 1 moved from (2, 6) to (2, 5)
-		Player 2 Cruiser 1 moved from (1, 2) to (1, 3)
-		Player 2 Dreadnaught 1 moved from (2, 5) to (2, 4)
-		Player 2 Battleship 1 moved from (4, 5) to (4, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 8 CP
-		Player 1 gained 10 CP and now has 18 CP
+		Player 1 initially has 18 CP
+		Player 1 gained 10 CP and now has 28 CP
 		Player 1 now has 9 CP after paying maintenance
 		Player 1 decided to buy no ships 
 		Player 1 has 9 CP remaining
-		Player 2 initially has 17 CP
-		Player 2 gained 10 CP and now has 27 CP
-		Player 2 now has 12 CP after paying maintenance
-		Player 2 has 12 CP remaining
-	End Economic Phase
-
-Turn 12
-	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (3, 1) to (3, 2)
-		Player 1 Battleship 2 moved from (0, 1) to (0, 1)
-		Player 1 Battleship 3 moved from (3, 1) to (3, 0)
-		Player 2 Scout 1 moved from (3, 6) to (3, 6)
-		Player 2 Scout 2 moved from (2, 5) to (2, 5)
-		Player 2 Destroyer 1 moved from (1, 5) to (2, 5)
-		Player 2 Scout 3 moved from (2, 6) to (2, 5)
-		Player 2 Scout 4 moved from (2, 5) to (2, 6)
-		Player 2 BattleCruiser 1 moved from (2, 5) to (3, 5)
-		Player 2 Cruiser 1 moved from (1, 3) to (0, 3)
-		Player 2 Dreadnaught 1 moved from (2, 4) to (2, 4)
-		Player 2 Battleship 1 moved from (4, 6) to (3, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 9 CP
-		Player 1 gained 10 CP and now has 19 CP
-		Player 1 now has 10 CP after paying maintenance
-		Player 1 decided to buy no ships 
-		Player 1 has 10 CP remaining
-		Player 2 initially has 12 CP
-		Player 2 gained 10 CP and now has 22 CP
-		Player 2 now has 7 CP after paying maintenance
+		Player 2 initially has 0 CP
+		Player 2 gained 10 CP and now has 10 CP
+		Player 2 lost Player 2 Scout 1 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Scout 2 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 BattleCruiser 1 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Battleship 1 due to insufficient CP to pay maintenance
+		Player 2 now has 1 CP after paying maintenance
 		Player 2 decided to buy no ships 
-		Player 2 has 7 CP remaining
+		Player 2 has 1 CP remaining
 	End Economic Phase
 
