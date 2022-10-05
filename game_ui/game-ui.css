@@ -10,13 +10,14 @@ body {
 }
 
 header, article, footer {
+    border-radius: 25px;
     background-color: #d9d9d9;
+    text-align: center;
 }
 
 header {
     margin: 20px 10px;
     padding: 1px;
-    text-align: center;
     font-family: spaceFont;
     font-size: 25px;
     letter-spacing: 4px;
@@ -29,13 +30,10 @@ section {
 
 article {
     display: flex;
-    flex: 3;
+    flex: 1;
     margin: 0px 10px;
-    /* padding: 10px; */
+    padding: 20px;
     max-height: 420px;
-    text-align: center;
-    border-style: solid;
-    border-width: 1px;
 }
 
 #board {
@@ -51,19 +49,17 @@ td.cell {
 #logs {
     font: 16px/26px Georgia, Garamond, Serif;
     overflow-y: scroll;
+    margin: 0 auto;
 }
 
 footer {
-    /* margin: 10px; */
-    /* padding: 10px; */
-    text-align: center;
-    border-style: solid;
-    border-width: 1px;
+    margin: 20px 10px;
+    padding: 20px;
 }
 
 button {
-    /* margin: 10px; */
-    /* padding: 16px 32px; */
+    margin: 20px;
+    padding: 16px 32px;
     text-align: center;
     display: inline-block;
     transition-duration: 0.4s;
