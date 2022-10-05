@@ -1,8 +1,6 @@
 const socket = io();
 
-let board;
-let logs;
-
+let state;
 let gameHasStarted = false;
 
 let boardHTML;
@@ -10,50 +8,25 @@ let logsHTML;
 let gameInfoHTML;
 let squareInfoHTML;
 
-let consoleHTML;
-
 let startGameButton;
 let nextTurnButton;
-let runGameAutomaticallyButton;
+let autoRunButton;
+let endGameButton;
 
 socket.on('initialize game', () => {
-
-    document.getElementById("console").innerHTML += '<br>initialize game start';
-    
-    document.getElementById("startGame").addEventListener("click", () => {
-        if (!gameHasStarted) {
-            document.getElementById("console").innerHTML += '<br>start game button is clicked';
-            socket.emit('start game');
-            gameHasStarted = true;
-        }
-    });
-    
     updateElementsById();
-    createBoard();
+    (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
     createEventListeners();
-
-    document.getElementById("console").innerHTML += '<br>initialize game end';
 });
 
-socket.on('state', (data) => {
-    board = data.board;
-    logs = data.logs;
-    updateUI();
-});
-
-// function initializeUI() {
-//     updateElementsById();
-//     createBoard();
-//     createEventListeners();
-// }
-
-function updateUI() {
+socket.on('state', (gameState) => {
+    state = gameState;
     updateElementsById();
     resetBoard();
     updateObjType('Ship', ['red', 'blue'], 'P');
     updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
     updateLogs();
-}
+});
 
 function updateElementsById() {
 
@@ -62,18 +35,17 @@ function updateElementsById() {
     gameInfoHTML   = document.getElementById("gameInfo");
     squareInfoHTML = document.getElementById("squareInfo");
     
-    consoleHTML = document.getElementById("console");
-
-    startGameButton            = document.getElementById("startGame");
-    nextTurnButton             = document.getElementById("nextTurn");
-    runGameAutomaticallyButton = document.getElementById("runGameAutomatically");
+    startGameButton = document.getElementById("startGame");
+    endGameButton   = document.getElementById("endGame");
+    nextTurnButton  = document.getElementById("nextTurn");
+    autoRunButton   = document.getElementById("autoRun");
 
 }
 
 function createBoard() {
-    for (let i = 0; i < board.length; i++) {
+    for (let i = 0; i < 7; i++) {
         let row = boardHTML.insertRow();
-        for (let j = 0; j < board.length; j++) {
+        for (let j = 0; j < 7; j++) {
             let cell = row.insertCell();
             cell.className = 'cell';
             cell.style.backgroundColor = 'gray';
@@ -83,29 +55,34 @@ function createBoard() {
 
 function createEventListeners() {
     
-    boardHTML.addEventListener('click', e => {
-        if (gameHasStarted) updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
-    });
+    for (const cell of document.getElementsByClassName('cell')) {
+        cell.addEventListener('click', e => {
+            if (gameHasStarted) updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
+        });
+    }
 
-    // startGameButton.addEventListener("click", () => {
-    //     if (!gameHasStarted) {
-    //         consoleHTML.innerHTML += '<br>start game button is clicked';
-    //         socket.emit('start game');
-    //         gameHasStarted = true;
-    //     }
-    // });
-
-    nextTurnButton.addEventListener("click", () => {
-        if (gameHasStarted) {
-            consoleHTML.innerHTML += '<br>next turn button is clicked';
-            // socket.emit('next turn');
+    startGameButton.addEventListener("click", () => {
+        if (!gameHasStarted) {
+            socket.emit('start game');
+            gameHasStarted = true;
         }
     });
 
-    runGameAutomaticallyButton.addEventListener("click", () => {
+    endGameButton.addEventListener("click", () => {
         if (gameHasStarted) {
-            consoleHTML.innerHTML += '<br>run game automatically button is clicked';
-            // socket.emit('run game automatically');
+            socket.emit('end game');
+        }
+    });
+
+    nextTurnButton.addEventListener("click", () => {
+        if (gameHasStarted) {
+            socket.emit('next turn');
+        }
+    });
+
+    autoRunButton.addEventListener("click", () => {
+        if (gameHasStarted) {
+            socket.emit('auto run');
         }
     });
 
@@ -113,12 +90,12 @@ function createEventListeners() {
 
 function updateObjType(objType, colors, innerHTML) {
 
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board.length; j++) {
-            for (let obj of board[j][i]) {
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 7; j++) {
+            for (let obj of state.board[j][i]) {
                 if (obj.objType === objType) {
 
-                    let shipNum = board[j][i][0].playerNum;
+                    let shipNum = state.board[j][i][0].playerNum;
                     let cell = boardHTML.rows[j].cells[i];
 
                     cell.style.backgroundColor = colors[shipNum - 1];
@@ -132,8 +109,8 @@ function updateObjType(objType, colors, innerHTML) {
 }
 
 function resetBoard() {
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board.length; j++) {
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 7; j++) {
             let cell = boardHTML.rows[i].cells[j];
             cell.style.backgroundColor = 'gray';
             cell.innerHTML = '';
@@ -143,7 +120,7 @@ function resetBoard() {
 
 function updateLogs() {
     logsHTML.innerHTML = '';
-    for (let turn of logs.reverse()) {
+    for (let turn of state.logs.reverse()) {
         for (let line of turn) {
             logsHTML.innerHTML += `  ${line}<br>`;
         }
@@ -152,7 +129,7 @@ function updateLogs() {
 
 function updateSquareInfo(x, y) {
     squareInfoHTML.innerHTML = `Ships on coordinate (${x}, ${y}):<br><br>`;
-    for (let obj of board[y][x]) {
+    for (let obj of state.board[y][x]) {
         if (obj.objType == 'Ship') {
             squareInfoHTML.innerHTML += `${obj.shipId}<br>`;
         }

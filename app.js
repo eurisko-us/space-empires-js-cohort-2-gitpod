@@ -12,6 +12,7 @@ const io = new Server(httpServer);
 app.use(express.static('game_ui'));
 app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
+let game;
 let clientSockets = {};
 
 io.on('connection', (socket) => {
@@ -21,25 +22,30 @@ io.on('connection', (socket) => {
 
     console.log(`Client socket connected: ${socket.id}`);
 
+    ///////////////////////////////////////////////////////////////////////////
+
     socket.emit('initialize game');
-    // console.log('socket emitted');
 
     socket.on('start game', () => {
-        console.log('start game app.js');
         const strategies = [new Strategy(), new Strategy()];
-        const game = new Game(clientSockets, strategies);
+        game = new Game(clientSockets, strategies);
         game.initializeGame();
-        game.start();
+        game.display();
     });
 
-    // socket.on('run game automatically', () => {
-    //     console.log('run game automatically app.js');
-    //     if (game) game.start();
-    // });
+    socket.on('end game', () => {
+        return;
+    });
 
-    // socket.on('next turn', () => {
-    //     console.log('next turn app.js');
-    // });
+    socket.on('next turn', () => {
+        return;
+    });
+
+    socket.on('auto run', () => {
+        if (game) game.start();
+    });
+
+    ///////////////////////////////////////////////////////////////////////////
 
     socket.on('disconnect', () => {
         console.log(`Client socket disconnected: ${socketId}`);
@@ -48,14 +54,4 @@ io.on('connection', (socket) => {
 
 });
 
-httpServer.listen(3000, () => console.log('Listening on *:3000'));
-
-// io.on('start game', () => {
-
-//     console.log('start game');
-//     const strategies = [new Strategy(), new Strategy()];
-//     const game = new Game(clientSockets, strategies);
-//     game.initializeGame();
-//     game.start();
-
-// });
+httpServer.listen(8080, () => console.log('Listening on *:8080'));
