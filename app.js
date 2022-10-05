@@ -12,7 +12,7 @@ const io = new Server(httpServer);
 app.use(express.static('game_ui'));
 app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
-let game;
+let game = null;
 let clientSockets = {};
 
 io.on('connection', (socket) => {
@@ -24,9 +24,9 @@ io.on('connection', (socket) => {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    socket.emit('initialize game');
+    socket.emit('initialize UI');
 
-    socket.on('start game', () => {
+    socket.on('initialize game', () => {
         const strategies = [new Strategy(), new Strategy()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
@@ -34,11 +34,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('end game', () => {
-        return;
+        if (game) {
+            game.endGame();
+            game = null;
+        }
     });
 
     socket.on('next turn', () => {
-        return;
+        if (game) game.run();
     });
 
     socket.on('auto run', () => {
@@ -54,4 +57,4 @@ io.on('connection', (socket) => {
 
 });
 
-httpServer.listen(8080, () => console.log('Listening on *:8080'));
+httpServer.listen(3000, () => console.log('Listening on *:3000'));

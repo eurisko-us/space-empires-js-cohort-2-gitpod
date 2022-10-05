@@ -1,19 +1,19 @@
 const socket = io();
 
 let state;
-let gameHasStarted = false;
+let gameIsStarted = false;
 
 let boardHTML;
 let logsHTML;
 let gameInfoHTML;
 let squareInfoHTML;
 
-let startGameButton;
+let initGameButton;
 let nextTurnButton;
 let autoRunButton;
 let endGameButton;
 
-socket.on('initialize game', () => {
+socket.on('initialize UI', () => {
     updateElementsById();
     (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
     createEventListeners();
@@ -35,10 +35,10 @@ function updateElementsById() {
     gameInfoHTML   = document.getElementById("gameInfo");
     squareInfoHTML = document.getElementById("squareInfo");
     
-    startGameButton = document.getElementById("startGame");
-    endGameButton   = document.getElementById("endGame");
-    nextTurnButton  = document.getElementById("nextTurn");
-    autoRunButton   = document.getElementById("autoRun");
+    initGameButton = document.getElementById("initGame");
+    endGameButton  = document.getElementById("endGame");
+    nextTurnButton = document.getElementById("nextTurn");
+    autoRunButton  = document.getElementById("autoRun");
 
 }
 
@@ -57,31 +57,40 @@ function createEventListeners() {
     
     for (const cell of document.getElementsByClassName('cell')) {
         cell.addEventListener('click', e => {
-            if (gameHasStarted) updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
+            if (gameIsStarted) updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
         });
     }
 
-    startGameButton.addEventListener("click", () => {
-        if (!gameHasStarted) {
-            socket.emit('start game');
-            gameHasStarted = true;
+    initGameButton.addEventListener("click", () => {
+        if (!gameIsStarted) {
+            socket.emit('initialize game');
+            gameIsStarted = true;
         }
     });
 
     endGameButton.addEventListener("click", () => {
-        if (gameHasStarted) {
+        if (gameIsStarted) {
+            
+            updateElementsById();
+            resetBoard();
+
+            logsHTML.innerHTML = '';
+            squareInfoHTML.innerHTML = '';
+            gameIsStarted = false;
+
             socket.emit('end game');
+
         }
     });
 
     nextTurnButton.addEventListener("click", () => {
-        if (gameHasStarted) {
+        if (gameIsStarted) {
             socket.emit('next turn');
         }
     });
 
     autoRunButton.addEventListener("click", () => {
-        if (gameHasStarted) {
+        if (gameIsStarted) {
             socket.emit('auto run');
         }
     });

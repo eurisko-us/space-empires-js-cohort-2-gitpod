@@ -439,8 +439,6 @@ class Game {
 
     run() {
 
-        this.display();
-
         if (this.winner) {
             this.log.playerWin(this.winner);
             clearInterval(this.stopInterval);
@@ -458,12 +456,12 @@ class Game {
             this.winner = 'Tie';
         }
 
+        this.display();
+
     }
 
-    getRandomInteger(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
+    endGame() {
+        clearInterval(this.stopInterval);
     }
 
 };

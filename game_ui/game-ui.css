@@ -1,6 +1,14 @@
+@font-face {
+    font-family: spaceFont;
+    src: url(SpaceMission-rgyw9.otf);
+}
+
 header {
     margin: 10px;
     text-align: center;
+    font-family: spaceFont;
+    font-size: 25px;
+    letter-spacing: 4px;
 }
   
 section {
