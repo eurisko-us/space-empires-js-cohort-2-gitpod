@@ -43,18 +43,46 @@ class HunterStrat {
         }
     }
 
-    getClosestOppShip(ship) {
+    randomChoose(arr) {
+        const index = Math.floor(Math.random() * arr.length);
+        return arr[index];
+    }
+
+    getClosestOppShipCoords(ship) {
+        let closestDist = null
+        let closestCoord = null
         for (let i=0; i<this.simpleBoard.length; i++) {
-            for (let j=0; j<this,simpleBoard.length; j++) {
+            for (let j=0; j<this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
-                    
+                    if (obj.objType==='Ship' && obj.playerNum!=ship.playerNum) {
+                        const dist = this.dist(ship.coords,[j,i])
+                        if (closestDist===null && closestCoord===null) {
+                            closestDist = dist
+                            closestCoord = [j,i]
+                            continue
+                        }
+                        if (dist < closestDist) {
+                            closestDist = dist
+                            closestCoord = [j,i]
+                        }
+                        if (dist===closestDist) {
+                            const choices = [[dist,[j,i]],[closestDist,closestCoord]]
+                            const choice = this.randomChoose(choices)
+                            closestDist = choice[0]
+                            closestCoord = choice[1]
+                        }
+                    }
                 }
             }
         }
+        return closestCoord
     }
 
     chooseTranslation(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        let targetCoords = this.getClosestOppShipCoords(ship);
+        if (targetCoords===null) {
+            return translations[Math.floor(Math.random() * translations.length)];
+        }
         return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
@@ -64,9 +92,9 @@ class HunterStrat {
     }
 
     buyShips(cpBudget) {
-        if (this.turn == 0) return [{"Battleship": 5}];
+        if (this.turn == 0) return [{"Dreadnaught": 4}];
 
-        if (cpBudget > 45) return [{"Battleship": 1}];
+        if (this.turn>3 && cpBudget>47) return [{"Dreadnaught": 1}];
     }
 
 }
