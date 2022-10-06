@@ -239,7 +239,6 @@ class Game {
         for (const [attr, v] of Object.entries(Object.getOwnPropertyDescriptors(obj))) {
             simpleObj[attr] = v.value;
         }
-        console.log(simpleObj)
         return simpleObj;
     }
 
