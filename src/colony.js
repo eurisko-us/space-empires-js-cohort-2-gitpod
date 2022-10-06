@@ -1,10 +1,11 @@
 class Colony {
 
-    constructor(coords, playerNum) {
+    constructor(coords, playerNum, isHomeColony) {
         this.coords = coords;
         this.playerNum = playerNum;
-        this.isHomeColony = false;
+        this.isHomeColony = isHomeColony;
         this.objType = "Colony";
+        this.id = `Player ${this.playerNum} ${this.isHomeColony ? "Home" : ""} Colony`;
     }
     
 }

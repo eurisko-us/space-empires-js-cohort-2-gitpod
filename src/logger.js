@@ -41,7 +41,7 @@ class Logger {
     }
 
     shipMovement(oldCoords, ship) {
-        this.write(`\t\t${ship.shipId} moved from (${oldCoords[0]}, ${oldCoords[1]}) to (${ship.coords[0]}, ${ship.coords[1]})\n`);
+        this.write(`\t\t${ship.id} moved from (${oldCoords[0]}, ${oldCoords[1]}) to (${ship.coords[0]}, ${ship.coords[1]})\n`);
     }
 
     combatLocation(coords) {
@@ -49,13 +49,13 @@ class Logger {
     }
 
     combat(attacker, defender) {
-        this.write(`\t\tAttacker: ${attacker.shipId}\n`);
-        this.write(`\t\tDefender: ${defender.shipId}\n`);
+        this.write(`\t\tAttacker: ${attacker.id}\n`);
+        this.write(`\t\tDefender: ${defender.id}\n`);
     }
 
     shipHit(defender) {
         this.write(`\t\tHit!\n`);
-        this.write(`\t\t${defender.shipId} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
+        this.write(`\t\t${defender.id} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
     }
 
     shipMiss() {
@@ -63,7 +63,7 @@ class Logger {
     }
 
     shipDestroyed(ship) {
-        this.write(`\t\t${ship.shipId} was destroyed\n`);
+        this.write(`\t\t${ship.id} was destroyed\n`);
     }
 
     playerCP(player) {
@@ -79,7 +79,7 @@ class Logger {
     }
 
     shipIsNotMaintained(player, ship) {
-        this.write(`\t\tPlayer ${player.playerNum} lost ${ship.shipId} due to insufficient CP to pay maintenance\n`);
+        this.write(`\t\tPlayer ${player.playerNum} lost ${ship.id} due to insufficient CP to pay maintenance\n`);
     }
     
     playerWentOverBudget(player) {

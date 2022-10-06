@@ -22,8 +22,8 @@ socket.on('state', (gameState) => {
     state = gameState;
     updateElementsById();
     resetBoard();
-    updateObjType('Ship', ['red', 'blue'], 'P');
-    updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
+    updateObjType('Ship', ['red', 'blue'], 'Ship');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'Home Colony');
     updateLogs();
 });
 
@@ -106,7 +106,7 @@ function updateObjType(objType, colors, innerHTML) {
                     let cell = boardHTML.rows[j].cells[i];
 
                     cell.style.backgroundColor = colors[shipNum - 1];
-                    cell.innerHTML = `${innerHTML}${shipNum}`;
+                    cell.innerHTML = `${innerHTML}`;
 
                 }
             }
@@ -135,10 +135,8 @@ function updateLogs() {
 }
 
 function updateSquareInfo(x, y) {
-    squareInfoHTML.innerHTML = `Ships on coordinate (${x}, ${y}):<br><br>`;
+    squareInfoHTML.innerHTML = `Objects on coordinate (${x}, ${y}):<br><br>`;
     for (let obj of state.board[y][x]) {
-        if (obj.objType == 'Ship') {
-            squareInfoHTML.innerHTML += `${obj.shipId}<br>`;
-        }
+        squareInfoHTML.innerHTML += `${obj.id}<br>`;
     }
 }

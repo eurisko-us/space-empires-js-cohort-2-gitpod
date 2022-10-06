@@ -100,13 +100,13 @@ class Game {
 
             this.buyShips(this.players[i]);
             
-            let homeColony = new Colony([3,6*i], i+1);
-            homeColony.isHomeColony = true;
+            let homeColony = new Colony([3,6*i], i+1, true);
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
         }
-        this.turn = 1
+
+        this.turn = 1;
         this.updateSimpleBoard();
 
     }
