@@ -80,4 +80,4 @@ class ShopperStrat {
 
 }
 
-export default shopperStrat;
+export default ShopperStrat;
