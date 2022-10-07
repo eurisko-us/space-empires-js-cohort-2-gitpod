@@ -6,9 +6,8 @@ import Game from './src/game.js';
 import BasicStrat from './strategies/basicStrat.js';
 import RushStrat from './strategies/rushStrat.js';
 import HunterStrat from './strategies/hunterStrat.js'
-import RandomStrategy from './strategies/randomStrat.js';
+import RandomStrat from './strategies/randomStrat.js';
 import ShopperStrat from './strategies/shopperStrat.js'
-
 
 const app = express();
 const httpServer = http.Server(app);
@@ -37,7 +36,7 @@ io.on('connection', (socket) => {
     socket.emit('initialize UI');
 
     socket.on('initialize game', () => {
-        const strategies = [new Strategy(), new Strategy()];
+        const strategies = [new BasicStrat(), new BasicStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
         game.display();
