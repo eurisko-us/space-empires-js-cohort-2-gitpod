@@ -1,6 +1,6 @@
 import { nullInstances } from '../src/ships.js'
 
-class RandomStrategy {
+class RandomStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -34,31 +34,28 @@ class RandomStrategy {
     }
 
     buyShips(cpBudget) {
-        
-        const randCostLim = Math.floor(Math.random() * (cpBudget + 1));
+        const randCostLim = Math.floor(Math.random() * (cpBudget+1));
         let shipList = [];
         let totalCost = 0;
-        
-        while (randCostLim >= totalCost) {
-            
+        while (randCostLim>=totalCost){
             let randomShip = nullInstances[Math.floor(Math.random() * nullInstances.length)];
-            totalCost += randomShip.cpCost;
-            
-            if (totalCost >= randCostLim) break;
-
-            let randomShipName = randomShip.name;
-            shipList.push({ randomShipName: 1 });
-
+            totalCost += randomShip.cpCost
+            if (totalCost<randCostLim){
+                let shipDict = {}
+                let shipName = randomShip.name
+                shipDict[shipName] = 1
+                shipList.push(shipDict)
+            }
+            else{
+                break;
+            }
         }
-
-        if (this.turn == 0 && shipList.length == 0) {
-            return this.buyShips(cpBudget);
+        if (this.turn==0 && shipList.length==0) {
+            return this.buyShips(cpBudget)
         }
-        
-        return shipList;
-    
+        return shipList
     }
 
 }
 
-export default RandomStrategy;
+export default RandomStrat;
