@@ -50,13 +50,13 @@ class Game {
 
             this.buyShips(this.players[i]);
             
-            let homeColony = new Colony([3,6*i], i+1);
-            homeColony.isHomeColony = true;
+            let homeColony = new Colony([3,6*i], i+1, true);
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
         }
-        this.turn = 1
+
+        this.turn = 1;
         this.updateSimpleBoard();
 
     }
@@ -497,6 +497,33 @@ class Game {
                 });
             });
         }
+    }
+
+    run() {
+
+        if (this.winner) {
+            this.log.playerWin(this.winner);
+            clearInterval(this.stopInterval);
+            return;
+        }
+
+        if (this.turn < this.maxTurns) {
+            this.log.turn(this.turn);
+            this.movementPhase();
+            this.combatPhase();
+            this.economicPhase();
+            this.winner = this.checkForWinner();
+            this.turn++;
+        } else {
+            this.winner = 'Tie';
+        }
+
+        this.display();
+
+    }
+
+    endGame() {
+        clearInterval(this.stopInterval);
     }
 
 };
