@@ -5,6 +5,7 @@ Create new branch ------------------------ git checkout -b [branch name]
 Delete local branch ---------------------- git branch -d [branch name]
 
 Update workspace to most recent commit --- git pull
+Merge branch changes into curent branch -- git pull origin [branch name]
 Merge two branches ----------------------- (use github)
 Commit ----------------------------------- git add [filename or .]
                                            git commit -m '[commit message]'
