@@ -137,6 +137,14 @@ function updateLogs() {
 function updateSquareInfo(x, y) {
     squareInfoHTML.innerHTML = `Objects on coordinate (${x}, ${y}):<br><br>`;
     for (let obj of state.board[y][x]) {
-        squareInfoHTML.innerHTML += `${obj.id}<br>`;
+
+        squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>: hp: ${obj.hp}`;
+
+        if (obj.objType == 'Ship') {
+            squareInfoHTML.innerHTML += `, attack: ${obj.atk}, defense: ${obj.df}, cp cost: ${obj.cpCost}, maintenance cost: ${obj.maintCost}`;
+        }
+
+        squareInfoHTML.innerHTML += `<br>`;
+
     }
 }

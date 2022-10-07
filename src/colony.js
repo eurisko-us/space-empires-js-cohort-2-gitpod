@@ -6,6 +6,7 @@ class Colony {
         this.isHomeColony = isHomeColony;
         this.objType = "Colony";
         this.id = `Player ${this.playerNum} ${this.isHomeColony ? "Home" : ""} Colony`;
+        this.hp = this.isHomeColony ? 4 : 3;
     }
     
 }
