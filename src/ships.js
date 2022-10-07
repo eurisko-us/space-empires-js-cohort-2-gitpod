@@ -160,6 +160,28 @@ class Dreadnaught extends Ship {
     }
 }
 
+class ColonyShip extends Ship {
+    constructor(coords, playerNum, shipNum) {
+        
+        super(Ship);
+
+        this.hp = 1;
+        this.atk = 0;
+        this.df = 0;
+
+        this.name = 'ColonyShip';
+        this.shipClass = 'Z'; //
+
+        this.coords = coords;
+        this.playerNum = playerNum;
+        this.shipNum = shipNum;
+
+        this.cpCost = 8;
+        this.maintCost = 0;
+
+        this.setShipId();
+    }
+}
 const nullInstances = [new Scout(null,null,null), new BattleCruiser(null,null,null), new Battleship(null,null,null), new Cruiser(null,null,null), new Destroyer(null,null,null), new Dreadnaught(null,null,null)];
 const allShips = [Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught];
 export { nullInstances, allShips, Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught };

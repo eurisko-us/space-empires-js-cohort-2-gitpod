@@ -50,8 +50,8 @@ class Game {
 
             this.buyShips(this.players[i]);
             
-            let homeColony = new Colony([3,6*i], i+1);
-            homeColony.isHomeColony = true;
+            let homeColony = new Colony([3,6*i], i+1, true);
+            homeColony.setHomeColonyId()
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
