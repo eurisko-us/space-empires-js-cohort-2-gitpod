@@ -157,6 +157,7 @@ class Game {
                 this.addToBoard(ship);
                 this.log.shipMovement(oldCoords, ship);
                 this.updateSimpleBoard();
+                //???this.display()
 
             }
         }
@@ -379,7 +380,8 @@ class Game {
             this.log.playerCPAfterMaintenance(player);
 
             this.buyShips(player); // buy ships
-
+            
+            //???this.display()
         }
 
         this.log.endPhase("Economic");
@@ -431,9 +433,11 @@ class Game {
 
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
+            //???console.log('running dislplay')
             //console.log(`About to emit gameState to socket ${socketId}`);
 
             let data = fs.readFileSync('log.txt');
+            //???console.log(this.getLogs(data))
 
             //console.log(`Actually emitting gameState to socket ${socketId}`);              
             socket.emit('state', { 
@@ -445,7 +449,7 @@ class Game {
 
     run() {
 
-        //this.display();
+        this.display();
 
         if (this.winner) {
             this.log.playerWin(this.winner);
@@ -456,7 +460,6 @@ class Game {
 
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
-            this.display();
             this.economicPhase();
             this.display();
             this.movementPhase();
