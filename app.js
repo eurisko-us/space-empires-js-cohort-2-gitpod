@@ -5,6 +5,7 @@ import { Server } from 'socket.io';
 import Game from './src/game.js';
 import BasicStrat from './strategies/basicStrat.js';
 import RushStrat from './strategies/rushStrat.js';
+import HunterStrat from './strategies/hunterStrat.js'
 import RandomStrategy from './strategies/randomStrat.js';
 import ShopperStrat from './strategies/shopperStrat.js'
 
@@ -38,7 +39,7 @@ httpServer.listen(3000, () => console.log('Listening on *:3000'));
 
 // run game
 
-const strategies = [new RandomStrategy(), new ShopperStrat()];
+const strategies = [new RandomStrategy(), new HunterStrat()];
 const game = new Game(clientSockets, strategies);
 
 game.initializeGame();

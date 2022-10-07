@@ -95,6 +95,8 @@ class HunterStrat {
         if (this.turn == 0) return [{"Dreadnaught": 4}];
 
         if (this.turn>3 && cpBudget>47) return [{"Dreadnaught": 1}];
+
+        return []
     }
 
 }
