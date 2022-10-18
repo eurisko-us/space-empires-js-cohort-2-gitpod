@@ -9,6 +9,21 @@ import HunterStrat from './strategies/hunterStrat.js'
 import RandomStrat from './strategies/randomStrat.js';
 import ShopperStrat from './strategies/shopperStrat.js';
 
+// import { readdirSync } from 'fs';
+// import { dirname, join } from 'path';
+// import { fileURLToPath } from 'url';
+
+// const __dirname = dirname(fileURLToPath(import.meta.url));
+// const strategiesPath = join(__dirname, "strategies");
+
+// const allStrats = [];
+
+// for (const file of readdirSync(strategiesPath)) {
+//     const filePath = join(strategiesPath, file);
+//     const strat = await import(filePath);
+//     allStrats.push(strat.default);
+// }
+
 const app = express();
 const httpServer = http.Server(app);
 const io = new Server(httpServer);
