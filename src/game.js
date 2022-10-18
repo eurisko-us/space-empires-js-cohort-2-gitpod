@@ -10,7 +10,7 @@ class Game {
     constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
-        this.boardSize = 10;
+        this.boardSize = 7;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;

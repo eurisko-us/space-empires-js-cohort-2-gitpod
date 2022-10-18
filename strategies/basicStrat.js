@@ -13,7 +13,7 @@ class BasicStrat extends ParentStrat {
 
     chooseTarget(shipInfo, combatOrder) {
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        return opponentShips[Math.floor(Math.random() * opponentShips.length)];
+        return this.random(opponentShips);
     }
 
     buyShips(cpBudget) {

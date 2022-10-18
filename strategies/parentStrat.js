@@ -47,17 +47,9 @@ class ParentStrat {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    chooseTranslation(ship, translations) {
-        return;
-    }
-
-    chooseTarget(shipInfo, combatOrder) {
-        return;
-    }
-
-    buyShips(cpBudget) {
-        return;
-    }
+    chooseTranslation(ship, translations) { return; }
+    chooseTarget(shipInfo, combatOrder) { return; }
+    buyShips(cpBudget) { return; }
 
 }
 

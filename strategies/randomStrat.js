@@ -1,38 +1,21 @@
 import { nullInstances } from '../src/ships.js';
+import ParentStrat from './parentStrat.js';
 
 // moves randomly, buys random ship
 
-class RandomStrat {
+class RandomStrat extends ParentStrat {
     
     constructor() {
-        this.simpleBoard = null;
-        this.turn = 0;
-        this.player = null;
-    }
-
-    dist(coords1, coords2) {
-        return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]);
-    }
-
-    getOpponentHomeColonyCoords(ship) {
-        for (let i = 0; i < this.simpleBoard.length; i++) {
-            for (let j = 0; j < this.simpleBoard.length; j++) {
-                for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
-                        return [j, i];
-                    }
-                }
-            }
-        }
+        super(ParentStrat);
     }
 
     chooseTranslation(ship, translations) {
-        return translations[Math.floor(Math.random() * translations.length)];
+        return this.random(translations);
     }
 
     chooseTarget(shipInfo, combatOrder) {
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        return opponentShips[Math.floor(Math.random() * opponentShips.length)];
+        return this.random(opponentShips);
     }
 
     buyShips(cpBudget) {
@@ -43,7 +26,7 @@ class RandomStrat {
 
         while (randCostLim >= totalCost) {
             
-            let randomShip = nullInstances[Math.floor(Math.random() * nullInstances.length)];
+            let randomShip = this.random(nullInstances);
             
             totalCost += randomShip.cpCost;
             if (totalCost >= randCostLim) break;
