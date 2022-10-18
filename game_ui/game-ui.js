@@ -1,6 +1,6 @@
 const socket = io();
 
-let state;
+let game;
 let gameIsStarted = false;
 
 let boardHTML;
@@ -18,8 +18,8 @@ socket.on('initialize UI', () => {
     createEventListeners();
 });
 
-socket.on('state', (gameState) => {
-    state = gameState;
+socket.on('update UI', (gameState) => {
+    game = gameState;
     updateElementsById();
     resetBoard();
     updateObjType('Ship', ['red', 'blue'], 'Ship');
@@ -41,9 +41,9 @@ function updateElementsById() {
 }
 
 function createBoard() {
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < game.boardSize; i++) {
         let row = boardHTML.insertRow();
-        for (let j = 0; j < 7; j++) {
+        for (let j = 0; j < game.boardSize; j++) {
             let cell = row.insertCell();
             cell.className = 'cell';
             cell.style.backgroundColor = 'gray';
@@ -97,12 +97,12 @@ function createEventListeners() {
 
 function updateObjType(objType, colors, innerHTML) {
 
-    for (let i = 0; i < 7; i++) {
-        for (let j = 0; j < 7; j++) {
-            for (let obj of state.board[j][i]) {
+    for (let i = 0; i < game.boardSize; i++) {
+        for (let j = 0; j < game.boardSize; j++) {
+            for (let obj of game.board[j][i]) {
                 if (obj.objType === objType) {
 
-                    let shipNum = state.board[j][i][0].playerNum;
+                    let shipNum = game.board[j][i][0].playerNum;
                     let cell = boardHTML.rows[j].cells[i];
 
                     cell.style.backgroundColor = colors[shipNum - 1];
@@ -116,8 +116,8 @@ function updateObjType(objType, colors, innerHTML) {
 }
 
 function resetBoard() {
-    for (let i = 0; i < 7; i++) {
-        for (let j = 0; j < 7; j++) {
+    for (let i = 0; i < game.boardSize; i++) {
+        for (let j = 0; j < game.boardSize; j++) {
             let cell = boardHTML.rows[i].cells[j];
             cell.style.backgroundColor = 'gray';
             cell.innerHTML = '';
@@ -127,7 +127,7 @@ function resetBoard() {
 
 function updateLogs() {
     logsHTML.innerHTML = '';
-    for (let turn of state.logs.reverse()) {
+    for (let turn of game.logs.reverse()) {
         for (let line of turn) {
             logsHTML.innerHTML += `  ${line}<br>`;
         }
@@ -136,7 +136,7 @@ function updateLogs() {
 
 function updateSquareInfo(x, y) {
     squareInfoHTML.innerHTML = `Objects on coordinate (${x}, ${y}):<br><br>`;
-    for (let obj of state.board[y][x]) {
+    for (let obj of game.board[y][x]) {
 
         squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>: hp: ${obj.hp}`;
 

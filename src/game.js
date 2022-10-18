@@ -10,7 +10,7 @@ class Game {
     constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
-        this.boardSize = 7;
+        this.boardSize = 10;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
@@ -31,7 +31,7 @@ class Game {
 
     }
 
-    // Initializing and Running the Game
+    // Initializing and running the game
 
     initializeGame() {
 
@@ -44,15 +44,26 @@ class Game {
             }
         }
 
-        // If more players added, we'll need to change some stuff dependent on i
-
         for (let i = 0; i < this.players.length; i++) {
 
-            this.buyShips(this.players[i]);
-            
-            let homeColony = new Colony([3,6*i], i+1, true);
+            // buy home colony
+
+            const halfBoardSize = (this.boardSize - 1) / 2;
+
+            const homeColonyCoordsMap = {
+                0: [halfBoardSize, 0],
+                1: [halfBoardSize, this.boardSize - 1],
+                2: [0, halfBoardSize],
+                3: [this.boardSize - 1, halfBoardSize]
+            }
+
+            let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
+
+            // buy ships
+
+            this.buyShips(this.players[i]);
 
         }
 
@@ -88,6 +99,10 @@ class Game {
 
     }
 
+    endGame() {
+        clearInterval(this.stopInterval);
+    }
+
     checkForWinner() {
 
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
@@ -111,13 +126,13 @@ class Game {
                 let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
-                let newCoords = this.translate(oldCoords, translation);
+                let [newX, newY] = this.translate(oldCoords, translation);
                 
                 if (this.checkForOpponentShips(ship)) continue;
-                if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
+                if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) continue;
 
                 this.removeFromBoard(ship);
-                ship.coords = newCoords;
+                ship.coords = [newX, newY];
                 this.addToBoard(ship);
                 this.log.shipMovement(oldCoords, ship);
                 this.updateSimpleBoard();
@@ -197,7 +212,7 @@ class Game {
     }
 
 
-    // Object Manipulation/Calculation
+    // Object Manipulation / Calculation
 
     addToBoard(obj) {
         let [x, y] = [...obj.coords];
@@ -217,18 +232,12 @@ class Game {
 
     getNewShip(shipName, i) { // i is the player index
     
-        const shipNum = this.getShipNum(shipName, this.players[i]);
-
-        const spawnLocationMap = {
-            '1': [3, 0],
-            '2': [3, 6],
-            '3': [0, 3],
-            '4': [0, 6]
-        }
+        let player = this.players[i];
+        const shipNum = this.getShipNum(shipName, player);
 
         for (let shipClass of allShips) {
             if (shipName == shipClass.name) {
-                return new shipClass(spawnLocationMap[(i+1).toString()], i+1, shipNum);
+                return new shipClass(player.homeColony.coords, i+1, shipNum);
             }
         }
 
@@ -491,39 +500,13 @@ class Game {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
             readFile('log.txt', (_, data) => {               
-                socket.emit('state', {
+                socket.emit('update UI', {
                     board: this.board,
+                    boardSize: this.boardSize,
                     logs: this.getLogs(data)
                 });
             });
         }
-    }
-
-    run() {
-
-        if (this.winner) {
-            this.log.playerWin(this.winner);
-            clearInterval(this.stopInterval);
-            return;
-        }
-
-        if (this.turn < this.maxTurns) {
-            this.log.turn(this.turn);
-            this.movementPhase();
-            this.combatPhase();
-            this.economicPhase();
-            this.winner = this.checkForWinner();
-            this.turn++;
-        } else {
-            this.winner = 'Tie';
-        }
-
-        this.display();
-
-    }
-
-    endGame() {
-        clearInterval(this.stopInterval);
     }
 
 };

@@ -60,7 +60,7 @@ const strats3 = [new TestStrat(), new TestStrat()];
 const game3 = new Game(null, strats3, {'Scout': 1});
 game3.initializeGame();
 
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < game3.boardSize; i++) {
     game3.movementPhase()
     game3.combatPhase()
     game3.checkForWinner()

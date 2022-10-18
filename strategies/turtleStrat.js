@@ -48,7 +48,7 @@ class TurtleStrat {
             let targetCoords = this.getOpponentHomeColonyCoords(ship);
             return this.minDistanceTranslation(ship, translations, targetCoords);
         }
-        return [0,0]
+        return [0, 0];
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -57,9 +57,9 @@ class TurtleStrat {
     }
 
     buyShips(cpBudget) {
-        if (this.turn == 0) {return [{"Dreadnaught": 5}];}
-        if (cpBudget > 25) {return [{"Scout": 2}];}
-        return []
+        if (this.turn == 0) return [{"Dreadnaught": 5}];
+        if (cpBudget > 25) return [{"Scout": 2}];
+        return [];
     }
 
 }

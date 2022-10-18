@@ -1,4 +1,4 @@
-class RushStrat {
+class ParentStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -43,22 +43,22 @@ class RushStrat {
         }
     }
 
+    random(list) {
+        return list[Math.floor(Math.random() * list.length)];
+    }
+
     chooseTranslation(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
-        return this.minDistanceTranslation(ship, translations, targetCoords);
+        return;
     }
 
     chooseTarget(shipInfo, combatOrder) {
-        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        return opponentShips[0];
+        return;
     }
 
     buyShips(cpBudget) {
-        if (this.turn == 0) return [{"Battleship": 5}];
-        if (cpBudget > 45) return [{"Battleship": 1}];
-        return [];
-    } 
+        return;
+    }
 
 }
 
-export default RushStrat;
+export default ParentStrat;
