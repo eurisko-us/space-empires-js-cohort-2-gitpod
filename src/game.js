@@ -1,9 +1,10 @@
 import { readFile } from 'fs';
+import assert from 'assert';
+
 import { allShips } from './ships.js';
 import Player from './player.js';
 import Colony from './colony.js';
 import Logger from './logger.js';
-import assert from 'assert';
 
 class Game {
     
@@ -502,7 +503,6 @@ class Game {
             readFile('log.txt', (_, data) => {               
                 socket.emit('update UI', {
                     board: this.board,
-                    boardSize: this.boardSize,
                     logs: this.getLogs(data)
                 });
             });

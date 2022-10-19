@@ -41,9 +41,9 @@ function updateElementsById() {
 }
 
 function createBoard() {
-    for (let i = 0; i < game.boardSize; i++) {
+    for (let i = 0; i < 7; i++) {
         let row = boardHTML.insertRow();
-        for (let j = 0; j < game.boardSize; j++) {
+        for (let j = 0; j < 7; j++) {
             let cell = row.insertCell();
             cell.className = 'cell';
             cell.style.backgroundColor = 'gray';
@@ -97,8 +97,8 @@ function createEventListeners() {
 
 function updateObjType(objType, colors, innerHTML) {
 
-    for (let i = 0; i < game.boardSize; i++) {
-        for (let j = 0; j < game.boardSize; j++) {
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 7; j++) {
             for (let obj of game.board[j][i]) {
                 if (obj.objType === objType) {
 
@@ -116,8 +116,8 @@ function updateObjType(objType, colors, innerHTML) {
 }
 
 function resetBoard() {
-    for (let i = 0; i < game.boardSize; i++) {
-        for (let j = 0; j < game.boardSize; j++) {
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 7; j++) {
             let cell = boardHTML.rows[i].cells[j];
             cell.style.backgroundColor = 'gray';
             cell.innerHTML = '';
