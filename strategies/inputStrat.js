@@ -39,14 +39,34 @@ class InputStrat extends ParentStrat {
 
         let waitingForInput = true;
         let input;
+ 
+        let getOnce = true;
 
         while (waitingForInput) {
-
-            document.getElementById("inputText").innerHTML = inputText;
             
             for (let socketId in this.clientSockets) {
                 let socket = this.clientSockets[socketId];
+
+                socket.emit('update error text', 'why won\'t this work?');
+                socket.emit('update input text', inputText);
+
+                socket.on('update input text', (text) => console.log(`update input text: ${text}`));
+                socket.on('update error text', (text) => console.log(`update error text: ${text}`));
+                socket.on('update UI', () => console.log('initialize UI'));
+                socket.on('initialize UI', () => console.log('initialize UI'));
+                socket.on('initialize game', () => console.log('initialize game'));
+                socket.on('end game', () => console.log('end game'));
+                socket.on('next turn', () => console.log('next turn'));
+                socket.on('auto run', () => console.log('auto run'));
+
+                // if (getOnce) {
+                //     console.log(socket);
+                //     getOnce = false;
+                // }
+
                 socket.on("send input", (inputFromUI) => {
+
+                    console.log('input from UI');
 
                     if (waitingForInput) {
 
@@ -55,12 +75,14 @@ class InputStrat extends ParentStrat {
                             input = successFunction(inputFromUI);
                         } catch {
                             waitingForInput = true;
-                            document.getElementById("errorText").innerHTML = errorText;
+                            // document.getElementById("errorText").innerHTML = errorText;
+                            socket.emit('update error text', errorText);
                         }
 
                         if (input == 'input again') {
                             waitingForInput = true;
-                            document.getElementById("errorText").innerHTML = errorText;
+                            // document.getElementById("errorText").innerHTML = errorText;
+                            socket.emit('update error text', errorText);
                         }
 
                     }
@@ -90,7 +112,7 @@ class InputStrat extends ParentStrat {
             "Where you do want to move? (up, down, left, right, stay)",
             "Not an available move. Try again!",
             (input) => {
-                return inputMap[input.input];
+                return inputMap[input];
             }
         );
 
@@ -133,7 +155,7 @@ class InputStrat extends ParentStrat {
             'Pick an opponent ship to fight (Format: "<shipType> <shipNum>")',
             "Not an available opponent. Try again!",
             (input) => {
-                opponent = input.input.split(' ');
+                opponent = input.split(' ');
                 for (let ship of opponentShips) {
                     if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
                         return ship;
@@ -196,7 +218,7 @@ class InputStrat extends ParentStrat {
 
         while (true) {
 
-            console.log(`You currently have ${cpBudget - spent} CP`);
+            // console.log(`You currently have ${cpBudget - spent} CP`);
             this.printBoughtShips(shipList);
 
             let input = this.buyInput();
@@ -278,8 +300,8 @@ class InputStrat extends ParentStrat {
 
     printBoughtShips(shipList) {
         
-        console.log('You have bought...');
-        if (shipList.length == 0) console.log('Nothing');
+        // console.log('You have bought...');
+        // if (shipList.length == 0) console.log('Nothing');
         
         for (const ship of shipList) {
             const [shipName, numShips] = Object.entries(ship)[0];
