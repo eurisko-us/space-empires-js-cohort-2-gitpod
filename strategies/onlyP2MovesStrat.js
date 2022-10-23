@@ -1,17 +1,15 @@
 import ParentStrat from './parentStrat.js';
 
-class TurtleStrat extends ParentStrat {
+class OnlyP2MovesStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
     }
 
     chooseTranslation(ship, translations) {
-        if (this.turn == 1) {        
-            let targetCoords = this.getOpponentHomeColonyCoords(ship);
-            return this.minDistanceTranslation(ship, translations, targetCoords);
-        }
-        return [0, 0];
+        let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        if (ship.playerNum == 1) return [0, 0];
+        if (ship.playerNum == 2) return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -20,11 +18,9 @@ class TurtleStrat extends ParentStrat {
     }
 
     buyShips(cpBudget) {
-        if (this.turn == 0) return [{"Dreadnaught": 5}];
-        if (cpBudget > 25) return [{"Scout": 2}];
         return [];
     }
 
 }
 
-export default TurtleStrat;
+export default OnlyP2MovesStrat;

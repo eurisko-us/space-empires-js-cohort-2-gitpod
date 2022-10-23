@@ -1,6 +1,6 @@
 const socket = io();
 
-let state;
+let game;
 let gameIsStarted = false;
 
 let boardHTML;
@@ -12,20 +12,26 @@ let nextTurnButton;
 let autoRunButton;
 let endGameButton;
 
+let valueTextHTML;
+let submitInputButton;
+
 socket.on('initialize UI', () => {
     updateElementsById();
     (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
     createEventListeners();
 });
 
-socket.on('state', (gameState) => {
-    state = gameState;
+socket.on('update UI', (gameState) => {
+    game = gameState;
     updateElementsById();
     resetBoard();
     updateObjType('Ship', ['red', 'blue'], 'Ship');
     updateObjType('Colony', ['#ff8080', '#a080ff'], 'Home Colony');
     updateLogs();
 });
+
+socket.on('update error text', (text) => errorTextHTML.innerHTML = text);
+socket.on('update input text', (text) => inputTextHTML.innerHTML = text);
 
 function updateElementsById() {
 
@@ -37,6 +43,11 @@ function updateElementsById() {
     endGameButton  = document.getElementById("endGame");
     nextTurnButton = document.getElementById("nextTurn");
     autoRunButton  = document.getElementById("autoRun");
+
+    inputTextHTML = document.getElementById("inputText");
+    errorTextHTML = document.getElementById("errorText");
+    valueTextHTML = document.getElementById("valueText");
+    submitInputButton = document.getElementById("submitInput");
 
 }
 
@@ -93,16 +104,24 @@ function createEventListeners() {
         }
     });
 
+    submitInputButton.addEventListener("click", () => {
+        if (gameIsStarted) {
+            console.log(valueTextHTML.value);
+            socket.emit('send input', valueTextHTML.value);
+            console.log('after');
+        }
+    });
+
 }
 
 function updateObjType(objType, colors, innerHTML) {
 
     for (let i = 0; i < 7; i++) {
         for (let j = 0; j < 7; j++) {
-            for (let obj of state.board[j][i]) {
+            for (let obj of game.board[j][i]) {
                 if (obj.objType === objType) {
 
-                    let shipNum = state.board[j][i][0].playerNum;
+                    let shipNum = game.board[j][i][0].playerNum;
                     let cell = boardHTML.rows[j].cells[i];
 
                     cell.style.backgroundColor = colors[shipNum - 1];
@@ -127,7 +146,7 @@ function resetBoard() {
 
 function updateLogs() {
     logsHTML.innerHTML = '';
-    for (let turn of state.logs.reverse()) {
+    for (let turn of game.logs.reverse()) {
         for (let line of turn) {
             logsHTML.innerHTML += `  ${line}<br>`;
         }
@@ -136,7 +155,7 @@ function updateLogs() {
 
 function updateSquareInfo(x, y) {
     squareInfoHTML.innerHTML = `Objects on coordinate (${x}, ${y}):<br><br>`;
-    for (let obj of state.board[y][x]) {
+    for (let obj of game.board[y][x]) {
 
         squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>: hp: ${obj.hp}`;
 

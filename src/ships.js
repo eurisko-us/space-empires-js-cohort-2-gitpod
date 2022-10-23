@@ -19,7 +19,7 @@ class Ship {
 class Scout extends Ship {
     constructor(coords, playerNum, shipNum) {
 
-        super(Ship); 
+        super(Ship);
 
         this.hp = 1;
         this.atk = 3;

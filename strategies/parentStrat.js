@@ -1,4 +1,4 @@
-class TestStrat {
+class ParentStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -43,21 +43,14 @@ class TestStrat {
         }
     }
 
-    chooseTranslation(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
-        if (ship.playerNum == 1) return [0, 0];
-        if (ship.playerNum == 2) return this.minDistanceTranslation(ship, translations, targetCoords);
+    random(list) {
+        return list[Math.floor(Math.random() * list.length)];
     }
 
-    chooseTarget(shipInfo, combatOrder) {
-        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        return opponentShips[Math.floor(Math.random() * opponentShips.length)];
-    }
-
-    buyShips(cpBudget) {
-        return [];
-    }
+    chooseTranslation(ship, translations) { return; }
+    chooseTarget(shipInfo, combatOrder) { return; }
+    buyShips(cpBudget) { return; }
 
 }
 
-export default TestStrat;
+export default ParentStrat;

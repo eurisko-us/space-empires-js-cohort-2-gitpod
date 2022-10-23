@@ -1,6 +1,6 @@
 import Game from '../src/game.js';
 import { Scout, Cruiser, Dreadnaught } from '../src/ships.js';
-import TestStrat from '../strategies/testStrat.js';
+import OnlyP2MovesStrat from '../strategies/onlyP2MovesStrat.js';
 import BasicStrat from '../strategies/basicStrat.js';
 import assert, { deepEqual } from 'assert';
 
@@ -25,7 +25,7 @@ console.log("Defenders First Rule Works Correctly");
 
 // test 2, ship class combat priority
 
-const strats2 = [new TestStrat(), new TestStrat()];
+const strats2 = [new OnlyP2MovesStrat(), new OnlyP2MovesStrat()];
 const game2 = new Game(null, strats2, {'Scout': 1});
 game2.initializeGame();
 
@@ -56,11 +56,11 @@ console.log("Higher class ships attack first");
 
 // test 3, combat on colony coord
 
-const strats3 = [new TestStrat(), new TestStrat()];
+const strats3 = [new OnlyP2MovesStrat(), new OnlyP2MovesStrat()];
 const game3 = new Game(null, strats3, {'Scout': 1});
 game3.initializeGame();
 
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < game3.boardSize; i++) {
     game3.movementPhase()
     game3.combatPhase()
     game3.checkForWinner()

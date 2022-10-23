@@ -1,9 +1,10 @@
 import { readFile } from 'fs';
+import assert from 'assert';
+
 import { allShips } from './ships.js';
 import Player from './player.js';
 import Colony from './colony.js';
 import Logger from './logger.js';
-import assert from 'assert';
 
 class Game {
     
@@ -31,7 +32,7 @@ class Game {
 
     }
 
-    // Initializing and Running the Game
+    // Initializing and running the game
 
     initializeGame() {
 
@@ -44,15 +45,26 @@ class Game {
             }
         }
 
-        // If more players added, we'll need to change some stuff dependent on i
-
         for (let i = 0; i < this.players.length; i++) {
 
-            this.buyShips(this.players[i]);
-            
-            let homeColony = new Colony([3,6*i], i+1, true);
+            // buy home colony
+
+            const halfBoardSize = (this.boardSize - 1) / 2;
+
+            const homeColonyCoordsMap = {
+                0: [halfBoardSize, 0],
+                1: [halfBoardSize, this.boardSize - 1],
+                2: [0, halfBoardSize],
+                3: [this.boardSize - 1, halfBoardSize]
+            }
+
+            let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
+
+            // buy ships
+
+            this.buyShips(this.players[i]);
 
         }
 
@@ -88,6 +100,10 @@ class Game {
 
     }
 
+    endGame() {
+        clearInterval(this.stopInterval);
+    }
+
     checkForWinner() {
 
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
@@ -111,13 +127,13 @@ class Game {
                 let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
                 let translations = this.possibleTranslations(ship.coords);
                 let translation = player.strategy.chooseTranslation(ship, translations);            
-                let newCoords = this.translate(oldCoords, translation);
+                let [newX, newY] = this.translate(oldCoords, translation);
                 
                 if (this.checkForOpponentShips(ship)) continue;
-                if (newCoords[0] < 0 || newCoords[0] > 6 || newCoords[1] < 0 || newCoords[1] > 6) continue;
+                if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) continue;
 
                 this.removeFromBoard(ship);
-                ship.coords = newCoords;
+                ship.coords = [newX, newY];
                 this.addToBoard(ship);
                 this.log.shipMovement(oldCoords, ship);
                 this.updateSimpleBoard();
@@ -197,7 +213,7 @@ class Game {
     }
 
 
-    // Object Manipulation/Calculation
+    // Object Manipulation / Calculation
 
     addToBoard(obj) {
         let [x, y] = [...obj.coords];
@@ -217,18 +233,12 @@ class Game {
 
     getNewShip(shipName, i) { // i is the player index
     
-        const shipNum = this.getShipNum(shipName, this.players[i]);
-
-        const spawnLocationMap = {
-            '1': [3, 0],
-            '2': [3, 6],
-            '3': [0, 3],
-            '4': [0, 6]
-        }
+        let player = this.players[i];
+        const shipNum = this.getShipNum(shipName, player);
 
         for (let shipClass of allShips) {
             if (shipName == shipClass.name) {
-                return new shipClass(spawnLocationMap[(i+1).toString()], i+1, shipNum);
+                return new shipClass(player.homeColony.coords, i+1, shipNum);
             }
         }
 
@@ -373,50 +383,41 @@ class Game {
     }
 
     buyShips(player) {
+
         let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
 
-        if (player.buyShips().length == 0) {
-            this.log.boughtNoShips(player)
+        if (player.buyShips().length == 0) this.log.boughtNoShips(player);
+
+        let totalCost = this.calcTotalCost(playerShips);
+
+        if (totalCost > player.cp) {
+            this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
+            return;
         }
 
-        if (player.buyShips().length > 0) {
-            let totalCost = this.calcTotalCost(playerShips);
+        player.cp -= totalCost;
+        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
 
-            if (totalCost > player.cp) {
-                this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
-                return;
-            }
+        if (playerShips) {
+            for (let ship of playerShips) {
+                for (let shipName in ship) {
+                    for (let i = 0; i < ship[shipName]; i++) {
 
-            if (totalCost <= player.cp){
+                        let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
+                        if (!ship) continue;
 
-            
-            player.cp -= totalCost;
-            assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
+                        player.addShip(ship);
+                        assert (player.ships.includes(ship), 'Ship was not added to player.ships');
 
-            if (playerShips) {
-                for (let ship of playerShips) {
-                    for (let shipName in ship) {
-                        for (let i = 0; i < ship[shipName]; i++) {
+                        this.addToBoard(ship);
+                        assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
 
-                            let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
-                            if (!ship) continue;
+                        this.log.buyShip(player, ship);
+                        this.updateSimpleBoard();
 
-                            player.addShip(ship);
-                            assert (player.ships.includes(ship), 'Ship was not added to player.ships');
-
-                            this.addToBoard(ship);
-                            assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
-
-                            this.log.buyShip(player, ship);
-                            this.updateSimpleBoard()
-
-                        }
                     }
                 }
-
             }
-        }
-        
         }
 
         this.log.playerCPRemaining(player);
@@ -449,12 +450,6 @@ class Game {
             total += elem;
         }
         return total;
-    }
-
-    getRandomInteger(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     getLogs(data) {
@@ -490,40 +485,13 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            readFile('log.txt', (_, data) => {               
-                socket.emit('state', {
+            readFile('log.txt', (_, data) => {
+                socket.emit('update UI', {
                     board: this.board,
                     logs: this.getLogs(data)
                 });
             });
         }
-    }
-
-    run() {
-
-        if (this.winner) {
-            this.log.playerWin(this.winner);
-            clearInterval(this.stopInterval);
-            return;
-        }
-
-        if (this.turn < this.maxTurns) {
-            this.log.turn(this.turn);
-            this.movementPhase();
-            this.combatPhase();
-            this.economicPhase();
-            this.winner = this.checkForWinner();
-            this.turn++;
-        } else {
-            this.winner = 'Tie';
-        }
-
-        this.display();
-
-    }
-
-    endGame() {
-        clearInterval(this.stopInterval);
     }
 
 };
