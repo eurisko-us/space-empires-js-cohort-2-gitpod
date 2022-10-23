@@ -494,7 +494,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            readFile('log.txt', (_, data) => {               
+            readFile('log.txt', (_, data) => {
                 socket.emit('update UI', {
                     board: this.board,
                     logs: this.getLogs(data)

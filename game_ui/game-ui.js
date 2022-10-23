@@ -12,10 +12,22 @@ let nextTurnButton;
 let autoRunButton;
 let endGameButton;
 
+let valueTextHTML;
+let submitInputButton;
+
 socket.on('initialize UI', () => {
     updateElementsById();
     (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
     createEventListeners();
+});
+
+socket.on('update UI', (gameState) => {
+    game = gameState;
+    updateElementsById();
+    resetBoard();
+    updateObjType('Ship', ['red', 'blue'], 'Ship');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'Home Colony');
+    updateLogs();
 });
 
 socket.on('update UI', (gameState) => {
@@ -37,6 +49,9 @@ function updateElementsById() {
     endGameButton  = document.getElementById("endGame");
     nextTurnButton = document.getElementById("nextTurn");
     autoRunButton  = document.getElementById("autoRun");
+
+    valueTextHTML = document.getElementById("valueText");
+    submitInputButton = document.getElementById("submitInput");
 
 }
 
@@ -90,6 +105,12 @@ function createEventListeners() {
     autoRunButton.addEventListener("click", () => {
         if (gameIsStarted) {
             socket.emit('auto run');
+        }
+    });
+
+    submitInputButton.addEventListener("click", () => {
+        if (gameIsStarted) {
+            socket.emit('send input', { 'input': valueTextHTML.innerHTML });
         }
     });
 

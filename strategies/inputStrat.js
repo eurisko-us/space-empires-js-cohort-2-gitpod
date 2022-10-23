@@ -4,7 +4,8 @@ const prompt = promptSync();
 
 class InputStrat {
     
-    constructor() {
+    constructor(clientSockets) {
+        this.clientSockets = clientSockets;
         this.simpleBoard = null;
         this.turn = 0;
         this.player = null;
@@ -35,6 +36,37 @@ class InputStrat {
         return true;
     }
 
+    getInputFromUI(inputText, errorText, successFunction) {
+
+        let waitingForInput = true;
+        let input;
+
+        while (waitingForInput) {
+
+            document.getElementById("inputText").innerHTML = inputText;
+            
+            for (let socketId in this.clientSockets) {
+                let socket = this.clientSockets[socketId];
+                socket.on("send input", (inputFromUI) => {
+
+                    if (waitingForInput) {
+                        try {
+                            waitingForInput = false;
+                            input = successFunction(inputFromUI);
+                        } catch {
+                            waitingForInput = true;
+                            document.getElementById("errorText").innerHTML = errorText;
+                        }
+                    }
+
+                });
+            }
+
+        }
+
+        return input;
+
+    }
 
     getInputTranslation() {
 
@@ -46,57 +78,108 @@ class InputStrat {
             'stay':  [0, 0],
         };
 
-        let input = prompt("Pick a direction (up, down, left, right, stay) : ");
-        return inputMap[input];
+        // let input = prompt("Pick a direction (up, down, left, right, stay) : ");
 
-        // switch (input) {
-        //     case 'up' :
-        //         return [0,-1];
-        //     case 'down' :
-        //         return [0,1];
-        //     case 'left' :
-        //         return [-1,0];
-        //     case 'right' :
-        //         return [1,0];
-        //     case 'stay' :
-        //         return [0,0];
-        //     // default :
-        //         // console.log('ye');
-        //         // return [0, 0];
-        //         // console.log('Try again, it might be mispelled');
-        //         // return this.getInputTranslation();
+        return getInputFromUI(
+            "Where you do want to move? (up, down, left, right, stay)",
+            "Not an available move. Try again!",
+            (input) => {
+                return inputMap[input.input];
+            }
+        );
+
+        // let waitingForInput = true;
+        // let move;
+
+        // while (waitingForInput) {
+
+        //     document.getElementById("inputText").innerHTML = "Where you do want to move? (up, down, left, right, stay)";
+            
+        //     socket.on("send input", (input) => {
+
+        //         if (waitingForInput) {
+        //             try {
+        //                 move = inputMap[input.input];
+        //                 waitingForInput = false;
+        //             } catch {
+        //                 waitingForInput = true;
+        //                 document.getElementById("errorText").innerHTML = "Not an available move. Try again!";
+        //             }
+        //         }
+
+        //     });
+
         // }
 
-        // let input = prompt("USER INPUT: Choose your move? ");
-        // console.log(`Received user input "${input}"`);
+        // return move;
 
     }
 
     chooseTarget(shipInfo, combatOrder) {
         console.log(`${shipInfo.shipId} is in combat at ${shipInfo.coords}`);
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        // console.log('(Auto assumes enemy player)');
         return this.combatInput(opponentShips);
-        //return opponentShips[Math.floor(Math.random() * opponentShips.length)];
     }
 
-    combatInput(enemyShips) {
+    combatInput(opponentShips) {
 
-        let input = prompt('Pick an enemy (Format: "<shipType> <shipNum>"): '); // Auto assumes enemy player
-        let enemy = input.split(' ');
-        console.log(enemyShips);
-
-        for (let ship of enemyShips) {
-            //console.log(ship)
-            if (ship.name == enemy[0] && ship.shipNum == enemy[1]) {
-                return ship;
+        return getInputFromUI(
+            'Pick an opponent ship to fight (Format: "<shipType> <shipNum>")',
+            "Not an available opponent. Try again!",
+            (input) => {
+                opponent = input.input.split(' ');
+                for (let ship of opponentShips) {
+                    if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
+                        return ship;
+                    }
+                }
             }
-        }
+        );
 
-        console.log(`Enemy Player does not have a ${input}, try again`);
-        // return this.combatInput(enemyShips);
-        console.log('just gonna skip that for now');
-        return enemyShips[Math.floor(Math.random() * enemyShips.length)];
+        // let waitingForInput = true;
+        // let opponent;
+
+        // while (waitingForInput) {
+
+        //     document.getElementById("inputText").innerHTML = 'Pick an opponent ship to fight (Format: "<shipType> <shipNum>")';
+            
+        //     socket.on("send input", (input) => {
+
+        //         if (waitingForInput) {
+        //             try {
+
+        //                 opponent = input.input.split(' ');
+        //                 waitingForInput = false;
+
+        //                 for (let ship of opponentShips) {
+        //                     if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
+        //                         return ship;
+        //                     }
+        //                 }
+
+        //             } catch {
+        //                 waitingForInput = true;
+        //                 document.getElementById("errorText").innerHTML = "Not an available opponent. Try again!";
+        //             }
+        //         }
+
+        //     });
+
+        // }
+
+        // let opponent = prompt('Pick an opponent (Format: "<shipType> <shipNum>"): '); // Auto assumes enemy player
+        // let opponent = opponent.split(' ');
+        // console.log(opponentShips);
+
+        // for (let ship of opponentShips) {
+        //     if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
+        //         return ship;
+        //     }
+        // }
+
+        // console.log(`Opponent does not have a ${opponent}, try again`);
+        // console.log('just gonna skip that for now');
+        // return opponentShips[Math.floor(Math.random() * opponentShips.length)];
 
     }
 
@@ -130,9 +213,6 @@ class InputStrat {
 
         while (cart.length == 1) {
             return 'Done';
-            // if (cart == 'Done') return 'Done';
-            // input = prompt('That is not a valid option, try again: ');
-            // cart = input.split(' ');
         }
 
         let bought = this.findBought(cart[0]);
