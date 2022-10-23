@@ -1,14 +1,13 @@
 import { nullInstances } from '../src/ships.js';
-import promptSync from 'prompt-sync';
-const prompt = promptSync();
+import ParentStrat from './parentStrat.js';
+// import promptSync from 'prompt-sync';
+// const prompt = promptSync();
 
-class InputStrat {
+class InputStrat extends ParentStrat {
     
     constructor(clientSockets) {
+        super(ParentStrat);
         this.clientSockets = clientSockets;
-        this.simpleBoard = null;
-        this.turn = 0;
-        this.player = null;
     }
 
     chooseTranslation(ship, translations) {
@@ -50,6 +49,7 @@ class InputStrat {
                 socket.on("send input", (inputFromUI) => {
 
                     if (waitingForInput) {
+
                         try {
                             waitingForInput = false;
                             input = successFunction(inputFromUI);
@@ -57,6 +57,12 @@ class InputStrat {
                             waitingForInput = true;
                             document.getElementById("errorText").innerHTML = errorText;
                         }
+
+                        if (input == 'input again') {
+                            waitingForInput = true;
+                            document.getElementById("errorText").innerHTML = errorText;
+                        }
+
                     }
 
                 });
@@ -80,7 +86,7 @@ class InputStrat {
 
         // let input = prompt("Pick a direction (up, down, left, right, stay) : ");
 
-        return getInputFromUI(
+        return this.getInputFromUI(
             "Where you do want to move? (up, down, left, right, stay)",
             "Not an available move. Try again!",
             (input) => {
@@ -123,7 +129,7 @@ class InputStrat {
 
     combatInput(opponentShips) {
 
-        return getInputFromUI(
+        return this.getInputFromUI(
             'Pick an opponent ship to fight (Format: "<shipType> <shipNum>")',
             "Not an available opponent. Try again!",
             (input) => {
@@ -208,24 +214,52 @@ class InputStrat {
 
     buyInput() {
 
-        let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
-        let cart = input.split(' ');
+        let cart = this.getInputFromUI(
+            'Which ships would you like to buy? (Format: "<shipType> <amount>" OR "Done")',
+            "Please type a valid ship name and number",
+            (input) => {
 
-        while (cart.length == 1) {
-            return 'Done';
-        }
+                let cart = input.split(' ');
+                if (cart[0] == "Done") return "Done";
+                if (typeof cart[1] != "number") return "input again";
 
-        let bought = this.findBought(cart[0]);
-        cart[1] = + cart[1];
+                for (let ship of nullInstances) {
+                    if (cart[0] == ship.name) {
+                        return [ship, cart[1]];
+                    }
+                }
 
-        while (cart[1] === NaN) {
-            cart[1] = prompt('Please type a valid number');
-            cart[1] = + cart[1];
-        } 
+            }
+        );
 
-        let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);
-        if (confirm == 'Y') return [bought, cart[1]];
-        return this.buyInput();
+        // let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
+        // let cart = input.split(' ');
+
+        // while (cart.length == 1) {
+        //     return 'Done';
+        // }
+
+        // cart[1] = + cart[1];
+
+        // while (cart[1] === NaN) {
+        //     cart[1] = prompt('Please type a valid number');
+        //     cart[1] = + cart[1];
+        // }
+
+        // let bought = this.findBought(cart[0]);
+
+        return this.getInputFromUI(
+            `You would like to buy ${cart[1]} ${cart[0].name} for ${cart[0].cpCost * cart[1]} CP? (Y/N)`,
+            "Please only respond with Y or N",
+            (input) => {
+                if (input == 'Y') return cart;
+            }
+        );
+
+        // let bought = this.findBought(cart[0]);
+        // let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);
+        // if (confirm == 'Y') return [bought, cart[1]];
+        // return this.buyInput();
 
     }
     
@@ -237,8 +271,8 @@ class InputStrat {
             }
         }
 
-        let input = prompt('Please type a valid ship type: ');
-        return this.findBought(input);
+        // let input = prompt('Please type a valid ship type: ');
+        // return this.findBought(input);
 
     }
 
