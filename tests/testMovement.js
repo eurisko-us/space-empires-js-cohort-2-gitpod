@@ -1,12 +1,12 @@
 import Game from '../src/game.js';
 import { Scout, Cruiser, Dreadnaught } from '../src/ships.js';
-import TestStrat from '../strategies/testStrat.js';
-import Strategy from '../strategies/strategy.js';
+import OnlyP2MovesStrat from '../strategies/onlyP2MovesStrat.js';
+import BasicStrat from '../strategies/basicStrat.js';
 import assert, { deepEqual } from 'assert';
 
 // test 1, cannot move if opp in coord
 
-const strats1 = [new Strategy(), new Strategy()];
+const strats1 = [new BasicStrat(), new BasicStrat()];
 const game1 = new Game(null, strats1, {'Scout': 1});
 game1.initializeGame();
 

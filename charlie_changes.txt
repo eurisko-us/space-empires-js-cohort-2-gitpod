@@ -1,7 +1,0 @@
-Summary of changes to the main branch:
-
-- made sure all tests work (will have to run again after making other changes below)
-- organized files into folders
-- Game class now takes in strategies instead of player
-- converted imports to ES6
-- made all imports related to ships dependent on allShips instead of the individual ship classes

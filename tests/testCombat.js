@@ -1,12 +1,12 @@
 import Game from '../src/game.js';
 import { Scout, Cruiser, Dreadnaught } from '../src/ships.js';
-import TestStrat from '../strategies/testStrat.js';
-import Strategy from '../strategies/strategy.js';
+import OnlyP2MovesStrat from '../strategies/onlyP2MovesStrat.js';
+import BasicStrat from '../strategies/basicStrat.js';
 import assert, { deepEqual } from 'assert';
 
 // test 1, defenders first rule
 
-const strats1 = [new Strategy(), new Strategy()];
+const strats1 = [new BasicStrat(), new BasicStrat()];
 const game = new Game(null, strats1, {'Scout': 1});
 game.initializeGame();
 
@@ -25,7 +25,7 @@ console.log("Defenders First Rule Works Correctly");
 
 // test 2, ship class combat priority
 
-const strats2 = [new TestStrat(), new TestStrat()];
+const strats2 = [new OnlyP2MovesStrat(), new OnlyP2MovesStrat()];
 const game2 = new Game(null, strats2, {'Scout': 1});
 game2.initializeGame();
 
@@ -56,11 +56,11 @@ console.log("Higher class ships attack first");
 
 // test 3, combat on colony coord
 
-const strats3 = [new TestStrat(), new TestStrat()];
+const strats3 = [new OnlyP2MovesStrat(), new OnlyP2MovesStrat()];
 const game3 = new Game(null, strats3, {'Scout': 1});
 game3.initializeGame();
 
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < game3.boardSize; i++) {
     game3.movementPhase()
     game3.combatPhase()
     game3.checkForWinner()
@@ -79,7 +79,7 @@ console.log("There is combat on colony square");
 
 // test 4, friendly fire
 
-const strats4 = [new Strategy(), new Strategy()];
+const strats4 = [new BasicStrat(), new BasicStrat()];
 const game4 = new Game(null, strats3, {'Scout': 1});
 game4.initializeGame();
 
@@ -107,7 +107,7 @@ console.log('friendly ships do not engage in combat')
 
 // test 5, dead ships can't attack
 
-const strats5 = [new Strategy(), new Strategy()];
+const strats5 = [new BasicStrat(), new BasicStrat()];
 const game5 = new Game(null, strats5, {'Scout': 1});
 game5.initializeGame();
 

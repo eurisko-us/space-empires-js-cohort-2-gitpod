@@ -3,10 +3,17 @@ import http from 'http';
 import { Server } from 'socket.io';
 
 import Game from './src/game.js';
+
 import Strategy from './strategies/strategy.js';
 import UserStrategy from './strategies/user_strat.js';
 
 // connect to web socket (aka display on web browser)
+
+import BasicStrat from './strategies/basicStrat.js';
+import RushStrat from './strategies/rushStrat.js';
+import HunterStrat from './strategies/hunterStrat.js'
+import RandomStrat from './strategies/randomStrat.js';
+import ShopperStrat from './strategies/shopperStrat.js';
 
 const app = express();
 const httpServer = http.Server(app);
@@ -34,10 +41,41 @@ io.on('connection', (socket) => {
         delete clientSockets[socketId];
         clearInterval(game.stopInterval);
     });
-
+    
     game.start(); // so that game doesn't start until socket connects
 
 });
 
 httpServer.listen(3001, () => console.log('Listening on *:3000'));
 
+/*
+    // below is our code
+
+    socket.emit('initialize UI');
+
+    socket.on('initialize game', () => {
+        const strategies = [new BasicStrat(), new BasicStrat()];
+        game = new Game(clientSockets, strategies);
+        game.initializeGame();
+        game.display();
+    });
+
+    socket.on('end game', () => {
+        if (game) {
+            game.endGame();
+            game = null;
+        }
+    });
+
+    socket.on('next turn', () => {
+        if (game) game.run();
+    });
+
+    socket.on('auto run', () => {
+        if (game) game.start();
+    });
+
+});
+
+httpServer.listen(3000, () => console.log('Listening on *:3000'));
+*/

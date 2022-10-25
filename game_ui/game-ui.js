@@ -1,46 +1,49 @@
 const socket = io();
 
-let board;
-let logs;
-
-socket.on('state', (data) => {
-    board = data.board;
-    logs = data.logs;
-    updateUI();
-});
+let game;
+let gameIsStarted = false;
 
 let boardHTML;
 let logsHTML;
-let gameInfoHTML;
 let squareInfoHTML;
 
-let clicked = null;
+let initGameButton;
+let nextTurnButton;
+let autoRunButton;
+let endGameButton;
 
-function updateUI() {
+socket.on('initialize UI', () => {
+    updateElementsById();
+    (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
+    createEventListeners();
+});
+
+socket.on('update UI', (gameState) => {
+    game = gameState;
+    updateElementsById();
+    resetBoard();
+    updateObjType('Ship', ['red', 'blue'], 'Ship');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'Home Colony');
+    updateLogs();
+});
+
+function updateElementsById() {
 
     boardHTML      = document.getElementById("board");
     logsHTML       = document.getElementById("logs");
-    gameInfoHTML   = document.getElementById("gameInfo");
     squareInfoHTML = document.getElementById("squareInfo");
-
-    if (boardHTML.rows.length === 0) {
-        createBoard();
-        createEventListener();
-    }
     
-    resetBoard();
-    updateObjType('Ship', ['red', 'blue'], 'P');
-    updateObjType('Colony', ['#ff8080', '#a080ff'], 'PC');
-    updateLogs();
-
-    if (clicked) updateSquareInfo();
+    initGameButton = document.getElementById("initGame");
+    endGameButton  = document.getElementById("endGame");
+    nextTurnButton = document.getElementById("nextTurn");
+    autoRunButton  = document.getElementById("autoRun");
 
 }
 
 function createBoard() {
-    for (let i = 0; i < board.length; i++) {
+    for (let i = 0; i < 7; i++) {
         let row = boardHTML.insertRow();
-        for (let j = 0; j < board.length; j++) {
+        for (let j = 0; j < 7; j++) {
             let cell = row.insertCell();
             cell.className = 'cell';
             cell.style.backgroundColor = 'gray';
@@ -48,29 +51,62 @@ function createBoard() {
     }
 }
 
-function createEventListener() {
+function createEventListeners() {
+    
+    for (const cell of document.getElementsByClassName('cell')) {
+        cell.addEventListener('click', e => {
+            if (gameIsStarted) updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
+        });
+    }
 
-    boardHTML.addEventListener('click', e => {
-        clicked = [
-            e.target.parentElement.rowIndex,
-            e.target.cellIndex
-        ];
+    initGameButton.addEventListener("click", () => {
+        if (!gameIsStarted) {
+            socket.emit('initialize game');
+            gameIsStarted = true;
+        }
+    });
+
+    endGameButton.addEventListener("click", () => {
+        if (gameIsStarted) {
+            
+            updateElementsById();
+            resetBoard();
+
+            logsHTML.innerHTML = '';
+            squareInfoHTML.innerHTML = '';
+            gameIsStarted = false;
+
+            socket.emit('end game');
+
+        }
+    });
+
+    nextTurnButton.addEventListener("click", () => {
+        if (gameIsStarted) {
+            socket.emit('next turn');
+        }
+    });
+
+    autoRunButton.addEventListener("click", () => {
+        if (gameIsStarted) {
+            socket.emit('auto run');
+        }
     });
 
 }
 
 function updateObjType(objType, colors, innerHTML) {
 
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board.length; j++) {
-            for (let obj of board[j][i]) {
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 7; j++) {
+            for (let obj of game.board[j][i]) {
                 if (obj.objType === objType) {
 
-                    let shipNum = board[j][i][0].playerNum;
+                    let shipNum = game.board[j][i][0].playerNum;
                     let cell = boardHTML.rows[j].cells[i];
 
                     cell.style.backgroundColor = colors[shipNum - 1];
-                    cell.innerHTML = `${innerHTML}${shipNum}`;
+                    cell.innerHTML = `${innerHTML}`;
 
                 }
             }
@@ -80,8 +116,8 @@ function updateObjType(objType, colors, innerHTML) {
 }
 
 function resetBoard() {
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board.length; j++) {
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 7; j++) {
             let cell = boardHTML.rows[i].cells[j];
             cell.style.backgroundColor = 'gray';
             cell.innerHTML = '';
@@ -91,19 +127,24 @@ function resetBoard() {
 
 function updateLogs() {
     logsHTML.innerHTML = '';
-    for (let turn of logs.reverse()) {
+    for (let turn of game.logs.reverse()) {
         for (let line of turn) {
             logsHTML.innerHTML += `  ${line}<br>`;
         }
     }
 }
 
-function updateSquareInfo() {
-    const [y, x] = clicked;
-    squareInfoHTML.innerHTML = `Ships on coordinate (${x}, ${y}):<br><br>`;
-    for (let obj of board[y][x]) {
+function updateSquareInfo(x, y) {
+    squareInfoHTML.innerHTML = `Objects on coordinate (${x}, ${y}):<br><br>`;
+    for (let obj of game.board[y][x]) {
+
+        squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>: hp: ${obj.hp}`;
+
         if (obj.objType == 'Ship') {
-            squareInfoHTML.innerHTML += `${obj.shipId}<br>`;
+            squareInfoHTML.innerHTML += `, attack: ${obj.atk}, defense: ${obj.df}, cp cost: ${obj.cpCost}, maintenance cost: ${obj.maintCost}`;
         }
+
+        squareInfoHTML.innerHTML += `<br>`;
+
     }
 }
