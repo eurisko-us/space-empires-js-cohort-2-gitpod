@@ -3,7 +3,7 @@ class Buy100 {
     constructor() {
         this.simpleBoard = null;
         this.turn = 0;
-        this.player = null;
+        this.playerNum = null;
     }
 
     buyShips(cpBudget) {

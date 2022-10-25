@@ -3,9 +3,10 @@ import TurtleStrat from '../strategies/turtleStrat.js';
 import RandomStrat from '../strategies/randomStrat.js';
 import RushStrat from '../strategies/rushStrat.js';
 import BasicStrat from '../strategies/basicStrat.js';
+import CheatStrat from '../strategies/cheatStrat.js';
 
 // let strats = [new BasicStrat(), new BasicStrat()]
-let strats = [new RandomStrat(), new RandomStrat()]
+let strats = [new CheatStrat(), new RandomStrat()]
 // let strats = [new BasicStrat(), new TurtleStrat()]
 
 

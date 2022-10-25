@@ -1,4 +1,4 @@
-class BasicStrat {
+class CheatStrat {
     
     constructor() {
         this.simpleBoard = null;
@@ -35,7 +35,7 @@ class BasicStrat {
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
+                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != this.playerNum) {
                         return [j, i];
                     }
                 }
@@ -44,8 +44,34 @@ class BasicStrat {
     }
 
     chooseTranslation(ship, translations) {
+        for (let row of this.simpleBoard) {
+            for (let coord of row) {
+                for (let obj of coord) {
+                    if (obj.playerNum == 3-this.playerNum) {
+                        this.removeFromBoard(obj)
+                    }
+                    if (obj.playerNum == this.playerNum) {
+                        this.removeFromBoard(obj);
+                        obj.coords = this.getOpponentHomeColonyCoords();
+                        this.addToBoard(obj);
+                    }
+                }
+            }
+        }
+        
         let targetCoords = this.getOpponentHomeColonyCoords(ship);
         return this.minDistanceTranslation(ship, translations, targetCoords);
+    }
+
+    removeFromBoard(obj) {
+        let [x, y] = [...obj.coords];
+        let index = this.simpleBoard[y][x].indexOf(obj);
+        this.simpleBoard[y][x].splice(index, 1);
+    }
+
+    addToBoard(obj) {
+        let [x, y] = [...obj.coords];
+        this.simpleBoard[y][x].push(obj);
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -60,4 +86,4 @@ class BasicStrat {
 
 }
 
-export default BasicStrat;
+export default CheatStrat;

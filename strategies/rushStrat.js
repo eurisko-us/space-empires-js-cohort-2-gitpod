@@ -3,7 +3,7 @@ class RushStrat {
     constructor() {
         this.simpleBoard = null;
         this.turn = 0;
-        this.player = null;
+        this.playerNum = null;
     }
 
     dist(coords1, coords2) {
