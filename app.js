@@ -43,6 +43,7 @@ io.on('connection', (socket) => {
 
     socket.on('initialize game', () => {
         const strategies = [new BasicStrat(), new InputStrat(clientSockets)];
+        // const strategies = [new BasicStrat(), new BasicStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
         game.display();
@@ -61,6 +62,56 @@ io.on('connection', (socket) => {
 
     socket.on('auto run', () => {
         if (game) game.start();
+    });
+
+    socket.on('send input', (inputText) => {
+        game.updateInputText(inputText);
+    });
+
+    socket.on('buy input', () => {
+
+        let input;
+
+        socket.emit('update input text', 'Which ships would you like to buy? (Format: "<shipType> <amount>" OR "Done")');
+        socket.emit('update error text', 'why won\'t this work?');
+
+        socket.on("send input", (inputFromUI) => {
+
+            console.log('input from UI');
+
+            try {
+                waitingForInput = false;
+                
+                let cart = inputFromUI.split(' ');
+
+                if (cart[0] == "Done") {
+                    input = "Done";
+                } else if (typeof cart[1] != "number") {
+                    input = "input again";
+                } else {
+                    for (let ship of nullInstances) {
+                        if (cart[0] == ship.name) {
+                            input = [ship, cart[1]];
+                            break;
+                        }
+                    }
+                }
+
+            } catch {
+                waitingForInput = true;
+                socket.emit('update error text', "Please type a valid ship name and number");
+            }
+
+            if (inputFromUI == 'input again') {
+                waitingForInput = true;
+                socket.emit('update error text', "Please type a valid ship name and number");
+            }
+
+        });
+
+        console.log(input);
+        socket.emit('input is bought', input);
+
     });
 
 });

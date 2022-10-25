@@ -4,6 +4,7 @@ class TurtleStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'turtle';
     }
 
     chooseTranslation(ship, translations) {

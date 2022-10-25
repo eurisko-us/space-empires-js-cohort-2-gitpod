@@ -8,6 +8,7 @@ class InputStrat extends ParentStrat {
     constructor(clientSockets) {
         super(ParentStrat);
         this.clientSockets = clientSockets;
+        this.name = 'input';
     }
 
     chooseTranslation(ship, translations) {
@@ -47,17 +48,18 @@ class InputStrat extends ParentStrat {
             for (let socketId in this.clientSockets) {
                 let socket = this.clientSockets[socketId];
 
-                socket.emit('update error text', 'why won\'t this work?');
                 socket.emit('update input text', inputText);
+                socket.emit('update error text', 'why won\'t this work?');
+                // console.log('hi');
 
-                socket.on('update input text', (text) => console.log(`update input text: ${text}`));
-                socket.on('update error text', (text) => console.log(`update error text: ${text}`));
-                socket.on('update UI', () => console.log('initialize UI'));
-                socket.on('initialize UI', () => console.log('initialize UI'));
-                socket.on('initialize game', () => console.log('initialize game'));
-                socket.on('end game', () => console.log('end game'));
-                socket.on('next turn', () => console.log('next turn'));
-                socket.on('auto run', () => console.log('auto run'));
+                // socket.on('update input text', (text) => console.log(`update input text: ${text}`));
+                // socket.on('update error text', (text) => console.log(`update error text: ${text}`));
+                // socket.on('update UI', () => console.log('initialize UI'));
+                // socket.on('initialize UI', () => console.log('initialize UI'));
+                // socket.on('initialize game', () => console.log('initialize game'));
+                // socket.on('end game', () => console.log('end game'));
+                // socket.on('next turn', () => console.log('next turn'));
+                // socket.on('auto run', () => console.log('auto run'));
 
                 // if (getOnce) {
                 //     console.log(socket);
@@ -75,13 +77,11 @@ class InputStrat extends ParentStrat {
                             input = successFunction(inputFromUI);
                         } catch {
                             waitingForInput = true;
-                            // document.getElementById("errorText").innerHTML = errorText;
                             socket.emit('update error text', errorText);
                         }
 
                         if (input == 'input again') {
                             waitingForInput = true;
-                            // document.getElementById("errorText").innerHTML = errorText;
                             socket.emit('update error text', errorText);
                         }
 
@@ -236,23 +236,43 @@ class InputStrat extends ParentStrat {
 
     buyInput() {
 
-        let cart = this.getInputFromUI(
-            'Which ships would you like to buy? (Format: "<shipType> <amount>" OR "Done")',
-            "Please type a valid ship name and number",
-            (input) => {
+        // add while loop here
 
-                let cart = input.split(' ');
-                if (cart[0] == "Done") return "Done";
-                if (typeof cart[1] != "number") return "input again";
+        console.log('here');
 
-                for (let ship of nullInstances) {
-                    if (cart[0] == ship.name) {
-                        return [ship, cart[1]];
-                    }
-                }
+        let waiting = true;
+        let input;
 
-            }
-        );
+        for (let socketId in this.clientSockets) {
+            let socket = this.clientSockets[socketId];
+            socket.emit('buy input');
+            socket.on('input is bought', (inputBought) => {
+                waiting = false;
+                input = inputBought;
+            });
+        }
+
+        while (waiting) {}
+
+        console.log(`input: ${input}`);
+
+        // let cart = this.getInputFromUI(
+        //     'Which ships would you like to buy? (Format: "<shipType> <amount>" OR "Done")',
+        //     "Please type a valid ship name and number",
+        //     (input) => {
+
+        //         let cart = input.split(' ');
+        //         if (cart[0] == "Done") return "Done";
+        //         if (typeof cart[1] != "number") return "input again";
+
+        //         for (let ship of nullInstances) {
+        //             if (cart[0] == ship.name) {
+        //                 return [ship, cart[1]];
+        //             }
+        //         }
+
+        //     }
+        // );
 
         // let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
         // let cart = input.split(' ');
@@ -270,13 +290,13 @@ class InputStrat extends ParentStrat {
 
         // let bought = this.findBought(cart[0]);
 
-        return this.getInputFromUI(
-            `You would like to buy ${cart[1]} ${cart[0].name} for ${cart[0].cpCost * cart[1]} CP? (Y/N)`,
-            "Please only respond with Y or N",
-            (input) => {
-                if (input == 'Y') return cart;
-            }
-        );
+        // return this.getInputFromUI(
+        //     `You would like to buy ${cart[1]} ${cart[0].name} for ${cart[0].cpCost * cart[1]} CP? (Y/N)`,
+        //     "Please only respond with Y or N",
+        //     (input) => {
+        //         if (input == 'Y') return cart;
+        //     }
+        // );
 
         // let bought = this.findBought(cart[0]);
         // let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);

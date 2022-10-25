@@ -4,6 +4,7 @@ class BuyNoneStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'buyNone';
     }
 
     buyShips(cpBudget) {

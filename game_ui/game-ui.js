@@ -30,8 +30,12 @@ socket.on('update UI', (gameState) => {
     updateLogs();
 });
 
-socket.on('update error text', (text) => errorTextHTML.innerHTML = text);
+socket.on('change color', () => {
+    inputTextHTML.style.color = (inputTextHTML.style.color === 'white') ? 'green' : 'white';
+})
+
 socket.on('update input text', (text) => inputTextHTML.innerHTML = text);
+socket.on('update error text', (text) => errorTextHTML.innerHTML = text);
 
 function updateElementsById() {
 
@@ -106,9 +110,8 @@ function createEventListeners() {
 
     submitInputButton.addEventListener("click", () => {
         if (gameIsStarted) {
-            console.log(valueTextHTML.value);
             socket.emit('send input', valueTextHTML.value);
-            console.log('after');
+            errorTextHTML.innerHTML = valueTextHTML.value;
         }
     });
 
