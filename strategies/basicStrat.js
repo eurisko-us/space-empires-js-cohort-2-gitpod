@@ -4,6 +4,7 @@ class BasicStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'basic';
     }
 
     chooseTranslation(ship, translations) {

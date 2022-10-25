@@ -4,6 +4,7 @@ class OnlyP2MovesStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'onlyP2Moves';
     }
 
     chooseTranslation(ship, translations) {

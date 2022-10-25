@@ -7,6 +7,7 @@ class RandomStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'random';
     }
 
     chooseTranslation(ship, translations) {

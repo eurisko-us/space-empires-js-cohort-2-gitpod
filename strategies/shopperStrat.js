@@ -7,6 +7,7 @@ class ShopperStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'shopper';
     }
 
     chooseTranslation(ship, translations) {

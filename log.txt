@@ -129,3 +129,207 @@ Turn 3
 		Player 2 tried to go over budget
 	End Economic Phase
 
+Turn 4
+	Begin Movement Phase
+		Player 1 Dreadnaught 3 moved from (3, 2) to (3, 3)
+		Player 1 Dreadnaught 4 moved from (3, 2) to (3, 3)
+		Player 1 Dreadnaught 5 moved from (3, 2) to (3, 3)
+		Player 2 Dreadnaught 3 moved from (3, 4) to (3, 3)
+		Player 2 Dreadnaught 4 moved from (3, 4) to (3, 3)
+		Player 2 Dreadnaught 5 moved from (3, 4) to (3, 3)
+	End Movement Phase
+
+	Begin Combat Phase
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 5
+		Hit!
+		Player 2 Dreadnaught 5 hp: 3 -> 2
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 3
+		Hit!
+		Player 2 Dreadnaught 3 hp: 3 -> 2
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 5
+		Hit!
+		Player 2 Dreadnaught 5 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 5
+		Hit!
+		Player 1 Dreadnaught 5 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Hit!
+		Player 1 Dreadnaught 4 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 3
+		Hit!
+		Player 2 Dreadnaught 3 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 3
+		Hit!
+		Player 1 Dreadnaught 3 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 3
+		Hit!
+		Player 2 Dreadnaught 3 hp: 1 -> 0
+		Player 2 Dreadnaught 3 was destroyed
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 5
+		Hit!
+		Player 2 Dreadnaught 5 hp: 1 -> 0
+		Player 2 Dreadnaught 5 was destroyed
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 4
+		Hit!
+		Player 2 Dreadnaught 4 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Hit!
+		Player 1 Dreadnaught 4 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 4
+		Hit!
+		Player 2 Dreadnaught 4 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 3
+		Hit!
+		Player 1 Dreadnaught 3 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Hit!
+		Player 2 Dreadnaught 4 hp: 1 -> 0
+		Player 2 Dreadnaught 4 was destroyed
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 1 CP
+		Player 1 gained 10 CP and now has 11 CP
+		Player 1 now has 2 CP after paying maintenance
+		Player 1 tried to go over budget
+		Player 2 initially has 1 CP
+		Player 2 gained 10 CP and now has 11 CP
+		Player 2 now has 11 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 5
+	Begin Movement Phase
+		Player 1 Dreadnaught 3 moved from (3, 3) to (3, 4)
+		Player 1 Dreadnaught 4 moved from (3, 3) to (3, 4)
+		Player 1 Dreadnaught 5 moved from (3, 3) to (3, 4)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 2 CP
+		Player 1 gained 10 CP and now has 12 CP
+		Player 1 now has 3 CP after paying maintenance
+		Player 1 tried to go over budget
+		Player 2 initially has 11 CP
+		Player 2 gained 10 CP and now has 21 CP
+		Player 2 now has 21 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 6
+	Begin Movement Phase
+		Player 1 Dreadnaught 3 moved from (3, 4) to (3, 5)
+		Player 1 Dreadnaught 4 moved from (3, 4) to (3, 5)
+		Player 1 Dreadnaught 5 moved from (3, 4) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 3 CP
+		Player 1 gained 10 CP and now has 13 CP
+		Player 1 now has 4 CP after paying maintenance
+		Player 1 tried to go over budget
+		Player 2 initially has 21 CP
+		Player 2 gained 10 CP and now has 31 CP
+		Player 2 now has 31 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 7
+	Begin Movement Phase
+		Player 1 Dreadnaught 3 moved from (3, 5) to (3, 6)
+		Player 1 Dreadnaught 4 moved from (3, 5) to (3, 6)
+		Player 1 Dreadnaught 5 moved from (3, 5) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 4 CP
+		Player 1 gained 10 CP and now has 14 CP
+		Player 1 now has 5 CP after paying maintenance
+		Player 1 tried to go over budget
+		Player 2 initially has 31 CP
+		Player 2 gained 10 CP and now has 41 CP
+		Player 2 now has 41 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Winner: Player 1

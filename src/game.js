@@ -383,50 +383,41 @@ class Game {
     }
 
     buyShips(player) {
+
         let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
 
-        if (player.buyShips().length == 0) {
-            this.log.boughtNoShips(player)
+        if (player.buyShips().length == 0) this.log.boughtNoShips(player);
+
+        let totalCost = this.calcTotalCost(playerShips);
+
+        if (totalCost > player.cp) {
+            this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
+            return;
         }
 
-        if (player.buyShips().length > 0) {
-            let totalCost = this.calcTotalCost(playerShips);
+        player.cp -= totalCost;
+        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
 
-            if (totalCost > player.cp) {
-                this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
-                return;
-            }
+        if (playerShips) {
+            for (let ship of playerShips) {
+                for (let shipName in ship) {
+                    for (let i = 0; i < ship[shipName]; i++) {
 
-            if (totalCost <= player.cp){
+                        let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
+                        if (!ship) continue;
 
-            
-            player.cp -= totalCost;
-            assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
+                        player.addShip(ship);
+                        assert (player.ships.includes(ship), 'Ship was not added to player.ships');
 
-            if (playerShips) {
-                for (let ship of playerShips) {
-                    for (let shipName in ship) {
-                        for (let i = 0; i < ship[shipName]; i++) {
+                        this.addToBoard(ship);
+                        assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
 
-                            let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
-                            if (!ship) continue;
+                        this.log.buyShip(player, ship);
+                        this.updateSimpleBoard();
 
-                            player.addShip(ship);
-                            assert (player.ships.includes(ship), 'Ship was not added to player.ships');
-
-                            this.addToBoard(ship);
-                            assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
-
-                            this.log.buyShip(player, ship);
-                            this.updateSimpleBoard()
-
-                        }
                     }
                 }
-
             }
-        }
-        
         }
 
         this.log.playerCPRemaining(player);
@@ -459,12 +450,6 @@ class Game {
             total += elem;
         }
         return total;
-    }
-
-    getRandomInteger(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     getLogs(data) {
@@ -500,7 +485,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            readFile('log.txt', (_, data) => {               
+            readFile('log.txt', (_, data) => {
                 socket.emit('update UI', {
                     board: this.board,
                     logs: this.getLogs(data)
