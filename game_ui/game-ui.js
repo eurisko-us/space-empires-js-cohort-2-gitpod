@@ -12,9 +12,6 @@ let nextTurnButton;
 let autoRunButton;
 let endGameButton;
 
-let valueTextHTML;
-let submitInputButton;
-
 socket.on('initialize UI', () => {
     updateElementsById();
     (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
@@ -30,13 +27,6 @@ socket.on('update UI', (gameState) => {
     updateLogs();
 });
 
-socket.on('change color', () => {
-    inputTextHTML.style.color = (inputTextHTML.style.color === 'white') ? 'green' : 'white';
-})
-
-socket.on('update input text', (text) => inputTextHTML.innerHTML = text);
-socket.on('update error text', (text) => errorTextHTML.innerHTML = text);
-
 function updateElementsById() {
 
     boardHTML      = document.getElementById("board");
@@ -47,11 +37,6 @@ function updateElementsById() {
     endGameButton  = document.getElementById("endGame");
     nextTurnButton = document.getElementById("nextTurn");
     autoRunButton  = document.getElementById("autoRun");
-
-    inputTextHTML = document.getElementById("inputText");
-    errorTextHTML = document.getElementById("errorText");
-    valueTextHTML = document.getElementById("valueText");
-    submitInputButton = document.getElementById("submitInput");
 
 }
 
@@ -105,13 +90,6 @@ function createEventListeners() {
     autoRunButton.addEventListener("click", () => {
         if (gameIsStarted) {
             socket.emit('auto run');
-        }
-    });
-
-    submitInputButton.addEventListener("click", () => {
-        if (gameIsStarted) {
-            socket.emit('send input', valueTextHTML.value);
-            errorTextHTML.innerHTML = valueTextHTML.value;
         }
     });
 

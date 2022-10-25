@@ -494,15 +494,6 @@ class Game {
         }
     }
 
-    updateInputText(inputText) {
-        console.log('game.js updateInputText before');
-        for (let socketId in this.clientSockets) {
-            let socket = this.clientSockets[socketId];
-            socket.emit('update input text', inputText);
-        }
-        console.log('game.js updateInputText after');
-    }
-
 };
 
 export default Game;

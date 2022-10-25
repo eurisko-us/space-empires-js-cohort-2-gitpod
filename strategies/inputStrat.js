@@ -1,13 +1,12 @@
 import { nullInstances } from '../src/ships.js';
 import ParentStrat from './parentStrat.js';
-// import promptSync from 'prompt-sync';
-// const prompt = promptSync();
+import promptSync from 'prompt-sync';
+const prompt = promptSync();
 
 class InputStrat extends ParentStrat {
     
-    constructor(clientSockets) {
+    constructor() {
         super(ParentStrat);
-        this.clientSockets = clientSockets;
         this.name = 'input';
     }
 
@@ -36,66 +35,6 @@ class InputStrat extends ParentStrat {
         return true;
     }
 
-    getInputFromUI(inputText, errorText, successFunction) {
-
-        let waitingForInput = true;
-        let input;
- 
-        let getOnce = true;
-
-        while (waitingForInput) {
-            
-            for (let socketId in this.clientSockets) {
-                let socket = this.clientSockets[socketId];
-
-                socket.emit('update input text', inputText);
-                socket.emit('update error text', 'why won\'t this work?');
-                // console.log('hi');
-
-                // socket.on('update input text', (text) => console.log(`update input text: ${text}`));
-                // socket.on('update error text', (text) => console.log(`update error text: ${text}`));
-                // socket.on('update UI', () => console.log('initialize UI'));
-                // socket.on('initialize UI', () => console.log('initialize UI'));
-                // socket.on('initialize game', () => console.log('initialize game'));
-                // socket.on('end game', () => console.log('end game'));
-                // socket.on('next turn', () => console.log('next turn'));
-                // socket.on('auto run', () => console.log('auto run'));
-
-                // if (getOnce) {
-                //     console.log(socket);
-                //     getOnce = false;
-                // }
-
-                socket.on("send input", (inputFromUI) => {
-
-                    console.log('input from UI');
-
-                    if (waitingForInput) {
-
-                        try {
-                            waitingForInput = false;
-                            input = successFunction(inputFromUI);
-                        } catch {
-                            waitingForInput = true;
-                            socket.emit('update error text', errorText);
-                        }
-
-                        if (input == 'input again') {
-                            waitingForInput = true;
-                            socket.emit('update error text', errorText);
-                        }
-
-                    }
-
-                });
-            }
-
-        }
-
-        return input;
-
-    }
-
     getInputTranslation() {
 
         let inputMap = {
@@ -106,40 +45,8 @@ class InputStrat extends ParentStrat {
             'stay':  [0, 0],
         };
 
-        // let input = prompt("Pick a direction (up, down, left, right, stay) : ");
-
-        return this.getInputFromUI(
-            "Where you do want to move? (up, down, left, right, stay)",
-            "Not an available move. Try again!",
-            (input) => {
-                return inputMap[input];
-            }
-        );
-
-        // let waitingForInput = true;
-        // let move;
-
-        // while (waitingForInput) {
-
-        //     document.getElementById("inputText").innerHTML = "Where you do want to move? (up, down, left, right, stay)";
-            
-        //     socket.on("send input", (input) => {
-
-        //         if (waitingForInput) {
-        //             try {
-        //                 move = inputMap[input.input];
-        //                 waitingForInput = false;
-        //             } catch {
-        //                 waitingForInput = true;
-        //                 document.getElementById("errorText").innerHTML = "Not an available move. Try again!";
-        //             }
-        //         }
-
-        //     });
-
-        // }
-
-        // return move;
+        let input = prompt("Pick a direction (up, down, left, right, stay) : ");
+        return inputMap[input];
 
     }
 
@@ -151,63 +58,19 @@ class InputStrat extends ParentStrat {
 
     combatInput(opponentShips) {
 
-        return this.getInputFromUI(
-            'Pick an opponent ship to fight (Format: "<shipType> <shipNum>")',
-            "Not an available opponent. Try again!",
-            (input) => {
-                opponent = input.split(' ');
-                for (let ship of opponentShips) {
-                    if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
-                        return ship;
-                    }
-                }
+        let opponent = prompt('Pick an opponent (Format: "<shipType> <shipNum>"): '); // Auto assumes enemy player
+        opponent = opponent.split(' ');
+        console.log(opponentShips);
+
+        for (let ship of opponentShips) {
+            if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
+                return ship;
             }
-        );
+        }
 
-        // let waitingForInput = true;
-        // let opponent;
-
-        // while (waitingForInput) {
-
-        //     document.getElementById("inputText").innerHTML = 'Pick an opponent ship to fight (Format: "<shipType> <shipNum>")';
-            
-        //     socket.on("send input", (input) => {
-
-        //         if (waitingForInput) {
-        //             try {
-
-        //                 opponent = input.input.split(' ');
-        //                 waitingForInput = false;
-
-        //                 for (let ship of opponentShips) {
-        //                     if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
-        //                         return ship;
-        //                     }
-        //                 }
-
-        //             } catch {
-        //                 waitingForInput = true;
-        //                 document.getElementById("errorText").innerHTML = "Not an available opponent. Try again!";
-        //             }
-        //         }
-
-        //     });
-
-        // }
-
-        // let opponent = prompt('Pick an opponent (Format: "<shipType> <shipNum>"): '); // Auto assumes enemy player
-        // let opponent = opponent.split(' ');
-        // console.log(opponentShips);
-
-        // for (let ship of opponentShips) {
-        //     if (ship.name == opponent[0] && ship.shipNum == opponent[1]) {
-        //         return ship;
-        //     }
-        // }
-
-        // console.log(`Opponent does not have a ${opponent}, try again`);
-        // console.log('just gonna skip that for now');
-        // return opponentShips[Math.floor(Math.random() * opponentShips.length)];
+        console.log(`Opponent does not have a ${opponent}, try again`);
+        console.log('just gonna skip that for now');
+        return opponentShips[Math.floor(Math.random() * opponentShips.length)];
 
     }
 
@@ -218,7 +81,7 @@ class InputStrat extends ParentStrat {
 
         while (true) {
 
-            // console.log(`You currently have ${cpBudget - spent} CP`);
+            console.log(`You currently have ${cpBudget - spent} CP`);
             this.printBoughtShips(shipList);
 
             let input = this.buyInput();
@@ -236,72 +99,24 @@ class InputStrat extends ParentStrat {
 
     buyInput() {
 
-        // add while loop here
+        let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
+        let cart = input.split(' ');
 
-        console.log('here');
-
-        let waiting = true;
-        let input;
-
-        for (let socketId in this.clientSockets) {
-            let socket = this.clientSockets[socketId];
-            socket.emit('buy input');
-            socket.on('input is bought', (inputBought) => {
-                waiting = false;
-                input = inputBought;
-            });
+        while (cart.length == 1) {
+            return 'Done';
         }
 
-        while (waiting) {}
+        cart[1] = + cart[1];
 
-        console.log(`input: ${input}`);
+        while (cart[1] === NaN) {
+            cart[1] = prompt('Please type a valid number');
+            cart[1] = + cart[1];
+        }
 
-        // let cart = this.getInputFromUI(
-        //     'Which ships would you like to buy? (Format: "<shipType> <amount>" OR "Done")',
-        //     "Please type a valid ship name and number",
-        //     (input) => {
-
-        //         let cart = input.split(' ');
-        //         if (cart[0] == "Done") return "Done";
-        //         if (typeof cart[1] != "number") return "input again";
-
-        //         for (let ship of nullInstances) {
-        //             if (cart[0] == ship.name) {
-        //                 return [ship, cart[1]];
-        //             }
-        //         }
-
-        //     }
-        // );
-
-        // let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
-        // let cart = input.split(' ');
-
-        // while (cart.length == 1) {
-        //     return 'Done';
-        // }
-
-        // cart[1] = + cart[1];
-
-        // while (cart[1] === NaN) {
-        //     cart[1] = prompt('Please type a valid number');
-        //     cart[1] = + cart[1];
-        // }
-
-        // let bought = this.findBought(cart[0]);
-
-        // return this.getInputFromUI(
-        //     `You would like to buy ${cart[1]} ${cart[0].name} for ${cart[0].cpCost * cart[1]} CP? (Y/N)`,
-        //     "Please only respond with Y or N",
-        //     (input) => {
-        //         if (input == 'Y') return cart;
-        //     }
-        // );
-
-        // let bought = this.findBought(cart[0]);
-        // let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);
-        // if (confirm == 'Y') return [bought, cart[1]];
-        // return this.buyInput();
+        let bought = this.findBought(cart[0]);
+        let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);
+        if (confirm == 'Y') return [bought, cart[1]];
+        return this.buyInput();
 
     }
     
@@ -313,15 +128,15 @@ class InputStrat extends ParentStrat {
             }
         }
 
-        // let input = prompt('Please type a valid ship type: ');
-        // return this.findBought(input);
+        let input = prompt('Please type a valid ship type: ');
+        return this.findBought(input);
 
     }
 
     printBoughtShips(shipList) {
         
-        // console.log('You have bought...');
-        // if (shipList.length == 0) console.log('Nothing');
+        console.log('You have bought...');
+        if (shipList.length == 0) console.log('Nothing');
         
         for (const ship of shipList) {
             const [shipName, numShips] = Object.entries(ship)[0];
