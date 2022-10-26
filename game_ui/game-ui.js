@@ -1,4 +1,4 @@
-const socket = io();
+let socket = io();
 
 let game;
 let gameIsStarted = false;
@@ -11,6 +11,11 @@ let initGameButton;
 let nextTurnButton;
 let autoRunButton;
 let endGameButton;
+
+let questionTextHTML;
+let errorTextHTML;
+let inputFormHTML;
+let inputTextHTML;
 
 socket.on('initialize UI', () => {
     updateElementsById();
@@ -27,6 +32,10 @@ socket.on('update UI', (gameState) => {
     updateLogs();
 });
 
+socket.on('ask question', (question) => {
+    questionTextHTML.innerHTML = question;
+});
+
 function updateElementsById() {
 
     boardHTML      = document.getElementById("board");
@@ -37,6 +46,11 @@ function updateElementsById() {
     endGameButton  = document.getElementById("endGame");
     nextTurnButton = document.getElementById("nextTurn");
     autoRunButton  = document.getElementById("autoRun");
+
+    questionTextHTML = document.getElementById("questionText");
+    errorTextHTML    = document.getElementById("errorText");
+    inputFormHTML    = document.getElementById("inputForm");
+    inputTextHTML    = document.getElementById("inputText");
 
 }
 
@@ -91,6 +105,28 @@ function createEventListeners() {
         if (gameIsStarted) {
             socket.emit('auto run');
         }
+    });
+
+    inputFormHTML.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+        socket.emit('submit input');
+        console.log('submit input');
+
+        // if (gameIsStarted) {
+
+        //     e.preventDefault();
+        //     updateElementsById();
+
+        //     if (inputTextHTML.value !== '') {
+        //         socket.emit('submit input', inputTextHTML.value);
+        //         inputTextHTML.value = '';
+        //         errorText.innerHTML = 'aaa';
+        //     } else {
+        //         errorText.innerHTML = 'You must input something!';
+        //     }
+
+        // }
     });
 
 }

@@ -22,28 +22,20 @@ const io = new Server(httpServer);
 app.use(express.static('game_ui'));
 app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
-let game = null;
-let clientSockets = {};
-
 io.on('connection', (socket) => {
 
-    let socketId = socket.id;
-    clientSockets[socketId] = socket;
-
     console.log(`Client socket connected: ${socket.id}`);
-
-    socket.on('disconnect', () => {
-        console.log(`Client socket disconnected: ${socketId}`);
-        delete clientSockets[socketId];
-    });
+    socket.on('disconnect', () => console.log(`Client socket disconnected: ${socket.id}`));
 
     // below is our code
+
+    let game;
 
     socket.emit('initialize UI');
 
     socket.on('initialize game', () => {
-        const strategies = [new BasicStrat(), new InputStrat()];
-        game = new Game(clientSockets, strategies);
+        const strategies = [new BasicStrat(), new InputStrat(socket)];
+        game = new Game(socket, strategies);
         game.initializeGame();
         game.display();
     });
@@ -61,6 +53,13 @@ io.on('connection', (socket) => {
 
     socket.on('auto run', () => {
         if (game) game.start();
+    });
+
+    socket.on('submit input', (input) => {
+        console.log(`new input: ${input}`);
+        // let inputStrat = game.strategies.filter(strat => strat.name == 'input');
+        // if (inputStrat.length > 1) console.log("game doesn't work with 2 input players yet");
+        // inputStrat[0].input = input;
     });
 
 });

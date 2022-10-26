@@ -5,9 +5,11 @@ const prompt = promptSync();
 
 class InputStrat extends ParentStrat {
     
-    constructor() {
+    constructor(socket) {
         super(ParentStrat);
         this.name = 'input';
+        this.socket = socket;
+        this.input = null;
     }
 
     chooseTranslation(ship, translations) {
@@ -99,23 +101,27 @@ class InputStrat extends ParentStrat {
 
     buyInput() {
 
-        let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
-        let cart = input.split(' ');
+        this.socket.emit('ask question', 'Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done"');
 
-        while (cart.length == 1) {
-            return 'Done';
-        }
+        // wait for input
+        while (this.input === null) {}
 
-        cart[1] = + cart[1];
+        // let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
+        let cart = this.input.split(' ');
+        this.input = null;
 
-        while (cart[1] === NaN) {
-            cart[1] = prompt('Please type a valid number');
-            cart[1] = + cart[1];
-        }
+        if (cart.length == 1) return 'Done';
+
+        // cart[1] = + cart[1];
+
+        // while (cart[1] === NaN) {
+        //     cart[1] = prompt('Please type a valid number');
+        //     // cart[1] = + cart[1];
+        // }
 
         let bought = this.findBought(cart[0]);
-        let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);
-        if (confirm == 'Y') return [bought, cart[1]];
+        let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Yes/No)`);
+        if (confirm.toLowerCase() == 'yes') return [bought, cart[1]];
         return this.buyInput();
 
     }

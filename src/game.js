@@ -8,9 +8,9 @@ import Logger from './logger.js';
 
 class Game {
     
-    constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
+    constructor(socket, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
         
-        this.clientSockets = clientSockets;
+        this.socket = socket;
         this.boardSize = 7;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
@@ -483,15 +483,12 @@ class Game {
     }
 
     display() {
-        for (let socketId in this.clientSockets) {
-            let socket = this.clientSockets[socketId];
-            readFile('log.txt', (_, data) => {
-                socket.emit('update UI', {
-                    board: this.board,
-                    logs: this.getLogs(data)
-                });
+        readFile('log.txt', (_, data) => {
+            this.socket.emit('update UI', {
+                board: this.board,
+                logs: this.getLogs(data)
             });
-        }
+        });
     }
 
 };
