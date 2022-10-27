@@ -21,12 +21,8 @@ const io = new Server(httpServer);
 app.use(express.static('game_ui'));
 app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
+let game = null
 let clientSockets = {};
-
-const strategies = [new RandomStrat(), new UserStrategy()];
-const game = new Game(clientSockets, strategies);
-
-game.initializeGame();
 
 io.on('connection', (socket) => {
 
@@ -41,19 +37,20 @@ io.on('connection', (socket) => {
         clearInterval(game.stopInterval);
     });
 
-    //*
+    /*
     game.start(); // so that game doesn't start until socket connects
 
 });
 
 httpServer.listen(3001, () => console.log('Listening on *:3000'));
 //*/
-/*
+//*
     // below is our code
 
     socket.emit('initialize UI');
 
     socket.on('initialize game', () => {
+        //const strategies = [new BasicStrat(), new UserStrategy()];
         const strategies = [new BasicStrat(), new BasicStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
@@ -77,5 +74,5 @@ httpServer.listen(3001, () => console.log('Listening on *:3000'));
 
 });
 
-httpServer.listen(3000, () => console.log('Listening on *:3000'));
+httpServer.listen(3004, () => console.log('Listening on *:3000'));
 //*/
