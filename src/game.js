@@ -47,6 +47,8 @@ class Game {
 
         for (let i = 0; i < this.players.length; i++) {
 
+            this.buyShips(this.players[i]);
+
             // buy home colony
 
             const halfBoardSize = (this.boardSize - 1) / 2;
@@ -59,6 +61,7 @@ class Game {
             }
 
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
+            homeColony.setHomeColonyId()
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
