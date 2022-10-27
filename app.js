@@ -4,7 +4,6 @@ import { Server } from 'socket.io';
 
 import Game from './src/game.js';
 
-import Strategy from './strategies/strategy.js';
 import UserStrategy from './strategies/user_strat.js';
 
 // connect to web socket (aka display on web browser)
@@ -24,7 +23,7 @@ app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
 
 let clientSockets = {};
 
-const strategies = [new Strategy(), new UserStrategy()];
+const strategies = [new RandomStrat(), new UserStrategy()];
 const game = new Game(clientSockets, strategies);
 
 game.initializeGame();
@@ -41,13 +40,14 @@ io.on('connection', (socket) => {
         delete clientSockets[socketId];
         clearInterval(game.stopInterval);
     });
-    
+
+    //*
     game.start(); // so that game doesn't start until socket connects
 
 });
 
 httpServer.listen(3001, () => console.log('Listening on *:3000'));
-
+//*/
 /*
     // below is our code
 
@@ -78,4 +78,4 @@ httpServer.listen(3001, () => console.log('Listening on *:3000'));
 });
 
 httpServer.listen(3000, () => console.log('Listening on *:3000'));
-*/
+//*/

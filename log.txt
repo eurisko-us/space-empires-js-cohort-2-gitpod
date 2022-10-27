@@ -1,63 +1,12 @@
 Begin Game
-Turn 1
-	Begin Economic Phase
-		Player 1 initially has 150 CP
-		Player 1 gained 10 CP and now has 160 CP
-		Player 1 now has 160 CP after paying maintenance
+		Player 1 bought a BattleCruiser
 		Player 1 bought a Dreadnaught
-		Player 1 bought a Dreadnaught
-		Player 1 bought a Dreadnaught
-		Player 1 bought a Dreadnaught
-		Player 1 bought a Dreadnaught
-		Player 1 has 40 CP remaining
-		Player 2 initially has 150 CP
-		Player 2 gained 10 CP and now has 160 CP
-		Player 2 now has 160 CP after paying maintenance
-		Player 2 has 160 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 1)
-		Player 1 Dreadnaught 2 moved from (3, 0) to (3, 1)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 1)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 1)
-		Player 1 Dreadnaught 5 moved from (3, 0) to (3, 1)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-Turn 2
-	Begin Economic Phase
-		Player 1 initially has 40 CP
-		Player 1 gained 10 CP and now has 50 CP
-		Player 1 now has 35 CP after paying maintenance
-		Player 1 tried to go over budget
-		Player 2 initially has 160 CP
-		Player 2 gained 10 CP and now has 170 CP
-		Player 2 now has 170 CP after paying maintenance
-		Player 2 has 170 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 1 Dreadnaught 1 moved from (3, 1) to (3, 2)
-		Player 1 Dreadnaught 2 moved from (3, 1) to (3, 2)
-		Player 1 Dreadnaught 3 moved from (3, 1) to (3, 2)
-		Player 1 Dreadnaught 4 moved from (3, 1) to (3, 2)
-		Player 1 Dreadnaught 5 moved from (3, 1) to (3, 2)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-Turn 3
-	Begin Economic Phase
-		Player 1 initially has 35 CP
-		Player 1 gained 10 CP and now has 45 CP
-		Player 1 now has 30 CP after paying maintenance
-		Player 1 tried to go over budget
-		Player 2 initially has 170 CP
-		Player 2 gained 10 CP and now has 180 CP
-		Player 2 now has 180 CP after paying maintenance
-		Player 2 has 180 CP remaining
-	End Economic Phase
+		Player 1 bought a Cruiser
+		Player 1 bought a Destroyer
+		Player 1 bought a Battleship
+		Player 1 bought a BattleCruiser
+		Player 1 bought a BattleCruiser
+		Player 1 bought a Destroyer
+		Player 1 bought a Scout
+		Player 1 bought a Battleship
+		Player 1 has 5 CP remaining
