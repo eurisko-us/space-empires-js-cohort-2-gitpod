@@ -179,10 +179,10 @@ class ColonyShip extends Ship {
         this.cpCost = 8;
         this.maintCost = 0;
 
-        this.setShipId();
+        this.setId();
     }
 }
-const nullInstances = [new Scout(null,null,null), new BattleCruiser(null,null,null), new Battleship(null,null,null), new Cruiser(null,null,null), new Destroyer(null,null,null), new Dreadnaught(null,null,null), new ColonyShip(null,null,null)];
+//const nullInstances = [new Scout(null,null,null), new BattleCruiser(null,null,null), new Battleship(null,null,null), new Cruiser(null,null,null), new Destroyer(null,null,null), new Dreadnaught(null,null,null), new ColonyShip(null,null,null)];
 
 const nullInstances = [
     new Scout(null, null, null),

@@ -46,9 +46,6 @@ class Game {
         }
 
         for (let i = 0; i < this.players.length; i++) {
-
-            this.buyShips(this.players[i]);
-
             // buy home colony
 
             const halfBoardSize = (this.boardSize - 1) / 2;
