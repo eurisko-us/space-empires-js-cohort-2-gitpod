@@ -1,6 +1,6 @@
 import Game from '../src/game.js';
 import { Scout, Cruiser, Dreadnaught } from '../src/ships.js';
-import TestStrat from '../strategies/testStrat.js';
+import OnlyP2MovesStrat from '../strategies/onlyP2MovesStrat.js';
 import BasicStrat from '../strategies/basicStrat.js';
 import assert, { deepEqual } from 'assert';
 

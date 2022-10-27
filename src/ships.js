@@ -2,24 +2,24 @@ class Ship {
 
     constructor() {
         this.objType = 'Ship';
-        this.shipId = null;
+        this.id = null;
     }
 
-    setShipId() {
-        this.shipId = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
+    setId() {
+        this.id = `Player ${this.playerNum} ${this.name} ${this.shipNum}`;
     }
 
 };
 
 // extends makes the class a child class of the parent class
 // super () makes it so that the child class inherits and constructs everything from the parent class
-// could remove shipNum later if never used, only being used to make shipId
+// could remove shipNum later if never used, only being used to make id
 // When checking, ships are referred to by player number (playerNum), ship name (name), and ship number (shipNum)
 
 class Scout extends Ship {
     constructor(coords, playerNum, shipNum) {
 
-        super(Ship); 
+        super(Ship);
 
         this.hp = 1;
         this.atk = 3;
@@ -35,7 +35,7 @@ class Scout extends Ship {
         this.cpCost = 6;
         this.maintCost = 1;
 
-        this.setShipId();
+        this.setId();
 
     }
 }
@@ -59,7 +59,7 @@ class BattleCruiser extends Ship {
         this.cpCost = 15;
         this.maintCost = 2;
 
-        this.setShipId();
+        this.setId();
 
     }
 }
@@ -83,7 +83,7 @@ class Battleship extends Ship {
         this.cpCost = 20;
         this.maintCost = 3;
 
-        this.setShipId();
+        this.setId();
 
     }
 }
@@ -107,7 +107,7 @@ class Cruiser extends Ship {
         this.cpCost = 12;
         this.maintCost = 2;
 
-        this.setShipId();
+        this.setId();
 
     }
 }
@@ -131,7 +131,7 @@ class Destroyer extends Ship {
         this.cpCost = 9;
         this.maintCost = 1;
 
-        this.setShipId();
+        this.setId();
 
     }
 }
@@ -155,7 +155,7 @@ class Dreadnaught extends Ship {
         this.cpCost = 24;
         this.maintCost = 3;
 
-        this.setShipId();
+        this.setId();
 
     }
 }
@@ -182,6 +182,17 @@ class ColonyShip extends Ship {
         this.setShipId();
     }
 }
-const nullInstances = [new Scout(null,null,null), new BattleCruiser(null,null,null), new Battleship(null,null,null), new Cruiser(null,null,null), new Destroyer(null,null,null), new Dreadnaught(null,null,null)];
-const allShips = [Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught];
-export { nullInstances, allShips, Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught };
+const nullInstances = [new Scout(null,null,null), new BattleCruiser(null,null,null), new Battleship(null,null,null), new Cruiser(null,null,null), new Destroyer(null,null,null), new Dreadnaught(null,null,null), new ColonyShip(null,null,null)];
+
+const nullInstances = [
+    new Scout(null, null, null),
+    new BattleCruiser(null, null, null),
+    new Battleship(null, null, null),
+    new Cruiser(null, null, null),
+    new Destroyer(null, null, null),
+    new Dreadnaught(null, null, null),
+    new ColonyShip(null,null,null)
+];
+
+const allShips = [Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught, ColonyShip];
+export { nullInstances, allShips, Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught, ColonyShip };
