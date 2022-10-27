@@ -91,7 +91,7 @@ class Logger {
     }
 
     boughtNoShips(player) {
-        this.write(`\t\tPlayer ${player.playerNum} decided to buy no ships \n`)
+        this.write(`\t\tPlayer ${player.playerNum} didn't buy any ships \n`)
     }
 
     playerCPRemaining(player) {
