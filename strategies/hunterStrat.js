@@ -4,6 +4,7 @@ class HunterStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'hunter';
     }
 
     getClosestOpponentShipCoords(ship) {

@@ -4,6 +4,7 @@ class RushStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
+        this.name = 'rush';
     }
 
     chooseTranslation(ship, translations) {
