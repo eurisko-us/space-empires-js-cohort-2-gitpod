@@ -53,8 +53,8 @@ httpServer.listen(3001, () => console.log('Listening on *:3000'));
     socket.emit('initialize UI');
 
     socket.on('initialize game', () => {
-        //const strategies = [new BasicStrat(), new UserStrategy()];
-        const strategies = [new BasicStrat(), new BasicStrat()];
+        const strategies = [new BasicStrat(), new UserStrategy()];
+        //const strategies = [new BasicStrat(), new BasicStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
         game.display();
@@ -77,5 +77,5 @@ httpServer.listen(3001, () => console.log('Listening on *:3000'));
 
 });
 
-httpServer.listen(3004, () => console.log('Listening on *:3000'));
+httpServer.listen(3007, () => console.log('Listening on *:3000'));
 //*/

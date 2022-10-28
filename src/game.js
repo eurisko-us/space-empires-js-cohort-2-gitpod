@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { readFile } from 'fs';
 import assert from 'assert';
 
 import { allShips } from './ships.js';
@@ -82,8 +83,6 @@ class Game {
         this.display();
 
         if (this.winner) {
-            this.log.playerWin(this.winner);
-            clearInterval(this.stopInterval);
             return;
         }
 
@@ -97,6 +96,12 @@ class Game {
         } else {
             this.winner = 'Tie';
         }
+
+        if (this.winner) {
+            this.log.playerWin(this.winner);
+            clearInterval(this.stopInterval);
+        }
+        this.display();
 
     }
 
@@ -137,7 +142,7 @@ class Game {
                 this.addToBoard(ship);
                 this.log.shipMovement(oldCoords, ship);
                 this.updateSimpleBoard();
-                //???this.display()
+                this.display()
 
             }
         }
@@ -156,6 +161,7 @@ class Game {
             
             while (this.numPlayersInCombatOrder(combatOrder) > 1) {
                 for (let ship of combatOrder) {
+                    this.display();
 
                     if (this.numPlayersInCombatOrder(combatOrder) == 1) break;
 
@@ -197,6 +203,7 @@ class Game {
         this.log.beginPhase('Economic');
 
         for (let player of this.players) {
+            this.display();
             
             this.log.playerCP(player); // gain cp
             player.cp += this.cpPerRound; 
@@ -210,6 +217,7 @@ class Game {
         }
 
         this.log.endPhase("Economic");
+        this.display();
 
     }
 
@@ -477,6 +485,9 @@ class Game {
             }
 
         }
+        //console.log(turn)
+        logs.push(turn)
+        //console.log(logs)
         
         if (this.winner) logs.push([`Winner: Player ${this.winner}<br>`]);
         return logs;
@@ -484,27 +495,29 @@ class Game {
     }
 
     display() {
-        //console.log(`Running game.display()`);
+        console.log(`Running game.display()`);
 
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            //???console.log('running dislplay')
-            //console.log(`About to emit gameState to socket ${socketId}`);
+            //*
+            console.log('running dislplay')
+            console.log(`About to emit gameState to socket ${socketId}`);
 
             let data = fs.readFileSync('log.txt');
-            //???console.log(this.getLogs(data))
+            console.log(this.getLogs(data))
 
-            //console.log(`Actually emitting gameState to socket ${socketId}`);              
-            socket.emit('state', { 
+            console.log(`Actually emitting gameState to socket ${socketId}`);              
+            socket.emit('update UI', {
                 board: this.board,
                 logs: this.getLogs(data)
+            //*/
             /*
             readFile('log.txt', (_, data) => {
                 socket.emit('update UI', {
                     board: this.board,
                     logs: this.getLogs(data)
                 });
-            */
+            //*/
             });
         }
     }
