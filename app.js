@@ -33,6 +33,7 @@ io.on('connection', (socket) => {
     clientSockets[socketId] = socket;
 
     console.log(`Client socket connected: ${socket.id}`);
+    if (game) game.display();
 
     socket.on('disconnect', () => {
         console.log(`Client socket disconnected: ${socketId}`);
@@ -57,7 +58,7 @@ httpServer.listen(3001, () => console.log('Listening on *:3000'));
         //const strategies = [new BasicStrat(), new BasicStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
-        game.display();
+        //game.display();
     });
 
     socket.on('end game', () => {

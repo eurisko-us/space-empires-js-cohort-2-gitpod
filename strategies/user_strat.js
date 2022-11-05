@@ -11,7 +11,8 @@ class UserStrategy {
     }
 
     chooseTranslation(ship, translations) {
-        console.log('\n\n');
+        console.log(`\n----------- Begin User Input (Move Ships) -----------\n`)
+
         console.log(`${ship.shipId} is at ${ship.coords}`);
         console.log(`Possible movements are Check The Damn Board`);
 
@@ -20,6 +21,9 @@ class UserStrategy {
             console.log('That doesnt work, turn forfit');
             trans = [0,0];
         }
+
+        console.log(`\n----------- End User Input (Move Ships) -----------\n`)
+
         return trans;
     }
 
@@ -85,15 +89,26 @@ class UserStrategy {
         let shipList = []
         let spent = 0
 
+        console.log(`\n----------- Begin User Input (Buy Ships) -----------\n`);
+
         while (true) {
             console.log(`You currently have ${cpBudget-spent} CP`)
             this.printBoughtShips(shipList)
+
             let input = this.buyInput()
-            if (input == 'Done') break
+            if (input == 'Done') {
+                break
+            }
+
             let shipDict = {}
             shipDict[input[0].name] = input[1]
             shipList.push(shipDict)
+
+            console.log(``);
         }
+
+        console.log(`\n----------- End User Input (Buy Ships) -----------\n`);
+
         /*
         const randCostLim = Math.floor(Math.random() * (cpBudget+1));
         let shipList = [];
@@ -156,7 +171,7 @@ class UserStrategy {
         if (shipList.length == 0) console.log('Nothing')
         for (const ship of shipList) {
             const [shipName, numShips] = Object.entries(ship)[0];
-            console.log(numShips, shipName)
+            console.log(` - ${numShips} ${shipName}`);
         }
     }
 

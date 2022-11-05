@@ -36,9 +36,9 @@ class Game {
     // Initializing and running the game
 
     initializeGame() {
+        console.log(`\n=========== BEGIN GAME INITIALIZATION ===========\n`);
 
-        // create board
-
+        console.log(`Creating board`);
         for (let i = 0; i < this.boardSize; i++) {
             this.board.push([]);
             for (let j = 0; j < this.boardSize; j++) {
@@ -46,8 +46,9 @@ class Game {
             }
         }
 
+        console.log(`Creating home colonies`);
         for (let i = 0; i < this.players.length; i++) {
-            // buy home colony
+            console.log(` - for player ${i+1}`);
 
             const halfBoardSize = (this.boardSize - 1) / 2;
 
@@ -62,16 +63,24 @@ class Game {
             homeColony.setHomeColonyId()
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
+            console.log(`   (done)`);
+        }
 
-            // buy ships
+        this.display();
 
+        console.log(`Buying ships`)
+        for (let i = 0; i < this.players.length; i++) {
+            console.log(` - for player ${i+1}`);
             this.buyShips(this.players[i]);
-
+            console.log(`   (done)`);
+            this.display();
         }
 
         this.turn = 1;
+        console.log(`Updating simple board`);
         this.updateSimpleBoard();
 
+        console.log(`\n=========== END GAME INITIALIZATION ===========\n`);
     }
 
     start() {
@@ -79,6 +88,7 @@ class Game {
     }
 
     run() {
+        console.log(`\n=========== BEGIN TURN ${this.turn} ===========\n`);
 
         this.display();
 
@@ -103,6 +113,7 @@ class Game {
         }
         this.display();
 
+        console.log(`\n=========== BEGIN TURN ${this.turn} ===========\n`);
     }
 
     endGame() {
@@ -123,10 +134,11 @@ class Game {
     // Phases
 
     movementPhase() {
-
+        console.log(`Moving ships`)
         this.log.beginPhase('Movement');
 
         for (let player of this.players) {
+            console.log(` - for player ${player.playerNum}`)
             for (let ship of player.ships) {
 
                 let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
@@ -142,26 +154,35 @@ class Game {
                 this.addToBoard(ship);
                 this.log.shipMovement(oldCoords, ship);
                 this.updateSimpleBoard();
-                this.display()
+                //this.display()
 
             }
+            console.log(`   (done)`);
+            this.display();
         }
 
+        //this.display();
         this.log.endPhase('Movement');
 
     }
 
     combatPhase() {
-
+        console.log(`Resolving combat`)
         this.log.beginPhase('Combat');
 
-        for (let coords of this.getCombatCoords()) {
+        let combatCoords = this.getCombatCoords();
+        if (combatCoords.length == 0) {
+            console.log(`   (no combats to resolve)`);
+        }
+
+        for (let coords of combatCoords) {
+            console.log(` - at coords ${coords}`);
             
             let combatOrder = this.sortCombatOrder(coords); 
             
             while (this.numPlayersInCombatOrder(combatOrder) > 1) {
                 for (let ship of combatOrder) {
-                    this.display();
+                    //this.display();
 
                     if (this.numPlayersInCombatOrder(combatOrder) == 1) break;
 
@@ -188,22 +209,27 @@ class Game {
                         this.updateSimpleBoard()
 
                     }
-                    this.display();
+                    //this.display();
                 }
             }
 
+            this.display();
+            console.log(`   (done)`);
         }
 
+        //this.display();
         this.log.endPhase('Combat');
 
     }
 
     economicPhase() { 
+        console.log(`Processing CP`)
         
         this.log.beginPhase('Economic');
 
         for (let player of this.players) {
-            this.display();
+            console.log(` - for player ${player.playerNum}`);
+            //this.display();
             
             this.log.playerCP(player); // gain cp
             player.cp += this.cpPerRound; 
@@ -214,10 +240,12 @@ class Game {
 
             this.buyShips(player); // buy ships
 
+            this.display();
+            console.log(`   (done)`);
         }
 
         this.log.endPhase("Economic");
-        this.display();
+        //this.display();
 
     }
 
@@ -395,7 +423,9 @@ class Game {
 
         let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
 
-        if (player.buyShips().length == 0) this.log.boughtNoShips(player);
+        if (playerShips.length == 0) {
+            this.log.boughtNoShips(player);
+        }
 
         let totalCost = this.calcTotalCost(playerShips);
 
@@ -436,8 +466,7 @@ class Game {
 
     // Miscellaneous
     
-    updateSimpleBoard() { // prevents strategies from cheating
-    
+    updateSimpleBoard() { // prevents strategies from cheating    
         let simpleBoard = this.boardRange.map(
             i => this.boardRange.map(
                 j => this.board[j][i].map(
@@ -495,21 +524,23 @@ class Game {
     }
 
     display() {
-        console.log(`Running game.display()`);
-
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
             //*
-            console.log('running dislplay')
-            console.log(`About to emit gameState to socket ${socketId}`);
+            //console.log(`About to emit gameState to socket ${socketId}`);
 
             let data = fs.readFileSync('log.txt');
-            console.log(this.getLogs(data))
+            let logs = this.getLogs(data);
 
-            console.log(`Actually emitting gameState to socket ${socketId}`);              
+            console.log(`<< update display ${socketId} >>`);  
+            for (let row of this.board) {
+                let entrySizes = row.map(entry => entry.length);
+                console.log(JSON.stringify(entrySizes));
+            }
+
             socket.emit('update UI', {
                 board: this.board,
-                logs: this.getLogs(data)
+                logs
             //*/
             /*
             readFile('log.txt', (_, data) => {
