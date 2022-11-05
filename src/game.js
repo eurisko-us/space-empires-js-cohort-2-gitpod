@@ -533,10 +533,8 @@ class Game {
             let logs = this.getLogs(data);
 
             console.log(`<< update display ${socketId} >>`);  
-            for (let row of this.board) {
-                let entrySizes = row.map(entry => entry.length);
-                console.log(JSON.stringify(entrySizes));
-            }
+            let spaceSizes = this.board.map(row => row.map(entry => entry.length));
+            console.log(spaceSizes.join('\n'))
 
             socket.emit('update UI', {
                 board: this.board,

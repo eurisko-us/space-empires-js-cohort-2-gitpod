@@ -19,11 +19,12 @@ socket.on('initialize UI', () => {
 });
 
 socket.on('update UI', (gameState) => {
-    console.log(`-----------------------`)
-    for (let row of gameState.board) {
-        let entrySizes = row.map(entry => entry.length);
-        console.log(JSON.stringify(entrySizes));
-    }
+    console.log(`-----------------------`);
+
+    let spaceSizes = gameState.board.map(row => row.map(entry => entry.length));
+    let spaceSizesString = spaceSizes.join('\n')
+    console.log(spaceSizesString);
+    alert(`Received board: \n\n` + spaceSizesString);
 
     game = gameState;
     updateElementsById();
