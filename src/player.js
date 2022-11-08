@@ -17,6 +17,9 @@ class Player {
         for (let shipClass of allShips) {
             this.shipCounter[shipClass.name] = 0;
         }
+
+        this.colonies = []
+        this.colonyCounter = 0
     
     }
     

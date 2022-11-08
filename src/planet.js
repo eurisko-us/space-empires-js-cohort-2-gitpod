@@ -8,7 +8,7 @@ class Planet {
     }
 
     updateId() {
-        if (this.colony) {
+        if (this.colony != null) {
             this.id = `Planet ${this.planetNum} with ${this.colony.id}`;
         } else {
             this.id = `Planet ${this.planetNum}`;

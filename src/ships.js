@@ -162,7 +162,6 @@ class Dreadnaught extends Ship {
 
 class ColonyShip extends Ship {
     constructor(coords, playerNum, shipNum) {
-        
         super(Ship);
 
         this.hp = 1;

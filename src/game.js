@@ -32,6 +32,13 @@ class Game {
 
     }
 
+    //spawnPlanets(self, xRange, yRange, homeColonyCoords) {
+        //let options = [];
+        
+        //this.addToBoard(homeColony);
+
+    //}
+
     // Initializing and running the game
 
     initializeGame() {
@@ -47,7 +54,6 @@ class Game {
 
         for (let i = 0; i < this.players.length; i++) {
             // buy home colony
-
             const halfBoardSize = (this.boardSize - 1) / 2;
 
             const homeColonyCoordsMap = {
@@ -56,14 +62,20 @@ class Game {
                 2: [0, halfBoardSize],
                 3: [this.boardSize - 1, halfBoardSize]
             }
-
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
             homeColony.setHomeColonyId()
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
-            // buy ships
+            //if (i == 0) {
+                //this.spawnPlanets([0, 6], [0, 2], [homeColonyCoordsMap[i]])
+            //}
 
+            //if (i == 1) {
+                //this.spawnPlanets([0, 6], [4, 6], [homeColonyCoordsMap[i]])
+            //}
+
+            // buy ships
             this.buyShips(this.players[i]);
 
         }
