@@ -9,7 +9,7 @@ class Player {
         this.homeColony = null;
         
         this.strategy = strategy;
-        this.strategy.player = this;
+        this.strategy.playerNum = this.playerNum;
         
         this.cp = cp;
         
