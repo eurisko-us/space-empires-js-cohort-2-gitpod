@@ -116,6 +116,16 @@ class Game {
         clearInterval(this.stopInterval);
     }
 
+    convertShipToDict(ship) {
+        let shipInfo = {}
+
+        for (let key of Object.keys(ship)){
+            shipInfo[key] = ship[key]
+        }
+        console.log(shipInfo)
+        return shipInfo
+    }
+
     checkForWinner() {
 
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
@@ -138,7 +148,7 @@ class Game {
 
                 let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
                 let translations = this.possibleTranslations(ship.coords);
-                let translation = player.strategy.chooseTranslation(ship, translations);            
+                let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);            
                 let [newX, newY] = this.translate(oldCoords, translation);
                 
                 if (this.checkForOpponentShips(ship)) continue;
@@ -173,7 +183,7 @@ class Game {
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
                         
                         let attacker = this.players[ship.playerNum - 1];
-                        let target = attacker.strategy.chooseTarget(ship, combatOrder);
+                        let target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
                         let defender = this.players[target.playerNum - 1];
                         this.log.combat(ship, target);
                         
