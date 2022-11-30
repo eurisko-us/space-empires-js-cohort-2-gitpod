@@ -1,0 +1,2542 @@
+Begin Game
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+	Begin Combat Phase
+		Attacker: Player 1 Battleship 1
+		Defender: Player 2 Dreadnaught 2
+		Hit!
+		Player 2 Dreadnaught 2 hp: 3 -> 2
+		Attacker: Player 1 Battleship 2
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Battleship 3
+		Defender: Player 2 Dreadnaught 2
+		Miss!
+		Attacker: Player 1 Battleship 4
+		Defender: Player 2 Dreadnaught 1
+		Miss!
+		Attacker: Player 1 Battleship 5
+		Defender: Player 2 Dreadnaught 2
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 4
+		Hit!
+		Player 1 Battleship 4 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 1
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 5
+		Hit!
+		Player 1 Battleship 5 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 1
+		Hit!
+		Player 1 Battleship 1 hp: 3 -> 2
+		Attacker: Player 1 Battleship 1
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Battleship 2
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Battleship 3
+		Defender: Player 2 Dreadnaught 2
+		Miss!
+		Attacker: Player 1 Battleship 4
+		Defender: Player 2 Dreadnaught 1
+		Hit!
+		Player 2 Dreadnaught 1 hp: 3 -> 2
+		Attacker: Player 1 Battleship 5
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 2
+		Hit!
+		Player 1 Battleship 2 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 5
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 1
+		Miss!
+		Attacker: Player 1 Battleship 1
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Battleship 2
+		Defender: Player 2 Dreadnaught 4
+		Hit!
+		Player 2 Dreadnaught 4 hp: 3 -> 2
+		Attacker: Player 1 Battleship 3
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Battleship 4
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Battleship 5
+		Defender: Player 2 Dreadnaught 2
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 1
+		Hit!
+		Player 1 Battleship 1 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 5
+		Hit!
+		Player 1 Battleship 5 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 1
+		Hit!
+		Player 1 Battleship 1 hp: 1 -> 0
+		Player 1 Battleship 1 was destroyed
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 2
+		Hit!
+		Player 1 Battleship 2 hp: 2 -> 1
+		Attacker: Player 1 Battleship 2
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Battleship 3
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Battleship 4
+		Defender: Player 2 Dreadnaught 1
+		Miss!
+		Attacker: Player 1 Battleship 5
+		Defender: Player 2 Dreadnaught 3
+		Hit!
+		Player 2 Dreadnaught 3 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 2
+		Hit!
+		Player 1 Battleship 2 hp: 1 -> 0
+		Player 1 Battleship 2 was destroyed
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 5
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 5
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 5
+		Hit!
+		Player 1 Battleship 5 hp: 1 -> 0
+		Player 1 Battleship 5 was destroyed
+		Attacker: Player 1 Battleship 3
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Battleship 4
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 4
+		Hit!
+		Player 1 Battleship 4 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 4
+		Hit!
+		Player 1 Battleship 4 hp: 1 -> 0
+		Player 1 Battleship 4 was destroyed
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 3
+		Hit!
+		Player 1 Battleship 3 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 3
+		Hit!
+		Player 1 Battleship 3 hp: 2 -> 1
+		Attacker: Player 1 Battleship 3
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 3
+		Hit!
+		Player 1 Battleship 3 hp: 1 -> 0
+		Player 1 Battleship 3 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 9
+		Hit!
+		Player 1 Battleship 9 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 6
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 10
+		Hit!
+		Player 1 Battleship 10 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 7
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 7
+		Miss!
+		Attacker: Player 1 Battleship 6
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Battleship 7
+		Defender: Player 2 Dreadnaught 8
+		Miss!
+		Attacker: Player 1 Battleship 8
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Battleship 9
+		Defender: Player 2 Dreadnaught 9
+		Hit!
+		Player 2 Dreadnaught 9 hp: 3 -> 2
+		Attacker: Player 1 Battleship 10
+		Defender: Player 2 Dreadnaught 9
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 10
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 8
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 10
+		Hit!
+		Player 1 Battleship 10 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 6
+		Hit!
+		Player 1 Battleship 6 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 10
+		Hit!
+		Player 1 Battleship 10 hp: 1 -> 0
+		Player 1 Battleship 10 was destroyed
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 9
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 6
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 6
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 6
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 9
+		Miss!
+		Attacker: Player 1 Battleship 6
+		Defender: Player 2 Dreadnaught 10
+		Miss!
+		Attacker: Player 1 Battleship 7
+		Defender: Player 2 Dreadnaught 10
+		Hit!
+		Player 2 Dreadnaught 10 hp: 3 -> 2
+		Attacker: Player 1 Battleship 8
+		Defender: Player 2 Dreadnaught 7
+		Miss!
+		Attacker: Player 1 Battleship 9
+		Defender: Player 2 Dreadnaught 7
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 6
+		Hit!
+		Player 1 Battleship 6 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 6
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 9
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 6
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 7
+		Hit!
+		Player 1 Battleship 7 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 8
+		Hit!
+		Player 1 Battleship 8 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 9
+		Hit!
+		Player 1 Battleship 9 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 6
+		Hit!
+		Player 1 Battleship 6 hp: 1 -> 0
+		Player 1 Battleship 6 was destroyed
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 9
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 7
+		Miss!
+		Attacker: Player 1 Battleship 7
+		Defender: Player 2 Dreadnaught 8
+		Miss!
+		Attacker: Player 1 Battleship 8
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Battleship 9
+		Defender: Player 2 Dreadnaught 9
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 8
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 8
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 8
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 8
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 8
+		Hit!
+		Player 1 Battleship 8 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 8
+		Hit!
+		Player 1 Battleship 8 hp: 1 -> 0
+		Player 1 Battleship 8 was destroyed
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 9
+		Hit!
+		Player 1 Battleship 9 hp: 1 -> 0
+		Player 1 Battleship 9 was destroyed
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 7
+		Hit!
+		Player 1 Battleship 7 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 7
+		Hit!
+		Player 1 Battleship 7 hp: 1 -> 0
+		Player 1 Battleship 7 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 14
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 15
+		Hit!
+		Player 1 Battleship 15 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 15
+		Hit!
+		Player 1 Battleship 15 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 14
+		Hit!
+		Player 1 Battleship 14 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 13
+		Hit!
+		Player 1 Battleship 13 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 14
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 12
+		Hit!
+		Player 1 Battleship 12 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 13
+		Hit!
+		Player 1 Battleship 13 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 14
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 1 Battleship 11
+		Defender: Player 2 Dreadnaught 15
+		Miss!
+		Attacker: Player 1 Battleship 12
+		Defender: Player 2 Dreadnaught 7
+		Hit!
+		Player 2 Dreadnaught 7 hp: 3 -> 2
+		Attacker: Player 1 Battleship 13
+		Defender: Player 2 Dreadnaught 11
+		Hit!
+		Player 2 Dreadnaught 11 hp: 3 -> 2
+		Attacker: Player 1 Battleship 14
+		Defender: Player 2 Dreadnaught 10
+		Miss!
+		Attacker: Player 1 Battleship 15
+		Defender: Player 2 Dreadnaught 8
+		Miss!
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 15
+		Hit!
+		Player 1 Battleship 15 hp: 1 -> 0
+		Player 1 Battleship 15 was destroyed
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 14
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 13
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 12
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 13
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 13
+		Hit!
+		Player 1 Battleship 13 hp: 1 -> 0
+		Player 1 Battleship 13 was destroyed
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 1 Battleship 11
+		Defender: Player 2 Dreadnaught 14
+		Hit!
+		Player 2 Dreadnaught 14 hp: 3 -> 2
+		Attacker: Player 1 Battleship 12
+		Defender: Player 2 Dreadnaught 1
+		Miss!
+		Attacker: Player 1 Battleship 14
+		Defender: Player 2 Dreadnaught 1
+		Hit!
+		Player 2 Dreadnaught 1 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 14
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 14
+		Hit!
+		Player 1 Battleship 14 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 14
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 11
+		Hit!
+		Player 1 Battleship 11 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 12
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 12
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 14
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 12
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 14
+		Hit!
+		Player 1 Battleship 14 hp: 1 -> 0
+		Player 1 Battleship 14 was destroyed
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 12
+		Hit!
+		Player 1 Battleship 12 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 11
+		Miss!
+		Attacker: Player 1 Battleship 11
+		Defender: Player 2 Dreadnaught 7
+		Miss!
+		Attacker: Player 1 Battleship 12
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 12
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 12
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 12
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 12
+		Hit!
+		Player 1 Battleship 12 hp: 1 -> 0
+		Player 1 Battleship 12 was destroyed
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 11
+		Hit!
+		Player 1 Battleship 11 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 11
+		Hit!
+		Player 1 Battleship 11 hp: 1 -> 0
+		Player 1 Battleship 11 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 20
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 16
+		Hit!
+		Player 1 Battleship 16 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 17
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 16
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 20
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 18
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 19
+		Hit!
+		Player 1 Battleship 19 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 20
+		Hit!
+		Player 1 Battleship 20 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 16
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 19
+		Hit!
+		Player 1 Battleship 19 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 17
+		Hit!
+		Player 1 Battleship 17 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 16
+		Hit!
+		Player 1 Battleship 16 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 16
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 16
+		Hit!
+		Player 1 Battleship 16 hp: 1 -> 0
+		Player 1 Battleship 16 was destroyed
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 19
+		Hit!
+		Player 1 Battleship 19 hp: 1 -> 0
+		Player 1 Battleship 19 was destroyed
+		Attacker: Player 1 Battleship 17
+		Defender: Player 2 Dreadnaught 15
+		Miss!
+		Attacker: Player 1 Battleship 18
+		Defender: Player 2 Dreadnaught 16
+		Miss!
+		Attacker: Player 1 Battleship 20
+		Defender: Player 2 Dreadnaught 13
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 18
+		Hit!
+		Player 1 Battleship 18 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 17
+		Hit!
+		Player 1 Battleship 17 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 18
+		Hit!
+		Player 1 Battleship 18 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 18
+		Hit!
+		Player 1 Battleship 18 hp: 1 -> 0
+		Player 1 Battleship 18 was destroyed
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 17
+		Hit!
+		Player 1 Battleship 17 hp: 1 -> 0
+		Player 1 Battleship 17 was destroyed
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 20
+		Hit!
+		Player 1 Battleship 20 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 20
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 20
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 20
+		Hit!
+		Player 1 Battleship 20 hp: 1 -> 0
+		Player 1 Battleship 20 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 24
+		Hit!
+		Player 1 Battleship 24 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 23
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 22
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 23
+		Hit!
+		Player 1 Battleship 23 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 24
+		Hit!
+		Player 1 Battleship 24 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 22
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 22
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 24
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 23
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 22
+		Miss!
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 25
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 23
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 25
+		Hit!
+		Player 1 Battleship 25 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 24
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 21
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 23
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 25
+		Hit!
+		Player 1 Battleship 25 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 23
+		Hit!
+		Player 1 Battleship 23 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 24
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 24
+		Hit!
+		Player 1 Battleship 24 hp: 1 -> 0
+		Player 1 Battleship 24 was destroyed
+		Attacker: Player 1 Battleship 21
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Battleship 22
+		Defender: Player 2 Dreadnaught 12
+		Miss!
+		Attacker: Player 1 Battleship 23
+		Defender: Player 2 Dreadnaught 11
+		Hit!
+		Player 2 Dreadnaught 11 hp: 2 -> 1
+		Attacker: Player 1 Battleship 25
+		Defender: Player 2 Dreadnaught 25
+		Miss!
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 22
+		Hit!
+		Player 1 Battleship 22 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 22
+		Miss!
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 23
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 22
+		Hit!
+		Player 1 Battleship 22 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 25
+		Hit!
+		Player 1 Battleship 25 hp: 1 -> 0
+		Player 1 Battleship 25 was destroyed
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 22
+		Hit!
+		Player 1 Battleship 22 hp: 1 -> 0
+		Player 1 Battleship 22 was destroyed
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 21
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 21
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 23
+		Hit!
+		Player 1 Battleship 23 hp: 1 -> 0
+		Player 1 Battleship 23 was destroyed
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 21
+		Hit!
+		Player 1 Battleship 21 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 21
+		Hit!
+		Player 1 Battleship 21 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 21
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 21
+		Hit!
+		Player 1 Battleship 21 hp: 1 -> 0
+		Player 1 Battleship 21 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 29
+		Hit!
+		Player 1 Battleship 29 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 28
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 30
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 30
+		Hit!
+		Player 1 Battleship 30 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 30
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 27
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 30
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 30
+		Hit!
+		Player 1 Battleship 30 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 28
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 30
+		Hit!
+		Player 1 Battleship 30 hp: 1 -> 0
+		Player 1 Battleship 30 was destroyed
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 26
+		Hit!
+		Player 1 Battleship 26 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 29
+		Hit!
+		Player 1 Battleship 29 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 28
+		Hit!
+		Player 1 Battleship 28 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 28
+		Hit!
+		Player 1 Battleship 28 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 28
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 26
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 28
+		Miss!
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 28
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 26
+		Hit!
+		Player 1 Battleship 26 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 26
+		Hit!
+		Player 1 Battleship 26 hp: 1 -> 0
+		Player 1 Battleship 26 was destroyed
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 28
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 29
+		Miss!
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 27
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 28
+		Hit!
+		Player 1 Battleship 28 hp: 1 -> 0
+		Player 1 Battleship 28 was destroyed
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 29
+		Miss!
+		Attacker: Player 1 Battleship 27
+		Defender: Player 2 Dreadnaught 19
+		Hit!
+		Player 2 Dreadnaught 19 hp: 3 -> 2
+		Attacker: Player 1 Battleship 29
+		Defender: Player 2 Dreadnaught 14
+		Hit!
+		Player 2 Dreadnaught 14 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 27
+		Hit!
+		Player 1 Battleship 27 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 29
+		Miss!
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 29
+		Hit!
+		Player 1 Battleship 29 hp: 1 -> 0
+		Player 1 Battleship 29 was destroyed
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 27
+		Hit!
+		Player 1 Battleship 27 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 27
+		Hit!
+		Player 1 Battleship 27 hp: 1 -> 0
+		Player 1 Battleship 27 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 31
+		Hit!
+		Player 1 Battleship 31 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 35
+		Hit!
+		Player 1 Battleship 35 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 35
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 34
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 31
+		Hit!
+		Player 1 Battleship 31 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 33
+		Hit!
+		Player 1 Battleship 33 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 33
+		Hit!
+		Player 1 Battleship 33 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 31
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 32
+		Hit!
+		Player 1 Battleship 32 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 32
+		Hit!
+		Player 1 Battleship 32 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 31
+		Hit!
+		Player 1 Battleship 31 hp: 1 -> 0
+		Player 1 Battleship 31 was destroyed
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 34
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 35
+		Hit!
+		Player 1 Battleship 35 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 35
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 35
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 32
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 34
+		Miss!
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 35
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 33
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 34
+		Hit!
+		Player 1 Battleship 34 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 35
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 33
+		Hit!
+		Player 1 Battleship 33 hp: 1 -> 0
+		Player 1 Battleship 33 was destroyed
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 34
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 35
+		Hit!
+		Player 1 Battleship 35 hp: 1 -> 0
+		Player 1 Battleship 35 was destroyed
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 32
+		Hit!
+		Player 1 Battleship 32 hp: 1 -> 0
+		Player 1 Battleship 32 was destroyed
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 34
+		Hit!
+		Player 1 Battleship 34 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 34
+		Miss!
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 34
+		Hit!
+		Player 1 Battleship 34 hp: 1 -> 0
+		Player 1 Battleship 34 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 37
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 40
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 38
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 39
+		Hit!
+		Player 1 Battleship 39 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 39
+		Hit!
+		Player 1 Battleship 39 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 39
+		Hit!
+		Player 1 Battleship 39 hp: 1 -> 0
+		Player 1 Battleship 39 was destroyed
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 36
+		Hit!
+		Player 1 Battleship 36 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 40
+		Hit!
+		Player 1 Battleship 40 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 38
+		Hit!
+		Player 1 Battleship 38 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 38
+		Miss!
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 38
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 37
+		Hit!
+		Player 1 Battleship 37 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 36
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 36
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 37
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 40
+		Hit!
+		Player 1 Battleship 40 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 37
+		Hit!
+		Player 1 Battleship 37 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 36
+		Hit!
+		Player 1 Battleship 36 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 36
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 40
+		Miss!
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 37
+		Hit!
+		Player 1 Battleship 37 hp: 1 -> 0
+		Player 1 Battleship 37 was destroyed
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 38
+		Hit!
+		Player 1 Battleship 38 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 38
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 36
+		Miss!
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 40
+		Hit!
+		Player 1 Battleship 40 hp: 1 -> 0
+		Player 1 Battleship 40 was destroyed
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 36
+		Hit!
+		Player 1 Battleship 36 hp: 1 -> 0
+		Player 1 Battleship 36 was destroyed
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 38
+		Hit!
+		Player 1 Battleship 38 hp: 1 -> 0
+		Player 1 Battleship 38 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 45
+		Hit!
+		Player 1 Battleship 45 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 42
+		Hit!
+		Player 1 Battleship 42 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 43
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 45
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 41
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 41
+		Hit!
+		Player 1 Battleship 41 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 41
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 45
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 41
+		Hit!
+		Player 1 Battleship 41 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 42
+		Hit!
+		Player 1 Battleship 42 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 44
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 41
+		Hit!
+		Player 1 Battleship 41 hp: 1 -> 0
+		Player 1 Battleship 41 was destroyed
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 43
+		Hit!
+		Player 1 Battleship 43 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 44
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 43
+		Hit!
+		Player 1 Battleship 43 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 43
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 44
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 45
+		Hit!
+		Player 1 Battleship 45 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 44
+		Hit!
+		Player 1 Battleship 44 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 44
+		Hit!
+		Player 1 Battleship 44 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 43
+		Hit!
+		Player 1 Battleship 43 hp: 1 -> 0
+		Player 1 Battleship 43 was destroyed
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 45
+		Miss!
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 44
+		Hit!
+		Player 1 Battleship 44 hp: 1 -> 0
+		Player 1 Battleship 44 was destroyed
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 29
+		Defender: Player 1 Battleship 45
+		Miss!
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 31
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 32
+		Defender: Player 1 Battleship 45
+		Miss!
+		Attacker: Player 2 Dreadnaught 33
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 34
+		Defender: Player 1 Battleship 42
+		Miss!
+		Attacker: Player 2 Dreadnaught 35
+		Defender: Player 1 Battleship 45
+		Hit!
+		Player 1 Battleship 45 hp: 1 -> 0
+		Player 1 Battleship 45 was destroyed
+		Attacker: Player 2 Dreadnaught 36
+		Defender: Player 1 Battleship 42
+		Hit!
+		Player 1 Battleship 42 hp: 1 -> 0
+		Player 1 Battleship 42 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 47
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 47
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 49
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 48
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 50
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 49
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 49
+		Hit!
+		Player 1 Battleship 49 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 46
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 50
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 46
+		Hit!
+		Player 1 Battleship 46 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 47
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 48
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 46
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 48
+		Hit!
+		Player 1 Battleship 48 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 47
+		Hit!
+		Player 1 Battleship 47 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 48
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 46
+		Miss!
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 48
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 46
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 48
+		Miss!
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 49
+		Hit!
+		Player 1 Battleship 49 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 46
+		Hit!
+		Player 1 Battleship 46 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 49
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 50
+		Hit!
+		Player 1 Battleship 50 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 47
+		Miss!
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 47
+		Miss!
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 46
+		Hit!
+		Player 1 Battleship 46 hp: 1 -> 0
+		Player 1 Battleship 46 was destroyed
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 49
+		Hit!
+		Player 1 Battleship 49 hp: 1 -> 0
+		Player 1 Battleship 49 was destroyed
+		Attacker: Player 2 Dreadnaught 29
+		Defender: Player 1 Battleship 47
+		Hit!
+		Player 1 Battleship 47 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 50
+		Hit!
+		Player 1 Battleship 50 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 31
+		Defender: Player 1 Battleship 47
+		Hit!
+		Player 1 Battleship 47 hp: 1 -> 0
+		Player 1 Battleship 47 was destroyed
+		Attacker: Player 2 Dreadnaught 32
+		Defender: Player 1 Battleship 50
+		Hit!
+		Player 1 Battleship 50 hp: 1 -> 0
+		Player 1 Battleship 50 was destroyed
+		Attacker: Player 2 Dreadnaught 33
+		Defender: Player 1 Battleship 48
+		Miss!
+		Attacker: Player 2 Dreadnaught 34
+		Defender: Player 1 Battleship 48
+		Hit!
+		Player 1 Battleship 48 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 35
+		Defender: Player 1 Battleship 48
+		Hit!
+		Player 1 Battleship 48 hp: 1 -> 0
+		Player 1 Battleship 48 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 55
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 51
+		Hit!
+		Player 1 Battleship 51 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 52
+		Hit!
+		Player 1 Battleship 52 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 53
+		Hit!
+		Player 1 Battleship 53 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 55
+		Hit!
+		Player 1 Battleship 55 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 55
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 53
+		Hit!
+		Player 1 Battleship 53 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 54
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 55
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 52
+		Hit!
+		Player 1 Battleship 52 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 51
+		Hit!
+		Player 1 Battleship 51 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 55
+		Hit!
+		Player 1 Battleship 55 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 51
+		Hit!
+		Player 1 Battleship 51 hp: 1 -> 0
+		Player 1 Battleship 51 was destroyed
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 53
+		Hit!
+		Player 1 Battleship 53 hp: 1 -> 0
+		Player 1 Battleship 53 was destroyed
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 52
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 54
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 55
+		Hit!
+		Player 1 Battleship 55 hp: 1 -> 0
+		Player 1 Battleship 55 was destroyed
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 52
+		Hit!
+		Player 1 Battleship 52 hp: 1 -> 0
+		Player 1 Battleship 52 was destroyed
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 54
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 54
+		Hit!
+		Player 1 Battleship 54 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 54
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 54
+		Hit!
+		Player 1 Battleship 54 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 54
+		Hit!
+		Player 1 Battleship 54 hp: 1 -> 0
+		Player 1 Battleship 54 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 60
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 60
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 57
+		Hit!
+		Player 1 Battleship 57 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 59
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 59
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 56
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 59
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 56
+		Hit!
+		Player 1 Battleship 56 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 58
+		Hit!
+		Player 1 Battleship 58 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 58
+		Hit!
+		Player 1 Battleship 58 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 59
+		Hit!
+		Player 1 Battleship 59 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 60
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 60
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 60
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 58
+		Hit!
+		Player 1 Battleship 58 hp: 1 -> 0
+		Player 1 Battleship 58 was destroyed
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 57
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 59
+		Hit!
+		Player 1 Battleship 59 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 56
+		Hit!
+		Player 1 Battleship 56 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 60
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 59
+		Hit!
+		Player 1 Battleship 59 hp: 1 -> 0
+		Player 1 Battleship 59 was destroyed
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 60
+		Hit!
+		Player 1 Battleship 60 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 60
+		Hit!
+		Player 1 Battleship 60 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 60
+		Hit!
+		Player 1 Battleship 60 hp: 1 -> 0
+		Player 1 Battleship 60 was destroyed
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 57
+		Miss!
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 56
+		Miss!
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 57
+		Miss!
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 56
+		Miss!
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 56
+		Hit!
+		Player 1 Battleship 56 hp: 1 -> 0
+		Player 1 Battleship 56 was destroyed
+		Attacker: Player 2 Dreadnaught 29
+		Defender: Player 1 Battleship 57
+		Hit!
+		Player 1 Battleship 57 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 57
+		Miss!
+		Attacker: Player 2 Dreadnaught 31
+		Defender: Player 1 Battleship 57
+		Hit!
+		Player 1 Battleship 57 hp: 1 -> 0
+		Player 1 Battleship 57 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 64
+		Hit!
+		Player 1 Battleship 64 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 65
+		Hit!
+		Player 1 Battleship 65 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 61
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 63
+		Hit!
+		Player 1 Battleship 63 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 62
+		Hit!
+		Player 1 Battleship 62 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 62
+		Hit!
+		Player 1 Battleship 62 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 62
+		Hit!
+		Player 1 Battleship 62 hp: 1 -> 0
+		Player 1 Battleship 62 was destroyed
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 65
+		Hit!
+		Player 1 Battleship 65 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 63
+		Hit!
+		Player 1 Battleship 63 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 61
+		Miss!
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 65
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 61
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 63
+		Hit!
+		Player 1 Battleship 63 hp: 1 -> 0
+		Player 1 Battleship 63 was destroyed
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 61
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 61
+		Hit!
+		Player 1 Battleship 61 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 61
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 64
+		Miss!
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 65
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 61
+		Hit!
+		Player 1 Battleship 61 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 64
+		Miss!
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 61
+		Hit!
+		Player 1 Battleship 61 hp: 1 -> 0
+		Player 1 Battleship 61 was destroyed
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 65
+		Miss!
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 65
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 64
+		Hit!
+		Player 1 Battleship 64 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 64
+		Miss!
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 64
+		Hit!
+		Player 1 Battleship 64 hp: 1 -> 0
+		Player 1 Battleship 64 was destroyed
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 65
+		Miss!
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 65
+		Hit!
+		Player 1 Battleship 65 hp: 1 -> 0
+		Player 1 Battleship 65 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 70
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 68
+		Hit!
+		Player 1 Battleship 68 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 67
+		Hit!
+		Player 1 Battleship 67 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 66
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 69
+		Hit!
+		Player 1 Battleship 69 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 69
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 67
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 66
+		Hit!
+		Player 1 Battleship 66 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 66
+		Miss!
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 70
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 69
+		Hit!
+		Player 1 Battleship 69 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 66
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 70
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 69
+		Hit!
+		Player 1 Battleship 69 hp: 1 -> 0
+		Player 1 Battleship 69 was destroyed
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 68
+		Hit!
+		Player 1 Battleship 68 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 66
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 67
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 70
+		Hit!
+		Player 1 Battleship 70 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 67
+		Hit!
+		Player 1 Battleship 67 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 67
+		Hit!
+		Player 1 Battleship 67 hp: 1 -> 0
+		Player 1 Battleship 67 was destroyed
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 66
+		Hit!
+		Player 1 Battleship 66 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 29
+		Defender: Player 1 Battleship 68
+		Miss!
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 66
+		Miss!
+		Attacker: Player 2 Dreadnaught 31
+		Defender: Player 1 Battleship 68
+		Hit!
+		Player 1 Battleship 68 hp: 1 -> 0
+		Player 1 Battleship 68 was destroyed
+		Attacker: Player 2 Dreadnaught 32
+		Defender: Player 1 Battleship 70
+		Hit!
+		Player 1 Battleship 70 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 33
+		Defender: Player 1 Battleship 66
+		Hit!
+		Player 1 Battleship 66 hp: 1 -> 0
+		Player 1 Battleship 66 was destroyed
+		Attacker: Player 2 Dreadnaught 34
+		Defender: Player 1 Battleship 70
+		Miss!
+		Attacker: Player 2 Dreadnaught 35
+		Defender: Player 1 Battleship 70
+		Miss!
+		Attacker: Player 2 Dreadnaught 36
+		Defender: Player 1 Battleship 70
+		Hit!
+		Player 1 Battleship 70 hp: 1 -> 0
+		Player 1 Battleship 70 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 75
+		Hit!
+		Player 1 Battleship 75 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 73
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 75
+		Hit!
+		Player 1 Battleship 75 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 72
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 74
+		Hit!
+		Player 1 Battleship 74 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 72
+		Hit!
+		Player 1 Battleship 72 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 72
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 74
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 71
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 72
+		Hit!
+		Player 1 Battleship 72 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 74
+		Hit!
+		Player 1 Battleship 74 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 75
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 75
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 73
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 75
+		Hit!
+		Player 1 Battleship 75 hp: 1 -> 0
+		Player 1 Battleship 75 was destroyed
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 71
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 73
+		Hit!
+		Player 1 Battleship 73 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 72
+		Hit!
+		Player 1 Battleship 72 hp: 1 -> 0
+		Player 1 Battleship 72 was destroyed
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 73
+		Hit!
+		Player 1 Battleship 73 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 71
+		Hit!
+		Player 1 Battleship 71 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 73
+		Hit!
+		Player 1 Battleship 73 hp: 1 -> 0
+		Player 1 Battleship 73 was destroyed
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 74
+		Hit!
+		Player 1 Battleship 74 hp: 1 -> 0
+		Player 1 Battleship 74 was destroyed
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 71
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 71
+		Hit!
+		Player 1 Battleship 71 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 71
+		Hit!
+		Player 1 Battleship 71 hp: 1 -> 0
+		Player 1 Battleship 71 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 77
+		Hit!
+		Player 1 Battleship 77 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 80
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 79
+		Hit!
+		Player 1 Battleship 79 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 80
+		Hit!
+		Player 1 Battleship 80 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 76
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 76
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 76
+		Hit!
+		Player 1 Battleship 76 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 77
+		Hit!
+		Player 1 Battleship 77 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 80
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 80
+		Miss!
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 76
+		Hit!
+		Player 1 Battleship 76 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 76
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 76
+		Hit!
+		Player 1 Battleship 76 hp: 1 -> 0
+		Player 1 Battleship 76 was destroyed
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 77
+		Hit!
+		Player 1 Battleship 77 hp: 1 -> 0
+		Player 1 Battleship 77 was destroyed
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 79
+		Hit!
+		Player 1 Battleship 79 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 78
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 80
+		Miss!
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 78
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 78
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 80
+		Hit!
+		Player 1 Battleship 80 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 79
+		Hit!
+		Player 1 Battleship 79 hp: 1 -> 0
+		Player 1 Battleship 79 was destroyed
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 78
+		Miss!
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 78
+		Hit!
+		Player 1 Battleship 78 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 78
+		Miss!
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 80
+		Hit!
+		Player 1 Battleship 80 hp: 1 -> 0
+		Player 1 Battleship 80 was destroyed
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 78
+		Hit!
+		Player 1 Battleship 78 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 78
+		Hit!
+		Player 1 Battleship 78 hp: 1 -> 0
+		Player 1 Battleship 78 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 85
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 83
+		Hit!
+		Player 1 Battleship 83 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 85
+		Hit!
+		Player 1 Battleship 85 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 81
+		Hit!
+		Player 1 Battleship 81 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 81
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 85
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 81
+		Hit!
+		Player 1 Battleship 81 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 84
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 84
+		Hit!
+		Player 1 Battleship 84 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 83
+		Hit!
+		Player 1 Battleship 83 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 85
+		Hit!
+		Player 1 Battleship 85 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 84
+		Hit!
+		Player 1 Battleship 84 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 81
+		Hit!
+		Player 1 Battleship 81 hp: 1 -> 0
+		Player 1 Battleship 81 was destroyed
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 84
+		Hit!
+		Player 1 Battleship 84 hp: 1 -> 0
+		Player 1 Battleship 84 was destroyed
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 83
+		Miss!
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 83
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 85
+		Miss!
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 83
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 82
+		Hit!
+		Player 1 Battleship 82 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 83
+		Hit!
+		Player 1 Battleship 83 hp: 1 -> 0
+		Player 1 Battleship 83 was destroyed
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 85
+		Hit!
+		Player 1 Battleship 85 hp: 1 -> 0
+		Player 1 Battleship 85 was destroyed
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 29
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 82
+		Miss!
+		Attacker: Player 2 Dreadnaught 31
+		Defender: Player 1 Battleship 82
+		Hit!
+		Player 1 Battleship 82 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 32
+		Defender: Player 1 Battleship 82
+		Hit!
+		Player 1 Battleship 82 hp: 1 -> 0
+		Player 1 Battleship 82 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 88
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 86
+		Hit!
+		Player 1 Battleship 86 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 86
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 88
+		Hit!
+		Player 1 Battleship 88 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 87
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 88
+		Hit!
+		Player 1 Battleship 88 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 87
+		Hit!
+		Player 1 Battleship 87 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 89
+		Hit!
+		Player 1 Battleship 89 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 90
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 87
+		Hit!
+		Player 1 Battleship 87 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 90
+		Miss!
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 89
+		Hit!
+		Player 1 Battleship 89 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 88
+		Hit!
+		Player 1 Battleship 88 hp: 1 -> 0
+		Player 1 Battleship 88 was destroyed
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 87
+		Hit!
+		Player 1 Battleship 87 hp: 1 -> 0
+		Player 1 Battleship 87 was destroyed
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 90
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 89
+		Hit!
+		Player 1 Battleship 89 hp: 1 -> 0
+		Player 1 Battleship 89 was destroyed
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 86
+		Hit!
+		Player 1 Battleship 86 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 90
+		Hit!
+		Player 1 Battleship 90 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 90
+		Hit!
+		Player 1 Battleship 90 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 86
+		Miss!
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 86
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 90
+		Miss!
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 86
+		Miss!
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 86
+		Miss!
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 90
+		Miss!
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 90
+		Miss!
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 86
+		Miss!
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 86
+		Hit!
+		Player 1 Battleship 86 hp: 1 -> 0
+		Player 1 Battleship 86 was destroyed
+		Attacker: Player 2 Dreadnaught 29
+		Defender: Player 1 Battleship 90
+		Miss!
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 90
+		Hit!
+		Player 1 Battleship 90 hp: 1 -> 0
+		Player 1 Battleship 90 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 94
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 93
+		Hit!
+		Player 1 Battleship 93 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 93
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 93
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 92
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 91
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 91
+		Hit!
+		Player 1 Battleship 91 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 91
+		Hit!
+		Player 1 Battleship 91 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 93
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 95
+		Hit!
+		Player 1 Battleship 95 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 92
+		Hit!
+		Player 1 Battleship 92 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 94
+		Miss!
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 92
+		Hit!
+		Player 1 Battleship 92 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 91
+		Miss!
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 93
+		Hit!
+		Player 1 Battleship 93 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 94
+		Hit!
+		Player 1 Battleship 94 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 93
+		Miss!
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 92
+		Hit!
+		Player 1 Battleship 92 hp: 1 -> 0
+		Player 1 Battleship 92 was destroyed
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 91
+		Hit!
+		Player 1 Battleship 91 hp: 1 -> 0
+		Player 1 Battleship 91 was destroyed
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 93
+		Hit!
+		Player 1 Battleship 93 hp: 1 -> 0
+		Player 1 Battleship 93 was destroyed
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 94
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 94
+		Hit!
+		Player 1 Battleship 94 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 95
+		Hit!
+		Player 1 Battleship 95 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 94
+		Hit!
+		Player 1 Battleship 94 hp: 1 -> 0
+		Player 1 Battleship 94 was destroyed
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 95
+		Hit!
+		Player 1 Battleship 95 hp: 1 -> 0
+		Player 1 Battleship 95 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Battleship 98
+		Hit!
+		Player 1 Battleship 98 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Battleship 97
+		Hit!
+		Player 1 Battleship 97 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 97
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 100
+		Hit!
+		Player 1 Battleship 100 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 98
+		Miss!
+		Attacker: Player 2 Dreadnaught 6
+		Defender: Player 1 Battleship 96
+		Miss!
+		Attacker: Player 2 Dreadnaught 7
+		Defender: Player 1 Battleship 96
+		Miss!
+		Attacker: Player 2 Dreadnaught 8
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 9
+		Defender: Player 1 Battleship 97
+		Miss!
+		Attacker: Player 2 Dreadnaught 10
+		Defender: Player 1 Battleship 98
+		Hit!
+		Player 1 Battleship 98 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 11
+		Defender: Player 1 Battleship 97
+		Hit!
+		Player 1 Battleship 97 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 12
+		Defender: Player 1 Battleship 97
+		Hit!
+		Player 1 Battleship 97 hp: 1 -> 0
+		Player 1 Battleship 97 was destroyed
+		Attacker: Player 2 Dreadnaught 13
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 14
+		Defender: Player 1 Battleship 98
+		Hit!
+		Player 1 Battleship 98 hp: 1 -> 0
+		Player 1 Battleship 98 was destroyed
+		Attacker: Player 2 Dreadnaught 15
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 16
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 17
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 18
+		Defender: Player 1 Battleship 99
+		Hit!
+		Player 1 Battleship 99 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 19
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 20
+		Defender: Player 1 Battleship 100
+		Hit!
+		Player 1 Battleship 100 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 21
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 22
+		Defender: Player 1 Battleship 100
+		Miss!
+		Attacker: Player 2 Dreadnaught 23
+		Defender: Player 1 Battleship 100
+		Hit!
+		Player 1 Battleship 100 hp: 1 -> 0
+		Player 1 Battleship 100 was destroyed
+		Attacker: Player 2 Dreadnaught 24
+		Defender: Player 1 Battleship 96
+		Hit!
+		Player 1 Battleship 96 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 25
+		Defender: Player 1 Battleship 99
+		Miss!
+		Attacker: Player 2 Dreadnaught 26
+		Defender: Player 1 Battleship 99
+		Miss!
+		Attacker: Player 2 Dreadnaught 27
+		Defender: Player 1 Battleship 99
+		Hit!
+		Player 1 Battleship 99 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 28
+		Defender: Player 1 Battleship 96
+		Miss!
+		Attacker: Player 2 Dreadnaught 29
+		Defender: Player 1 Battleship 99
+		Miss!
+		Attacker: Player 2 Dreadnaught 30
+		Defender: Player 1 Battleship 96
+		Hit!
+		Player 1 Battleship 96 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 31
+		Defender: Player 1 Battleship 96
+		Hit!
+		Player 1 Battleship 96 hp: 1 -> 0
+		Player 1 Battleship 96 was destroyed
+		Attacker: Player 2 Dreadnaught 32
+		Defender: Player 1 Battleship 99
+		Miss!
+		Attacker: Player 2 Dreadnaught 33
+		Defender: Player 1 Battleship 99
+		Miss!
+		Attacker: Player 2 Dreadnaught 34
+		Defender: Player 1 Battleship 99
+		Hit!
+		Player 1 Battleship 99 hp: 1 -> 0
+		Player 1 Battleship 99 was destroyed
+	End Combat Phase
+
+		Player 1 has 150 CP remaining
+		Player 2 has 150 CP remaining
+
+
