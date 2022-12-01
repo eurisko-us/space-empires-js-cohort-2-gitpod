@@ -1,4 +1,3 @@
-import { readFile } from 'fs';
 import assert from 'assert';
 
 import { allShips } from './src/ships.js';
@@ -108,6 +107,7 @@ class Game {
 
                         if (this.roll(ship, target)) {
                             target.hp -= 1;
+                            console.log(target.id)
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
                                 combatOrder.splice(combatOrder.indexOf(target), 1)
@@ -226,28 +226,6 @@ class Game {
 
     }
 
-    calcShipCost(shipName) {
-        for (let shipClass of allShips) {
-            if (shipName == shipClass.name) {
-                return new shipClass([0, 0], 0, 0).cpCost;
-            }
-        }
-    }
-
-    calcTotalCost(ships) {
-
-        let totalCost = 0;
-
-        for (const ship of ships) {
-            const [shipName, numShips] = Object.entries(ship)[0];
-            for (let i = 0; i < numShips; i++) {
-                totalCost += this.calcShipCost(shipName);
-            }
-        }
-
-        return totalCost;
-
-    }
 
     buyShips(player) {
         player.ships = []

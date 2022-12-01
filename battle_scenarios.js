@@ -43,6 +43,14 @@ DNvDN = 30%
 
 */
 
+function translate(array) {
+    let trans = [];
+    for (var ship of array) {
+        trans.push(ship.name + ship.shipNum)
+    }
+    return trans
+}
+
 class Plr1 {
     
     constructor() {
@@ -80,12 +88,12 @@ class Plr1 {
 
     buyShips(cpBudget) {
         const plr1Ships = [
-            {'Scout': 0},
+            {'Scout': 1},
             {'BattleCruiser': 0},
-            {'Battleship': 5},
+            {'Battleship': 2},
             {'Cruiser': 0},
             {'Destroyer': 0},
-            {'Dreadnaught': 0}
+            {'Dreadnaught': 1}
         ]
         return plr1Ships
     }
@@ -107,24 +115,26 @@ class Plr2 {
         //Could also just run brief simulation of 20 rounds of scenario
     }
 
-    targetChoice(shipInfo, combatOrder){
-        let order = [[]]
-        let curTurn = combatOrder[0].playerNum
-        let section = 0
-        for (var ship of combatOrder){
-            if (curTurn != ship.playerNum){
-                curTurn = ship.playerNum
-                section += 1
-                order.push([])
-            }
-            order[section].push(ship)
-        }
-        let self = order.map((sect,id) => {if (sect[0].playerNum == 2) return id})
-    }
+    chooseTarget(shipInfo, combatOrder){
+        let plrNum = shipInfo.playerNum;
 
-    chooseTarget(shipInfo, combatOrder) {
-        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        return this.random(opponentShips); 
+        let oppShips = [[],[]];
+        let shipId = combatOrder.findIndex(ship => ship == shipInfo);
+        let place = 0;
+
+        for (let i = 0; i < combatOrder.length; i++) {
+            if (i == shipId) {
+                place = 1;
+            };
+            if (combatOrder[i].playerNum != plrNum) oppShips[place].push(combatOrder[i]);
+        };
+
+        let priority = [...oppShips[1], ...oppShips[0]];
+        priority.sort((a,b) => (shipInfo.atk - b.df) - (shipInfo.atk - a.df) );
+        priority.sort((a,b) => a.hp - b.hp);
+        console.log(translate(priority))
+
+        return priority[0];
     }
 
     buyShips(cpBudget) {
@@ -142,7 +152,7 @@ class Plr2 {
 }
 
 let strats = [new Plr1, new Plr2]
-const trials = 20
+const trials = 1
 const wins = {1: 0, 2: 0}
 
 
