@@ -28,6 +28,7 @@ class Game {
         this.winner = null;
 
         this.boardRange = [...Array(this.boardSize).keys()];
+        console.log(this.boardRange)
         this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
 
     }

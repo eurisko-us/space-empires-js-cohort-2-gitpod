@@ -88,12 +88,12 @@ class Plr1 {
 
     buyShips(cpBudget) {
         const plr1Ships = [
-            {'Scout': 1},
-            {'BattleCruiser': 0},
-            {'Battleship': 2},
-            {'Cruiser': 0},
-            {'Destroyer': 0},
-            {'Dreadnaught': 1}
+            {'Scout': Math.floor(Math.random() * 5)},
+            {'BattleCruiser': Math.floor(Math.random() * 5)},
+            {'Battleship': Math.floor(Math.random() * 5)},
+            {'Cruiser': Math.floor(Math.random() * 5)},
+            {'Destroyer': Math.floor(Math.random() * 5)},
+            {'Dreadnaught': Math.floor(Math.random() * 5)}
         ]
         return plr1Ships
     }
@@ -132,19 +132,19 @@ class Plr2 {
         let priority = [...oppShips[1], ...oppShips[0]];
         priority.sort((a,b) => (shipInfo.atk - b.df) - (shipInfo.atk - a.df) );
         priority.sort((a,b) => a.hp - b.hp);
-        console.log(translate(priority))
+        //console.log(translate(priority))
 
         return priority[0];
     }
 
     buyShips(cpBudget) {
         const plr2Ships = [
-            {'Scout': 0},
-            {'BattleCruiser': 0},
-            {'Battleship': 0},
-            {'Cruiser': 0},
-            {'Destroyer': 0},
-            {'Dreadnaught': 5}
+            {'Scout': Math.floor(Math.random() * 5)},
+            {'BattleCruiser': Math.floor(Math.random() * 5)},
+            {'Battleship': Math.floor(Math.random() * 5)},
+            {'Cruiser': Math.floor(Math.random() * 5)},
+            {'Destroyer': Math.floor(Math.random() * 5)},
+            {'Dreadnaught': Math.floor(Math.random() * 5)}
         ]
         return plr2Ships
     }
@@ -152,7 +152,7 @@ class Plr2 {
 }
 
 let strats = [new Plr1, new Plr2]
-const trials = 1
+const trials = 20
 const wins = {1: 0, 2: 0}
 
 
@@ -160,6 +160,8 @@ import Game from './fuck_you.js';
 
 let game = new Game([], strats)
 game.initializeGame()
+console.log(strats[0].buyShips(1))
+console.log(strats[1].buyShips(1))
 
 //*
 for (let i = 0; i < trials; i++) {

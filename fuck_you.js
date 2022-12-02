@@ -107,7 +107,7 @@ class Game {
 
                         if (this.roll(ship, target)) {
                             target.hp -= 1;
-                            console.log(target.id)
+                            //console.log(target.id)
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
                                 combatOrder.splice(combatOrder.indexOf(target), 1)
