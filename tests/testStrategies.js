@@ -87,6 +87,6 @@ function runTournament(strategies, numGamesPerRound) {
 // edit this code
 
 let strategies = ['cayden', 'justin', 'anton', 'charlie', 'william'];
-let numGamesPerRound = 100;
+let numGamesPerRound = 500;
 
 runTournament(strategies, numGamesPerRound);
