@@ -154,45 +154,42 @@ Turn 5
 		Miss!
 		Attacker: Player 2 Scout 2
 		Defender: Player 1 Cruiser 1
+		Miss!
+		Attacker: Player 1 Cruiser 1
+		Defender: Player 2 Scout 2
+		Miss!
+		Attacker: Player 2 Scout 2
+		Defender: Player 1 Cruiser 1
 		Hit!
 		Player 1 Cruiser 1 hp: 2 -> 1
 		Attacker: Player 1 Cruiser 1
 		Defender: Player 2 Scout 2
-		Miss!
-		Attacker: Player 2 Scout 2
-		Defender: Player 1 Cruiser 1
-		Miss!
-		Attacker: Player 1 Cruiser 1
-		Defender: Player 2 Scout 2
-		Miss!
-		Attacker: Player 2 Scout 2
-		Defender: Player 1 Cruiser 1
 		Hit!
-		Player 1 Cruiser 1 hp: 1 -> 0
-		Player 1 Cruiser 1 was destroyed
+		Player 2 Scout 2 hp: 1 -> 0
+		Player 2 Scout 2 was destroyed
 	End Combat Phase
 
 	Begin Economic Phase
 		Player 1 initially has 28 CP
 		Player 1 gained 10 CP and now has 38 CP
-		Player 1 now has 26 CP after paying maintenance
+		Player 1 now has 24 CP after paying maintenance
 		Player 1 didn't buy any ships 
-		Player 1 has 26 CP remaining
+		Player 1 has 24 CP remaining
 		Player 2 initially has 26 CP
 		Player 2 gained 10 CP and now has 36 CP
-		Player 2 now has 22 CP after paying maintenance
+		Player 2 now has 23 CP after paying maintenance
 		Player 2 didn't buy any ships 
-		Player 2 has 22 CP remaining
+		Player 2 has 23 CP remaining
 	End Economic Phase
 
 Turn 6
 	Begin Movement Phase
+		Player 1 Cruiser 1 moved from (4, 3) to (4, 4)
 		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 0)
 		Player 1 Dreadnaught 2 moved from (3, 0) to (3, 0)
 		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
 		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
 		Player 2 Scout 1 moved from (2, 2) to (2, 1)
-		Player 2 Scout 2 moved from (4, 3) to (4, 2)
 		Player 2 Dreadnaught 1 moved from (3, 1) to (3, 0)
 		Player 2 Dreadnaught 2 moved from (3, 1) to (3, 0)
 		Player 2 Dreadnaught 3 moved from (3, 1) to (3, 0)
@@ -202,8 +199,7 @@ Turn 6
 	Begin Combat Phase
 		Attacker: Player 1 Dreadnaught 1
 		Defender: Player 2 Dreadnaught 1
-		Hit!
-		Player 2 Dreadnaught 1 hp: 3 -> 2
+		Miss!
 		Attacker: Player 1 Dreadnaught 2
 		Defender: Player 2 Dreadnaught 1
 		Miss!
@@ -212,28 +208,28 @@ Turn 6
 		Miss!
 		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 1
-		Hit!
-		Player 2 Dreadnaught 1 hp: 2 -> 1
+		Miss!
 		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Dreadnaught 1
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
 		Defender: Player 1 Dreadnaught 1
 		Hit!
 		Player 1 Dreadnaught 1 hp: 3 -> 2
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 1
-		Miss!
 		Attacker: Player 2 Dreadnaught 3
 		Defender: Player 1 Dreadnaught 1
 		Miss!
 		Attacker: Player 2 Dreadnaught 4
 		Defender: Player 1 Dreadnaught 1
-		Hit!
-		Player 1 Dreadnaught 1 hp: 2 -> 1
+		Miss!
 		Attacker: Player 1 Dreadnaught 1
 		Defender: Player 2 Dreadnaught 1
-		Miss!
+		Hit!
+		Player 2 Dreadnaught 1 hp: 3 -> 2
 		Attacker: Player 1 Dreadnaught 2
 		Defender: Player 2 Dreadnaught 1
-		Miss!
+		Hit!
+		Player 2 Dreadnaught 1 hp: 2 -> 1
 		Attacker: Player 1 Dreadnaught 3
 		Defender: Player 2 Dreadnaught 1
 		Hit!
@@ -245,36 +241,21 @@ Turn 6
 		Player 2 Dreadnaught 2 hp: 3 -> 2
 		Attacker: Player 2 Dreadnaught 2
 		Defender: Player 1 Dreadnaught 1
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 1
 		Hit!
-		Player 1 Dreadnaught 1 hp: 1 -> 0
-		Player 1 Dreadnaught 1 was destroyed
+		Player 1 Dreadnaught 1 hp: 2 -> 1
 		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 2
+		Defender: Player 1 Dreadnaught 1
+		Miss!
+		Attacker: Player 1 Dreadnaught 1
+		Defender: Player 2 Dreadnaught 2
 		Miss!
 		Attacker: Player 1 Dreadnaught 2
-		Defender: Player 2 Dreadnaught 2
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 2
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 2
 		Hit!
 		Player 2 Dreadnaught 2 hp: 2 -> 1
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 2
-		Miss!
-		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 2
-		Hit!
-		Player 1 Dreadnaught 2 hp: 3 -> 2
-		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 2
-		Hit!
-		Player 1 Dreadnaught 2 hp: 2 -> 1
-		Attacker: Player 1 Dreadnaught 2
-		Defender: Player 2 Dreadnaught 2
-		Miss!
 		Attacker: Player 1 Dreadnaught 3
 		Defender: Player 2 Dreadnaught 2
 		Hit!
@@ -284,8 +265,23 @@ Turn 6
 		Defender: Player 2 Dreadnaught 3
 		Miss!
 		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 2
+		Defender: Player 1 Dreadnaught 1
+		Hit!
+		Player 1 Dreadnaught 1 hp: 1 -> 0
+		Player 1 Dreadnaught 1 was destroyed
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 3
 		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 2
+		Hit!
+		Player 1 Dreadnaught 2 hp: 3 -> 2
 		Attacker: Player 2 Dreadnaught 4
 		Defender: Player 1 Dreadnaught 2
 		Miss!
@@ -293,6 +289,23 @@ Turn 6
 		Defender: Player 2 Dreadnaught 3
 		Hit!
 		Player 2 Dreadnaught 3 hp: 3 -> 2
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 3
+		Hit!
+		Player 2 Dreadnaught 3 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 2
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 2
+		Hit!
+		Player 1 Dreadnaught 2 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 3
+		Miss!
 		Attacker: Player 1 Dreadnaught 3
 		Defender: Player 2 Dreadnaught 3
 		Miss!
@@ -309,34 +322,26 @@ Turn 6
 		Miss!
 		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 3
-		Hit!
-		Player 2 Dreadnaught 3 hp: 2 -> 1
+		Miss!
 		Attacker: Player 2 Dreadnaught 3
 		Defender: Player 1 Dreadnaught 3
-		Miss!
+		Hit!
+		Player 1 Dreadnaught 3 hp: 3 -> 2
 		Attacker: Player 2 Dreadnaught 4
 		Defender: Player 1 Dreadnaught 3
 		Miss!
 		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 3
 		Hit!
 		Player 2 Dreadnaught 3 hp: 1 -> 0
 		Player 2 Dreadnaught 3 was destroyed
-		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 4
-		Miss!
 		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 4
 		Miss!
 		Attacker: Player 2 Dreadnaught 4
 		Defender: Player 1 Dreadnaught 3
-		Miss!
+		Hit!
+		Player 1 Dreadnaught 3 hp: 2 -> 1
 		Attacker: Player 1 Dreadnaught 3
 		Defender: Player 2 Dreadnaught 4
 		Hit!
@@ -346,310 +351,44 @@ Turn 6
 		Miss!
 		Attacker: Player 2 Dreadnaught 4
 		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 4
-		Miss!
+		Hit!
+		Player 1 Dreadnaught 3 hp: 1 -> 0
+		Player 1 Dreadnaught 3 was destroyed
 		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 4
 		Miss!
 		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
 		Hit!
-		Player 2 Dreadnaught 4 hp: 2 -> 1
+		Player 1 Dreadnaught 4 hp: 3 -> 2
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Hit!
+		Player 1 Dreadnaught 4 hp: 2 -> 1
 		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 4
 		Hit!
-		Player 2 Dreadnaught 4 hp: 1 -> 0
-		Player 2 Dreadnaught 4 was destroyed
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 26 CP
-		Player 1 gained 10 CP and now has 36 CP
-		Player 1 now has 30 CP after paying maintenance
-		Player 1 bought a Cruiser
-		Player 1 has 18 CP remaining
-		Player 2 initially has 22 CP
-		Player 2 gained 10 CP and now has 32 CP
-		Player 2 now has 30 CP after paying maintenance
-		Player 2 bought a Dreadnaught
-		Player 2 has 6 CP remaining
-	End Economic Phase
-
-Turn 7
-	Begin Movement Phase
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 1 Cruiser 2 moved from (3, 0) to (4, 0)
-		Player 2 Scout 1 moved from (2, 1) to (2, 0)
-		Player 2 Scout 2 moved from (4, 2) to (4, 1)
-		Player 2 Dreadnaught 5 moved from (3, 6) to (3, 5)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 18 CP
-		Player 1 gained 10 CP and now has 28 CP
-		Player 1 now has 20 CP after paying maintenance
-		Player 1 didn't buy any ships 
-		Player 1 has 20 CP remaining
-		Player 2 initially has 6 CP
-		Player 2 gained 10 CP and now has 16 CP
-		Player 2 now has 11 CP after paying maintenance
-		Player 2 didn't buy any ships 
-		Player 2 has 11 CP remaining
-	End Economic Phase
-
-Turn 8
-	Begin Movement Phase
-		Player 1 Cruiser 2 moved from (4, 0) to (4, 1)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 2 Scout 1 moved from (2, 0) to (3, 0)
-		Player 2 Dreadnaught 5 moved from (3, 5) to (3, 4)
-	End Movement Phase
-
-	Begin Combat Phase
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Scout 1
+		Player 2 Dreadnaught 4 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
 		Hit!
-		Player 2 Scout 1 hp: 1 -> 0
-		Player 2 Scout 1 was destroyed
-		Attacker: Player 1 Cruiser 2
-		Defender: Player 2 Scout 2
-		Miss!
-		Attacker: Player 2 Scout 2
-		Defender: Player 1 Cruiser 2
-		Miss!
-		Attacker: Player 1 Cruiser 2
-		Defender: Player 2 Scout 2
-		Miss!
-		Attacker: Player 2 Scout 2
-		Defender: Player 1 Cruiser 2
-		Miss!
-		Attacker: Player 1 Cruiser 2
-		Defender: Player 2 Scout 2
-		Hit!
-		Player 2 Scout 2 hp: 1 -> 0
-		Player 2 Scout 2 was destroyed
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 20 CP
-		Player 1 gained 10 CP and now has 30 CP
-		Player 1 now has 22 CP after paying maintenance
-		Player 1 didn't buy any ships 
-		Player 1 has 22 CP remaining
-		Player 2 initially has 11 CP
-		Player 2 gained 10 CP and now has 21 CP
-		Player 2 now has 18 CP after paying maintenance
-		Player 2 tried to go over budget
-	End Economic Phase
-
-Turn 9
-	Begin Movement Phase
-		Player 1 Cruiser 2 moved from (4, 1) to (4, 2)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 2 Dreadnaught 5 moved from (3, 4) to (3, 3)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 22 CP
-		Player 1 gained 10 CP and now has 32 CP
-		Player 1 now has 24 CP after paying maintenance
-		Player 1 didn't buy any ships 
-		Player 1 has 24 CP remaining
-		Player 2 initially has 18 CP
-		Player 2 gained 10 CP and now has 28 CP
-		Player 2 now has 25 CP after paying maintenance
-		Player 2 bought a Dreadnaught
-		Player 2 has 1 CP remaining
-	End Economic Phase
-
-Turn 10
-	Begin Movement Phase
-		Player 1 Cruiser 2 moved from (4, 2) to (4, 3)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 2 Dreadnaught 5 moved from (3, 3) to (3, 2)
-		Player 2 Dreadnaught 6 moved from (3, 6) to (3, 5)
-	End Movement Phase
-
-	Begin Combat Phase
+		Player 1 Dreadnaught 4 hp: 1 -> 0
+		Player 1 Dreadnaught 4 was destroyed
 	End Combat Phase
 
 	Begin Economic Phase
 		Player 1 initially has 24 CP
 		Player 1 gained 10 CP and now has 34 CP
-		Player 1 now has 26 CP after paying maintenance
-		Player 1 didn't buy any ships 
-		Player 1 has 26 CP remaining
-		Player 2 initially has 1 CP
-		Player 2 gained 10 CP and now has 11 CP
-		Player 2 now has 5 CP after paying maintenance
-		Player 2 tried to go over budget
-	End Economic Phase
-
-Turn 11
-	Begin Movement Phase
-		Player 1 Cruiser 2 moved from (4, 3) to (4, 4)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 2 Dreadnaught 5 moved from (3, 2) to (3, 1)
-		Player 2 Dreadnaught 6 moved from (3, 5) to (3, 4)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 26 CP
-		Player 1 gained 10 CP and now has 36 CP
-		Player 1 now has 28 CP after paying maintenance
+		Player 1 now has 32 CP after paying maintenance
 		Player 1 bought a Cruiser
-		Player 1 has 16 CP remaining
-		Player 2 initially has 5 CP
-		Player 2 gained 10 CP and now has 15 CP
-		Player 2 now has 9 CP after paying maintenance
-		Player 2 tried to go over budget
-	End Economic Phase
-
-Turn 12
-	Begin Movement Phase
-		Player 1 Cruiser 2 moved from (4, 4) to (4, 5)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 1 Cruiser 3 moved from (3, 0) to (4, 0)
-		Player 2 Dreadnaught 5 moved from (3, 1) to (3, 0)
-		Player 2 Dreadnaught 6 moved from (3, 4) to (3, 3)
-	End Movement Phase
-
-	Begin Combat Phase
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 5
-		Hit!
-		Player 2 Dreadnaught 5 hp: 3 -> 2
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 5
-		Hit!
-		Player 2 Dreadnaught 5 hp: 2 -> 1
-		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 3
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 5
-		Hit!
-		Player 2 Dreadnaught 5 hp: 1 -> 0
-		Player 2 Dreadnaught 5 was destroyed
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 16 CP
-		Player 1 gained 10 CP and now has 26 CP
-		Player 1 now has 16 CP after paying maintenance
-		Player 1 didn't buy any ships 
-		Player 1 has 16 CP remaining
-		Player 2 initially has 9 CP
-		Player 2 gained 10 CP and now has 19 CP
-		Player 2 now has 16 CP after paying maintenance
-		Player 2 tried to go over budget
-	End Economic Phase
-
-Turn 13
-	Begin Movement Phase
-		Player 1 Cruiser 2 moved from (4, 5) to (4, 6)
-		Player 1 Cruiser 3 moved from (4, 0) to (4, 1)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 2 Dreadnaught 6 moved from (3, 3) to (3, 2)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 16 CP
-		Player 1 gained 10 CP and now has 26 CP
-		Player 1 now has 16 CP after paying maintenance
-		Player 1 didn't buy any ships 
-		Player 1 has 16 CP remaining
-		Player 2 initially has 16 CP
-		Player 2 gained 10 CP and now has 26 CP
-		Player 2 now has 23 CP after paying maintenance
-		Player 2 tried to go over budget
-	End Economic Phase
-
-Turn 14
-	Begin Movement Phase
-		Player 1 Cruiser 2 moved from (4, 6) to (3, 6)
-		Player 1 Cruiser 3 moved from (4, 1) to (4, 2)
-		Player 1 Dreadnaught 3 moved from (3, 0) to (3, 0)
-		Player 1 Dreadnaught 4 moved from (3, 0) to (3, 0)
-		Player 2 Dreadnaught 6 moved from (3, 2) to (3, 1)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-	Begin Economic Phase
-		Player 1 initially has 16 CP
-		Player 1 gained 10 CP and now has 26 CP
-		Player 1 now has 16 CP after paying maintenance
-		Player 1 didn't buy any ships 
-		Player 1 has 16 CP remaining
+		Player 1 has 20 CP remaining
 		Player 2 initially has 23 CP
 		Player 2 gained 10 CP and now has 33 CP
-		Player 2 now has 30 CP after paying maintenance
+		Player 2 now has 29 CP after paying maintenance
 		Player 2 bought a Dreadnaught
-		Player 2 has 6 CP remaining
+		Player 2 has 5 CP remaining
 	End Economic Phase
 
