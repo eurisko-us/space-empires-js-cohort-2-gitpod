@@ -1,10 +1,10 @@
 import Game from './../src/game.js';
 
-import CharlieStrat from './../competitionStrategies/charlieStrat.js';
-import WilliamStrat from './../competitionStrategies/williamStrat.js';
-import JustinStrat  from './../competitionStrategies/justinStrat.js';
-import CaydenStrat  from './../competitionStrategies/caydenStrat.js';
-import AntonStrat   from './../competitionStrategies/antonStrat.js';
+import CharlieStrat from '../strategies/competition_1/charlieStrat.js';
+import WilliamStrat from '../strategies/competition_1/williamStrat.js';
+import JustinStrat  from '../strategies/competition_1/justinStrat.js';
+import CaydenStrat  from '../strategies/competition_1/caydenStrat.js';
+import AntonStrat   from '../strategies/competition_1/antonStrat.js';
 // import MaiaStrat    from './../competitionStrategies/maiaStrat.js';
 
 import BasicStrat       from './../strategies/basicStrat.js';
