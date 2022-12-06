@@ -122,7 +122,6 @@ class Game {
         for (let key of Object.keys(ship)){
             shipInfo[key] = ship[key]
         }
-        console.log(shipInfo)
         return shipInfo
     }
 

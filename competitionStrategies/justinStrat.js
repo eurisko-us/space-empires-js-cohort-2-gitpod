@@ -1,4 +1,4 @@
-import ParentStrat from './strategies/parentStrat.js';
+import ParentStrat from '../strategies/parentStrat.js';
 
 class JustinStrat extends ParentStrat {
 
@@ -110,7 +110,8 @@ class JustinStrat extends ParentStrat {
                 let enemyInNewCoord = false
                 for (let obj of coordObjs) {
                     if (obj['objType'] == 'Ship' && obj['playerNum'] != this.playerNum) {
-                        translationCopy.splice(translationCopy.indexOf(translation),1)
+                        const badTranslationIdx = this.indexOfArr(translationCopy, translation)
+                        translationCopy.splice(badTranslationIdx,1)
                         enemyInNewCoord = true
                         break
                     }
