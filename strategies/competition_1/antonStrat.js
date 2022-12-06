@@ -1,4 +1,4 @@
-import ParentStrat from '../strategies/parentStrat.js';
+import ParentStrat from '../parentStrat.js';
 
 class AntonStrat extends ParentStrat {
     
