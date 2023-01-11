@@ -43,6 +43,35 @@ class ParentStrat {
         }
     }
 
+    getOpponentRegularColonyCoords(ship) {
+        let opponentRegularColonyCoords = [];
+
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
+                for (let obj of this.simpleBoard[j][i]) {
+                    if (obj.objType === 'Colony' && obj.isHomeColony == false && obj.playerNum != ship.playerNum) {
+                        opponentRegularColonyCoords.push([j, i])
+                    }
+                }
+            }
+        }
+    }
+
+    getNearestOpponentRegularColonyCoords(ship, opponentRegularColonyCoords){
+        let minDistance = 999999
+        let nearestColonyCoords = null
+
+        for (let coord of opponentRegularColonyCoords) {
+            distance = this.dist(ship.coords, coord)
+
+            if (distance < minDistance) {
+                nearestColonyCoords = coord
+            }
+        }
+
+        return nearestColonyCoords
+    }
+
     random(list) {
         return list[Math.floor(Math.random() * list.length)];
     }
