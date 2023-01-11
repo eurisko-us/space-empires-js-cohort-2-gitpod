@@ -17,6 +17,10 @@ class BasicStrat extends ParentStrat {
         return this.random(opponentShips);
     }
 
+    buyTech(cpBudget) {
+        return ["attack", "defense"];
+    }
+
     buyShips(cpBudget) {
         if (this.turn == 0) return [{"Scout": 5}];
         return [{"Dreadnaught": 5}];

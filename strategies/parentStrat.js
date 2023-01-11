@@ -49,6 +49,7 @@ class ParentStrat {
 
     chooseTranslation(ship, translations) { return; }
     chooseTarget(shipInfo, combatOrder) { return; }
+    buyTech(cpBudget) { return; }
     buyShips(cpBudget) { return; }
 
 }

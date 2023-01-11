@@ -104,6 +104,7 @@ class Game {
             this.movementPhase();
             this.combatPhase();
             this.economicPhase();
+            console.log(this.players[0].technology);
             this.winner = this.checkForWinner();
             this.turn++;
         } else {
@@ -225,6 +226,7 @@ class Game {
             this.maintenance(player); // pay maintenance
             this.log.playerCPAfterMaintenance(player);
 
+            this.buyTech(player); // buy technology
             this.buyShips(player); // buy ships
 
         }
@@ -403,32 +405,85 @@ class Game {
 
     }
 
-    buyShips(player) {
+    calcTotalTechCost(playerTech) {
+        let totalCost = 0;
+        for (let tech of playerTech) {
+            if (tech == "attack")  totalCost += 10; // arbitrary, check research chart
+            if (tech == "defense") totalCost += 20; // arbitrary, check research chart
+        }
+        return totalCost;
+    }
+    
+    buyTech(player) {
 
-        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
+        // buy technology
 
-        if (player.buyShips().length == 0) this.log.boughtNoShips(player);
+        let playerTech = player.buyTech(); // list of strings (i.e. ["attack", "defense", etc])
+        if (playerTech.length == 0) this.log.boughtNothing(player, "technology");
 
-        let totalCost = this.calcTotalCost(playerShips);
+        // pay for technology
+
+        let totalCost = this.calcTotalTechCost(playerTech);
 
         if (totalCost > player.cp) {
-            this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
+            this.log.playerWentOverBudget(player, "technology"); // the player gets nothing if they go over budget
             return;
         }
 
         player.cp -= totalCost;
-        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
+
+        // add technology to player
+
+        for (let tech of playerTech) {
+            player.technology[tech]++;
+        }
+
+    }
+
+    buyShips(player) {
+
+        // buy ships
+
+        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
+        if (playerShips.length == 0) this.log.boughtNothing(player, "ships");
+
+        // pay for ships
+
+        let totalCost = this.calcTotalCost(playerShips);
+
+        if (totalCost > player.cp) {
+            this.log.playerWentOverBudget(player, "ships"); // the player gets nothing if they go over budget
+            return;
+        }
+
+        player.cp -= totalCost;
+
+        // add ships to player + board
 
         if (playerShips) {
             for (let ship of playerShips) {
                 for (let shipName in ship) {
                     for (let i = 0; i < ship[shipName]; i++) {
 
+                        // get ship object
+
                         let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
                         if (!ship) continue;
 
+                        // add technology levels to ship
+
+                        ship.atk += player.technology["attack"] - 1;
+                        ship.df  += player.technology["defense"] - 1;
+
+                        if (ship.atk > ship.hullSize) ship.atk = ship.hullSize;
+                        if (ship.df  > ship.hullSize) ship.df  = ship.hullSize;
+
+                        // add ship to player
+
                         player.addShip(ship);
                         assert (player.ships.includes(ship), 'Ship was not added to player.ships');
+
+                        // add ship to board
 
                         this.addToBoard(ship);
                         assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
