@@ -25,6 +25,7 @@ class Game {
 
         this.board = [];
         this.turn = 0;
+        this.planets = []
         this.winner = null;
 
         this.boardRange = [...Array(this.boardSize).keys()];
@@ -32,12 +33,16 @@ class Game {
 
     }
 
-    //spawnPlanets(self, xRange, yRange, homeColonyCoords) {
-        //let options = [];
-        
-        //this.addToBoard(homeColony);
+    randomChoice(list) {
+        return list[Math.floor(Math.random() * list.length)];
+    }
 
-    //}
+    spawnPlanets(self, xOptions, yOptions) {
+        let newPlanetCoords = [this.randomChoice(Xoptions), this.randomChoice(yOptions)]
+        let newPlanet = Planet(newPlanetCoords, this.planets.length + 1)
+        this.planets.push(newPlanet)
+        this.addToBoard(newPlanet)
+    }
 
     // Initializing and running the game
 
@@ -62,18 +67,20 @@ class Game {
                 2: [0, halfBoardSize],
                 3: [this.boardSize - 1, halfBoardSize]
             }
+
+            const planetOptions = {
+                0: [[0, 1, 2], [0, 1, 2]],
+                1: [[0, 1, 2], [4, 5, 6]],
+                2: [[4, 5, 6], [0, 1, 2]],
+                3: [[4, 5, 6], [4, 5, 6]]
+            }
+
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
             homeColony.setHomeColonyId()
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
-            //if (i == 0) {
-                //this.spawnPlanets([0, 6], [0, 2], [homeColonyCoordsMap[i]])
-            //}
-
-            //if (i == 1) {
-                //this.spawnPlanets([0, 6], [4, 6], [homeColonyCoordsMap[i]])
-            //}
+            this.spawnPlanets(planetRanges[i][0], planetRanges[i][1])
 
             // buy ships
             this.buyShips(this.players[i]);
@@ -212,12 +219,34 @@ class Game {
 
     }
 
+    makeColonies() {
+        for (let planet of this.planets){
+            let x, y = [...planet.coords]
+            
+            for (let obj of this.board[y][x]){
+                if (obj.name == "ColonyShip" && planet.colony == null){
+                    let newColony = new Colony(obj.playerNum, false)
+                    newColony.setColonyId(player.allColonies.length + 1)
+                    planet.colony = newColony
+                    planet.updateId()
+                    player.aliveColonies.push(newColony)
+                    player.allColonies.push(newColony)
+                    this.addToBoard(newColony)
+                    this.log.madeColony()
+                    this.removeFromBoard(obj);
+                    this.removeShipFromPlayer(this.players[obj.playerNum - 1], obj);
+                }
+            }
+        }
+    }
+
     economicPhase() { 
         
         this.log.beginPhase('Economic');
+        this.makeColonies();
 
         for (let player of this.players) {
-            
+
             this.log.playerCP(player); // gain cp
             player.cp += this.cpPerRound; 
             this.log.newPlayerCP(player, this.cpPerRound);

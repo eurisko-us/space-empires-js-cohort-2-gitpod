@@ -94,6 +94,10 @@ class Logger {
         this.write(`\t\tPlayer ${player.playerNum} didn't buy any ships \n`)
     }
 
+    madeColony(player, planet){
+        this.write(`\t\tPlayer ${player.playerNum} has colonized ${planet.planetNum} \n`)
+    }
+
     playerCPRemaining(player) {
         this.write(`\t\tPlayer ${player.playerNum} has ${player.cp} CP remaining\n`);
     }
