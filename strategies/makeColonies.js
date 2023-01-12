@@ -1,14 +1,16 @@
 import ParentStrat from './parentStrat.js';
 
-class RushStrat extends ParentStrat {
+class MakeColonies extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
-        this.name = 'rush';
+        this.name = 'make colonies';
     }
 
     chooseTranslation(ship, translations) {
-        //make go to neared uncolonized planet
+        let opponentColonyCoords = this.getOpponentRegularColonyCoords(ship)
+        let nearestColonyCoord = this.getNearestOpponentRegularColonyCoords(ship, opponentColonyCoords)
+        return this.minDistanceTranslation(ship, translations, nearestColonyCoord)
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -17,11 +19,10 @@ class RushStrat extends ParentStrat {
     }
 
     buyShips(cpBudget) {
-        if (this.turn == 0) return [{"Battleship": 5}];
-        if (cpBudget > 45) return [{"Battleship": 1}];
+        if (this.turn == 0) return [{"ColonyShip": 3}];
         return [];
     } 
 
 }
 
-export default RushStrat;
+export default MakeColonies;

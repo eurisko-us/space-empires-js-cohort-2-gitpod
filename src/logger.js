@@ -95,7 +95,7 @@ class Logger {
     }
 
     madeColony(player, planet){
-        this.write(`\t\tPlayer ${player.playerNum} has colonized ${planet.planetNum} \n`)
+        this.write(`\t\tPlayer ${player.playerNum} has colonized Planet ${planet.planetNum} at ${planet.coords}\n`)
     }
 
     playerCPRemaining(player) {

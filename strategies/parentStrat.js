@@ -49,12 +49,13 @@ class ParentStrat {
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony == false && obj.playerNum != ship.playerNum) {
+                    if (obj.objType === 'Planet' && obj.playerNum != ship.playerNum && obj.colony == null) {
                         opponentRegularColonyCoords.push([j, i])
                     }
                 }
             }
         }
+        return opponentRegularColonyCoords
     }
 
     getNearestOpponentRegularColonyCoords(ship, opponentRegularColonyCoords){
@@ -62,7 +63,7 @@ class ParentStrat {
         let nearestColonyCoords = null
 
         for (let coord of opponentRegularColonyCoords) {
-            distance = this.dist(ship.coords, coord)
+            let distance = this.dist(ship.coords, coord)
 
             if (distance < minDistance) {
                 nearestColonyCoords = coord

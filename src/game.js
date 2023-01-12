@@ -5,6 +5,7 @@ import { allShips } from './ships.js';
 import Player from './player.js';
 import Colony from './colony.js';
 import Logger from './logger.js';
+import Planet from './planet.js'
 
 class Game {
     
@@ -37,9 +38,9 @@ class Game {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    spawnPlanets(self, xOptions, yOptions) {
-        let newPlanetCoords = [this.randomChoice(Xoptions), this.randomChoice(yOptions)]
-        let newPlanet = Planet(newPlanetCoords, this.planets.length + 1)
+    spawnPlanets(xOptions, yOptions) {
+        let newPlanetCoords = [this.randomChoice(xOptions), this.randomChoice(yOptions)]
+        let newPlanet = new Planet(newPlanetCoords, this.planets.length + 1)
         this.planets.push(newPlanet)
         this.addToBoard(newPlanet)
     }
@@ -68,7 +69,7 @@ class Game {
                 3: [this.boardSize - 1, halfBoardSize]
             }
 
-            const planetOptions = {
+            const planetRanges = {
                 0: [[0, 1, 2], [0, 1, 2]],
                 1: [[0, 1, 2], [4, 5, 6]],
                 2: [[4, 5, 6], [0, 1, 2]],
@@ -221,18 +222,20 @@ class Game {
 
     makeColonies() {
         for (let planet of this.planets){
-            let x, y = [...planet.coords]
+            let x = [...planet.coords][0]
+            let y = [...planet.coords][1]
             
             for (let obj of this.board[y][x]){
                 if (obj.name == "ColonyShip" && planet.colony == null){
-                    let newColony = new Colony(obj.playerNum, false)
+                    let newColony = new Colony([...obj.coords], obj.playerNum, false)
+                    let player = this.players[obj.playerNum - 1]
                     newColony.setColonyId(player.allColonies.length + 1)
                     planet.colony = newColony
                     planet.updateId()
                     player.aliveColonies.push(newColony)
                     player.allColonies.push(newColony)
                     this.addToBoard(newColony)
-                    this.log.madeColony()
+                    this.log.madeColony(player, planet)
                     this.removeFromBoard(obj);
                     this.removeShipFromPlayer(this.players[obj.playerNum - 1], obj);
                 }
