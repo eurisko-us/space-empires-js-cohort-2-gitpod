@@ -8,9 +8,9 @@ class MakeColonies extends ParentStrat {
     }
 
     chooseTranslation(ship, translations) {
-        let opponentColonyCoords = this.getOpponentRegularColonyCoords(ship)
-        let nearestColonyCoord = this.getNearestOpponentRegularColonyCoords(ship, opponentColonyCoords)
-        return this.minDistanceTranslation(ship, translations, nearestColonyCoord)
+        let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        return this.minDistanceTranslation(ship, translations, targetCoords);
+        
     }
 
     chooseTarget(shipInfo, combatOrder) {
