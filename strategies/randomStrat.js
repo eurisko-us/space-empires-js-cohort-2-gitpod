@@ -44,6 +44,10 @@ class RandomStrat extends ParentStrat {
     
     }
 
+    maintOrder(ships) {
+        return ships.sort(() => Math.random() - 0.5);
+    }
+    
 }
 
 export default RandomStrat;
