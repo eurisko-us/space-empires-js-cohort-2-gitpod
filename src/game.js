@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { readFile } from 'fs';
 import assert from 'assert';
 
@@ -16,6 +17,8 @@ class Game {
         this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
         this.stopInterval = null;
+
+        this.playerTurn = 0;
     
         this.log = new Logger();
         this.log.clear();
@@ -78,8 +81,8 @@ class Game {
             //}
 
             // buy ships
-            this.buyShips(this.players[i]);
 
+            //this.buyShips(this.players[i]);
         }
 
         this.turn = 1;
@@ -93,24 +96,32 @@ class Game {
 
     run() {
 
-        this.display();
+        //this.display();
 
+        //##if this is causing excess winner registration try commented out version
         if (this.winner) {
             this.log.playerWin(this.winner);
             clearInterval(this.stopInterval);
             return;
         }
-
+        //!!add if functions 
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
+            this.economicPhase();
             this.movementPhase();
             this.combatPhase();
-            this.economicPhase();
             this.winner = this.checkForWinner();
             this.turn++;
         } else {
             this.winner = 'Tie';
         }
+
+        /*
+        if (this.winner) {	
+            this.log.playerWin(this.winner);	
+            clearInterval(this.stopInterval);	
+        }
+        //*/
 
     }
 
@@ -144,6 +155,10 @@ class Game {
 
         this.log.beginPhase('Movement');
 
+        //!!make it turn based	
+        //!!keep track of which ships have moved (or need to move)	
+        //!!add bool or id for a manual player
+
         for (let player of this.players) {
             for (let ship of player.ships) {
 
@@ -175,8 +190,11 @@ class Game {
         for (let coords of this.getCombatCoords()) {
             
             let combatOrder = this.sortCombatOrder(coords); 
+            //!!make it so that which coord combat is being run on is remembered	
+            //!!make it so that the combat order is remembered (prevent unessisary recalculation) (can be added later)
             
             while (this.numPlayersInCombatOrder(combatOrder) > 1) {
+                //!!remember which ship is currently attacking
                 for (let ship of combatOrder) {
 
                     if (this.numPlayersInCombatOrder(combatOrder) == 1) break;
@@ -217,6 +235,8 @@ class Game {
     economicPhase() { 
         
         this.log.beginPhase('Economic');
+        //!!Change for player id	
+        //!!keep track of what section the phase is on
 
         for (let player of this.players) {
             
@@ -228,6 +248,8 @@ class Game {
             this.log.playerCPAfterMaintenance(player);
 
             this.buyShips(player); // buy ships
+            
+            this.display();
 
         }
 
@@ -409,7 +431,7 @@ class Game {
 
         let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
 
-        if (player.buyShips().length == 0) this.log.boughtNoShips(player);
+        if (playerShips.length == 0) this.log.boughtNoShips(player);
 
         let totalCost = this.calcTotalCost(playerShips);
 
@@ -508,11 +530,15 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            readFile('log.txt', (_, data) => {
-                socket.emit('update UI', {
-                    board: this.board,
-                    logs: this.getLogs(data)
-                });
+            //*	
+            console.log('running dislplay')	
+            console.log(`About to emit gameState to socket ${socketId}`);	
+            let data = fs.readFileSync('log.txt');	
+            //console.log(this.getLogs(data))	
+            console.log(`Actually emitting gameState to socket ${socketId}`);              	
+            socket.emit('update UI', {	
+                board: this.board,	
+                logs: this.getLogs(data)
             });
         }
     }
