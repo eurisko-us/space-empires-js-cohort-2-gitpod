@@ -351,10 +351,6 @@ class Game {
 
     // Economic
 
-    maintOrder(ships) {
-        return ships.sort((a, b) => a.maintCost - b.maintCost);
-    }
-
     calcMaintCost(ships) {
         const maintCosts = ships.map((ship) => ship.maintCost);
         return this.sum(maintCosts);
@@ -363,7 +359,11 @@ class Game {
     maintenance(player) {
 
         let totalCost = this.calcMaintCost(player.ships);
-        let orderedShips = this.maintOrder(player.ships);
+        let shipList = [];
+        for (let ship of player.ships) {
+            shipList.push(this.getSimpleObj(ship));
+        }
+        let orderedShips = player.strategy.maintOrder(shipList);
 
         while (totalCost > player.cp) {
             
