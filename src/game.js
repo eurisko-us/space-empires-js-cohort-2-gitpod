@@ -30,6 +30,8 @@ class Game {
         this.boardRange = [...Array(this.boardSize).keys()];
         this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
 
+        this.playerInput = '';
+
     }
 
     //spawnPlanets(self, xRange, yRange, homeColonyCoords) {

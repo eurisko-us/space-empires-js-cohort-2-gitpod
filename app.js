@@ -63,6 +63,11 @@ io.on('connection', (socket) => {
         if (game) game.start();
     });
 
+    socket.on('submit input', (input) => {
+        console.log(`new input: ${input}`);
+        if (game) game.playerInput = input;
+    });
+
 });
 
 httpServer.listen(3000, () => console.log('Listening on *:3000'));
