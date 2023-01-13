@@ -8,6 +8,7 @@ class InputStrat extends ParentStrat {
     constructor() {
         super(ParentStrat);
         this.name = 'input';
+        this.manual = true
     }
 
     chooseTranslation(ship, translations) {

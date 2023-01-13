@@ -34,6 +34,7 @@ class Game {
         this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
 
         this.playerInput = '';
+        this.phase = 'econ'
 
     }
 
@@ -96,32 +97,39 @@ class Game {
 
     run() {
 
-        //this.display();
+        this.display();
 
-        //##if this is causing excess winner registration try commented out version
+        
+        
+
         if (this.winner) {
             this.log.playerWin(this.winner);
             clearInterval(this.stopInterval);
             return;
         }
-        //!!add if functions 
-        if (this.turn < this.maxTurns) {
+        // add if functions (DONE)
+        //! look into any better way to do this
+        if (this.phase == null) {
             this.log.turn(this.turn);
-            this.economicPhase();
-            this.movementPhase();
-            this.combatPhase();
-            this.winner = this.checkForWinner();
-            this.turn++;
-        } else {
-            this.winner = 'Tie';
+            this.phase = 'econ';
         }
+        else if (this.phase == 'econ') {
+            this.economicPhase(); //!!Work on Econ
+            this.phase = 'mvmt';
+        }
+        else if (this.phase == 'mvmt') {
+            this.movementPhase(); //!!Work on Mvmt
+            this.phase = 'combat';
+        }
+        else if (this.phase == 'combat') {
+            this.combatPhase(); //!!Work on Combat
+            this.phase = null;
+        }
+        this.winner = this.checkForWinner();
+        this.turn++;
 
-        /*
-        if (this.winner) {	
-            this.log.playerWin(this.winner);	
-            clearInterval(this.stopInterval);	
-        }
-        //*/
+        if (!this.winner && this.turn >= this.maxTurns) this.winner = 'Tie';
+
 
     }
 
@@ -237,6 +245,8 @@ class Game {
         this.log.beginPhase('Economic');
         //!!Change for player id	
         //!!keep track of what section the phase is on
+
+        let player = this.players[this.playerTurn]
 
         for (let player of this.players) {
             
