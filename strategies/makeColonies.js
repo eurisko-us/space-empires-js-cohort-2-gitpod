@@ -19,7 +19,7 @@ class MakeColonies extends ParentStrat {
     }
 
     buyShips(cpBudget) {
-        if (this.turn == 0) return [{"ColonyShip": 3}];
+        if (this.turn == 0) return [{"ColonyShip": 2}, {"Dreadnaught": 1}];
         return [];
     } 
 

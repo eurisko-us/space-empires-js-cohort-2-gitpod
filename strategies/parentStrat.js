@@ -43,7 +43,7 @@ class ParentStrat {
         }
     }
 
-    getOpponentRegularColonyCoords(ship) {
+    getFreePlanetsCoords(ship) {
         let opponentRegularColonyCoords = [];
 
         for (let i = 0; i < this.simpleBoard.length; i++) {
@@ -58,11 +58,11 @@ class ParentStrat {
         return opponentRegularColonyCoords
     }
 
-    getNearestOpponentRegularColonyCoords(ship, opponentRegularColonyCoords){
+    getNearestPlanetCoords(ship, planetCoords){
         let minDistance = 999999
         let nearestColonyCoords = null
 
-        for (let coord of opponentRegularColonyCoords) {
+        for (let coord of planetCoords) {
             let distance = this.dist(ship.coords, coord)
 
             if (distance < minDistance) {

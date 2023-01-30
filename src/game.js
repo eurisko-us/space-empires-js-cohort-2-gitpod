@@ -352,10 +352,20 @@ class Game {
 
 
     // Combat
+    
 
     checkForCombat(coords) {
         let ships = this.getAllShips(coords);
         if (ships.length == 0) return false;
+
+        let shipNames = new Set(ships.map((ship) => ship.name));
+
+        const eqSet = (xs, ys) => xs.size === ys.size && [...xs].every((x) => ys.has(x));
+
+        if (eqSet(shipNames, new Set(["ColonyShip"]))){
+            return false
+        }
+
         return !ships.every(obj => obj.playerNum === ships[0].playerNum);
     }
 
@@ -373,9 +383,7 @@ class Game {
         let playerNums = [];
 
         for (let ship of combatOrder) {
-            if (ship.name != 'ColonyShip'){
-                playerNums.push(ship.playerNum)
-            }
+            playerNums.push(ship.playerNum)
         }
 
         return (new Set(playerNums)).size
