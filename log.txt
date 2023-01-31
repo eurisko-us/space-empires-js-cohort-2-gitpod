@@ -1,19 +1,126 @@
 Begin Game
 		Player 1 bought a Scout
-		Player 1 bought a Scout
-		Player 1 bought a Scout
-		Player 1 bought a Scout
-		Player 1 bought a Scout
-		Player 1 has 120 CP remaining
+		Player 1 has 144 CP remaining
 		Player 2 bought a Dreadnaught
 		Player 2 bought a Dreadnaught
 		Player 2 bought a Dreadnaught
 		Player 2 bought a Dreadnaught
-		Player 2 has 54 CP remaining
+		Player 2 bought a Dreadnaught
+		Player 2 has 30 CP remaining
 Turn 1
 	Begin Movement Phase
 		Player 1 Scout 1 moved from (3, 0) to (3, 1)
+		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 2 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 3 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 4 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 5 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 144 CP
+		Player 1 gained 10 CP and now has 154 CP
+		Player 1 now has 153 CP after paying maintenance
+		Player 1 bought a Scout
+		Player 1 has 127 CP remaining
+		Player 2 initially has 30 CP
+		Player 2 gained 10 CP and now has 40 CP
+		Player 2 now has 25 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 didn't buy any ships
+		Player 2 has 25 CP remaining
+	End Economic Phase
+
+Turn 2
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 1) to (3, 2)
 		Player 1 Scout 2 moved from (3, 0) to (3, 1)
+		Player 2 Dreadnaught 1 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 2 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 3 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 4 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 5 moved from (3, 5) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 127 CP
+		Player 1 gained 10 CP and now has 137 CP
+		Player 1 now has 135 CP after paying maintenance
+		Player 1 bought a Scout
+		Player 1 has 99 CP remaining
+		Player 2 initially has 25 CP
+		Player 2 gained 10 CP and now has 35 CP
+		Player 2 now has 20 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 didn't buy any ships
+		Player 2 has 20 CP remaining
+	End Economic Phase
+
+Turn 3
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 2) to (3, 3)
+		Player 1 Scout 2 moved from (3, 1) to (3, 2)
 		Player 1 Scout 3 moved from (3, 0) to (3, 1)
+		Player 1 Scout 3 moved from (3, 1) to (3, 2)
+		Player 2 Dreadnaught 1 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 2 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 3 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 4 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 5 moved from (3, 5) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 99 CP
+		Player 1 gained 10 CP and now has 109 CP
+		Player 1 now has 106 CP after paying maintenance
+		Player 1 bought a Scout
+		Player 1 has 60 CP remaining
+		Player 2 initially has 20 CP
+		Player 2 gained 10 CP and now has 30 CP
+		Player 2 now has 15 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 didn't buy any ships
+		Player 2 has 15 CP remaining
+	End Economic Phase
+
+Turn 4
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 3) to (3, 4)
+		Player 1 Scout 2 moved from (3, 2) to (3, 3)
+		Player 1 Scout 2 moved from (3, 3) to (3, 4)
+		Player 1 Scout 3 moved from (3, 2) to (3, 3)
+		Player 1 Scout 3 moved from (3, 3) to (3, 4)
 		Player 1 Scout 4 moved from (3, 0) to (3, 1)
-		Player 1 Scout 5 moved from (3, 0) to (3, 1)
+		Player 2 Dreadnaught 1 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 2 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 3 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 4 moved from (3, 5) to (3, 5)
+		Player 2 Dreadnaught 5 moved from (3, 5) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 60 CP
+		Player 1 gained 10 CP and now has 70 CP
+		Player 1 now has 66 CP after paying maintenance
+		Player 1 bought a Scout
+		Player 1 has 10 CP remaining
+		Player 2 initially has 15 CP
+		Player 2 gained 10 CP and now has 25 CP
+		Player 2 now has 10 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 didn't buy any ships
+		Player 2 has 10 CP remaining
+	End Economic Phase
+

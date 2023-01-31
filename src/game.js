@@ -101,10 +101,10 @@ class Game {
 
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
+            console.log(this.players[0].technology);
             this.movementPhase();
             this.combatPhase();
             this.economicPhase();
-            console.log(this.players[0].technology);
             this.winner = this.checkForWinner();
             this.turn++;
         } else {
@@ -118,12 +118,11 @@ class Game {
     }
 
     convertShipToDict(ship) {
-        let shipInfo = {}
-
-        for (let key of Object.keys(ship)){
-            shipInfo[key] = ship[key]
+        let shipInfo = {};
+        for (let key of Object.keys(ship)) {
+            shipInfo[key] = ship[key];
         }
-        return shipInfo
+        return shipInfo;
     }
 
     checkForWinner() {
@@ -131,11 +130,10 @@ class Game {
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
                     .forEach(player => this.removePlayer(player));
 
-        if(this.players.length === 1) return this.players[0].playerNum;
-        if(this.players.length === 0) return 'Tie';
+        if (this.players.length === 1) return this.players[0].playerNum;
+        if (this.players.length === 0) return 'Tie';
 
     }
-
 
     // Phases
 
@@ -145,21 +143,10 @@ class Game {
 
         for (let player of this.players) {
             for (let ship of player.ships) {
-
-                let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
-                let translations = this.possibleTranslations(ship.coords);
-                let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);            
-                let [newX, newY] = this.translate(oldCoords, translation);
-                
-                if (this.checkForOpponentShips(ship)) continue;
-                if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) continue;
-
-                this.removeFromBoard(ship);
-                ship.coords = [newX, newY];
-                this.addToBoard(ship);
-                this.log.shipMovement(oldCoords, ship);
-                this.updateSimpleBoard();
-
+                let numMovesPerShip = this.calcNumMovesPerShip(ship.technology["movement"]);
+                for (let i = 0; i < numMovesPerShip; i++) {
+                    this.moveShip(player, ship);
+                }
             }
         }
 
@@ -254,7 +241,7 @@ class Game {
         return player.shipCounter[newShipName];
     }
 
-    getNewShip(shipName, i) { // i is the player index
+    getNewShip(shipName, i) { // i = player index
     
         let player = this.players[i];
         const shipNum = this.getShipNum(shipName, player);
@@ -297,6 +284,29 @@ class Game {
 
 
     // Movement
+
+    calcNumMovesPerShip(technologyLevel) {
+        let techOddsMap = { 1: 0, 2: 0.25, 3: 0.5, 4: 0.75, 5: 1 };
+        return (Math.random() < techOddsMap[technologyLevel]) ? 2 : 1;
+    }
+
+    moveShip(player, ship) {
+
+        let oldCoords = [...ship.coords];
+        let translations = this.possibleTranslations(ship.coords);
+        let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);            
+        let [newX, newY] = this.translate(oldCoords, translation);
+        
+        if (this.checkForOpponentShips(ship)) return;
+        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) return;
+
+        this.removeFromBoard(ship);
+        ship.coords = [newX, newY];
+        this.addToBoard(ship);
+        this.log.shipMovement(oldCoords, ship);
+        this.updateSimpleBoard();
+
+    }
 
     translate(x, y) {
         return x.map((_, i) => x[i] + y[i]);
@@ -390,7 +400,7 @@ class Game {
         }
     }
 
-    calcTotalCost(ships) {
+    calcTotalShipCost(ships) {
 
         let totalCost = 0;
 
@@ -405,25 +415,41 @@ class Game {
 
     }
 
-    calcTotalTechCost(playerTech) {
+    calcTotalTechCost(currentTech, newTech) {
+        
         let totalCost = 0;
-        for (let tech of playerTech) {
-            if (tech == "attack")  totalCost += 10; // arbitrary, check research chart
-            if (tech == "defense") totalCost += 20; // arbitrary, check research chart
+        
+        for (let tech of newTech) {
+            
+            if (tech == "attack" || tech == "defense")  {
+                if (currentTech[tech] == 0) totalCost += 20; // +1 attack/defense
+                if (currentTech[tech] == 1) totalCost += 30; // +2 attack/defense
+                if (currentTech[tech] == 2) totalCost += 40; // +3 attack/defense
+            }
+            
+            if (tech == "movement") {
+                if (currentTech[tech] == 1) totalCost += 20; // 25% chance of moving twice
+                if (currentTech[tech] == 2) totalCost += 30; // 50% chance of moving twice
+                if (currentTech[tech] == 3) totalCost += 40; // 75% chance of moving twice
+                if (currentTech[tech] == 4) totalCost += 50; // 100% chance of moving twice
+            }
+
         }
+
         return totalCost;
+
     }
     
     buyTech(player) {
 
         // buy technology
 
-        let playerTech = player.buyTech(); // list of strings (i.e. ["attack", "defense", etc])
-        if (playerTech.length == 0) this.log.boughtNothing(player, "technology");
+        let newTech = player.buyTech(); // list of strings (i.e. ["attack", "defense", etc])
+        if (newTech.length == 0) this.log.boughtNothing(player, "technology");
 
         // pay for technology
 
-        let totalCost = this.calcTotalTechCost(playerTech);
+        let totalCost = this.calcTotalTechCost(player.technology, newTech);
 
         if (totalCost > player.cp) {
             this.log.playerWentOverBudget(player, "technology"); // the player gets nothing if they go over budget
@@ -434,7 +460,7 @@ class Game {
 
         // add technology to player
 
-        for (let tech of playerTech) {
+        for (let tech of newTech) {
             player.technology[tech]++;
         }
 
@@ -449,7 +475,7 @@ class Game {
 
         // pay for ships
 
-        let totalCost = this.calcTotalCost(playerShips);
+        let totalCost = this.calcTotalShipCost(playerShips);
 
         if (totalCost > player.cp) {
             this.log.playerWentOverBudget(player, "ships"); // the player gets nothing if they go over budget
@@ -472,11 +498,9 @@ class Game {
 
                         // add technology levels to ship
 
-                        ship.atk += player.technology["attack"] - 1;
-                        ship.df  += player.technology["defense"] - 1;
-
-                        if (ship.atk > ship.hullSize) ship.atk = ship.hullSize;
-                        if (ship.df  > ship.hullSize) ship.df  = ship.hullSize;
+                        ship.technology = JSON.parse(JSON.stringify(player.technology)); // makes a deepcopy of the technology object
+                        ship.atk += ship.technology["attack"];
+                        ship.df  += ship.technology["defense"];
 
                         // add ship to player
 

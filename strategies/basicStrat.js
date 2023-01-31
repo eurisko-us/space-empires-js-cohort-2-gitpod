@@ -18,12 +18,11 @@ class BasicStrat extends ParentStrat {
     }
 
     buyTech(cpBudget) {
-        return ["attack", "defense"];
+        return ["movement"];
     }
 
     buyShips(cpBudget) {
-        if (this.turn == 0) return [{"Scout": 5}];
-        return [{"Dreadnaught": 5}];
+        return [{"Scout": 1}];
     }
 
 }

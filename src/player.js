@@ -13,8 +13,9 @@ class Player {
         
         this.cp = cp;
         this.technology = {
-            "attack": 1,
-            "defense": 1
+            "attack": 0,
+            "defense": 0,
+            "movement": 1
         };
         
         this.shipCounter = {}; // used to get new ship nums when

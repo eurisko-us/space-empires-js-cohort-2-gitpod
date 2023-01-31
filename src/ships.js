@@ -3,6 +3,7 @@ class Ship {
     constructor() {
         this.objType = 'Ship';
         this.id = null;
+        this.technology = null;
     }
 
     setId() {
