@@ -75,3 +75,9 @@ footer {
     background-color: #4CAF50;
     color: white;
 }
+
+#errorText {
+    text-align: center;
+    display: inline-block;
+    color: red;
+}

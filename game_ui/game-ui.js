@@ -12,6 +12,11 @@ let nextTurnButton;
 let autoRunButton;
 let endGameButton;
 
+let promptTextHTML;
+let errorTextHTML;
+let inputFormHTML;
+let inputTextHTML;
+
 socket.on('initialize UI', () => {
     updateElementsById();
     (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
@@ -37,6 +42,11 @@ function updateElementsById() {
     endGameButton  = document.getElementById("endGame");
     nextTurnButton = document.getElementById("nextTurn");
     autoRunButton  = document.getElementById("autoRun");
+
+    promptTextHTML = document.getElementById("promptText");
+    errorTextHTML  = document.getElementById("errorText");
+    inputFormHTML  = document.getElementById("inputForm");
+    inputTextHTML  = document.getElementById("inputText");
 
 }
 
@@ -90,6 +100,26 @@ function createEventListeners() {
     autoRunButton.addEventListener("click", () => {
         if (gameIsStarted) {
             socket.emit('auto run');
+        }
+    });
+
+    inputFormHTML.addEventListener('submit', (e) => {
+
+        if (gameIsStarted) {
+
+            console.log(inputTextHTML.value);
+
+            e.preventDefault();
+            updateElementsById();
+
+            if (inputTextHTML.value !== '') {
+                socket.emit('submit input', inputTextHTML.value);
+                inputTextHTML.value = '';
+                errorText.innerHTML = '';
+            } else {
+                errorText.innerHTML = 'You must input something!';
+            }
+
         }
     });
 
