@@ -1,5 +1,4 @@
 import Game from './../src/game.js';
-
 import CharlieStrat from '../strategies/competition_1/charlieStrat.js';
 import WilliamStrat from '../strategies/competition_1/williamStrat.js';
 import JustinStrat  from '../strategies/competition_1/justinStrat.js';
@@ -87,52 +86,7 @@ function runTournament(strategies, numGamesPerRound) {
 
 // edit this code
 
-//let strategies = ['cayden', 'justin', 'anton', 'charlie', 'william'];
-//let numGamesPerRound = 1;
+let strategies = ['cayden', 'justin', 'anton', 'charlie', 'william'];
+let numGamesPerRound = 1;
 
-//runTournament(strategies, numGamesPerRound);
-
-const game = new Game(null, [new MakeColonies(), new MakeColonies()]);
-game.initializeGame();
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
-game.run()
+runTournament(strategies, numGamesPerRound);

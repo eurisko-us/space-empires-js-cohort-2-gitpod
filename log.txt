@@ -1,0 +1,975 @@
+Begin Game
+		Spawned planet at (0,1)
+		Spawned planet at (1,5)
+		Spawned planet at (5,2)
+		Spawned planet at (5,4)
+		Player 1 bought a ColonyShip
+		Player 1 bought a ColonyShip
+		Player 1 bought a ColonyShip
+		Player 1 has 126 CP remaining
+		Player 2 bought a ColonyShip
+		Player 2 bought a ColonyShip
+		Player 2 bought a ColonyShip
+		Player 2 has 126 CP remaining
+Turn 1
+	Begin Movement Phase
+		Player 1 ColonyShip 1 moved from (3, 0) to (3, 1)
+		Player 1 ColonyShip 2 moved from (3, 0) to (3, 1)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 1 moved from (3, 6) to (2, 6)
+		Player 2 ColonyShip 2 moved from (3, 6) to (2, 6)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 126 CP
+		Player 1 gained 10 CP and now has 136 CP
+		Player 1 now has 136 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 136 CP remaining
+		Player 2 initially has 126 CP
+		Player 2 gained 10 CP and now has 136 CP
+		Player 2 now has 136 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 136 CP remaining
+	End Economic Phase
+
+Turn 2
+	Begin Movement Phase
+		Player 1 ColonyShip 1 moved from (3, 1) to (3, 2)
+		Player 1 ColonyShip 2 moved from (3, 1) to (3, 2)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 1 moved from (2, 6) to (1, 6)
+		Player 2 ColonyShip 2 moved from (2, 6) to (1, 6)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 136 CP
+		Player 1 gained 10 CP and now has 146 CP
+		Player 1 now has 146 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 146 CP remaining
+		Player 2 initially has 136 CP
+		Player 2 gained 10 CP and now has 146 CP
+		Player 2 now has 146 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 146 CP remaining
+	End Economic Phase
+
+Turn 3
+	Begin Movement Phase
+		Player 1 ColonyShip 1 moved from (3, 2) to (3, 3)
+		Player 1 ColonyShip 2 moved from (3, 2) to (3, 3)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 1 moved from (1, 6) to (1, 5)
+		Player 2 ColonyShip 2 moved from (1, 6) to (1, 5)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 2 has colonized Planet 2 at (1,5)
+		Player 1 initially has 146 CP
+		Player 1 gained 10 CP and now has 156 CP
+		Player 1 now has 156 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 156 CP remaining
+		Player 2 initially has 146 CP
+		Player 2 gained 10 CP and now has 156 CP
+		Player 2 now has 156 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 156 CP remaining
+	End Economic Phase
+
+Turn 4
+	Begin Movement Phase
+		Player 1 ColonyShip 1 moved from (3, 3) to (3, 4)
+		Player 1 ColonyShip 2 moved from (3, 3) to (4, 3)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (1, 5) to (2, 5)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 156 CP
+		Player 1 gained 10 CP and now has 166 CP
+		Player 1 now has 166 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 166 CP remaining
+		Player 2 initially has 156 CP
+		Player 2 gained 10 CP and now has 166 CP
+		Player 2 now has 166 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 166 CP remaining
+	End Economic Phase
+
+Turn 5
+	Begin Movement Phase
+		Player 1 ColonyShip 1 moved from (3, 4) to (4, 4)
+		Player 1 ColonyShip 2 moved from (4, 3) to (4, 4)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (2, 5) to (3, 5)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 166 CP
+		Player 1 gained 10 CP and now has 176 CP
+		Player 1 now has 176 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 176 CP remaining
+		Player 2 initially has 166 CP
+		Player 2 gained 10 CP and now has 176 CP
+		Player 2 now has 176 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 176 CP remaining
+	End Economic Phase
+
+Turn 6
+	Begin Movement Phase
+		Player 1 ColonyShip 1 moved from (4, 4) to (5, 4)
+		Player 1 ColonyShip 2 moved from (4, 4) to (5, 4)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (3, 5) to (4, 5)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 has colonized Planet 4 at (5,4)
+		Player 1 initially has 176 CP
+		Player 1 gained 10 CP and now has 186 CP
+		Player 1 now has 186 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 186 CP remaining
+		Player 2 initially has 176 CP
+		Player 2 gained 10 CP and now has 186 CP
+		Player 2 now has 186 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 186 CP remaining
+	End Economic Phase
+
+Turn 7
+	Begin Movement Phase
+		Player 1 ColonyShip 2 moved from (5, 4) to (5, 4)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (4, 5) to (4, 4)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 186 CP
+		Player 1 gained 10 CP and now has 196 CP
+		Player 1 now has 196 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 196 CP remaining
+		Player 2 initially has 186 CP
+		Player 2 gained 10 CP and now has 196 CP
+		Player 2 now has 196 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 196 CP remaining
+	End Economic Phase
+
+Turn 8
+	Begin Movement Phase
+		Player 1 ColonyShip 2 moved from (5, 4) to (5, 3)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (4, 4) to (4, 3)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 196 CP
+		Player 1 gained 10 CP and now has 206 CP
+		Player 1 now has 206 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 206 CP remaining
+		Player 2 initially has 196 CP
+		Player 2 gained 10 CP and now has 206 CP
+		Player 2 now has 206 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 206 CP remaining
+	End Economic Phase
+
+Turn 9
+	Begin Movement Phase
+		Player 1 ColonyShip 2 moved from (5, 3) to (5, 2)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (4, 3) to (5, 3)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 has colonized Planet 3 at (5,2)
+		Player 1 initially has 206 CP
+		Player 1 gained 10 CP and now has 216 CP
+		Player 1 now has 216 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 216 CP remaining
+		Player 2 initially has 206 CP
+		Player 2 gained 10 CP and now has 216 CP
+		Player 2 now has 216 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 216 CP remaining
+	End Economic Phase
+
+Turn 10
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (5, 3) to (4, 3)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 216 CP
+		Player 1 gained 10 CP and now has 226 CP
+		Player 1 now has 226 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 226 CP remaining
+		Player 2 initially has 216 CP
+		Player 2 gained 10 CP and now has 226 CP
+		Player 2 now has 226 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 226 CP remaining
+	End Economic Phase
+
+Turn 11
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (4, 3) to (3, 3)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 226 CP
+		Player 1 gained 10 CP and now has 236 CP
+		Player 1 now has 236 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 236 CP remaining
+		Player 2 initially has 226 CP
+		Player 2 gained 10 CP and now has 236 CP
+		Player 2 now has 236 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 236 CP remaining
+	End Economic Phase
+
+Turn 12
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (3, 3) to (2, 3)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 236 CP
+		Player 1 gained 10 CP and now has 246 CP
+		Player 1 now has 246 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 246 CP remaining
+		Player 2 initially has 236 CP
+		Player 2 gained 10 CP and now has 246 CP
+		Player 2 now has 246 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 246 CP remaining
+	End Economic Phase
+
+Turn 13
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (2, 3) to (1, 3)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 246 CP
+		Player 1 gained 10 CP and now has 256 CP
+		Player 1 now has 256 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 256 CP remaining
+		Player 2 initially has 246 CP
+		Player 2 gained 10 CP and now has 256 CP
+		Player 2 now has 256 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 256 CP remaining
+	End Economic Phase
+
+Turn 14
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (1, 3) to (1, 2)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 256 CP
+		Player 1 gained 10 CP and now has 266 CP
+		Player 1 now has 266 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 266 CP remaining
+		Player 2 initially has 256 CP
+		Player 2 gained 10 CP and now has 266 CP
+		Player 2 now has 266 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 266 CP remaining
+	End Economic Phase
+
+Turn 15
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (1, 2) to (0, 2)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 266 CP
+		Player 1 gained 10 CP and now has 276 CP
+		Player 1 now has 276 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 276 CP remaining
+		Player 2 initially has 266 CP
+		Player 2 gained 10 CP and now has 276 CP
+		Player 2 now has 276 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 276 CP remaining
+	End Economic Phase
+
+Turn 16
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 2 moved from (0, 2) to (0, 1)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 2 has colonized Planet 1 at (0,1)
+		Player 1 initially has 276 CP
+		Player 1 gained 10 CP and now has 286 CP
+		Player 1 now has 286 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 286 CP remaining
+		Player 2 initially has 276 CP
+		Player 2 gained 10 CP and now has 286 CP
+		Player 2 now has 286 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 286 CP remaining
+	End Economic Phase
+
+Turn 17
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 286 CP
+		Player 1 gained 10 CP and now has 296 CP
+		Player 1 now has 296 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 296 CP remaining
+		Player 2 initially has 286 CP
+		Player 2 gained 10 CP and now has 296 CP
+		Player 2 now has 296 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 296 CP remaining
+	End Economic Phase
+
+Turn 18
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 296 CP
+		Player 1 gained 10 CP and now has 306 CP
+		Player 1 now has 306 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 306 CP remaining
+		Player 2 initially has 296 CP
+		Player 2 gained 10 CP and now has 306 CP
+		Player 2 now has 306 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 306 CP remaining
+	End Economic Phase
+
+Turn 19
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 6)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 306 CP
+		Player 1 gained 10 CP and now has 316 CP
+		Player 1 now has 316 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 316 CP remaining
+		Player 2 initially has 306 CP
+		Player 2 gained 10 CP and now has 316 CP
+		Player 2 now has 316 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 316 CP remaining
+	End Economic Phase
+
+Turn 20
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 2 ColonyShip 3 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 316 CP
+		Player 1 gained 10 CP and now has 326 CP
+		Player 1 now has 326 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 326 CP remaining
+		Player 2 initially has 316 CP
+		Player 2 gained 10 CP and now has 326 CP
+		Player 2 now has 326 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 326 CP remaining
+	End Economic Phase
+
+Turn 21
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (3, 0) to (2, 0)
+		Player 2 ColonyShip 3 moved from (3, 5) to (3, 4)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 326 CP
+		Player 1 gained 10 CP and now has 336 CP
+		Player 1 now has 336 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 336 CP remaining
+		Player 2 initially has 326 CP
+		Player 2 gained 10 CP and now has 336 CP
+		Player 2 now has 336 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 336 CP remaining
+	End Economic Phase
+
+Turn 22
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (2, 0) to (1, 0)
+		Player 2 ColonyShip 3 moved from (3, 4) to (4, 4)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 336 CP
+		Player 1 gained 10 CP and now has 346 CP
+		Player 1 now has 346 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 346 CP remaining
+		Player 2 initially has 336 CP
+		Player 2 gained 10 CP and now has 346 CP
+		Player 2 now has 346 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 346 CP remaining
+	End Economic Phase
+
+Turn 23
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (1, 0) to (1, 1)
+		Player 2 ColonyShip 3 moved from (4, 4) to (4, 3)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 346 CP
+		Player 1 gained 10 CP and now has 356 CP
+		Player 1 now has 356 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 356 CP remaining
+		Player 2 initially has 346 CP
+		Player 2 gained 10 CP and now has 356 CP
+		Player 2 now has 356 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 356 CP remaining
+	End Economic Phase
+
+Turn 24
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (1, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (4, 3) to (5, 3)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 356 CP
+		Player 1 gained 10 CP and now has 366 CP
+		Player 1 now has 366 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 366 CP remaining
+		Player 2 initially has 356 CP
+		Player 2 gained 10 CP and now has 366 CP
+		Player 2 now has 366 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 366 CP remaining
+	End Economic Phase
+
+Turn 25
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 3) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 366 CP
+		Player 1 gained 10 CP and now has 376 CP
+		Player 1 now has 376 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 376 CP remaining
+		Player 2 initially has 366 CP
+		Player 2 gained 10 CP and now has 376 CP
+		Player 2 now has 376 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 376 CP remaining
+	End Economic Phase
+
+Turn 26
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 376 CP
+		Player 1 gained 10 CP and now has 386 CP
+		Player 1 now has 386 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 386 CP remaining
+		Player 2 initially has 376 CP
+		Player 2 gained 10 CP and now has 386 CP
+		Player 2 now has 386 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 386 CP remaining
+	End Economic Phase
+
+Turn 27
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 386 CP
+		Player 1 gained 10 CP and now has 396 CP
+		Player 1 now has 396 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 396 CP remaining
+		Player 2 initially has 386 CP
+		Player 2 gained 10 CP and now has 396 CP
+		Player 2 now has 396 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 396 CP remaining
+	End Economic Phase
+
+Turn 28
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 396 CP
+		Player 1 gained 10 CP and now has 406 CP
+		Player 1 now has 406 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 406 CP remaining
+		Player 2 initially has 396 CP
+		Player 2 gained 10 CP and now has 406 CP
+		Player 2 now has 406 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 406 CP remaining
+	End Economic Phase
+
+Turn 29
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 406 CP
+		Player 1 gained 10 CP and now has 416 CP
+		Player 1 now has 416 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 416 CP remaining
+		Player 2 initially has 406 CP
+		Player 2 gained 10 CP and now has 416 CP
+		Player 2 now has 416 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 416 CP remaining
+	End Economic Phase
+
+Turn 30
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 416 CP
+		Player 1 gained 10 CP and now has 426 CP
+		Player 1 now has 426 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 426 CP remaining
+		Player 2 initially has 416 CP
+		Player 2 gained 10 CP and now has 426 CP
+		Player 2 now has 426 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 426 CP remaining
+	End Economic Phase
+
+Turn 31
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 426 CP
+		Player 1 gained 10 CP and now has 436 CP
+		Player 1 now has 436 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 436 CP remaining
+		Player 2 initially has 426 CP
+		Player 2 gained 10 CP and now has 436 CP
+		Player 2 now has 436 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 436 CP remaining
+	End Economic Phase
+
+Turn 32
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 436 CP
+		Player 1 gained 10 CP and now has 446 CP
+		Player 1 now has 446 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 446 CP remaining
+		Player 2 initially has 436 CP
+		Player 2 gained 10 CP and now has 446 CP
+		Player 2 now has 446 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 446 CP remaining
+	End Economic Phase
+
+Turn 33
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 446 CP
+		Player 1 gained 10 CP and now has 456 CP
+		Player 1 now has 456 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 456 CP remaining
+		Player 2 initially has 446 CP
+		Player 2 gained 10 CP and now has 456 CP
+		Player 2 now has 456 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 456 CP remaining
+	End Economic Phase
+
+Turn 34
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 456 CP
+		Player 1 gained 10 CP and now has 466 CP
+		Player 1 now has 466 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 466 CP remaining
+		Player 2 initially has 456 CP
+		Player 2 gained 10 CP and now has 466 CP
+		Player 2 now has 466 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 466 CP remaining
+	End Economic Phase
+
+Turn 35
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 466 CP
+		Player 1 gained 10 CP and now has 476 CP
+		Player 1 now has 476 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 476 CP remaining
+		Player 2 initially has 466 CP
+		Player 2 gained 10 CP and now has 476 CP
+		Player 2 now has 476 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 476 CP remaining
+	End Economic Phase
+
+Turn 36
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 476 CP
+		Player 1 gained 10 CP and now has 486 CP
+		Player 1 now has 486 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 486 CP remaining
+		Player 2 initially has 476 CP
+		Player 2 gained 10 CP and now has 486 CP
+		Player 2 now has 486 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 486 CP remaining
+	End Economic Phase
+
+Turn 37
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 486 CP
+		Player 1 gained 10 CP and now has 496 CP
+		Player 1 now has 496 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 496 CP remaining
+		Player 2 initially has 486 CP
+		Player 2 gained 10 CP and now has 496 CP
+		Player 2 now has 496 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 496 CP remaining
+	End Economic Phase
+
+Turn 38
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 496 CP
+		Player 1 gained 10 CP and now has 506 CP
+		Player 1 now has 506 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 506 CP remaining
+		Player 2 initially has 496 CP
+		Player 2 gained 10 CP and now has 506 CP
+		Player 2 now has 506 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 506 CP remaining
+	End Economic Phase
+
+Turn 39
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 506 CP
+		Player 1 gained 10 CP and now has 516 CP
+		Player 1 now has 516 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 516 CP remaining
+		Player 2 initially has 506 CP
+		Player 2 gained 10 CP and now has 516 CP
+		Player 2 now has 516 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 516 CP remaining
+	End Economic Phase
+
+Turn 40
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 516 CP
+		Player 1 gained 10 CP and now has 526 CP
+		Player 1 now has 526 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 526 CP remaining
+		Player 2 initially has 516 CP
+		Player 2 gained 10 CP and now has 526 CP
+		Player 2 now has 526 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 526 CP remaining
+	End Economic Phase
+
+Turn 41
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 526 CP
+		Player 1 gained 10 CP and now has 536 CP
+		Player 1 now has 536 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 536 CP remaining
+		Player 2 initially has 526 CP
+		Player 2 gained 10 CP and now has 536 CP
+		Player 2 now has 536 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 536 CP remaining
+	End Economic Phase
+
+Turn 42
+	Begin Movement Phase
+		Player 1 ColonyShip 3 moved from (0, 1) to (0, 1)
+		Player 2 ColonyShip 3 moved from (5, 2) to (5, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 536 CP
+		Player 1 gained 10 CP and now has 546 CP
+		Player 1 now has 546 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 546 CP remaining
+		Player 2 initially has 536 CP
+		Player 2 gained 10 CP and now has 546 CP
+		Player 2 now has 546 CP after paying maintenance
+		Player 2 didn't buy any ships 
+		Player 2 has 546 CP remaining
+	End Economic Phase
+
