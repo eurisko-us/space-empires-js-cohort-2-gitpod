@@ -14,6 +14,7 @@ import RushStrat        from './strategies/rushStrat.js';
 import ShopperStrat     from './strategies/shopperStrat.js';
 import TurtleStrat      from './strategies/turtleStrat.js';
 import InputStrat       from './strategies/inputStrat.js';
+import MaintClosest from './strategies/maintClosest.js';
 
 const app = express();
 const httpServer = http.Server(app);

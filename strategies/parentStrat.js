@@ -43,6 +43,18 @@ class ParentStrat {
         }
     }
 
+    getHomeColonyCoords(ship) {
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
+                for (let obj of this.simpleBoard[j][i]) {
+                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum == ship.playerNum) {
+                        return [j, i];
+                    }
+                }
+            }
+        }
+    }
+
     random(list) {
         return list[Math.floor(Math.random() * list.length)];
     }
