@@ -11,7 +11,6 @@ class ParentStrat {
     }
 
     minDistanceTranslation(ship, translations, targetCoords) {
-            
         let minTranslation = null;
         let minDistance = 999;
 
@@ -41,6 +40,51 @@ class ParentStrat {
                 }
             }
         }
+    }
+
+    getOpponentRegularColonyCoords(ship) {
+        let regularColonyCoords = []
+
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
+                for (let obj of this.simpleBoard[j][i]) {
+                    if (obj.objType === 'Colony' && !obj.isHomeColony && obj.playerNum != ship.playerNum) {
+                        regularColonyCoords.push([j, i])
+                    }
+                }
+            }
+        }
+        return regularColonyCoords
+    }
+
+    getFreePlanetsCoords(ship) {
+        let freePlanetCoords = [];
+
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
+                for (let obj of this.simpleBoard[j][i]) {
+                    if (obj.objType === 'Planet' && obj.colony == null) {
+                        freePlanetCoords.push([j, i])
+                    }
+                }
+            }
+        }
+        return freePlanetCoords
+    }
+
+    getNearestCoords(ship, chosenSetofCoords){
+        let minDistance = 999999
+        let nearestCoords = null
+
+        for (let coord of chosenSetofCoords) {
+            let distance = this.dist(ship.coords, coord)
+
+            if (distance < minDistance) {
+                nearestCoords = coord
+            }
+        }
+
+        return nearestCoords
     }
 
     random(list) {
