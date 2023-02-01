@@ -43,6 +43,7 @@ class Game {
         let newPlanet = new Planet(newPlanetCoords, this.planets.length + 1)
         this.planets.push(newPlanet)
         this.addToBoard(newPlanet)
+        this.log.spawnedPlanet(newPlanet)
     }
 
     // Initializing and running the game
@@ -218,8 +219,38 @@ class Game {
             }
 
         }
+
+        this.uncolonizePlanets()
         this.log.endPhase('Combat');
 
+    }
+
+    checkForDefendingUnits(colonizedPlanet){
+        let allShips = this.getAllShips(colonizedPlanet.coords)
+
+        for (let ship of allShips){
+            if (ship.name != "ColonyShip"){
+                return true
+            }
+        }
+
+        return false
+    }
+
+    uncolonizePlanets(){
+        for (let planet of this.planets){
+            if (planet.colony != null){
+                for (let ship of this.getAllShips(planet.coords)) {
+                    if (ship.name != "ColonyShip" && ship.playerNum != planet.colony.playerNum){
+                        let index = this.players[planet.colony.playerNum - 1].aliveColonies.indexOf(planet.colony)
+                        this.players[planet.colony.playerNum - 1].aliveColonies.splice(index, 1)
+                        planet.colony = null
+                        planet.updateId()
+                        this.log.uncolonizedPlanet(planet)
+                    }
+                }
+            }
+        }
     }
 
     makeColonies() {

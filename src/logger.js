@@ -95,7 +95,7 @@ class Logger {
     }
 
     madeColony(player, planet){
-        this.write(`\t\tPlayer ${player.playerNum} has colonized Planet ${planet.planetNum} at ${planet.coords}\n`)
+        this.write(`\t\tPlayer ${player.playerNum} has colonized Planet ${planet.planetNum} at (${planet.coords})\n`)
     }
 
     playerCPRemaining(player) {
@@ -104,6 +104,14 @@ class Logger {
 
     playerWin(winner) {
         this.write(`Winner: Player ${winner}`);
+    }
+
+    spawnedPlanet(planet) {
+        this.write(`\t\tSpawned planet at (${planet.coords})\n`)
+    }
+
+    uncolonizedPlanet(planet){
+        this.write(`\t\t${planet.id} has been uncolonized\n`)
     }
 
 }

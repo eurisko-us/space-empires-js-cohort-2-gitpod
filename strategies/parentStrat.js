@@ -11,7 +11,6 @@ class ParentStrat {
     }
 
     minDistanceTranslation(ship, translations, targetCoords) {
-            
         let minTranslation = null;
         let minDistance = 999;
 
@@ -43,34 +42,49 @@ class ParentStrat {
         }
     }
 
-    getFreePlanetsCoords(ship) {
-        let opponentRegularColonyCoords = [];
+    getOpponentRegularColonyCoords(ship) {
+        let regularColonyCoords = []
 
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Planet' && obj.playerNum != ship.playerNum && obj.colony == null) {
-                        opponentRegularColonyCoords.push([j, i])
+                    if (obj.objType === 'Colony' && !obj.isHomeColony && obj.playerNum != ship.playerNum) {
+                        regularColonyCoords.push([j, i])
                     }
                 }
             }
         }
-        return opponentRegularColonyCoords
+        return regularColonyCoords
     }
 
-    getNearestPlanetCoords(ship, planetCoords){
-        let minDistance = 999999
-        let nearestColonyCoords = null
+    getFreePlanetsCoords(ship) {
+        let freePlanetCoords = [];
 
-        for (let coord of planetCoords) {
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
+                for (let obj of this.simpleBoard[j][i]) {
+                    if (obj.objType === 'Planet' && obj.colony == null) {
+                        freePlanetCoords.push([j, i])
+                    }
+                }
+            }
+        }
+        return freePlanetCoords
+    }
+
+    getNearestCoords(ship, chosenSetofCoords){
+        let minDistance = 999999
+        let nearestCoords = null
+
+        for (let coord of chosenSetofCoords) {
             let distance = this.dist(ship.coords, coord)
 
             if (distance < minDistance) {
-                nearestColonyCoords = coord
+                nearestCoords = coord
             }
         }
 
-        return nearestColonyCoords
+        return nearestCoords
     }
 
     random(list) {
