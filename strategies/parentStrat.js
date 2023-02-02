@@ -42,6 +42,12 @@ class ParentStrat {
         }
     }
 
+    getHomeColonyCoords(ship) {
+        for (let i = 0; i < this.simpleBoard.length; i++) {
+            for (let j = 0; j < this.simpleBoard.length; j++) {
+                for (let obj of this.simpleBoard[j][i]) {
+                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum == ship.playerNum) {
+                        return [j, i];
     getOpponentRegularColonyCoords(ship) {
         let regularColonyCoords = []
 
@@ -69,6 +75,7 @@ class ParentStrat {
                 }
             }
         }
+
         return freePlanetCoords
     }
 
@@ -85,6 +92,7 @@ class ParentStrat {
         }
 
         return nearestCoords
+        
     }
 
     random(list) {
