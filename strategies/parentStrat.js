@@ -30,38 +30,66 @@ class ParentStrat {
 
     }
 
-    getOpponentHomeColonyCoords(ship) {
+    getColonyCoords(ship, hc, opp) { // hc & opp = booleans
+        let colonyCoords = [];
+        let playerNum = opp * (3 - 2 * ship.playerNum) + ship.playerNum
+        
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
-                        return [j, i];
+                    if (obj.objType === 'Colony' && obj.playerNum == playerNum) {
+                            if (obj.isHomeColony === hc) {
+                                return [j, i];
+                            }
+                            if (!obj.isHomeColony) {
+                                colonyCoords.push([j, i]);
+                            }
+                        }
                     }
                 }
             }
-        }
+        return colonyCoords
     }
 
-    getHomeColonyCoords(ship) {
-        for (let i = 0; i < this.simpleBoard.length; i++) {
-            for (let j = 0; j < this.simpleBoard.length; j++) {
-                for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum == ship.playerNum) {
-                        return [j, i];
-    getOpponentRegularColonyCoords(ship) {
-        let regularColonyCoords = []
 
-        for (let i = 0; i < this.simpleBoard.length; i++) {
-            for (let j = 0; j < this.simpleBoard.length; j++) {
-                for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && !obj.isHomeColony && obj.playerNum != ship.playerNum) {
-                        regularColonyCoords.push([j, i])
-                    }
-                }
-            }
-        }
-        return regularColonyCoords
-    }
+    // getOpponentHomeColonyCoords(ship) {
+    //     for (let i = 0; i < this.simpleBoard.length; i++) {
+    //         for (let j = 0; j < this.simpleBoard.length; j++) {
+    //             for (let obj of this.simpleBoard[j][i]) {
+    //                 if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
+    //                     return [j, i];
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // getHomeColonyCoords(ship) {
+    //     for (let i = 0; i < this.simpleBoard.length; i++) {
+    //         for (let j = 0; j < this.simpleBoard.length; j++) {
+    //             for (let obj of this.simpleBoard[j][i]) {
+    //                 if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum == ship.playerNum) {
+    //                     return [j, i];
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // getOpponentRegularColonyCoords(ship) {
+    //     let regularColonyCoords = []
+
+    //     for (let i = 0; i < this.simpleBoard.length; i++) {
+    //         for (let j = 0; j < this.simpleBoard.length; j++) {
+    //             for (let obj of this.simpleBoard[j][i]) {
+    //                 if (obj.objType === 'Colony' && !obj.isHomeColony && obj.playerNum != ship.playerNum) {
+    //                     regularColonyCoords.push([j, i])
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return regularColonyCoords
+    // }
 
     getFreePlanetsCoords(ship) {
         let freePlanetCoords = [];

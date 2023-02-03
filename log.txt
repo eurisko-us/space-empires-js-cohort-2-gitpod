@@ -1,0 +1,334 @@
+Begin Game
+		Spawned planet at (1,0)
+		Spawned planet at (1,5)
+		Spawned planet at (4,2)
+		Spawned planet at (4,4)
+		Player 1 bought a ColonyShip
+		Player 1 bought a Destroyer
+		Player 1 bought a BattleCruiser
+		Player 1 bought a Dreadnaught
+		Player 1 bought a Scout
+		Player 1 bought a BattleCruiser
+		Player 1 bought a Battleship
+		Player 1 bought a ColonyShip
+		Player 1 bought a ColonyShip
+		Player 1 bought a BattleCruiser
+		Player 1 bought a Scout
+		Player 1 has 16 CP remaining
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 has 120 CP remaining
+Turn 1
+	Begin Movement Phase
+		Player 1 ColonyShip 1 moved from (3, 0) to (2, 0)
+		Player 1 Destroyer 1 moved from (3, 0) to (2, 0)
+		Player 1 BattleCruiser 1 moved from (3, 0) to (3, 0)
+		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 0)
+		Player 1 Scout 1 moved from (3, 0) to (3, 0)
+		Player 1 BattleCruiser 2 moved from (3, 0) to (2, 0)
+		Player 1 Battleship 1 moved from (3, 0) to (2, 0)
+		Player 1 ColonyShip 2 moved from (3, 0) to (3, 1)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 1 BattleCruiser 3 moved from (3, 0) to (2, 0)
+		Player 1 Scout 2 moved from (3, 0) to (4, 0)
+		Player 2 Scout 1 moved from (3, 6) to (3, 5)
+		Player 2 Scout 2 moved from (3, 6) to (3, 5)
+		Player 2 Scout 3 moved from (3, 6) to (3, 5)
+		Player 2 Scout 4 moved from (3, 6) to (3, 5)
+		Player 2 Scout 5 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 16 CP
+		Player 1 gained 10 CP and now has 26 CP
+		Player 1 now has 11 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 11 CP remaining
+		Player 2 initially has 120 CP
+		Player 2 gained 10 CP and now has 130 CP
+		Player 2 now has 125 CP after paying maintenance
+		Player 2 bought a Dreadnaught
+		Player 2 bought a Dreadnaught
+		Player 2 bought a Dreadnaught
+		Player 2 bought a Dreadnaught
+		Player 2 bought a Dreadnaught
+		Player 2 has 5 CP remaining
+	End Economic Phase
+
+Turn 2
+	Begin Movement Phase
+		Player 1 Battleship 1 moved from (2, 0) to (2, 1)
+		Player 1 BattleCruiser 1 moved from (3, 0) to (3, 0)
+		Player 1 ColonyShip 2 moved from (3, 1) to (3, 1)
+		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 0)
+		Player 1 BattleCruiser 3 moved from (2, 0) to (2, 1)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 0)
+		Player 1 Scout 2 moved from (4, 0) to (4, 1)
+		Player 1 Scout 1 moved from (3, 0) to (4, 0)
+		Player 1 Destroyer 1 moved from (2, 0) to (2, 1)
+		Player 1 ColonyShip 1 moved from (2, 0) to (1, 0)
+		Player 1 BattleCruiser 2 moved from (2, 0) to (2, 0)
+		Player 2 Scout 1 moved from (3, 5) to (3, 4)
+		Player 2 Scout 2 moved from (3, 5) to (3, 4)
+		Player 2 Scout 3 moved from (3, 5) to (3, 4)
+		Player 2 Scout 4 moved from (3, 5) to (3, 4)
+		Player 2 Scout 5 moved from (3, 5) to (3, 4)
+		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 2 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 3 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 4 moved from (3, 6) to (3, 5)
+		Player 2 Dreadnaught 5 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 has colonized Planet 1 at (1,0)
+		Player 1 initially has 11 CP
+		Player 1 gained 10 CP and now has 21 CP
+		Player 1 now has 6 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 6 CP remaining
+		Player 2 initially has 5 CP
+		Player 2 gained 10 CP and now has 15 CP
+		Player 2 lost Player 2 Scout 1 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Scout 2 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Scout 3 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Scout 4 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Scout 5 due to insufficient CP to pay maintenance
+		Player 2 now has 0 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 3
+	Begin Movement Phase
+		Player 1 Battleship 1 moved from (2, 1) to (2, 1)
+		Player 1 Scout 1 moved from (4, 0) to (4, 1)
+		Player 1 BattleCruiser 1 moved from (3, 0) to (3, 1)
+		Player 1 ColonyShip 2 moved from (3, 1) to (3, 1)
+		Player 1 Scout 2 moved from (4, 1) to (4, 2)
+		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 0)
+		Player 1 BattleCruiser 3 moved from (2, 1) to (3, 1)
+		Player 1 Destroyer 1 moved from (2, 1) to (2, 0)
+		Player 1 ColonyShip 3 moved from (3, 0) to (3, 1)
+		Player 1 BattleCruiser 2 moved from (2, 0) to (2, 0)
+		Player 2 Dreadnaught 1 moved from (3, 5) to (3, 4)
+		Player 2 Dreadnaught 2 moved from (3, 5) to (3, 4)
+		Player 2 Dreadnaught 3 moved from (3, 5) to (3, 4)
+		Player 2 Dreadnaught 4 moved from (3, 5) to (3, 4)
+		Player 2 Dreadnaught 5 moved from (3, 5) to (3, 4)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 6 CP
+		Player 1 gained 10 CP and now has 16 CP
+		Player 1 now has 1 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 1 CP remaining
+		Player 2 initially has 0 CP
+		Player 2 gained 10 CP and now has 10 CP
+		Player 2 lost Player 2 Dreadnaught 1 due to insufficient CP to pay maintenance
+		Player 2 lost Player 2 Dreadnaught 2 due to insufficient CP to pay maintenance
+		Player 2 now has 1 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 4
+	Begin Movement Phase
+		Player 1 ColonyShip 2 moved from (3, 1) to (3, 0)
+		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 1)
+		Player 1 BattleCruiser 1 moved from (3, 1) to (3, 0)
+		Player 1 BattleCruiser 2 moved from (2, 0) to (3, 0)
+		Player 1 Scout 1 moved from (4, 1) to (4, 1)
+		Player 1 ColonyShip 3 moved from (3, 1) to (3, 1)
+		Player 1 BattleCruiser 3 moved from (3, 1) to (3, 1)
+		Player 1 Destroyer 1 moved from (2, 0) to (1, 0)
+		Player 1 Scout 2 moved from (4, 2) to (4, 2)
+		Player 1 Battleship 1 moved from (2, 1) to (2, 1)
+		Player 2 Dreadnaught 3 moved from (3, 4) to (3, 3)
+		Player 2 Dreadnaught 4 moved from (3, 4) to (3, 3)
+		Player 2 Dreadnaught 5 moved from (3, 4) to (3, 3)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 1 CP
+		Player 1 gained 10 CP and now has 11 CP
+		Player 1 lost Player 1 BattleCruiser 2 due to insufficient CP to pay maintenance
+		Player 1 lost Player 1 BattleCruiser 3 due to insufficient CP to pay maintenance
+		Player 1 now has 0 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 0 CP remaining
+		Player 2 initially has 1 CP
+		Player 2 gained 10 CP and now has 11 CP
+		Player 2 now has 2 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 5
+	Begin Movement Phase
+		Player 1 Scout 2 moved from (4, 2) to (4, 1)
+		Player 1 Dreadnaught 1 moved from (3, 1) to (3, 2)
+		Player 1 ColonyShip 3 moved from (3, 1) to (4, 1)
+		Player 1 Scout 1 moved from (4, 1) to (4, 0)
+		Player 1 Destroyer 1 moved from (1, 0) to (1, 0)
+		Player 1 BattleCruiser 1 moved from (3, 0) to (4, 0)
+		Player 1 ColonyShip 2 moved from (3, 0) to (3, 0)
+		Player 1 Battleship 1 moved from (2, 1) to (3, 1)
+		Player 2 Dreadnaught 3 moved from (3, 3) to (3, 2)
+		Player 2 Dreadnaught 4 moved from (3, 3) to (3, 2)
+		Player 2 Dreadnaught 5 moved from (3, 3) to (3, 2)
+	End Movement Phase
+
+	Begin Combat Phase
+		Attacker: Player 1 Dreadnaught 1
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 1
+		Hit!
+		Player 1 Dreadnaught 1 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 1
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Dreadnaught 1
+		Miss!
+		Attacker: Player 1 Dreadnaught 1
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 1
+		Hit!
+		Player 1 Dreadnaught 1 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 1
+		Hit!
+		Player 1 Dreadnaught 1 hp: 1 -> 0
+		Player 1 Dreadnaught 1 was destroyed
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 0 CP
+		Player 1 gained 10 CP and now has 10 CP
+		Player 1 now has 2 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 2 CP remaining
+		Player 2 initially has 2 CP
+		Player 2 gained 10 CP and now has 12 CP
+		Player 2 now has 3 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 6
+	Begin Movement Phase
+		Player 1 Scout 2 moved from (4, 1) to (3, 1)
+		Player 1 ColonyShip 2 moved from (3, 0) to (4, 0)
+		Player 1 Scout 1 moved from (4, 0) to (4, 1)
+		Player 1 BattleCruiser 1 moved from (4, 0) to (3, 0)
+		Player 1 ColonyShip 3 moved from (4, 1) to (4, 0)
+		Player 1 Destroyer 1 moved from (1, 0) to (1, 0)
+		Player 1 Battleship 1 moved from (3, 1) to (3, 0)
+		Player 2 Dreadnaught 3 moved from (3, 2) to (3, 1)
+		Player 2 Dreadnaught 4 moved from (3, 2) to (3, 1)
+		Player 2 Dreadnaught 5 moved from (3, 2) to (3, 1)
+	End Movement Phase
+
+	Begin Combat Phase
+		Attacker: Player 1 Battleship 1
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 1
+		Hit!
+		Player 1 Battleship 1 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 1
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 1
+		Hit!
+		Player 1 Battleship 1 hp: 2 -> 1
+		Attacker: Player 1 Battleship 1
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Battleship 1
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Battleship 1
+		Miss!
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Battleship 1
+		Hit!
+		Player 1 Battleship 1 hp: 1 -> 0
+		Player 1 Battleship 1 was destroyed
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 2 CP
+		Player 1 gained 10 CP and now has 12 CP
+		Player 1 now has 7 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 has 7 CP remaining
+		Player 2 initially has 3 CP
+		Player 2 gained 10 CP and now has 13 CP
+		Player 2 now has 4 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
+Turn 7
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (4, 1) to (3, 1)
+		Player 1 BattleCruiser 1 moved from (3, 0) to (3, 1)
+		Player 1 ColonyShip 2 moved from (4, 0) to (3, 0)
+		Player 1 Destroyer 1 moved from (1, 0) to (1, 1)
+		Player 1 ColonyShip 3 moved from (4, 0) to (4, 1)
+		Player 1 Scout 2 moved from (3, 1) to (4, 1)
+		Player 2 Dreadnaught 3 moved from (3, 1) to (3, 0)
+		Player 2 Dreadnaught 4 moved from (3, 1) to (3, 0)
+		Player 2 Dreadnaught 5 moved from (3, 1) to (3, 0)
+	End Movement Phase
+
+	Begin Combat Phase
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 BattleCruiser 1
+		Hit!
+		Player 1 BattleCruiser 1 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 ColonyShip 2
+		Hit!
+		Player 1 ColonyShip 2 hp: 1 -> 0
+		Player 1 ColonyShip 2 was destroyed
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 BattleCruiser 1
+		Hit!
+		Player 1 BattleCruiser 1 hp: 1 -> 0
+		Player 1 BattleCruiser 1 was destroyed
+	End Combat Phase
+
+	Begin Economic Phase
+		Player 1 initially has 7 CP
+		Player 1 gained 10 CP and now has 17 CP
+		Player 1 now has 13 CP after paying maintenance
+		Player 1 didn't buy any ships 
+		Player 1 bought a Scout
+		Player 1 has 7 CP remaining
+		Player 2 initially has 4 CP
+		Player 2 gained 10 CP and now has 14 CP
+		Player 2 now has 5 CP after paying maintenance
+		Player 2 tried to go over budget
+	End Economic Phase
+
