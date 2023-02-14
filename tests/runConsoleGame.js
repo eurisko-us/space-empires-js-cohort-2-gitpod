@@ -3,9 +3,10 @@ import RushStrat from '../strategies/rushStrat.js';
 import CheatStrat from '../strategies/cheatStrat.js';
 import BasicStrat       from './../strategies/basicStrat.js';
 import RandomStrat from '../strategies/randomStrat.js';
+import AIMovementStrat from '../strategies/aiMovementStrat.js';
 
 
-const strats = [new RandomStrat(), new BasicStrat()];
+const strats = [new AIMovementStrat(), new AIMovementStrat()];
 
 const game = new Game(null, strats);
 game.initializeGame();
