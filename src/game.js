@@ -17,8 +17,6 @@ class Game {
         this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
         this.stopInterval = null;
-
-        this.playerTurn = 0;
     
         this.log = new Logger();
         this.log.clear();
@@ -32,9 +30,12 @@ class Game {
 
         this.boardRange = [...Array(this.boardSize).keys()];
         this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
-
+        
+        // State based stuff
+        this.playerTurn = 0;
+        this.currentPart = null;
         this.playerInput = '';
-        this.phase = 'econ'
+        this.phase = null;
 
     }
 
@@ -243,10 +244,48 @@ class Game {
     economicPhase() { 
         
         this.log.beginPhase('Economic');
+        this.display()
+
+        let player = this.players[this.playerTurn]
+
+        if (this.currentPart == null){
+            this.log.beginPhase('Economic');
+            this.currentPart = 'pay'
+        }
+        else if (this.currentPart == 'pay') {
+            this.log.playerCP(player); // gain cp
+            player.cp += this.cpPerRound; 
+            this.log.newPlayerCP(player, this.cpPerRound)
+            this.currentPart = 'maint'
+        }
+        else if (this.currentPart == 'maint'){
+            this.maintenance(player); // pay maintenance
+            this.log.playerCPAfterMaintenance(player);
+        }
+        else if (this.currentPart == 'buy'){
+            this.buyShips(player); // buy ships
+        }
+
+        this.log.endPhase("Economic");
+
+    }
+    /*
+    economicPhase() { 
+        
+        this.log.beginPhase('Economic');
         //!!Change for player id	
         //!!keep track of what section the phase is on
 
         let player = this.players[this.playerTurn]
+
+        
+
+        if (this.currentPart == 'pay') {
+            this.log.playerCP(player); // gain cp
+            player.cp += this.cpPerRound; 
+            this.log.newPlayerCP(player, this.cpPerRound)
+            this.currentPart
+        }
 
         for (let player of this.players) {
             
@@ -266,6 +305,7 @@ class Game {
         this.log.endPhase("Economic");
 
     }
+    */
 
 
     // Object Manipulation / Calculation
