@@ -36,16 +36,12 @@ class Game {
 
     }
 
-    randomChoice(list) {
-        return list[Math.floor(Math.random() * list.length)];
-    }
-
     spawnPlanets(xOptions, yOptions) {
-        let newPlanetCoords = [this.randomChoice(xOptions), this.randomChoice(yOptions)]
-        let newPlanet = new Planet(newPlanetCoords, this.planets.length + 1)
-        this.planets.push(newPlanet)
-        this.addToBoard(newPlanet)
-        this.log.spawnedPlanet(newPlanet)
+        let newPlanetCoords = [this.randomChoice(xOptions), this.randomChoice(yOptions)];
+        let newPlanet = new Planet(newPlanetCoords, this.planets.length + 1);
+        this.planets.push(newPlanet);
+        this.addToBoard(newPlanet);
+        this.log.spawnedPlanet(newPlanet);
     }
 
     // Initializing and running the game
@@ -66,14 +62,16 @@ class Game {
             1: [[0, 1, 2], [4, 5, 6]],
             2: [[4, 5, 6], [0, 1, 2]],
             3: [[4, 5, 6], [4, 5, 6]]
-        }
+        };
 
-        for (let i = 0; i < 4; i++){
-            this.spawnPlanets(planetRanges[i][0], planetRanges[i][1])
-        }
+        for (let i = 0; i < 4; i++) {
+            this.spawnPlanets(planetRanges[i][0], planetRanges[i][1]);
+        };
 
         for (let i = 0; i < this.players.length; i++) {
+            
             // buy home colony
+            
             const halfBoardSize = (this.boardSize - 1) / 2;
 
             const homeColonyCoordsMap = {
@@ -84,11 +82,12 @@ class Game {
             }
 
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
-            homeColony.setHomeColonyId()
+            homeColony.setHomeColonyId();
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
-
+            
             // buy ships
+
             this.buyShips(this.players[i]);
 
         }
@@ -114,6 +113,8 @@ class Game {
 
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
+            console.log(this.players[0].technology);
+            console.log(this.players[1].technology);
             this.movementPhase();
             this.combatPhase();
             this.economicPhase();
@@ -130,12 +131,11 @@ class Game {
     }
 
     convertShipToDict(ship) {
-        let shipInfo = {}
-
-        for (let key of Object.keys(ship)){
-            shipInfo[key] = ship[key]
+        let shipInfo = {};
+        for (let key of Object.keys(ship)) {
+            shipInfo[key] = ship[key];
         }
-        return shipInfo
+        return shipInfo;
     }
 
     checkForWinner() {
@@ -143,32 +143,23 @@ class Game {
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
                     .forEach(player => this.removePlayer(player));
 
-        if(this.players.length === 1) return this.players[0].playerNum;
-        if(this.players.length === 0) return 'Tie';
+        if (this.players.length === 1) return this.players[0].playerNum;
+        if (this.players.length === 0) return 'Tie';
 
     }
-
 
     // Phases
 
     movementPhase() {
+    
         this.log.beginPhase('Movement');
 
         for (let player of this.players) {
             for (let ship of player.ships) {
-                let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
-                let translations = this.possibleTranslations(ship.coords);
-                let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);     
-                let [newX, newY] = this.translate(oldCoords, translation);
-                
-                if (this.canShipMove(ship)) continue
-                //if (this.checkForOpponentShips(ship)) continue;
-                if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) continue;
-                this.removeFromBoard(ship);
-                ship.coords = [newX, newY];
-                this.addToBoard(ship);
-                this.log.shipMovement(oldCoords, ship);
-                this.updateSimpleBoard();
+                let numMovesPerShip = this.calcNumMovesPerShip(ship.technology["movement"]);
+                for (let i = 0; i < numMovesPerShip; i++) {
+                    this.moveShip(player, ship);
+                }
 
             }
         }
@@ -187,10 +178,8 @@ class Game {
             
             while (this.numPlayersInCombatOrder(combatOrder) > 1) {
                 for (let ship of combatOrder) {
-                    if (ship.name == "ColonyShip"){
-                        continue
-                    }
-
+                
+                    if (ship.name == "ColonyShip") continue;
                     if (this.numPlayersInCombatOrder(combatOrder) == 1) break;
 
                     if (this.board[coords[1]][coords[0]].includes(ship)) {
@@ -207,13 +196,13 @@ class Game {
                             target.hp -= 1;
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
-                                combatOrder.splice(combatOrder.indexOf(target), 1)
+                                combatOrder.splice(combatOrder.indexOf(target), 1);
                                 this.removeFromBoard(target);
                                 this.removeShipFromPlayer(defender, target);
                             }
                         }
 
-                        this.updateSimpleBoard()
+                        this.updateSimpleBoard();
 
                     }
 
@@ -222,65 +211,76 @@ class Game {
 
         }
 
-        this.uncolonizePlanets()
+        this.uncolonizePlanets();
         this.log.endPhase('Combat');
 
     }
 
-    checkForDefendingUnits(colonizedPlanet){
-        let allShips = this.getAllShips(colonizedPlanet.coords)
-
-        for (let ship of allShips){
-            if (ship.name != "ColonyShip"){
-                return true
+    checkForDefendingUnits(colonizedPlanet) {
+        for (let ship of this.getAllShips(colonizedPlanet.coords)) {
+            if (ship.name != "ColonyShip") {
+                return true;
             }
         }
-
-        return false
+        return false;
     }
 
-    uncolonizePlanets(){
-        for (let planet of this.planets){
-            if (planet.colony != null){
+    uncolonizePlanets() {
+    
+        for (let planet of this.planets) {
+            if (planet.colony) {
                 for (let ship of this.getAllShips(planet.coords)) {
-                    if (ship.name != "ColonyShip" && ship.playerNum != planet.colony.playerNum){
-                        let index = this.players[planet.colony.playerNum - 1].aliveColonies.indexOf(planet.colony)
-                        this.players[planet.colony.playerNum - 1].aliveColonies.splice(index, 1)
-                        planet.colony = null
-                        planet.updateId()
-                        this.log.uncolonizedPlanet(planet)
+                    if (ship.name != "ColonyShip" && ship.playerNum != planet.colony.playerNum) {
+                    
+                        let player = this.players[planet.colony.playerNum - 1];
+                        
+                        let index = player.aliveColonies.indexOf(planet.colony);
+                        player.aliveColonies.splice(index, 1);
+                        
+                        planet.colony = null;
+                        planet.updateId();
+                        this.log.uncolonizedPlanet(planet);
+                        
                     }
                 }
             }
         }
+        
     }
 
-    makeColonies() {
-        for (let planet of this.planets){
-            let x = [...planet.coords][0]
-            let y = [...planet.coords][1]
-            
-            for (let obj of this.board[y][x]){
-                if (obj.name == "ColonyShip" && planet.colony == null){
-                    let newColony = new Colony([...obj.coords], obj.playerNum, false)
-                    let player = this.players[obj.playerNum - 1]
-                    newColony.setColonyId(player.allColonies.length + 1)
-                    planet.colony = newColony
-                    planet.updateId()
-                    player.aliveColonies.push(newColony)
-                    player.allColonies.push(newColony)
-                    this.addToBoard(newColony)
-                    this.log.madeColony(player, planet)
+    createColonies() {
+    
+        for (let planet of this.planets) {
+            let x, y = [...planet.coords];    
+            for (let obj of this.board[y][x]) {
+                if (obj.name == "ColonyShip" && planet.colony == null) {
+                
+                    let newColony = new Colony([...obj.coords], obj.playerNum, false);
+                    let player = this.players[obj.playerNum - 1];
+                    
+                    newColony.setColonyId(player.allColonies.length + 1);
+                    planet.colony = newColony;
+                    planet.updateId();
+                    
+                    player.aliveColonies.push(newColony);
+                    player.allColonies.push(newColony);
+                    
+                    this.addToBoard(newColony);
+                    this.log.madeColony(player, planet);
+                    
                     this.removeFromBoard(obj);
                     this.removeShipFromPlayer(this.players[obj.playerNum - 1], obj);
+                    
                 }
-            }
+            }  
         }
+        
     }
 
-    economicPhase() { 
+    economicPhase() {
+    
         this.log.beginPhase('Economic');
-        this.makeColonies();
+        this.createColonies();
 
         for (let player of this.players) {
 
@@ -291,6 +291,7 @@ class Game {
             this.maintenance(player); // pay maintenance
             this.log.playerCPAfterMaintenance(player);
 
+            this.buyTech(player); // buy technology
             this.buyShips(player); // buy ships
 
         }
@@ -318,7 +319,7 @@ class Game {
         return player.shipCounter[newShipName];
     }
 
-    getNewShip(shipName, i) { // i is the player index
+    getNewShip(shipName, i) { // i = player index
     
         let player = this.players[i];
         const shipNum = this.getShipNum(shipName, player);
@@ -362,8 +363,28 @@ class Game {
 
     // Movement
 
-    translate(x, y) {
-        return x.map((_, i) => x[i] + y[i]);
+    calcNumMovesPerShip(technologyLevel) {
+        let techOddsMap = { 1: 0, 2: 0.25, 3: 0.5, 4: 0.75, 5: 1 };
+        return (Math.random() < techOddsMap[technologyLevel]) ? 2 : 1;
+    }
+
+    moveShip(player, ship) {
+
+        let oldCoords = [...ship.coords];
+        let translations = this.possibleTranslations(ship.coords);
+        let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);            
+        let [newX, newY] = this.translate(oldCoords, translation);
+        
+        if (this.canShipMove(ship)) return;
+        // if (this.checkForOpponentShips(ship)) return;
+        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) return;
+
+        this.removeFromBoard(ship);
+        ship.coords = [newX, newY];
+        this.addToBoard(ship);
+        this.log.shipMovement(oldCoords, ship);
+        this.updateSimpleBoard();
+
     }
 
     checkInBounds(coords) {
@@ -375,30 +396,23 @@ class Game {
         return allTranslations.filter(t => this.checkInBounds(this.translate(t, coords)));
     }
 
-    canShipMove(ship){
+    canShipMove(ship) {
         let ships = this.getAllShips(ship.coords);
-        let filteredShips = ships.filter(function (ship) {
-            return ship.name != "ColonyShip"
-          });
+        let filteredShips = ships.filter(ship => ship.name != "ColonyShip");
         return !ships.every(ship => ship.playerNum === ship.playerNum);
     }
 
-
     // Combat
     
-
     checkForCombat(coords) {
+    
         let ships = this.getAllShips(coords);
         if (ships.length == 0) return false;
 
-        let shipNames = new Set(ships.map((ship) => ship.name));
+        let xs = new Set(ships.map(ship => ship.name));
+        let ys = new Set(["ColonyShip"]);
 
-        const eqSet = (xs, ys) => xs.size === ys.size && [...xs].every((x) => ys.has(x));
-
-        if (eqSet(shipNames, new Set(["ColonyShip"]))){
-            return false
-        }
-
+        if (xs.size === ys.size && xs.every(x => ys.has(x))) return false;
         return !ships.every(obj => obj.playerNum === ships[0].playerNum);
     }
 
@@ -414,13 +428,11 @@ class Game {
 
     numPlayersInCombatOrder(combatOrder) {
         let playerNums = [];
-
         for (let ship of combatOrder) {
-            playerNums.push(ship.playerNum)
+            playerNums.push(ship.playerNum);
         }
-
-        return (new Set(playerNums)).size
-        //return (new Set(combatOrder.map(ship => ship.playerNum))).size;
+        return (new Set(playerNums)).size;
+        // return (new Set(combatOrder.map(ship => ship.playerNum))).size;   
     }
 
     roll(attacker, defender) {
@@ -448,10 +460,12 @@ class Game {
     maintenance(player) {
 
         let totalCost = this.calcMaintCost(player.ships);
+        
         let shipList = [];
         for (let ship of player.ships) {
             shipList.push(this.getSimpleObj(ship));
         }
+        
         let orderedShips = player.strategy.maintOrder(shipList);
 
         while (totalCost > player.cp) {
@@ -466,6 +480,7 @@ class Game {
         }
 
         player.cp -= totalCost;
+
         assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP');
         player.ships = orderedShips;
 
@@ -479,7 +494,7 @@ class Game {
         }
     }
 
-    calcTotalCost(ships) {
+    calcTotalShipCost(ships) {
 
         let totalCost = 0;
 
@@ -494,32 +509,106 @@ class Game {
 
     }
 
-    buyShips(player) {
+    calcTotalTechCost(currentTech, newTech) {
+        
+        let totalCost = 0;
+        
+        for (let tech of newTech) {
 
-        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
+            let techMap = {
+                "attack": {
+                    0: 20, // +1 attack
+                    1: 30, // +2 attack
+                    2: 40  // +3 attack
+                }, "defense": {
+                    0: 20, // +1 defense
+                    1: 30, // +2 defense
+                    2: 40  // +3 defense
+                }, "movement": {
+                    1: 20, // 25% chance of moving twice
+                    2: 30, // 50% chance of moving twice
+                    3: 40, // 75% chance of moving twice
+                    4: 50 // 100% chance of moving twice
+                }
+            }
 
-        if (player.buyShips().length == 0) this.log.boughtNoShips(player);
+            let techCost = techMap[tech][currentTech[tech]];
+            if (techCost) totalCost += techCost;
 
-        let totalCost = this.calcTotalCost(playerShips);
+        }
+
+        return totalCost;
+
+    }
+    
+    buyTech(player) {
+
+        // buy technology
+
+        let newTech = player.buyTech(); // list of strings (i.e. ["attack", "defense", etc])
+        if (newTech.length == 0) this.log.boughtNothing(player, "technology");
+
+        // pay for technology
+
+        let totalCost = this.calcTotalTechCost(player.technology, newTech);
 
         if (totalCost > player.cp) {
-            this.log.playerWentOverBudget(player); // the player gets nothing if they go over budget
+            this.log.playerWentOverBudget(player, "technology"); // the player gets nothing if they go over budget
             return;
         }
 
         player.cp -= totalCost;
-        assert (player.cp >= 0, 'Player has negative CP, was allowed to go over budget when buying ships');
+
+        // add technology to player
+
+        for (let tech of newTech) {
+            player.technology[tech]++;
+        }
+
+    }
+
+    buyShips(player) {
+
+        // buy ships
+
+        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
+        if (playerShips.length == 0) this.log.boughtNothing(player, "ships");
+
+        // pay for ships
+
+        let totalCost = this.calcTotalShipCost(playerShips);
+
+        if (totalCost > player.cp) {
+            this.log.playerWentOverBudget(player, "ships"); // the player gets nothing if they go over budget
+            return;
+        }
+
+        player.cp -= totalCost;
+
+        // add ships to player + board
 
         if (playerShips) {
             for (let ship of playerShips) {
                 for (let shipName in ship) {
                     for (let i = 0; i < ship[shipName]; i++) {
 
+                        // get ship object
+
                         let ship = this.getNewShip(shipName, player.playerNum - 1); // creates a new ship
                         if (!ship) continue;
 
+                        // add technology levels to ship
+
+                        ship.technology = JSON.parse(JSON.stringify(player.technology)); // makes a deepcopy of the technology object
+                        ship.atk += ship.technology["attack"];
+                        ship.df  += ship.technology["defense"];
+
+                        // add ship to player
+
                         player.addShip(ship);
                         assert (player.ships.includes(ship), 'Ship was not added to player.ships');
+
+                        // add ship to board
 
                         this.addToBoard(ship);
                         assert (this.board[ship.coords[1]][ship.coords[0]].includes(ship), 'Ship was not added to board');
@@ -563,6 +652,16 @@ class Game {
         }
         return total;
     }
+    
+    randomChoice(list) {
+        return list[Math.floor(Math.random() * list.length)];
+    }
+    
+    translate(x, y) {
+        return x.map((_, i) => x[i] + y[i]);
+    }
+    
+    // Logs & Display
 
     getLogs(data) {
 

@@ -9,11 +9,11 @@ class Colony {
     }
 
     setColonyId(colonyNum) {
-        this.id = `Player ${this.playerNum} Colony ${this.colonyNum}`
+        this.id = `Player ${this.playerNum} Colony ${this.colonyNum}`;
     }
     
     setHomeColonyId() {
-        this.id =`Player ${this.playerNum} Home Colony`
+        this.id =`Player ${this.playerNum} Home Colony`;
     }
 
 }

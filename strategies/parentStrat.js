@@ -48,50 +48,60 @@ class ParentStrat {
                 for (let obj of this.simpleBoard[j][i]) {
                     if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum == ship.playerNum) {
                         return [j, i];
+                    }
+                }
+            }
+        }
+    }
+   
     getOpponentRegularColonyCoords(ship) {
-        let regularColonyCoords = []
+    
+        let regularColonyCoords = [];
 
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
                     if (obj.objType === 'Colony' && !obj.isHomeColony && obj.playerNum != ship.playerNum) {
-                        regularColonyCoords.push([j, i])
+                        regularColonyCoords.push([j, i]);
                     }
                 }
             }
         }
-        return regularColonyCoords
+        
+        return regularColonyCoords;
+        
     }
 
     getFreePlanetsCoords(ship) {
+    
         let freePlanetCoords = [];
 
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
                     if (obj.objType === 'Planet' && obj.colony == null) {
-                        freePlanetCoords.push([j, i])
+                        freePlanetCoords.push([j, i]);
                     }
                 }
             }
         }
 
-        return freePlanetCoords
+        return freePlanetCoords;
+        
     }
 
-    getNearestCoords(ship, chosenSetofCoords){
-        let minDistance = 999999
-        let nearestCoords = null
+    getNearestCoords(ship, chosenSetofCoords) {
+    
+        let minDistance = 999999;
+        let nearestCoords = null;
 
         for (let coord of chosenSetofCoords) {
-            let distance = this.dist(ship.coords, coord)
-
-            if (distance < minDistance) {
-                nearestCoords = coord
+            if (minDistance > this.dist(ship.coords, coord)) {
+                nearestCoords = coord;
             }
         }
 
-        return nearestCoords
+        return nearestCoords;
         
     }
 
@@ -99,10 +109,14 @@ class ParentStrat {
         return list[Math.floor(Math.random() * list.length)];
     }
 
+    maintOrder(ships) {
+        return ships.sort((a, b) => a.maintCost - b.maintCost);
+    }
+
     chooseTranslation(ship, translations) { return; }
     chooseTarget(shipInfo, combatOrder) { return; }
-    buyShips(cpBudget) { return; }
-    maintOrder(ships) { return ships.sort((a, b) => a.maintCost - b.maintCost); }
+    buyTech(cpBudget) { return []; }
+    buyShips(cpBudget) { return []; }
 
 }
 
