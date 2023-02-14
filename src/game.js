@@ -120,7 +120,6 @@ class Game {
         }
         else if (this.phase == 'mvmt') {
             this.movementPhase(); //!!Work on Mvmt
-            this.phase = 'combat';
         }
         else if (this.phase == 'combat') {
             this.combatPhase(); //!!Work on Combat
@@ -161,6 +160,60 @@ class Game {
     // Phases
 
     movementPhase() {
+        // make it turn based (DONE)
+        //!! keep track of which ships have moved or need to move
+        // add bool or id for a manual player (DONE)
+        //!!Make way to track end of turn
+        /*
+        if (turnEnd){
+            this.log.endPhase('Movement');
+            this.playerTurn = 0
+            this.currentPart = null
+            this.phase = 'combat';
+            return
+        }
+        */
+
+        let player = this.players[this.playerTurn]
+
+        if (this.currentPart == null){
+            this.log.beginPhase('Movement');
+            this.currentPart = 0 //'move'
+        }
+
+        let ship = player.ships[this.currentPart];
+        
+        if (!ship){
+            this.currentPart = 0;
+            this.playerTurn += 1;
+            this.playerInput = '';
+            return;
+        }
+
+        let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
+        let translations = this.possibleTranslations(ship.coords);
+
+        if (this.player.isManual) {
+            //!!Do manual player stuff
+            //this.displayText(`Player ${this.playerTurn}: Please type move for ship`)
+            let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations); 
+        }
+        else {let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);}
+
+        let [newX, newY] = this.translate(oldCoords, translation);
+            
+        if (this.checkForOpponentShips(ship)) {this.currentPart += 1; return;}
+        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) {this.currentPart += 1; return;}
+
+        this.removeFromBoard(ship);
+        ship.coords = [newX, newY];
+        this.addToBoard(ship);
+        this.log.shipMovement(oldCoords, ship);
+        this.updateSimpleBoard();
+
+    }
+    /*
+    movementPhase() {
 
         this.log.beginPhase('Movement');
 
@@ -191,6 +244,7 @@ class Game {
         this.log.endPhase('Movement');
 
     }
+    */
 
     combatPhase() {
 
@@ -242,8 +296,9 @@ class Game {
     }
 
     economicPhase() { 
+        //!!Make it transfer b/t players
+        //!!Make a way to end turn and stuff
         
-        this.log.beginPhase('Economic');
         this.display()
 
         let player = this.players[this.playerTurn]
@@ -261,9 +316,11 @@ class Game {
         else if (this.currentPart == 'maint'){
             this.maintenance(player); // pay maintenance
             this.log.playerCPAfterMaintenance(player);
+            this.currentPart = 'buy'
         }
         else if (this.currentPart == 'buy'){
             this.buyShips(player); // buy ships
+            this.currentPart = null
         }
 
         this.log.endPhase("Economic");
