@@ -3,7 +3,7 @@ import ParentStrat from './parentStrat.js';
 
 // moves randomly, buys random ship
 
-class RandomStrat extends ParentStrat {
+class MaintClosest extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
@@ -45,9 +45,9 @@ class RandomStrat extends ParentStrat {
     }
 
     maintOrder(ships) {
-        return ships.sort(() => Math.random() - 0.5);
+        return ships.sort((a, b) => this.dist(b.coords, this.getHomeColonyCoords(b)) - this.dist(a.coords, this.getHomeColonyCoords(b)));
     }
-    
+
 }
 
-export default RandomStrat;
+export default MaintClosest;

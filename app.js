@@ -9,6 +9,7 @@ import Buy100Strat      from './strategies/buy100Strat.js';
 import BuyNoneStrat     from './strategies/buyNoneStrat.js';
 import HunterStrat      from './strategies/hunterStrat.js'
 import InputStrat       from './strategies/inputStrat.js';
+import MaintClosest     from './strategies/maintClosest.js';
 import OnlyP2MovesStrat from './strategies/onlyP2MovesStrat.js';
 import RandomStrat      from './strategies/randomStrat.js';
 import RushStrat        from './strategies/rushStrat.js';
@@ -62,6 +63,11 @@ io.on('connection', (socket) => {
 
     socket.on('auto run', () => {
         if (game) game.start();
+    });
+
+    socket.on('submit input', (input) => {
+        console.log(`new input: ${input}`);
+        if (game) game.playerInput = input;
     });
 
 });

@@ -24,7 +24,8 @@ class Player {
             this.shipCounter[shipClass.name] = 0;
         }
 
-        this.colonies = [];
+        this.allColonies = [];
+        this.aliveColonies = [];
         this.colonyCounter = 0;
     
     }

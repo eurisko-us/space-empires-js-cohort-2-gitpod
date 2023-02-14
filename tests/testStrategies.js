@@ -1,12 +1,11 @@
 import Game from './../src/game.js';
-
 import CharlieStrat from '../strategies/competition_1/charlieStrat.js';
 import WilliamStrat from '../strategies/competition_1/williamStrat.js';
 import JustinStrat  from '../strategies/competition_1/justinStrat.js';
 import CaydenStrat  from '../strategies/competition_1/caydenStrat.js';
 import AntonStrat   from '../strategies/competition_1/antonStrat.js';
 // import MaiaStrat    from './../competitionStrategies/maiaStrat.js';
-
+import MakeColonies from '../strategies/makeColonies.js'
 import BasicStrat       from './../strategies/basicStrat.js';
 import Buy100Strat      from './../strategies/buy100Strat.js';
 import BuyNoneStrat     from './../strategies/buyNoneStrat.js';
@@ -55,6 +54,7 @@ function runGame(strat1, strat2, numGames) {
                 if (strat === 'rush')        strategies.push(new RushStrat());
                 if (strat === 'shopper')     strategies.push(new ShopperStrat());
                 if (strat === 'turtle')      strategies.push(new TurtleStrat());
+                if (strat === 'make colonies')      strategies.push(new MakeColonies());
 
             }
 
@@ -87,6 +87,6 @@ function runTournament(strategies, numGamesPerRound) {
 // edit this code
 
 let strategies = ['cayden', 'justin', 'anton', 'charlie', 'william'];
-let numGamesPerRound = 1000;
+let numGamesPerRound = 1;
 
 runTournament(strategies, numGamesPerRound);
