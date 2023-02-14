@@ -1,10 +1,10 @@
 import ParentStrat from './parentStrat.js';
 
-class BasicStrat extends ParentStrat {
+class TechStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
-        this.name = 'basic';
+        this.name = 'tech';
     }
 
     chooseTranslation(ship, translations) {
@@ -18,7 +18,7 @@ class BasicStrat extends ParentStrat {
     }
 
     buyTech(cpBudget) {
-        return [];
+        return ["movement"];
     }
 
     buyShips(cpBudget) {
@@ -27,4 +27,4 @@ class BasicStrat extends ParentStrat {
 
 }
 
-export default BasicStrat;
+export default TechStrat;

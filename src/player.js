@@ -18,13 +18,14 @@ class Player {
             "movement": 1
         };
         
-        this.shipCounter = {}; // used to get new ship nums when
+        this.shipCounter = {};
+
         for (let shipClass of allShips) {
             this.shipCounter[shipClass.name] = 0;
         }
 
-        this.colonies = []
-        this.colonyCounter = 0
+        this.colonies = [];
+        this.colonyCounter = 0;
     
     }
     

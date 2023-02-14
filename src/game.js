@@ -32,12 +32,10 @@ class Game {
 
     }
 
-    //spawnPlanets(self, xRange, yRange, homeColonyCoords) {
-        //let options = [];
-        
-        //this.addToBoard(homeColony);
-
-    //}
+    // spawnPlanets(self, xRange, yRange, homeColonyCoords) {
+    //     let options = [];
+    //     this.addToBoard(homeColony);
+    // }
 
     // Initializing and running the game
 
@@ -53,7 +51,9 @@ class Game {
         }
 
         for (let i = 0; i < this.players.length; i++) {
+            
             // buy home colony
+            
             const halfBoardSize = (this.boardSize - 1) / 2;
 
             const homeColonyCoordsMap = {
@@ -62,20 +62,22 @@ class Game {
                 2: [0, halfBoardSize],
                 3: [this.boardSize - 1, halfBoardSize]
             }
+
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
-            homeColony.setHomeColonyId()
+            homeColony.setHomeColonyId();
             this.players[i].homeColony = homeColony;
             this.addToBoard(homeColony);
 
-            //if (i == 0) {
-                //this.spawnPlanets([0, 6], [0, 2], [homeColonyCoordsMap[i]])
-            //}
+            // if (i == 0) {
+            //     this.spawnPlanets([0, 6], [0, 2], [homeColonyCoordsMap[i]]);
+            // }
 
-            //if (i == 1) {
-                //this.spawnPlanets([0, 6], [4, 6], [homeColonyCoordsMap[i]])
-            //}
+            // if (i == 1) {
+            //     this.spawnPlanets([0, 6], [4, 6], [homeColonyCoordsMap[i]]);
+            // }
 
             // buy ships
+
             this.buyShips(this.players[i]);
 
         }
@@ -102,6 +104,7 @@ class Game {
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
             console.log(this.players[0].technology);
+            console.log(this.players[1].technology);
             this.movementPhase();
             this.combatPhase();
             this.economicPhase();
@@ -181,13 +184,13 @@ class Game {
                             target.hp -= 1;
                             if (target.hp <= 0) {
                                 this.log.shipDestroyed(target);
-                                combatOrder.splice(combatOrder.indexOf(target), 1)
+                                combatOrder.splice(combatOrder.indexOf(target), 1);
                                 this.removeFromBoard(target);
                                 this.removeShipFromPlayer(defender, target);
                             }
                         }
 
-                        this.updateSimpleBoard()
+                        this.updateSimpleBoard();
 
                     }
 
@@ -387,6 +390,7 @@ class Game {
         }
 
         player.cp -= totalCost;
+
         assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP');
         player.ships = orderedShips;
 
@@ -420,19 +424,26 @@ class Game {
         let totalCost = 0;
         
         for (let tech of newTech) {
-            
-            if (tech == "attack" || tech == "defense")  {
-                if (currentTech[tech] == 0) totalCost += 20; // +1 attack/defense
-                if (currentTech[tech] == 1) totalCost += 30; // +2 attack/defense
-                if (currentTech[tech] == 2) totalCost += 40; // +3 attack/defense
+
+            let techMap = {
+                "attack": {
+                    0: 20, // +1 attack
+                    1: 30, // +2 attack
+                    2: 40  // +3 attack
+                }, "defense": {
+                    0: 20, // +1 defense
+                    1: 30, // +2 defense
+                    2: 40  // +3 defense
+                }, "movement": {
+                    1: 20, // 25% chance of moving twice
+                    2: 30, // 50% chance of moving twice
+                    3: 40, // 75% chance of moving twice
+                    4: 50 // 100% chance of moving twice
+                }
             }
-            
-            if (tech == "movement") {
-                if (currentTech[tech] == 1) totalCost += 20; // 25% chance of moving twice
-                if (currentTech[tech] == 2) totalCost += 30; // 50% chance of moving twice
-                if (currentTech[tech] == 3) totalCost += 40; // 75% chance of moving twice
-                if (currentTech[tech] == 4) totalCost += 50; // 100% chance of moving twice
-            }
+
+            let techCost = techMap[tech][currentTech[tech]];
+            if (techCost) totalCost += techCost;
 
         }
 
