@@ -7,7 +7,7 @@ class AiStrat extends ParentStrat {
         this.name = 'AI';
         this.movementWeights = {} // set random number 0-1 Math.random
 
-        for (let factor of this.getMovementFactors()){
+        for (let factor of []){ //input list of movement factors here
             this.movementWeights[factor] = Math.random()
         }
     }
@@ -29,12 +29,12 @@ class AiStrat extends ParentStrat {
 
             if (phase == "movement") {
                 let factors = this.getMovementFactors(shipInfo, options);
-                scores[option] == this.movementScore(factors)
+                scores[`${option}`] == this.movementScore(factors)
             }
 
             if (phase == "combat") {
                 let factors = this.getCombatFactors(shipInfo, options);
-                scores[option] == this.movementScore(factors)
+                scores[option["id"]] == this.combatScore(factors)
             }
 
         }
@@ -51,19 +51,56 @@ class AiStrat extends ParentStrat {
             }
         }
 
-        return maxScoreMove
+        if ("[" in maxScoreMove) {
+            return JSON.parse(maxScoreMove)
+        } 
+
+        else {
+            return maxScoreTargetId
+        }
+
     }
 
     chooseTranslation(ship, translations) {
         let movementScores = this.getAllScores(shipInfo, translations, "movement")
-        let maxScoreMove = this.getMaxScoreTarget(movementScores)
+        let maxScoreMove = this.getMaxScoreMove(movementScores)
         return maxScoreMove
     }
 
+
+    getCombatFactors(shipInfo, opponentShipInfo) {
+        let factors = {};
+        let shipClasses = ["E", "B", "A", "C", "D", "Z"]
+        shipClasses.sort((a, b) => a.shipClass.localeCompare(b.shipClass))
+
+        for (let factor of ["hp", "atk", "def", "shipClass"]) {
+            if (factor == "shipClass") {
+                factors[`own ship ${factor}`] = shipClasses.indexOf(shipInfo[factor])
+                factors[`opponent ship ${factor}`] = shipClasses.indexOf(opponentShipInfo[factor])
+            }
+
+            else {
+                factors[`own ship ${factor}`] = shipInfo[factor]
+                factors[`opponent ship ${factor}`] = opponentShipInfo[factor]
+            }
+            
+        }
+
+        factors["probability of hit"] = (shipInfo["atk"] - opponentShipInfo["def"]) / 10
+
+        return factors
+    }
+
     chooseTarget(shipInfo, combatOrder) {
-        let combatScores = this.getAllScores(shipInfo, translations, "combat")
-        let maxScoreMove = this.getMaxScoreTarget(combatScores)
-        return maxScoreMove
+        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
+        let combatScores = this.getAllScores(shipInfo, opponentShips, "combat")
+        let maxScoreTargetId = this.getMaxScoreMove(combatScores)
+
+        for (let ship of opponentShips){
+            if (maxScoreTargetId == ship["id"]) {
+                return ship
+            }
+        }
     }
 
     buyShips(cpBudget) {
