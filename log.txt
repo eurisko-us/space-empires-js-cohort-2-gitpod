@@ -1,8 +1,8 @@
 Begin Game
-		Spawned planet at (0,1)
+		Spawned planet at (1,2)
 		Spawned planet at (1,5)
-		Spawned planet at (4,2)
-		Spawned planet at (4,5)
+		Spawned planet at (5,1)
+		Spawned planet at (6,5)
 		Player 1 bought a Scout
 		Player 1 bought a Scout
 		Player 1 bought a Scout

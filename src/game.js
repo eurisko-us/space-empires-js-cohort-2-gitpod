@@ -362,7 +362,7 @@ class Game {
 
     // Movement
 
-    translate(x, y) {
+    translate(x, y) { // (original coords, new coords)
         return x.map((_, i) => x[i] + y[i]);
     }
 

@@ -51,7 +51,7 @@ class ParentStrat {
         return colonyCoords;
     }
 
-    getFreePlanetsCoords(ship) {
+    getFreePlanetsCoords() {
         let freePlanetCoords = [];
 
         for (let i = 0; i < this.simpleBoard.length; i++) {
@@ -81,6 +81,15 @@ class ParentStrat {
 
         return nearestCoords;
         
+    }
+
+    getAllShips(coords, player_num=null) {
+        if (player_num) {
+            return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0 && obj.playerNum === player_num);
+        }
+        else{
+            return this.simple_board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+        }
     }
 
     random(list) {

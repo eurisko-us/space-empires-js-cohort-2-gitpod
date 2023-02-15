@@ -5,7 +5,7 @@ class AIMovementStrat extends ParentStrat {
     constructor() {
         super(ParentStrat);
         this.name = 'AIMovement';
-        this.movementFactors = {'changeDistNearOwnShip':0, 'changeDistNearOppShip':0, 'changeDistNearFreePlanet':0, 'moveTechLevel':0, 'hp':0, 'atk':0, 'df':0, 'name':0, 'shipClass':0, 'coords':0, 'playerNum':0, 'shipNum':0, 'cpCost':0, 'maintCost':0}
+        this.movementFactors = {}
         this.movementWeights = {}
     }
 
@@ -24,14 +24,21 @@ class AIMovementStrat extends ParentStrat {
 
     updateFactors(ship, translation) {
         let shipFactorDict = {};
+        let shipClasses = ['A', 'B', 'C', 'D', 'E', 'Z']
 
         for (var prop in ship) {
             if (Object.prototype.hasOwnProperty.call(ship, prop)) {
-                shipFactorDict[prop] = ship[prop];
+                if (!['name', 'id', 'objType'].includes(prop)) {
+                    if (prop == 'shipClass') {
+                        shipFactorDict[prop] = shipClasses.indexOf(ship[prop])
+                    }
+                    else {
+                        shipFactorDict[prop] = ship[prop];
+                    }
+                }
+                
             }
         }
-        
-        console.log(ship.coords, translation);
 
         let hcCoords = this.getColonyCoords(ship, true, false);
         let oppHCCoords = this.getColonyCoords(ship, true, true);
@@ -49,24 +56,45 @@ class AIMovementStrat extends ParentStrat {
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Ship' && obj.playerNum == playerNum) {
+                    if (obj.objType === 'Ship' && obj.playerNum == ship.playerNum) {
                         shipCoords.push([j, i]);
                     }
-                    if (obj.objType === 'Ship' && obj.playerNum != playerNum) {
+                    if (obj.objType === 'Ship' && obj.playerNum != ship.playerNum) {
                         oppShipCoords.push([j, i]);
                     }
                 }
             }
+        } //made get all ships in parent, need to update
+
+        if (shipCoords.length === 0) {
+            shipFactorDict['changeDistNearOwnShip'] = shipFactorDict['changeDistHC']
+        }
+        else {
+            let nearestShipCoords = this.getNearestCoords(ship, shipCoords);
+            shipFactorDict['changeDistNearOwnShip'] = Math.abs(this.dist(ship.coords, nearestShipCoords) - this.dist(newCoords, nearestShipCoords));
         }
 
-        nearestShipCoords = this.getNearestCoords(ship, shipCoords)
-        nearestOppShipCoords = this.getNearestCoords(ship, oppShipCoords)
+        if (oppShipCoords.length === 0) {
+            shipFactorDict['changeDistNearOppShip'] = shipFactorDict['changeDistOppHC']
+        }
+        else {
+            let nearestOppShipCoords = this.getNearestCoords(ship, oppShipCoords);
+            shipFactorDict['changeDistNearOppShip'] = Math.abs(this.dist(ship.coords, nearestOppShipCoords) - this.dist(newCoords, nearestOppShipCoords));
+        }
 
-        shipFactorDict['changeDistNearOwnShip'] = Math.abs(this.dist(ship.coords, nearestShipCoords) - this.dist(newCoords, nearestShipCoords));
-        shipFactorDict['changeDistNearOppShip'] = Math.abs(this.dist(ship.coords, nearestOppShipCoords) - this.dist(newCoords, nearestOppShipCoords));
+        let freePlanetsCoords = this.getFreePlanetsCoords()
+        if (freePlanetsCoords.length === 0) {
+            shipFactorDict['changeDistNearFreePlanet'] = 0
+        }
+        else {
+            let nearestFreePlanetCoords = this.getNearestCoords(ship, freePlanetsCoords);
+            shipFactorDict['changeDistNearFreePlanet'] = Math.abs(this.dist(ship.coords, nearestFreePlanetCoords) - this.dist(newCoords, nearestFreePlanetCoords));
+        }
+        
 
         console.log(shipFactorDict)
     }
+
 
     chooseTarget(shipInfo, combatOrder) {
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
