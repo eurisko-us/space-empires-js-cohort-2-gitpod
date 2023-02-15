@@ -7,6 +7,7 @@ class Player {
         this.playerNum = playerNum;
         this.ships = [];
         this.homeColony = null;
+        this.isManual = false
         
         this.strategy = strategy;
         this.strategy.playerNum = this.playerNum;

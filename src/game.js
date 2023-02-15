@@ -36,6 +36,8 @@ class Game {
         this.currentPart = null;
         this.playerInput = '';
         this.phase = null;
+        //just for combat
+        this.fighter = null
 
     }
 
@@ -115,18 +117,16 @@ class Game {
             this.phase = 'econ';
         }
         else if (this.phase == 'econ') {
-            this.economicPhase(); //!!Work on Econ
-            this.phase = 'mvmt';
+            this.economicPhase(); //! Work on Econ
         }
         else if (this.phase == 'mvmt') {
-            this.movementPhase(); //!!Work on Mvmt
+            this.movementPhase(); //! Work on Mvmt
         }
         else if (this.phase == 'combat') {
-            this.combatPhase(); //!!Work on Combat
-            this.phase = null;
+            this.combatPhase(); //! Work on Combat
         }
         this.winner = this.checkForWinner();
-        this.turn++;
+        if (this.phase == null) this.turn++;
 
         if (!this.winner && this.turn >= this.maxTurns) this.winner = 'Tie';
 
@@ -164,7 +164,7 @@ class Game {
         //!! keep track of which ships have moved or need to move
         // add bool or id for a manual player (DONE)
         //!!Make way to track end of turn
-        /*
+
         if (turnEnd){
             this.log.endPhase('Movement');
             this.playerTurn = 0
@@ -172,7 +172,6 @@ class Game {
             this.phase = 'combat';
             return
         }
-        */
 
         let player = this.players[this.playerTurn]
 
@@ -193,7 +192,7 @@ class Game {
         let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
         let translations = this.possibleTranslations(ship.coords);
 
-        if (this.player.isManual) {
+        if (player.isManual) {
             //!!Do manual player stuff
             //this.displayText(`Player ${this.playerTurn}: Please type move for ship`)
             let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations); 
@@ -246,6 +245,63 @@ class Game {
     }
     */
 
+    
+    combatPhase() {
+        //? make it so that which coord combat is being run on is remembered (Done differently)
+        //! make it so that the combat order is remembered (prevent unessisary recalculation) (can be added later)
+        // remember which ship is currently attacking (DONE)
+
+        if (this.currentPart == null){
+            this.log.beginPhase('Combat');
+            this.currentPart = 0
+        }
+        let combat = this.getCombatCoords()[0];
+
+        if (!combat){
+            this.log.endPhase('Combat');
+            this.playerTurn = 0
+            this.currentPart = null
+            this.phase = null;
+            return
+        }
+
+        combat = this.sortCombatOrder(combat);
+
+        if (this.currentPart == null || combat.indexOf(this.currentPart) == -1){
+            this.currentPart = combat[0]
+        }
+
+        let attacker = this.players[ship.playerNum - 1];
+
+        if (attacker.isManual){
+            //!!Do manual player stuff
+            //this.displayText(`Player ${this.playerTurn}: Please select a target for ${ship_id}`)
+            let target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
+        }
+        else {let target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);}
+
+        let defender = this.players[target.playerNum - 1];
+        this.log.combat(ship, target);
+
+        assert (ship.hp > 0, 'Aborting... attacker is dead');
+        assert (target.hp > 0, 'Aborting... defender is already dead');
+
+        if (this.roll(ship, target)) {
+            target.hp -= 1;
+            if (target.hp <= 0) {
+                this.log.shipDestroyed(target);
+                combatOrder.splice(combatOrder.indexOf(target), 1)
+                this.removeFromBoard(target);
+                this.removeShipFromPlayer(defender, target);
+            }
+        }
+        this.updateSimpleBoard()
+
+        let id = combat.indexOf(this.currentPart) + 1
+        if (id >= combat.length) {this.currentPart = combat[0]}
+        else {this.currentPart = combat[id]}
+    }
+    /*
     combatPhase() {
 
         this.log.beginPhase('Combat');
@@ -294,12 +350,21 @@ class Game {
         this.log.endPhase('Combat');
 
     }
+    */
 
     economicPhase() { 
-        //!!Make it transfer b/t players
-        //!!Make a way to end turn and stuff
+        // Make it transfer b/t players (DONE)
+        // Make a way to end turn and stuff (DONE)
         
         this.display()
+
+        if (this.playerTurn > 1){
+            this.log.endPhase('Economic');
+            this.playerTurn = 0
+            this.currentPart = null
+            this.phase = 'mvmt';
+            return
+        }
 
         let player = this.players[this.playerTurn]
 
@@ -314,16 +379,25 @@ class Game {
             this.currentPart = 'maint'
         }
         else if (this.currentPart == 'maint'){
-            this.maintenance(player); // pay maintenance
+            if (player.isManual){
+                //!!Do Manual Stuff
+                this.maintenance(player); // pay maintenance
+            }
+            else {this.maintenance(player);}
+
             this.log.playerCPAfterMaintenance(player);
             this.currentPart = 'buy'
         }
         else if (this.currentPart == 'buy'){
-            this.buyShips(player); // buy ships
-            this.currentPart = null
+            if (player.isManual){
+                //!!Do Manual stuff
+                this.buyShips(player);
+            }
+            else {this.buyShips(player);}
+            
+            this.playerTurn += 1
+            this.currentPart = 'pay'
         }
-
-        this.log.endPhase("Economic");
 
     }
     /*
