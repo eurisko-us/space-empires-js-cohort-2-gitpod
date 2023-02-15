@@ -70,8 +70,7 @@ class AiStrat extends ParentStrat {
 
     getCombatFactors(shipInfo, opponentShipInfo) {
         let factors = {};
-        let shipClasses = ["E", "B", "A", "C", "D", "Z"]
-        shipClasses.sort((a, b) => a.shipClass.localeCompare(b.shipClass))
+        let shipClasses = ["A", "B", "C", "D", "E", "Z"]
 
         for (let factor of ["hp", "atk", "def", "shipClass"]) {
             if (factor == "shipClass") {
