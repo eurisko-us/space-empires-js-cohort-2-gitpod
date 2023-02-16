@@ -251,7 +251,8 @@ class Game {
     createColonies() {
     
         for (let planet of this.planets) {
-            let x, y = [...planet.coords];    
+            let x = planet.coords[0];
+            let y = planet.coords[1];
             for (let obj of this.board[y][x]) {
                 if (obj.name == "ColonyShip" && planet.colony == null) {
                 
@@ -409,7 +410,7 @@ class Game {
         let ships = this.getAllShips(coords);
         if (ships.length == 0) return false;
 
-        let xs = new Set(ships.map(ship => ship.name));
+        let xs = Array.from(new Set(ships.map(ship => ship.name)));
         let ys = new Set(["ColonyShip"]);
 
         if (xs.size === ys.size && xs.every(x => ys.has(x))) return false;

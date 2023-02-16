@@ -18,7 +18,7 @@ class TechStrat extends ParentStrat {
     }
 
     buyTech(cpBudget) {
-        return ["movement"];
+        return ["attack", "movement"];
     }
 
     buyShips(cpBudget) {
