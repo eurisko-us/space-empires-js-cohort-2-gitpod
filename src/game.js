@@ -14,7 +14,7 @@ class Game {
         this.clientSockets = clientSockets;
         this.boardSize = 7;
         this.maxTurns = maxTurns;
-        this.refreshRate = refreshRate;
+        this.refreshRate = 100;//refreshRate;
         this.cpPerRound = cpPerRound;
         this.stopInterval = null;
     
@@ -125,8 +125,7 @@ class Game {
         else if (this.phase == 'combat') {
             this.combatPhase(); //! Work on Combat
         }
-        this.winner = this.checkForWinner();
-        if (this.phase == null) this.turn++;
+        if (this.phase == null) {this.turn++; this.winner = this.checkForWinner();}
 
         if (!this.winner && this.turn >= this.maxTurns) this.winner = 'Tie';
 
@@ -165,10 +164,11 @@ class Game {
         // add bool or id for a manual player (DONE)
         //!!Make way to track end of turn
 
-        if (turnEnd){
+        if (this.playerTurn > 1){
             this.log.endPhase('Movement');
             this.playerTurn = 0
             this.currentPart = null
+            this.playerInput = '';
             this.phase = 'combat';
             return
         }
@@ -191,13 +191,14 @@ class Game {
 
         let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
         let translations = this.possibleTranslations(ship.coords);
+        let translation
 
         if (player.isManual) {
             //!!Do manual player stuff
             //this.displayText(`Player ${this.playerTurn}: Please type move for ship`)
-            let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations); 
+            translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations); 
         }
-        else {let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);}
+        else {translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);}
 
         let [newX, newY] = this.translate(oldCoords, translation);
             
@@ -209,6 +210,7 @@ class Game {
         this.addToBoard(ship);
         this.log.shipMovement(oldCoords, ship);
         this.updateSimpleBoard();
+        this.currentPart += 1
 
     }
     /*
@@ -248,7 +250,8 @@ class Game {
     
     combatPhase() {
         //? make it so that which coord combat is being run on is remembered (Done differently)
-        //! make it so that the combat order is remembered (prevent unessisary recalculation) (can be added later)
+        //! make it so that the combat order is remembered (prevent unessisary recalculation) 
+        //  (can be added later) !might not be needed
         // remember which ship is currently attacking (DONE)
 
         if (this.currentPart == null){
@@ -265,20 +268,22 @@ class Game {
             return
         }
 
-        combat = this.sortCombatOrder(combat);
+        let combatOrder = this.sortCombatOrder(combat);
 
-        if (this.currentPart == null || combat.indexOf(this.currentPart) == -1){
-            this.currentPart = combat[0]
+        if (this.currentPart == null || combatOrder.indexOf(this.currentPart) == -1){
+            this.currentPart = combatOrder[0]
         }
+        let ship = this.currentPart
 
         let attacker = this.players[ship.playerNum - 1];
+        let target
 
         if (attacker.isManual){
             //!!Do manual player stuff
             //this.displayText(`Player ${this.playerTurn}: Please select a target for ${ship_id}`)
-            let target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
+            target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
         }
-        else {let target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);}
+        else {target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);}
 
         let defender = this.players[target.playerNum - 1];
         this.log.combat(ship, target);
@@ -290,16 +295,16 @@ class Game {
             target.hp -= 1;
             if (target.hp <= 0) {
                 this.log.shipDestroyed(target);
-                combatOrder.splice(combatOrder.indexOf(target), 1)
+                //combatOrder.splice(combatOrder.indexOf(target), 1)
                 this.removeFromBoard(target);
                 this.removeShipFromPlayer(defender, target);
             }
         }
         this.updateSimpleBoard()
 
-        let id = combat.indexOf(this.currentPart) + 1
-        if (id >= combat.length) {this.currentPart = combat[0]}
-        else {this.currentPart = combat[id]}
+        let id = combatOrder.indexOf(this.currentPart) + 1
+        if (id >= combatOrder.length) {this.currentPart = combatOrder[0]}
+        else {this.currentPart = combatOrder[id]}
     }
     /*
     combatPhase() {
@@ -394,7 +399,7 @@ class Game {
                 this.buyShips(player);
             }
             else {this.buyShips(player);}
-            
+
             this.playerTurn += 1
             this.currentPart = 'pay'
         }
