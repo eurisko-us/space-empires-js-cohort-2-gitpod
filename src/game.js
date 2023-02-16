@@ -37,7 +37,6 @@ class Game {
         this.playerInput = '';
         this.phase = null;
         //just for combat
-        this.fighter = null
 
     }
 

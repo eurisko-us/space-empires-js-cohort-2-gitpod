@@ -158,7 +158,7 @@ function resetBoard() {
 function updateLogs() {
     logsHTML.innerHTML = '';
     for (let turn of game.logs.reverse()) {
-        for (let line of turn) {
+        for (let line of turn.reverse()) {
             logsHTML.innerHTML += `  ${line}<br>`;
         }
     }

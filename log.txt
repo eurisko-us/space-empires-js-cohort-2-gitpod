@@ -97,234 +97,232 @@ Turn 3
 		Player 2 Dreadnaught 2 hp: 3 -> 2
 		Attacker: Player 1 Dreadnaught 2
 		Defender: Player 2 Dreadnaught 3
-		Hit!
-		Player 2 Dreadnaught 3 hp: 3 -> 2
+		Miss!
 		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 3
-		Hit!
-		Player 2 Dreadnaught 3 hp: 2 -> 1
-		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 5
-		Defender: Player 2 Dreadnaught 3
-		Miss!
-		Attacker: Player 2 Dreadnaught 1
-		Defender: Player 1 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 1
-		Miss!
-		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 5
-		Hit!
-		Player 1 Dreadnaught 5 hp: 3 -> 2
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 2
-		Miss!
-		Attacker: Player 1 Dreadnaught 1
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 2
-		Defender: Player 2 Dreadnaught 4
-		Hit!
-		Player 2 Dreadnaught 4 hp: 3 -> 2
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 4
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 2
 		Miss!
-		Attacker: Player 1 Dreadnaught 5
+		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 5
 		Hit!
 		Player 2 Dreadnaught 5 hp: 3 -> 2
-		Attacker: Player 2 Dreadnaught 1
-		Defender: Player 1 Dreadnaught 5
-		Hit!
-		Player 1 Dreadnaught 5 hp: 2 -> 1
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 4
-		Hit!
-		Player 1 Dreadnaught 4 hp: 3 -> 2
-		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 3
-		Hit!
-		Player 1 Dreadnaught 3 hp: 3 -> 2
-		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 1
-		Miss!
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 4
-		Miss!
-		Attacker: Player 1 Dreadnaught 1
-		Defender: Player 2 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 2
-		Defender: Player 2 Dreadnaught 1
-		Miss!
-		Attacker: Player 1 Dreadnaught 3
-		Defender: Player 2 Dreadnaught 4
-		Miss!
-		Attacker: Player 1 Dreadnaught 4
+		Attacker: Player 1 Dreadnaught 5
 		Defender: Player 2 Dreadnaught 5
 		Hit!
 		Player 2 Dreadnaught 5 hp: 2 -> 1
-		Attacker: Player 1 Dreadnaught 5
-		Defender: Player 2 Dreadnaught 3
-		Miss!
 		Attacker: Player 2 Dreadnaught 1
 		Defender: Player 1 Dreadnaught 5
 		Miss!
 		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 4
-		Hit!
-		Player 1 Dreadnaught 4 hp: 2 -> 1
+		Defender: Player 1 Dreadnaught 2
+		Miss!
 		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 5
 		Miss!
 		Attacker: Player 2 Dreadnaught 4
 		Defender: Player 1 Dreadnaught 1
 		Hit!
 		Player 1 Dreadnaught 1 hp: 3 -> 2
 		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 2
-		Hit!
-		Player 1 Dreadnaught 2 hp: 3 -> 2
-		Attacker: Player 1 Dreadnaught 1
-		Defender: Player 2 Dreadnaught 1
+		Defender: Player 1 Dreadnaught 1
 		Miss!
-		Attacker: Player 1 Dreadnaught 2
-		Defender: Player 2 Dreadnaught 1
+		Attacker: Player 1 Dreadnaught 1
+		Defender: Player 2 Dreadnaught 3
 		Hit!
-		Player 2 Dreadnaught 1 hp: 3 -> 2
+		Player 2 Dreadnaught 3 hp: 3 -> 2
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 3
+		Miss!
 		Attacker: Player 1 Dreadnaught 3
 		Defender: Player 2 Dreadnaught 2
 		Miss!
 		Attacker: Player 1 Dreadnaught 4
-		Defender: Player 2 Dreadnaught 1
-		Hit!
-		Player 2 Dreadnaught 1 hp: 2 -> 1
+		Defender: Player 2 Dreadnaught 5
+		Miss!
 		Attacker: Player 1 Dreadnaught 5
 		Defender: Player 2 Dreadnaught 5
 		Miss!
 		Attacker: Player 2 Dreadnaught 1
-		Defender: Player 1 Dreadnaught 2
-		Hit!
-		Player 1 Dreadnaught 2 hp: 2 -> 1
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 3
-		Hit!
-		Player 1 Dreadnaught 3 hp: 2 -> 1
-		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 3
-		Hit!
-		Player 1 Dreadnaught 3 hp: 1 -> 0
-		Player 1 Dreadnaught 3 was destroyed
-		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 4
-		Miss!
-		Attacker: Player 2 Dreadnaught 5
-		Defender: Player 1 Dreadnaught 4
-		Hit!
-		Player 1 Dreadnaught 4 hp: 1 -> 0
-		Player 1 Dreadnaught 4 was destroyed
-		Attacker: Player 1 Dreadnaught 1
-		Defender: Player 2 Dreadnaught 1
-		Hit!
-		Player 2 Dreadnaught 1 hp: 1 -> 0
-		Player 2 Dreadnaught 1 was destroyed
-		Attacker: Player 1 Dreadnaught 2
-		Defender: Player 2 Dreadnaught 4
-		Hit!
-		Player 2 Dreadnaught 4 hp: 2 -> 1
-		Attacker: Player 1 Dreadnaught 5
-		Defender: Player 2 Dreadnaught 4
-		Miss!
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 2
-		Miss!
-		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 2
-		Hit!
-		Player 1 Dreadnaught 2 hp: 1 -> 0
-		Player 1 Dreadnaught 2 was destroyed
-		Attacker: Player 2 Dreadnaught 5
 		Defender: Player 1 Dreadnaught 1
 		Miss!
-		Attacker: Player 1 Dreadnaught 1
-		Defender: Player 2 Dreadnaught 3
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Dreadnaught 1
+		Hit!
+		Player 1 Dreadnaught 1 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 5
+		Hit!
+		Player 1 Dreadnaught 5 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 3
+		Hit!
+		Player 1 Dreadnaught 3 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 5
+		Defender: Player 1 Dreadnaught 5
 		Miss!
-		Attacker: Player 1 Dreadnaught 5
+		Attacker: Player 1 Dreadnaught 1
+		Defender: Player 2 Dreadnaught 5
+		Miss!
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 1
+		Hit!
+		Player 2 Dreadnaught 1 hp: 3 -> 2
+		Attacker: Player 1 Dreadnaught 4
 		Defender: Player 2 Dreadnaught 5
 		Hit!
 		Player 2 Dreadnaught 5 hp: 1 -> 0
 		Player 2 Dreadnaught 5 was destroyed
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 5
-		Miss!
-		Attacker: Player 2 Dreadnaught 3
-		Defender: Player 1 Dreadnaught 1
-		Hit!
-		Player 1 Dreadnaught 1 hp: 2 -> 1
-		Attacker: Player 2 Dreadnaught 4
-		Defender: Player 1 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 1
-		Defender: Player 2 Dreadnaught 4
-		Hit!
-		Player 2 Dreadnaught 4 hp: 1 -> 0
-		Player 2 Dreadnaught 4 was destroyed
 		Attacker: Player 1 Dreadnaught 5
-		Defender: Player 2 Dreadnaught 3
-		Miss!
-		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 1
+		Hit!
+		Player 2 Dreadnaught 1 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 1
 		Defender: Player 1 Dreadnaught 1
 		Hit!
 		Player 1 Dreadnaught 1 hp: 1 -> 0
 		Player 1 Dreadnaught 1 was destroyed
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Dreadnaught 4
+		Miss!
 		Attacker: Player 2 Dreadnaught 3
 		Defender: Player 1 Dreadnaught 5
-		Miss!
-		Attacker: Player 1 Dreadnaught 5
-		Defender: Player 2 Dreadnaught 3
 		Hit!
-		Player 2 Dreadnaught 3 hp: 1 -> 0
-		Player 2 Dreadnaught 3 was destroyed
-		Attacker: Player 2 Dreadnaught 2
-		Defender: Player 1 Dreadnaught 5
+		Player 1 Dreadnaught 5 hp: 2 -> 1
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 1
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 1
 		Miss!
 		Attacker: Player 1 Dreadnaught 5
 		Defender: Player 2 Dreadnaught 2
+		Miss!
+		Attacker: Player 2 Dreadnaught 1
+		Defender: Player 1 Dreadnaught 5
+		Miss!
+		Attacker: Player 2 Dreadnaught 2
+		Defender: Player 1 Dreadnaught 2
+		Hit!
+		Player 1 Dreadnaught 2 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 2
 		Hit!
 		Player 2 Dreadnaught 2 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 1
+		Hit!
+		Player 2 Dreadnaught 1 hp: 1 -> 0
+		Player 2 Dreadnaught 1 was destroyed
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 3
+		Hit!
+		Player 2 Dreadnaught 3 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 5
+		Defender: Player 2 Dreadnaught 2
+		Miss!
 		Attacker: Player 2 Dreadnaught 2
 		Defender: Player 1 Dreadnaught 5
 		Hit!
 		Player 1 Dreadnaught 5 hp: 1 -> 0
 		Player 1 Dreadnaught 5 was destroyed
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 3
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 2
+		Hit!
+		Player 2 Dreadnaught 2 hp: 1 -> 0
+		Player 2 Dreadnaught 2 was destroyed
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 4
+		Hit!
+		Player 2 Dreadnaught 4 hp: 3 -> 2
+		Attacker: Player 2 Dreadnaught 3
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 3
+		Miss!
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 3
+		Hit!
+		Player 2 Dreadnaught 3 hp: 1 -> 0
+		Player 2 Dreadnaught 3 was destroyed
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Hit!
+		Player 2 Dreadnaught 4 hp: 2 -> 1
+		Attacker: Player 1 Dreadnaught 4
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 2 Dreadnaught 4
+		Defender: Player 1 Dreadnaught 4
+		Hit!
+		Player 1 Dreadnaught 4 hp: 3 -> 2
+		Attacker: Player 1 Dreadnaught 2
+		Defender: Player 2 Dreadnaught 4
+		Miss!
+		Attacker: Player 1 Dreadnaught 3
+		Defender: Player 2 Dreadnaught 4
+		Hit!
+		Player 2 Dreadnaught 4 hp: 1 -> 0
+		Player 2 Dreadnaught 4 was destroyed
 	End Combat Phase
 
 Turn 4
 	Begin Economic Phase
 		Player 1 initially has 30 CP
 		Player 1 gained 10 CP and now has 40 CP
-		Player 1 now has 40 CP after paying maintenance
+		Player 1 now has 31 CP after paying maintenance
 		Player 1 tried to go over budget
 		Player 2 initially has 30 CP
 		Player 2 gained 10 CP and now has 40 CP
-		Player 2 now has 37 CP after paying maintenance
+		Player 2 now has 40 CP after paying maintenance
 		Player 2 tried to go over budget
 	End Economic Phase
 
 	Begin Movement Phase
-		Player 2 Dreadnaught 2 moved from (3, 3) to (3, 2)
+		Player 1 Dreadnaught 2 moved from (3, 3) to (3, 4)
+		Player 1 Dreadnaught 3 moved from (3, 3) to (3, 4)
+		Player 1 Dreadnaught 4 moved from (3, 3) to (3, 4)
 	End Movement Phase
 
 	Begin Combat Phase
@@ -332,18 +330,20 @@ Turn 4
 
 Turn 5
 	Begin Economic Phase
-		Player 1 initially has 40 CP
-		Player 1 gained 10 CP and now has 50 CP
-		Player 1 now has 50 CP after paying maintenance
+		Player 1 initially has 31 CP
+		Player 1 gained 10 CP and now has 41 CP
+		Player 1 now has 32 CP after paying maintenance
 		Player 1 tried to go over budget
-		Player 2 initially has 37 CP
-		Player 2 gained 10 CP and now has 47 CP
-		Player 2 now has 44 CP after paying maintenance
+		Player 2 initially has 40 CP
+		Player 2 gained 10 CP and now has 50 CP
+		Player 2 now has 50 CP after paying maintenance
 		Player 2 tried to go over budget
 	End Economic Phase
 
 	Begin Movement Phase
-		Player 2 Dreadnaught 2 moved from (3, 2) to (3, 1)
+		Player 1 Dreadnaught 2 moved from (3, 4) to (3, 5)
+		Player 1 Dreadnaught 3 moved from (3, 4) to (3, 5)
+		Player 1 Dreadnaught 4 moved from (3, 4) to (3, 5)
 	End Movement Phase
 
 	Begin Combat Phase
@@ -351,21 +351,23 @@ Turn 5
 
 Turn 6
 	Begin Economic Phase
-		Player 1 initially has 50 CP
-		Player 1 gained 10 CP and now has 60 CP
-		Player 1 now has 60 CP after paying maintenance
+		Player 1 initially has 32 CP
+		Player 1 gained 10 CP and now has 42 CP
+		Player 1 now has 33 CP after paying maintenance
 		Player 1 tried to go over budget
-		Player 2 initially has 44 CP
-		Player 2 gained 10 CP and now has 54 CP
-		Player 2 now has 51 CP after paying maintenance
+		Player 2 initially has 50 CP
+		Player 2 gained 10 CP and now has 60 CP
+		Player 2 now has 60 CP after paying maintenance
 		Player 2 tried to go over budget
 	End Economic Phase
 
 	Begin Movement Phase
-		Player 2 Dreadnaught 2 moved from (3, 1) to (3, 0)
+		Player 1 Dreadnaught 2 moved from (3, 5) to (3, 6)
+		Player 1 Dreadnaught 3 moved from (3, 5) to (3, 6)
+		Player 1 Dreadnaught 4 moved from (3, 5) to (3, 6)
 	End Movement Phase
 
 	Begin Combat Phase
 	End Combat Phase
 
-Winner: Player 2
+Winner: Player 1
