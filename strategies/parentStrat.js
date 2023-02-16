@@ -6,10 +6,6 @@ class ParentStrat {
         this.playerNum = null;
     }
 
-    dist(coords1, coords2) {
-        return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]);
-    }
-
     minDistanceTranslation(ship, translations, targetCoords) {
         let minTranslation = null;
         let minDistance = 999;
@@ -78,24 +74,33 @@ class ParentStrat {
                 nearestCoords = coord;
             }
         }
-
         return nearestCoords;
-        
     }
 
-    getAllShips(coords, player_num=null) {
-        if (player_num) {
-            return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0 && obj.playerNum === player_num);
+    getAllShips(coords=null, playerNum=null) {
+        if (playerNum) {
+            let shipList = [];
+            for (let i = 0; i < this.simpleBoard.length; i++) {
+                for (let j = 0; j < this.simpleBoard.length; j++) {
+                    for (let obj of this.simpleBoard[j][i]) {
+                        if (obj.objType === 'Ship' && obj.playerNum === playerNum && obj.hp > 0) {
+                            shipList.push(obj.coords)
+                        }
+                    }
+                }
+            }
+            return shipList
         }
-        else{
-            return this.simple_board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+
+        if (coords) {
+            console.log('coord')
+            return this.simpleBoard[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
         }
     }
 
-    random(list) {
-        return list[Math.floor(Math.random() * list.length)];
-    }
-
+    
+    dist(coords1, coords2) { return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]); }
+    random(list) { return list[Math.floor(Math.random() * list.length)]; }
     chooseTranslation(ship, translations) { return; }
     chooseTarget(shipInfo, combatOrder) { return; }
     buyShips(cpBudget) { return; }

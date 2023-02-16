@@ -15,16 +15,27 @@ class AIMovementStrat extends ParentStrat {
 
     chooseTranslation(ship, translations) {
         for (let translation of translations) {
-            this.updateFactors(ship, translation)
+            this.updateMovementFactors(ship, translation)
         }
         
         let targetCoords = this.getOpponentHomeColonyCoords(ship);
         return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
-    updateFactors(ship, translation) {
+    changeInDistance(start, end, coords) { 
+        return Math.abs(this.dist(start, coords) - this.dist(end, coords));
+    }
+
+    updateMovementFactors(ship, translation) {
         let shipFactorDict = {};
-        let shipClasses = ['A', 'B', 'C', 'D', 'E', 'Z']
+        let shipClasses = ['A', 'B', 'C', 'D', 'E', 'Z'];
+        
+        let newCoords = this.translate(ship.coords, translation);
+        let shipCoords = this.getAllShips(null, ship.playerNum);
+        let oppShipCoords = this.getAllShips(null, 3-ship.playerNum);
+        let hcCoords = this.getColonyCoords(ship, true, false);
+        let oppHCCoords = this.getColonyCoords(ship, true, true);
+        let freePlanetsCoords = this.getFreePlanetsCoords();
 
         for (var prop in ship) {
             if (Object.prototype.hasOwnProperty.call(ship, prop)) {
@@ -36,65 +47,41 @@ class AIMovementStrat extends ParentStrat {
                         shipFactorDict[prop] = ship[prop];
                     }
                 }
-                
             }
         }
-
-        let hcCoords = this.getColonyCoords(ship, true, false);
-        let oppHCCoords = this.getColonyCoords(ship, true, true);
-        let newCoords = this.translate(ship.coords, translation);
 
         shipFactorDict['distHC'] = this.dist(ship.coords, hcCoords);
         shipFactorDict['distOppHC'] = this.dist(ship.coords, oppHCCoords);
 
-        shipFactorDict['changeDistHC'] = Math.abs(this.dist(newCoords, hcCoords) - shipFactorDict['distHC']);
-        shipFactorDict['changeDistOppHC'] = Math.abs(this.dist(newCoords, oppHCCoords) - shipFactorDict['distOppHC']);
-
-        let shipCoords = [];
-        let oppShipCoords = [];
-        
-        for (let i = 0; i < this.simpleBoard.length; i++) {
-            for (let j = 0; j < this.simpleBoard.length; j++) {
-                for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Ship' && obj.playerNum == ship.playerNum) {
-                        shipCoords.push([j, i]);
-                    }
-                    if (obj.objType === 'Ship' && obj.playerNum != ship.playerNum) {
-                        oppShipCoords.push([j, i]);
-                    }
-                }
-            }
-        } //made get all ships in parent, need to update
+        shipFactorDict['changeDistHC'] = this.changeInDistance(newCoords, ship.coords, hcCoords);
+        shipFactorDict['changeDistOppHC'] = this.changeInDistance(newCoords, ship.coords, oppHCCoords);
 
         if (shipCoords.length === 0) {
-            shipFactorDict['changeDistNearOwnShip'] = shipFactorDict['changeDistHC']
+            shipFactorDict['changeDistNearOwnShip'] = shipFactorDict['changeDistHC'];
         }
         else {
             let nearestShipCoords = this.getNearestCoords(ship, shipCoords);
-            shipFactorDict['changeDistNearOwnShip'] = Math.abs(this.dist(ship.coords, nearestShipCoords) - this.dist(newCoords, nearestShipCoords));
+            shipFactorDict['changeDistNearOwnShip'] = this.changeInDistance(ship.coords, newCoords, nearestShipCoords);
         }
 
         if (oppShipCoords.length === 0) {
-            shipFactorDict['changeDistNearOppShip'] = shipFactorDict['changeDistOppHC']
+            shipFactorDict['changeDistNearOppShip'] = shipFactorDict['changeDistOppHC'];
         }
         else {
             let nearestOppShipCoords = this.getNearestCoords(ship, oppShipCoords);
-            shipFactorDict['changeDistNearOppShip'] = Math.abs(this.dist(ship.coords, nearestOppShipCoords) - this.dist(newCoords, nearestOppShipCoords));
+            shipFactorDict['changeDistNearOppShip'] = this.changeInDistance(ship.coords, newCoords, nearestOppShipCoords);
         }
 
-        let freePlanetsCoords = this.getFreePlanetsCoords()
         if (freePlanetsCoords.length === 0) {
-            shipFactorDict['changeDistNearFreePlanet'] = 0
+            shipFactorDict['changeDistNearFreePlanet'] = 0;
         }
         else {
             let nearestFreePlanetCoords = this.getNearestCoords(ship, freePlanetsCoords);
-            shipFactorDict['changeDistNearFreePlanet'] = Math.abs(this.dist(ship.coords, nearestFreePlanetCoords) - this.dist(newCoords, nearestFreePlanetCoords));
+            shipFactorDict['changeDistNearFreePlanet'] = this.changeInDistance(ship.coords, newCoords, nearestFreePlanetCoords);
         }
         
-
-        console.log(shipFactorDict)
+        console.log(shipFactorDict);
     }
-
 
     chooseTarget(shipInfo, combatOrder) {
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
@@ -105,9 +92,6 @@ class AIMovementStrat extends ParentStrat {
         if (this.turn == 0) return [{"Scout": 5}];
         return [{"Dreadnaught": 5}];
     }
-
-
-
 }
 
 export default AIMovementStrat;
