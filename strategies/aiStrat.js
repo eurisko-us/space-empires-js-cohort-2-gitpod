@@ -13,7 +13,7 @@ class AiStrat extends ParentStrat {
                                 "changeDistNearOwnShip", "changeDistNearOppShip", 
                                 "changeDistNearFreePlanet"]
 
-        for (let factor of movementFactors){ //input list of movement factors here
+        for (let factor of movementFactors){
             this.movementWeights[factor] = Math.random()
         }
     }
@@ -132,7 +132,7 @@ class AiStrat extends ParentStrat {
         return shipFactorDict;
     }
 
-    chooseTranslation(ship, translations) {
+    chooseTranslation(shipInfo, translations) {
         let movementScores = this.getAllScores(shipInfo, translations, "movement")
         let maxScoreMove = this.getMaxScoreMove(movementScores)
         return maxScoreMove
@@ -152,11 +152,9 @@ class AiStrat extends ParentStrat {
                 factors[`own ship ${factor}`] = shipInfo[factor]
                 factors[`opponent ship ${factor}`] = opponentShipInfo[factor]
             }
-            
         }
 
         factors["probability of hit"] = (shipInfo["atk"] - opponentShipInfo["def"]) / 10
-
         return factors
     }
 
@@ -175,7 +173,6 @@ class AiStrat extends ParentStrat {
     buyShips(cpBudget) {
 
     }
-
 }
 
 export default AiStrat;
