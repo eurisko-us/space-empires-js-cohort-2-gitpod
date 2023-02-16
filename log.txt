@@ -1,0 +1,19 @@
+Begin Game
+		Spawned planet at (2,0)
+		Spawned planet at (0,5)
+		Spawned planet at (4,2)
+		Spawned planet at (4,6)
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 has 120 CP remaining
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 has 120 CP remaining
+Turn 1
+	Begin Movement Phase

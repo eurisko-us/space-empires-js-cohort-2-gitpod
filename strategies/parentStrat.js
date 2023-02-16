@@ -6,10 +6,6 @@ class ParentStrat {
         this.playerNum = null;
     }
 
-    dist(coords1, coords2) {
-        return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]);
-    }
-
     minDistanceTranslation(ship, translations, targetCoords) {
         let minTranslation = null;
         let minDistance = 999;
@@ -30,47 +26,35 @@ class ParentStrat {
 
     }
 
-    getOpponentHomeColonyCoords(ship) {
+    getColonyCoords(ship, hc, opp) { // hc & opp = booleans
+        let colonyCoords = [];
+        let playerNum = opp * (3 - 2 * ship.playerNum) + ship.playerNum;
+        
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum != ship.playerNum) {
-                        return [j, i];
+                    if (obj.objType === 'Colony' && obj.playerNum == playerNum) {
+                            if (obj.isHomeColony === hc) {
+                                return [j, i];
+                            }
+                            if (!obj.isHomeColony) {
+                                colonyCoords.push([j, i]);
+                            }
+                        }
                     }
                 }
             }
-        }
+        return colonyCoords;
     }
 
-    getHomeColonyCoords(ship) {
-        for (let i = 0; i < this.simpleBoard.length; i++) {
-            for (let j = 0; j < this.simpleBoard.length; j++) {
-                for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && obj.isHomeColony && obj.playerNum == ship.playerNum) {
-                        return [j, i];
-    getOpponentRegularColonyCoords(ship) {
-        let regularColonyCoords = []
-
-        for (let i = 0; i < this.simpleBoard.length; i++) {
-            for (let j = 0; j < this.simpleBoard.length; j++) {
-                for (let obj of this.simpleBoard[j][i]) {
-                    if (obj.objType === 'Colony' && !obj.isHomeColony && obj.playerNum != ship.playerNum) {
-                        regularColonyCoords.push([j, i])
-                    }
-                }
-            }
-        }
-        return regularColonyCoords
-    }
-
-    getFreePlanetsCoords(ship) {
+    getFreePlanetsCoords() {
         let freePlanetCoords = [];
 
         for (let i = 0; i < this.simpleBoard.length; i++) {
             for (let j = 0; j < this.simpleBoard.length; j++) {
                 for (let obj of this.simpleBoard[j][i]) {
                     if (obj.objType === 'Planet' && obj.colony == null) {
-                        freePlanetCoords.push([j, i])
+                        freePlanetCoords.push([j, i]);
                     }
                 }
             }
@@ -80,25 +64,43 @@ class ParentStrat {
     }
 
     getNearestCoords(ship, chosenSetofCoords){
-        let minDistance = 999999
-        let nearestCoords = null
+        let minDistance = 999999;
+        let nearestCoords = null;
 
         for (let coord of chosenSetofCoords) {
-            let distance = this.dist(ship.coords, coord)
+            let distance = this.dist(ship.coords, coord);
 
             if (distance < minDistance) {
-                nearestCoords = coord
+                nearestCoords = coord;
             }
         }
-
-        return nearestCoords
-        
+        return nearestCoords;
     }
 
-    random(list) {
-        return list[Math.floor(Math.random() * list.length)];
+    getAllShips(coords=null, playerNum=null) {
+        if (playerNum) {
+            let shipList = [];
+            for (let i = 0; i < this.simpleBoard.length; i++) {
+                for (let j = 0; j < this.simpleBoard.length; j++) {
+                    for (let obj of this.simpleBoard[j][i]) {
+                        if (obj.objType === 'Ship' && obj.playerNum === playerNum && obj.hp > 0) {
+                            shipList.push(obj.coords)
+                        }
+                    }
+                }
+            }
+            return shipList
+        }
+
+        if (coords) {
+            console.log('coord')
+            return this.simpleBoard[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+        }
     }
 
+    
+    dist(coords1, coords2) { return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]); }
+    random(list) { return list[Math.floor(Math.random() * list.length)]; }
     chooseTranslation(ship, translations) { return; }
     chooseTarget(shipInfo, combatOrder) { return; }
     buyShips(cpBudget) { return; }
