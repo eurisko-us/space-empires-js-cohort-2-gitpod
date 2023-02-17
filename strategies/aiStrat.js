@@ -21,7 +21,7 @@ class AiStrat extends ParentStrat {
     movementScore(factors) {
         let score = 0
 
-        for (let factor of factors) {
+        for (let factor in factors) {
             score += this.movementWeights[factor] *  factors[factor]
         }
 
@@ -35,12 +35,12 @@ class AiStrat extends ParentStrat {
 
             if (phase == "movement") {
                 let factors = this.getMovementFactors(shipInfo, options);
-                scores[`${option}`] == this.movementScore(factors)
+                scores[`${option}`] = this.movementScore(factors)
             }
 
             if (phase == "combat") {
                 let factors = this.getCombatFactors(shipInfo, options);
-                scores[option["id"]] == this.combatScore(factors)
+                scores[option["id"]] = this.combatScore(factors)
             }
 
         }
@@ -51,18 +51,19 @@ class AiStrat extends ParentStrat {
     getMaxScoreMove(scores){
         let maxScoreMove = Object.keys(scores)[0]
 
-        for (let key of scores){
+        for (let key in scores){
             if (scores[key] > scores[maxScoreMove]){
                 maxScoreMove = key
             }
         }
 
-        if ("[" in maxScoreMove) {
+
+        if (maxScoreMove.includes("[") == true) {
             return JSON.parse(maxScoreMove)
         } 
 
         else {
-            return maxScoreTargetId
+            return maxScoreMove
         }
 
     }
@@ -160,18 +161,20 @@ class AiStrat extends ParentStrat {
 
     chooseTarget(shipInfo, combatOrder) {
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        let combatScores = this.getAllScores(shipInfo, opponentShips, "combat")
-        let maxScoreTargetId = this.getMaxScoreMove(combatScores)
+        //let combatScores = this.getAllScores(shipInfo, opponentShips, "combat")
+        //let maxScoreTargetId = this.getMaxScoreMove(combatScores)
 
-        for (let ship of opponentShips){
-            if (maxScoreTargetId == ship["id"]) {
-                return ship
-            }
-        }
+        //for (let ship of opponentShips){
+        //    if (maxScoreTargetId == ship["id"]) {
+        //        return ship
+        //    }
+       // }
+
+       return this.random(opponentShips)
     }
 
     buyShips(cpBudget) {
-
+        return [{"Dreadnaught": 1}]
     }
 }
 
