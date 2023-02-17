@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { readFile } from 'fs';
 import assert from 'assert';
 
 import { allShips } from './ships.js';
