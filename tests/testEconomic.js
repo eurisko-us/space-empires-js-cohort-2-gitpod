@@ -3,6 +3,8 @@ import BasicStrat from '../strategies/basicStrat.js';
 import Buy100Strat from '../strategies/buy100Strat.js';
 import BuyNoneStrat from '../strategies/buyNoneStrat.js';
 import assert from 'assert';
+import RandomStrat from '../strategies/maintFurthest.js';
+import MaintClosest from '../strategies/maintClosest.js';
 
 // test 1
 
@@ -23,3 +25,9 @@ player2.cp = -10;
 game2.economicPhase();
 
 assert(player2.ships.length == 0, 'Player ship survived without paying maintenance cost');
+
+// test 3
+
+const game3 = new Game(null, [new RandomStrat(), new MaintClosest()]);
+game3.initializeGame();
+

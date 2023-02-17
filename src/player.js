@@ -13,20 +13,31 @@ class Player {
         this.strategy.playerNum = this.playerNum;
         
         this.cp = cp;
+        this.technology = {
+            "attack": 0,
+            "defense": 0,
+            "movement": 1
+        };
         
-        this.shipCounter = {}; // used to get new ship nums when
+        this.shipCounter = {};
+
         for (let shipClass of allShips) {
             this.shipCounter[shipClass.name] = 0;
         }
 
-        this.colonies = []
-        this.colonyCounter = 0
+        this.allColonies = [];
+        this.aliveColonies = [];
+        this.colonyCounter = 0;
     
     }
     
     addShip(ship) {
         ship.playerNum = this.playerNum;
         this.ships.push(ship);
+    }
+
+    buyTech() {
+        return this.strategy.buyTech(this.cp);
     }
 
     buyShips() {

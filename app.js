@@ -8,12 +8,14 @@ import BasicStrat       from './strategies/basicStrat.js';
 import Buy100Strat      from './strategies/buy100Strat.js';
 import BuyNoneStrat     from './strategies/buyNoneStrat.js';
 import HunterStrat      from './strategies/hunterStrat.js'
+import InputStrat       from './strategies/inputStrat.js';
+import MaintClosest     from './strategies/maintClosest.js';
 import OnlyP2MovesStrat from './strategies/onlyP2MovesStrat.js';
 import RandomStrat      from './strategies/randomStrat.js';
 import RushStrat        from './strategies/rushStrat.js';
 import ShopperStrat     from './strategies/shopperStrat.js';
+import TechStrat        from './strategies/techStrat.js';
 import TurtleStrat      from './strategies/turtleStrat.js';
-import InputStrat       from './strategies/inputStrat.js';
 
 const app = express();
 const httpServer = http.Server(app);
@@ -42,7 +44,7 @@ io.on('connection', (socket) => {
     socket.emit('initialize UI');
 
     socket.on('initialize game', () => {
-        const strategies = [new BasicStrat(), new BasicStrat()];
+        const strategies = [new TurtleStrat(), new TechStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
         game.display();
@@ -70,4 +72,5 @@ io.on('connection', (socket) => {
 
 });
 
-httpServer.listen(3000, () => console.log('Listening on *:3000'));
+let port = 3000;
+httpServer.listen(port, () => console.log(`Listening on *:${port}`));

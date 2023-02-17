@@ -45,7 +45,7 @@ class RandomStrat extends ParentStrat {
     }
 
     maintOrder(ships) {
-        return ships.sort(() => Math.random() - 0.5);
+        return ships.sort((a, b) => this.dist(a.coords, this.getHomeColonyCoords(b)) - this.dist(b.coords, this.getHomeColonyCoords(b)));
     }
     
 }

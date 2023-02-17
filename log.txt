@@ -361,13 +361,3 @@ Turn 6
 		Player 2 tried to go over budget
 	End Economic Phase
 
-	Begin Movement Phase
-		Player 1 Dreadnaught 2 moved from (3, 5) to (3, 6)
-		Player 1 Dreadnaught 3 moved from (3, 5) to (3, 6)
-		Player 1 Dreadnaught 4 moved from (3, 5) to (3, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-Winner: Player 1

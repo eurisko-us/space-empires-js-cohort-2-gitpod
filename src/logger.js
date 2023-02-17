@@ -82,16 +82,20 @@ class Logger {
         this.write(`\t\tPlayer ${player.playerNum} lost ${ship.id} due to insufficient CP to pay maintenance\n`);
     }
     
-    playerWentOverBudget(player) {
-        this.write(`\t\tPlayer ${player.playerNum} tried to go over budget\n`);
+    playerWentOverBudget(player, reason) {
+        this.write(`\t\tPlayer ${player.playerNum} tried to go over budget while buying ${reason}\n`);
     }
 
     buyShip(player, ship) {
         this.write(`\t\tPlayer ${player.playerNum} bought a ${ship.name}\n`);
     }
 
-    boughtNoShips(player) {
-        this.write(`\t\tPlayer ${player.playerNum} didn't buy any ships \n`)
+    boughtNothing(player, thing) {
+        this.write(`\t\tPlayer ${player.playerNum} didn't buy any ${thing}\n`)
+    }
+
+    madeColony(player, planet){
+        this.write(`\t\tPlayer ${player.playerNum} has colonized Planet ${planet.planetNum} at (${planet.coords})\n`)
     }
 
     playerCPRemaining(player) {
@@ -100,6 +104,14 @@ class Logger {
 
     playerWin(winner) {
         this.write(`Winner: Player ${winner}`);
+    }
+
+    spawnedPlanet(planet) {
+        this.write(`\t\tSpawned planet at (${planet.coords})\n`)
+    }
+
+    uncolonizedPlanet(planet){
+        this.write(`\t\t${planet.id} has been uncolonized\n`)
     }
 
 }

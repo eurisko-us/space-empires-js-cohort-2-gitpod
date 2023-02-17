@@ -3,6 +3,7 @@ class Ship {
     constructor() {
         this.objType = 'Ship';
         this.id = null;
+        this.technology = null;
     }
 
     setId() {
@@ -21,6 +22,7 @@ class Scout extends Ship {
 
         super(Ship);
 
+        this.hullSize = 1;
         this.hp = 1;
         this.atk = 3;
         this.df = 0;
@@ -45,6 +47,7 @@ class BattleCruiser extends Ship {
 
         super(Ship);
 
+        this.hullSize = 2;
         this.hp = 2;
         this.atk = 5;
         this.df = 1;
@@ -69,6 +72,7 @@ class Battleship extends Ship {
         
         super(Ship);
         
+        this.hullSize = 3;
         this.hp = 3;
         this.atk = 5;
         this.df = 2;
@@ -93,6 +97,7 @@ class Cruiser extends Ship {
 
         super(Ship);
 
+        this.hullSize = 2;
         this.hp = 2;
         this.atk = 4;
         this.df = 1;
@@ -117,6 +122,7 @@ class Destroyer extends Ship {
 
         super(Ship);
 
+        this.hullSize = 1;
         this.hp = 1;
         this.atk = 4;
         this.df = 0;
@@ -141,6 +147,7 @@ class Dreadnaught extends Ship {
         
         super(Ship);
 
+        this.hullSize = 3;
         this.hp = 3;
         this.atk = 6;
         this.df = 3;
@@ -162,8 +169,10 @@ class Dreadnaught extends Ship {
 
 class ColonyShip extends Ship {
     constructor(coords, playerNum, shipNum) {
+
         super(Ship);
 
+        this.hullSize = 1;
         this.hp = 1;
         this.atk = 0;
         this.df = 0;
@@ -179,9 +188,9 @@ class ColonyShip extends Ship {
         this.maintCost = 0;
 
         this.setId();
+
     }
 }
-//const nullInstances = [new Scout(null,null,null), new BattleCruiser(null,null,null), new Battleship(null,null,null), new Cruiser(null,null,null), new Destroyer(null,null,null), new Dreadnaught(null,null,null), new ColonyShip(null,null,null)];
 
 const nullInstances = [
     new Scout(null, null, null),
@@ -190,7 +199,7 @@ const nullInstances = [
     new Cruiser(null, null, null),
     new Destroyer(null, null, null),
     new Dreadnaught(null, null, null),
-    new ColonyShip(null,null,null)
+    new ColonyShip(null, null, null)
 ];
 
 const allShips = [Scout, BattleCruiser, Battleship, Cruiser, Destroyer, Dreadnaught, ColonyShip];
