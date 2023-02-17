@@ -193,7 +193,9 @@ class AiStrat extends ParentStrat {
     }
 
     buyShips(cpBudget) {
-        return [{"Dreadnaught": 1}]
+        let numColonies = 0
+        let numScouts = 0
+        return (1 / 7) * (cpBudget + 10 * numColonies - 2 * numScouts)
     }
 }
 
