@@ -195,7 +195,27 @@ class AiStrat extends ParentStrat {
     buyShips(cpBudget) {
         let numColonies = 0
         let numScouts = 0
-        return (1 / 7) * (cpBudget + 10 * numColonies - 2 * numScouts)
+
+        if (this.turn > 0) {
+            for (let i = 0; i < this.simpleBoard.length; i++) {
+                for (let j = 0; j < this.simpleBoard.length; j++) {
+                    for (let obj of this.simpleBoard[j][i]) {
+                        if (obj["objType"] == "Colony") {
+                            numColonies += 1
+                        }
+                        if (obj["objType"] == "Ship" && obj["name"] == "Scout") {
+                            numScouts += 1
+                        }
+                    }
+                }
+            }
+        }
+
+        else {
+            numColonies = 1
+        }
+
+        return [{"Scout": Math.floor((1 / 7) * (cpBudget + 10 * numColonies - 2 * numScouts))}]
     }
 }
 
