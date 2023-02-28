@@ -395,6 +395,15 @@ class Game {
 
     possibleTranslations(coords) {
         let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        if(coords[1]%2 == 0){
+            allTranslations.push([-1,1])
+            allTranslations.push([-1,-1])
+        }
+        else{
+            allTranslations.push([1,1])
+            allTranslations.push([1,-1])
+        }
+        
         return allTranslations.filter(t => this.checkInBounds(this.translate(t, coords)));
     }
 

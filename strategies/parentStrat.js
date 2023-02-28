@@ -104,6 +104,7 @@ class ParentStrat {
     chooseTranslation(ship, translations) { return; }
     chooseTarget(shipInfo, combatOrder) { return; }
     buyShips(cpBudget) { return; }
+    buyTech(cpBudget) { return []; }
     maintOrder(ships) { return ships.sort((a, b) => a.maintCost - b.maintCost); }
 
 }
