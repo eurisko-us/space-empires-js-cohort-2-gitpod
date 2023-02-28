@@ -84,6 +84,7 @@ class Game {
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
             homeColony.setHomeColonyId();
             this.players[i].homeColony = homeColony;
+            this.players[i].aliveColonies.push(homeColony)
             this.addToBoard(homeColony);
             
             // buy ships
@@ -286,8 +287,8 @@ class Game {
         for (let player of this.players) {
 
             this.log.playerCP(player); // gain cp
-            player.cp += this.cpPerRound; 
-            this.log.newPlayerCP(player, this.cpPerRound);
+            player.cp += 10 * player.aliveColonies.length; 
+            this.log.newPlayerCP(player, 10 * player.aliveColonies.length);
 
             this.maintenance(player); // pay maintenance
             this.log.playerCPAfterMaintenance(player);
