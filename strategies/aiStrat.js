@@ -7,12 +7,13 @@ class AiStrat extends ParentStrat {
         this.name = 'AI';
         this.movementWeights = {}
         this.combatWeights = {}
+        this.technology = null
 
         let movementFactors = ["hp", "atk", "df", "shipClass", "coords", 
                                 "playerNum", "shipNum", "cpCost", "maintCost", 
                                 "distHC", "distOppHC", "changeDistHC", "changeDistOppHC", 
                                 "changeDistNearOwnShip", "changeDistNearOppShip", 
-                                "changeDistNearFreePlanet"]
+                                "changeDistNearFreePlanet", "technology"]
 
         for (let factor of movementFactors){
             this.movementWeights[factor] = Math.random()
@@ -20,7 +21,8 @@ class AiStrat extends ParentStrat {
 
         let combatFactors = ["own ship hp", "own ship atk", "own ship df", "own ship shipClass", 
                             "opponent ship hp", "opponent ship atk", "opponent ship df", 
-                            "opponent ship shipClass", "probability of hit"]
+                            "opponent ship shipClass", "probability of hit", "own ship atk tech", 
+                            "opponent ship atk tech", "own ship df tech", "opponent ship df tech"]
 
         for (let factor of combatFactors){
             this.combatWeights[factor] = Math.random()
@@ -43,7 +45,7 @@ class AiStrat extends ParentStrat {
         for (let option of options) {
 
             if (phase == "movement") {
-                let factors = this.getMovementFactors(shipInfo, options);
+                let factors = this.getMovementFactors(shipInfo, option);
                 scores[`${option}`] = this.movementScore(factors)
             }
 
@@ -102,6 +104,11 @@ class AiStrat extends ParentStrat {
                     if (prop == 'shipClass') {
                         shipFactorDict[prop] = shipClasses.indexOf(ship[prop])
                     }
+
+                    if (prop == 'technology') {
+                        shipFactorDict[prop] = ship[prop]['movement']
+                    }
+
                     else {
                         shipFactorDict[prop] = ship[prop];
                     }
@@ -139,7 +146,6 @@ class AiStrat extends ParentStrat {
             let nearestFreePlanetCoords = this.getNearestCoords(ship, freePlanetsCoords);
             shipFactorDict['changeDistNearFreePlanet'] = this.changeInDistance(ship.coords, newCoords, nearestFreePlanetCoords);
         }
-        
         return shipFactorDict;
     }
 
@@ -153,13 +159,20 @@ class AiStrat extends ParentStrat {
         let factors = {};
         let shipClasses = ["A", "B", "C", "D", "E", "Z"]
 
-        for (let factor of ["hp", "atk", "df", "shipClass"]) {
+        for (let factor of ["hp", "atk", "df", "shipClass", "atk tech", "df tech"]) {
             if (factor == "shipClass") {
                 factors[`own ship ${factor}`] = shipClasses.indexOf(shipInfo[factor])
                 factors[`opponent ship ${factor}`] = shipClasses.indexOf(opponentShipInfo[factor])
-            }
 
-            else {
+            } else if (factor == "atk tech") {
+                factors[`own ship atk tech`] = shipInfo['technology']['attack']
+                factors[`opponent ship atk tech`] = opponentShipInfo['technology']['attack']
+
+            } else if (factor == "df tech"){
+                factors[`own ship df tech`] = shipInfo['technology']['defense']
+                factors[`opponent ship df tech`] = opponentShipInfo['technology']['defense']
+
+            } else {
                 factors[`own ship ${factor}`] = shipInfo[factor]
                 factors[`opponent ship ${factor}`] = opponentShipInfo[factor]
             }
@@ -190,6 +203,11 @@ class AiStrat extends ParentStrat {
             }
         }
 
+    }
+
+    buyTech(cpBudget, technologyData) {
+        this.technology = technologyData
+        return []
     }
 
     buyShips(cpBudget) {
