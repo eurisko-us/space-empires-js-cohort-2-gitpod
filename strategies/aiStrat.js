@@ -203,7 +203,7 @@ class AiStrat extends ParentStrat {
                         if (obj["objType"] == "Colony") {
                             numColonies += 1
                         }
-                        if (obj["objType"] == "Ship" && obj["name"] == "Scout") {
+                        if (obj["objType"] == "Ship" && obj["name"] == "Scout" && obj["playerNum"] == this.playerNum) {
                             numScouts += 1
                         }
                     }
