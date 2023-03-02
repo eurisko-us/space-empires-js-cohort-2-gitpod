@@ -5,7 +5,6 @@ import Player from './player.js';
 import Colony from './colony.js';
 import Logger from './logger.js';
 import Planet from './planet.js'
-import e from 'express';
 
 class Game {
     
@@ -91,10 +90,6 @@ class Game {
             this.players[i].homeColony = homeColony;
             this.players[i].aliveColonies.push(homeColony)
             this.addToBoard(homeColony);
-            
-            // buy ships
-
-            //this.buyShips(this.players[i]);
         }
 
         this.turn = 1;
@@ -115,20 +110,19 @@ class Game {
             clearInterval(this.stopInterval);
             return;
         }
-        // add if functions (DONE)
-        //! look into any better way to do this
+
         if (this.phase == null) {
             this.log.turn(this.turn);
             this.phase = 'econ';
         }
         else if (this.phase == 'econ') {
-            this.economicPhase(); //! Work on Econ
+            this.economicPhase(); 
         }
         else if (this.phase == 'mvmt') {
-            this.movementPhase(); //! Work on Mvmt
+            this.movementPhase(); 
         }
         else if (this.phase == 'combat') {
-            this.combatPhase(); //! Work on Combat
+            this.combatPhase(); 
         }
         if (this.phase == null) {this.turn++; this.winner = this.checkForWinner();}
 
@@ -162,10 +156,6 @@ class Game {
     // Phases
 
     movementPhase() {
-        // make it turn based (DONE)
-        // keep track of which ships have moved or need to move (DONE)
-        // add bool or id for a manual player (DONE)
-        // Make way to track end of turn (DONE)
 
         if (this.playerTurn > 1){
             this.log.endPhase('Movement');
@@ -195,7 +185,6 @@ class Game {
         }
         if (this.shipMoves == 0) {this.shipMoves = this.calcNumMovesPerShip(ship.technology["movement"]);}
 
-        //!!Make it move via state based
         if (this.timesMvmt < this.shipMoves) {
             this.moveShip(player, ship);
             this.timesMvmt += 1;
@@ -208,36 +197,9 @@ class Game {
             this.currentPart += 1;
         }
 
-        /*
-        let oldCoords = [...ship.coords]; // ... accesses each element of the array (can also be used for functions)
-        let translations = this.possibleTranslations(ship.coords);
-        let translation
-
-        if (player.isManual) {
-            //!!Do manual player stuff
-            //this.displayText(`Player ${this.playerTurn}: Please type move for ship`)
-            translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations); 
-        }
-        else {translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);}
-
-        let [newX, newY] = this.translate(oldCoords, translation);
-            
-        if (this.checkForOpponentShips(ship)) {this.currentPart += 1; return;}
-        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) {this.currentPart += 1; return;}
-
-        this.removeFromBoard(ship);
-        ship.coords = [newX, newY];
-        this.addToBoard(ship);
-        this.log.shipMovement(oldCoords, ship);
-        this.updateSimpleBoard();
-        */
     }
     
     combatPhase() {
-        //? make it so that which coord combat is being run on is remembered (Done differently)
-        //! make it so that the combat order is remembered (prevent unessisary recalculation) 
-        //  (can be added later) !might not be needed
-        // remember which ship is currently attacking (DONE)
 
         if (this.currentPart == null){
             this.log.beginPhase('Combat');
@@ -290,7 +252,6 @@ class Game {
             target.hp -= 1;
             if (target.hp <= 0) {
                 this.log.shipDestroyed(target);
-                //combatOrder.splice(combatOrder.indexOf(target), 1)
                 this.removeFromBoard(target);
                 this.removeShipFromPlayer(defender, target);
             }
@@ -303,8 +264,6 @@ class Game {
     }
 
     economicPhase() { 
-        // Make it transfer b/t players (DONE)
-        // Make a way to end turn and stuff (DONE)
         
         this.display()
 
@@ -508,7 +467,6 @@ class Game {
 
         //!!Need to make a log for ships that can't move
         if (!this.canShipMove(ship)) {this.currentPart += 1; return;}
-        // if (this.checkForOpponentShips(ship)) return;
         if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) {this.currentPart += 1; return;}
 
         this.removeFromBoard(ship);
@@ -828,12 +786,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            //*	
-            console.log('running dislplay')	
-            console.log(`About to emit gameState to socket ${socketId}`);	
-            let data = fs.readFileSync('log.txt');	
-            //console.log(this.getLogs(data))	
-            console.log(`Actually emitting gameState to socket ${socketId}`);              	
+            let data = fs.readFileSync('log.txt');	             	
             socket.emit('update UI', {	
                 board: this.board,	
                 logs: this.getLogs(data)
