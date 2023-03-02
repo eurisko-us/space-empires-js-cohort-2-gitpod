@@ -114,8 +114,6 @@ class Game {
 
         if (this.turn < this.maxTurns) {
             this.log.turn(this.turn);
-            console.log(this.players[0].technology);
-            console.log(this.players[1].technology);
             this.movementPhase();
             this.combatPhase();
             this.economicPhase();
@@ -156,6 +154,7 @@ class Game {
         this.log.beginPhase('Movement');
 
         for (let player of this.players) {
+
             for (let ship of player.ships) {
                 let numMovesPerShip = this.calcNumMovesPerShip(ship.technology["movement"]);
                 for (let i = 0; i < numMovesPerShip; i++) {
@@ -371,17 +370,16 @@ class Game {
     }
 
     moveShip(player, ship) {
-
         let oldCoords = [...ship.coords];
         let translations = this.possibleTranslations(ship.coords);
         let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);            
         let [newX, newY] = this.translate(oldCoords, translation);
-        
+
         if (this.canShipMove(ship)) return;
         // if (this.checkForOpponentShips(ship)) return;
         if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) return;
-
         this.removeFromBoard(ship);
+
         ship.coords = [newX, newY];
         this.addToBoard(ship);
         this.log.shipMovement(oldCoords, ship);

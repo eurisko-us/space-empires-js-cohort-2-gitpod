@@ -24,7 +24,6 @@ class RandomStrat extends ParentStrat {
     }
 
     buyShips(cpBudget) {
-
         const randCostLim = Math.floor(Math.random() * (cpBudget + 1));
         let shipList = [];
         let totalCost = 0;

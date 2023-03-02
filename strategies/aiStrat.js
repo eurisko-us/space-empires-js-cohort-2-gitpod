@@ -152,7 +152,7 @@ class AiStrat extends ParentStrat {
     chooseTranslation(shipInfo, translations) {
         let movementScores = this.getAllScores(shipInfo, translations, "movement")
         let maxScoreMove = this.getMaxScoreMove(movementScores)
-        return maxScoreMove
+        return [Number(maxScoreMove[0]), Number(maxScoreMove[2])]
     }
 
     getCombatFactors(shipInfo, opponentShipInfo) {
@@ -234,6 +234,10 @@ class AiStrat extends ParentStrat {
         }
 
         return [{"Scout": Math.floor((1 / 7) * (cpBudget + 10 * numColonies - 2 * numScouts))}]
+    }
+
+    maintOrder(ships) {
+        return ships.sort(function(a,b) {return a.hp - b.hp});
     }
 }
 
