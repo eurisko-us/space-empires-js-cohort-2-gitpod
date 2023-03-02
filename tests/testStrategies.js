@@ -17,6 +17,7 @@ import RandomStrat      from './../strategies/randomStrat.js';
 import RushStrat        from './../strategies/rushStrat.js';
 import ShopperStrat     from './../strategies/shopperStrat.js';
 import TurtleStrat      from './../strategies/turtleStrat.js';
+import AiStrat          from './../strategies/aiStrat.js'
 
 // don't edit this function
 
@@ -55,6 +56,7 @@ function runGame(strat1, strat2, numGames) {
                 if (strat === 'shopper')     strategies.push(new ShopperStrat());
                 if (strat === 'turtle')      strategies.push(new TurtleStrat());
                 if (strat === 'make colonies')      strategies.push(new MakeColonies());
+                if (strat === "AI")           strategies.push(new AiStrat())
 
             }
 
@@ -86,7 +88,7 @@ function runTournament(strategies, numGamesPerRound) {
 
 // edit this code
 
-let strategies = ['cayden', 'justin', 'anton', 'charlie', 'william'];
-let numGamesPerRound = 1;
+let strategies = ['AI', 'random'];
+let numGamesPerRound = 5;
 
 runTournament(strategies, numGamesPerRound);

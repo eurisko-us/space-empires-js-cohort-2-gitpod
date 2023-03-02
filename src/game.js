@@ -14,7 +14,7 @@ class Game {
         this.clientSockets = clientSockets;
         this.boardSize = 7;
         this.maxTurns = maxTurns;
-        this.refreshRate = 100;//refreshRate;
+        this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
         this.stopInterval = null;
     
@@ -89,6 +89,7 @@ class Game {
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
             homeColony.setHomeColonyId();
             this.players[i].homeColony = homeColony;
+            this.players[i].aliveColonies.push(homeColony)
             this.addToBoard(homeColony);
             
             // buy ships
