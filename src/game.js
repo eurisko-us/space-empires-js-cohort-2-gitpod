@@ -1,6 +1,5 @@
-import { readFile } from 'fs';
-import assert from 'assert';
-
+import fs from 'fs';
+import assert, { throws } from 'assert';
 import { allShips } from './ships.js';
 import Player from './player.js';
 import Colony from './colony.js';
@@ -31,9 +30,14 @@ class Game {
 
         this.boardRange = [...Array(this.boardSize).keys()];
         this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
-
+        
+        // State based stuff
+        this.playerTurn = 0;
+        this.currentPart = null;
         this.playerInput = '';
-
+        this.phase = null;
+        this.timesMvmt = 0;
+        this.shipMoves = 0;
     }
 
     spawnPlanets(xOptions, yOptions) {
@@ -86,11 +90,6 @@ class Game {
             this.players[i].homeColony = homeColony;
             this.players[i].aliveColonies.push(homeColony)
             this.addToBoard(homeColony);
-            
-            // buy ships
-
-            this.buyShips(this.players[i]);
-
         }
 
         this.turn = 1;
@@ -112,16 +111,23 @@ class Game {
             return;
         }
 
-        if (this.turn < this.maxTurns) {
+        if (this.phase == null) {
             this.log.turn(this.turn);
-            this.movementPhase();
-            this.combatPhase();
-            this.economicPhase();
-            this.winner = this.checkForWinner();
-            this.turn++;
-        } else {
-            this.winner = 'Tie';
+            this.phase = 'econ';
         }
+        else if (this.phase == 'econ') {
+            this.economicPhase(); 
+        }
+        else if (this.phase == 'mvmt') {
+            this.movementPhase(); 
+        }
+        else if (this.phase == 'combat') {
+            this.combatPhase(); 
+        }
+        if (this.phase == null) {this.turn++; this.winner = this.checkForWinner();}
+
+        if (!this.winner && this.turn >= this.maxTurns) this.winner = 'Tie';
+
 
     }
 
@@ -150,71 +156,172 @@ class Game {
     // Phases
 
     movementPhase() {
-    
-        this.log.beginPhase('Movement');
 
-        for (let player of this.players) {
-
-            for (let ship of player.ships) {
-                let numMovesPerShip = this.calcNumMovesPerShip(ship.technology["movement"]);
-                for (let i = 0; i < numMovesPerShip; i++) {
-                    this.moveShip(player, ship);
-                }
-
-            }
+        if (this.playerTurn > 1){
+            this.log.endPhase('Movement');
+            this.playerTurn = 0
+            this.currentPart = null
+            this.playerInput = '';
+            this.phase = 'combat';
+            return
         }
 
-        this.log.endPhase('Movement');
+        if (this.currentPart == null){
+            this.log.beginPhase('Movement');
+            this.currentPart = 0; //tracks ship by list index
+            this.timesMvmt = 0; //Tracks how many times a ship moved
+            this.shipMoves = 0;
+        }
+
+        let player = this.players[this.playerTurn];
+
+        let ship = player.ships[this.currentPart];
+
+        if (!ship){
+            this.currentPart = 0;
+            this.playerTurn += 1;
+            this.playerInput = '';
+            return;
+        }
+        if (this.shipMoves == 0) {this.shipMoves = this.calcNumMovesPerShip(ship.technology["movement"]);}
+
+        if (this.timesMvmt < this.shipMoves) {
+            this.moveShip(player, ship);
+            this.timesMvmt += 1;
+        }
+
+        else {
+            this.timesMvmt = 0;
+            this.shipMoves = 0
+            this.playerInput = '';
+            this.currentPart += 1;
+        }
 
     }
-
+    
     combatPhase() {
 
-        this.log.beginPhase('Combat');
+        if (this.currentPart == null){
+            this.log.beginPhase('Combat');
+            this.currentPart = 0
+        }
+        let combat = this.getCombatCoords()[0];
 
-        for (let coords of this.getCombatCoords()) {
-            
-            let combatOrder = this.sortCombatOrder(coords); 
-            
-            while (this.numPlayersInCombatOrder(combatOrder) > 1) {
-                for (let ship of combatOrder) {
-                
-                    if (ship.name == "ColonyShip") continue;
-                    if (this.numPlayersInCombatOrder(combatOrder) == 1) break;
-
-                    if (this.board[coords[1]][coords[0]].includes(ship)) {
-                        
-                        let attacker = this.players[ship.playerNum - 1];
-                        let target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
-                        let defender = this.players[target.playerNum - 1];
-                        this.log.combat(ship, target);
-                        
-                        assert (ship.hp > 0, 'Aborting... attacker is dead');
-                        assert (target.hp > 0, 'Aborting... defender is already dead');
-
-                        if (this.roll(ship, target)) {
-                            target.hp -= 1;
-                            if (target.hp <= 0) {
-                                this.log.shipDestroyed(target);
-                                combatOrder.splice(combatOrder.indexOf(target), 1);
-                                this.removeFromBoard(target);
-                                this.removeShipFromPlayer(defender, target);
-                            }
-                        }
-
-                        this.updateSimpleBoard();
-
-                    }
-
-                }
-            }
-
+        if (!combat){
+            this.log.endPhase('Combat');
+            this.uncolonizePlanets();
+            this.playerTurn = 0;
+            this.currentPart = null;
+            this.phase = null;
+            return
         }
 
-        this.uncolonizePlanets();
-        this.log.endPhase('Combat');
+        let combatOrder = this.sortCombatOrder(combat);
+
+        if (this.currentPart == null || combatOrder.indexOf(this.currentPart) == -1){
+            this.currentPart = combatOrder[0];
+        };
+
+        let ship = this.currentPart;
+
+        if (ship.name == "ColonyShip") {
+            let id = combatOrder.indexOf(this.currentPart) + 1;
+            if (id >= combatOrder.length) {this.currentPart = combatOrder[0];}
+            else {this.currentPart = combatOrder[id];}
+            return;
+        };
+
+        let attacker = this.players[ship.playerNum - 1];
+
+        let target;
+
+        if (attacker.isManual){
+            //!!Do manual player stuff
+            //this.displayText(`Player ${this.playerTurn}: Please select a target for ${ship_id}`)
+            target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
+        }
+        else {target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);}
+
+        let defender = this.players[target.playerNum - 1];
+        this.log.combat(ship, target);
+
+        assert (ship.hp > 0, 'Aborting... attacker is dead');
+        assert (target.hp > 0, 'Aborting... defender is already dead');
+
+        if (this.roll(ship, target)) {
+            target.hp -= 1;
+            if (target.hp <= 0) {
+                this.log.shipDestroyed(target);
+                this.removeFromBoard(target);
+                this.removeShipFromPlayer(defender, target);
+            }
+        }
+        this.updateSimpleBoard()
+
+        let id = combatOrder.indexOf(this.currentPart) + 1
+        if (id >= combatOrder.length) {this.currentPart = combatOrder[0]}
+        else {this.currentPart = combatOrder[id]}
+    }
+
+    economicPhase() { 
+        
+        this.display()
+
+        if (this.playerTurn > 1){
+            this.log.endPhase('Economic');
+            this.playerTurn = 0
+            this.currentPart = null
+            this.phase = 'mvmt';
+            return
+        }
+
+        let player = this.players[this.playerTurn]
+
+        if (this.currentPart == null){
+            this.log.beginPhase('Economic');
+            this.createColonies();
+            this.currentPart = 'pay'
+        }
+        else if (this.currentPart == 'pay') {
+            this.log.playerCP(player); // gain cp
+            player.cp += this.cpPerRound; 
+            this.log.newPlayerCP(player, this.cpPerRound);
+            this.currentPart = 'maint';
+        }
+        else if (this.currentPart == 'maint'){
+            if (player.isManual){
+                //!!Do Manual Stuff
+                this.maintenance(player); // pay maintenance
+            }
+            else {this.maintenance(player);}
+
+            this.currentPart = 'buyTech';
+        }
+        else if (this.currentPart == 'buyTech'){
+            if (player.isManual){
+                //!!Do Manual Stuff
+                // Must buy ALL tech at once
+                this.buyTech(player);
+            }
+            else{this.buyTech(player);}
+
+            this.currentPart = 'buyShips';
+        }
+        else if (this.currentPart == 'buyShips'){
+            if (player.isManual){
+                //!!Do Manual stuff
+                // Must buy ALL ships at once
+                this.buyShips(player);
+            }
+            else {this.buyShips(player);}
+
+            this.playerTurn += 1
+            this.currentPart = 'pay'
+        }
 
     }
+
+    // Object Manipulation / Calculation
 
     checkForDefendingUnits(colonizedPlanet) {
         for (let ship of this.getAllShips(colonizedPlanet.coords)) {
@@ -277,33 +384,6 @@ class Game {
         }
         
     }
-
-    economicPhase() {
-    
-        this.log.beginPhase('Economic');
-        this.createColonies();
-
-        for (let player of this.players) {
-
-            this.log.playerCP(player); // gain cp
-            player.cp += 10 * player.aliveColonies.length; 
-            this.log.newPlayerCP(player, 10 * player.aliveColonies.length);
-
-            this.maintenance(player); // pay maintenance
-            this.log.playerCPAfterMaintenance(player);
-
-            this.buyTech(player); // buy technology
-            this.buyShips(player); // buy ships
-
-        }
-
-        this.log.endPhase("Economic");
-
-    }
-
-
-    // Object Manipulation / Calculation
-
     addToBoard(obj) {
         let [x, y] = [...obj.coords];
         this.board[y][x].push(obj);
@@ -370,16 +450,26 @@ class Game {
     }
 
     moveShip(player, ship) {
+        // Coords work [column, row]
+
         let oldCoords = [...ship.coords];
         let translations = this.possibleTranslations(ship.coords);
-        let translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);            
+        let translation;
+
+        if (player.isManual) {
+            //!!Do manual player stuff
+            //this.displayText(`Player ${this.playerTurn}: Please type move for ship`)
+            translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations); 
+        }
+        else {translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);}
+           
         let [newX, newY] = this.translate(oldCoords, translation);
 
-        if (this.canShipMove(ship)) return;
-        // if (this.checkForOpponentShips(ship)) return;
-        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) return;
-        this.removeFromBoard(ship);
+        //!!Need to make a log for ships that can't move
+        if (!this.canShipMove(ship)) {this.currentPart += 1; return;}
+        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) {this.currentPart += 1; return;}
 
+        this.removeFromBoard(ship);
         ship.coords = [newX, newY];
         this.addToBoard(ship);
         this.log.shipMovement(oldCoords, ship);
@@ -398,8 +488,8 @@ class Game {
 
     canShipMove(ship) {
         let ships = this.getAllShips(ship.coords);
-        let filteredShips = ships.filter(ship => ship.name != "ColonyShip");
-        return !ships.every(ship => ship.playerNum === ship.playerNum);
+        //let filteredShips = ships.filter(ship => ship.name != "ColonyShip");
+        return ships.every(otherShip => otherShip.playerNum === ship.playerNum);
     }
 
     // Combat
@@ -480,6 +570,7 @@ class Game {
         }
 
         player.cp -= totalCost;
+        this.log.playerCPAfterMaintenance(player);
 
         assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP');
         player.ships = orderedShips;
@@ -572,9 +663,8 @@ class Game {
         // buy ships
 
         let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
-        if (playerShips.length == 0) this.log.boughtNothing(player, "ships");
 
-        // pay for ships
+        if (playerShips.length == 0) this.log.boughtNothing(player, "ships");
 
         let totalCost = this.calcTotalShipCost(playerShips);
 
@@ -696,11 +786,10 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            readFile('log.txt', (_, data) => {
-                socket.emit('update UI', {
-                    board: this.board,
-                    logs: this.getLogs(data)
-                });
+            let data = fs.readFileSync('log.txt');	             	
+            socket.emit('update UI', {	
+                board: this.board,	
+                logs: this.getLogs(data)
             });
         }
     }
