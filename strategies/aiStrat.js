@@ -152,7 +152,9 @@ class AiStrat extends ParentStrat {
     chooseTranslation(shipInfo, translations) {
         let movementScores = this.getAllScores(shipInfo, translations, "movement")
         let maxScoreMove = this.getMaxScoreMove(movementScores)
-        return [Number(maxScoreMove[0]), Number(maxScoreMove[2])]
+        maxScoreMove.split(",")
+        let maxScoreMoveList = maxScoreMove.split(",")
+        return [Number(maxScoreMoveList[0]), Number(maxScoreMoveList[1])]
     }
 
     getCombatFactors(shipInfo, opponentShipInfo) {
@@ -211,16 +213,13 @@ class AiStrat extends ParentStrat {
     }
 
     buyShips(cpBudget) {
-        let numColonies = 0
         let numScouts = 0
+        let numScoutsToBuy = Math.floor(cpBudget / 6)
 
         if (this.turn > 0) {
             for (let i = 0; i < this.simpleBoard.length; i++) {
                 for (let j = 0; j < this.simpleBoard.length; j++) {
                     for (let obj of this.simpleBoard[j][i]) {
-                        if (obj["objType"] == "Colony") {
-                            numColonies += 1
-                        }
                         if (obj["objType"] == "Ship" && obj["name"] == "Scout" && obj["playerNum"] == this.playerNum) {
                             numScouts += 1
                         }
@@ -229,11 +228,15 @@ class AiStrat extends ParentStrat {
             }
         }
 
-        else {
-            numColonies = 1
+        if (numScouts == 10) {
+            return []
+        } else {
+            if (cpBudget - (10 - numScouts) * 6 > 0){
+                return [{"Scout": 10 - numScouts}]
+            } else {
+                return [{"Scout": numScoutsToBuy}]
+            }
         }
-
-        return [{"Scout": Math.floor((1 / 7) * (cpBudget + 10 * numColonies - 2 * numScouts))}]
     }
 
     maintOrder(ships) {
