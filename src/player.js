@@ -37,7 +37,13 @@ class Player {
     }
 
     buyTech() {
-        return this.strategy.buyTech(this.cp);
+        let copiedTech = {}
+
+        for (let key in this.technology){
+            copiedTech[key] = this.technology[key]
+        }
+
+        return this.strategy.buyTech(this.cp, copiedTech);
     }
 
     buyShips() {
