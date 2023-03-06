@@ -1,0 +1,13 @@
+Begin Game
+		Spawned planet at (0,1)
+		Spawned planet at (1,4)
+		Spawned planet at (5,0)
+		Spawned planet at (6,4)
+		Player 1 bought a Dreadnaught
+		Player 1 bought a Dreadnaught
+		Player 1 bought a Dreadnaught
+		Player 1 bought a Dreadnaught
+		Player 1 bought a Dreadnaught
+		Player 1 has 30 CP remaining
+		Player 2 bought a Scout
+		Player 2 has 144 CP remaining
