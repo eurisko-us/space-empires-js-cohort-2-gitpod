@@ -37,13 +37,11 @@ class Player {
     }
 
     buyTech() {
-        let copiedTech = {}
-
-        for (let key in this.technology){
-            copiedTech[key] = this.technology[key]
+        let techCopy = {};
+        for (let key in this.technology) {
+            techCopy[key] = this.technology[key];
         }
-
-        return this.strategy.buyTech(this.cp, copiedTech);
+        return this.strategy.buyTech(this.cp, techCopy);
     }
 
     buyShips() {

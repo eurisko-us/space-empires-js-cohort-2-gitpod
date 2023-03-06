@@ -10,31 +10,28 @@ class WilliamStrat extends ParentStrat {
     }
 
     chooseTranslation(ship, translations) {
+
         this.updateShips()
+
         if (this.defenders.length < 3) {
             for (let ship of this.ships) {
                 if (!this.checkDefender(ship) && this.arrayEQ(ship.coords, this.getHCCoords(ship))) {
-                    this.defenders.push(ship)
-                    if (this.defenders.length >= 4) break
+                    this.defenders.push(ship);
+                    if (this.defenders.length >= 4) break;
                 }
             }
         }      
         
         const oppHC = this.getOpponentHomeColonyCoords(ship);
+
         if (!this.checkDefender(ship)) {
-            if (ship.coords[0] == 3 && ship.coords != oppHC) { 
-                return [1, 0];
-            }
-
-            if (ship.coords[1] == oppHC[1] && ship.coords[0] != oppHC[0]) {
-                return [-1, 0];
-            }
-
+            if (ship.coords[0] == 3 && ship.coords != oppHC) return [1, 0];
+            if (ship.coords[1] == oppHC[1] && ship.coords[0] != oppHC[0]) return [-1, 0];
             return this.moveToOppHC(ship.coords, oppHC);
         }
-        else {
-            return [0, 0];
-        }
+
+        return [0, 0];
+    
     }
 
     checkDefender(ship) {
@@ -47,19 +44,13 @@ class WilliamStrat extends ParentStrat {
     }
 
     moveToOppHC(coords, oppHC) {
-        if (coords[1] > oppHC[1]) {
-            return [0, -1];
-        }
-        if (coords[1] < oppHC[1]) {
-            return [0, 1];
-        }
-        else {
-            return [0, 0];
-        }
+        if (coords[1] > oppHC[1]) return [0, -1];
+        if (coords[1] < oppHC[1]) return [0, 1];
+        return [0, 0];
     }
 
     chooseTarget(shipInfo, combatOrder) {
-        this.updateShips()
+        this.updateShips();
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
         return opponentShips[0];
     }
@@ -77,12 +68,12 @@ class WilliamStrat extends ParentStrat {
             for (let j of i) {
                 for (let obj of j) {
                     if (obj.objType == 'Ship' && obj.playerNum == this.playerNum) {
-                            this.ships.push(obj)
-                        }
+                        this.ships.push(obj);
                     }
                 }
             }
         }
+    }
 
     getHCCoords(ship) {
         for (let i = 0; i < this.simpleBoard.length; i++) {

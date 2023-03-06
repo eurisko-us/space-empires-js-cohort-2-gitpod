@@ -4,7 +4,7 @@ class JustinStrat extends ParentStrat {
 
     constructor() {
         super(ParentStrat);
-        this.name = 'justin_comp';
+        this.name = 'justin';
     }
 
     getClosestOpponentShipCoords(ship) {
@@ -74,69 +74,81 @@ class JustinStrat extends ParentStrat {
     }
 
     arrAdd(arr1, arr2) {
-        let newArr = []
-        for (let i=0; i<arr1.length; i++) {
-            newArr.push(arr1[i] + arr2[i])
+        let newArr = [];
+        for (let i = 0; i < arr1.length; i++) {
+            newArr.push(arr1[i] + arr2[i]);
         }
-        return newArr
+        return newArr;
     }
 
     indexOfArr(bigArr, smallArr) {
+        
         for (let arrIdx in bigArr) {
-            let arr = bigArr[arrIdx]
-            let matchCount = 0
+
+            let arr = bigArr[arrIdx];
+            let matchCount = 0;
+
             for (let i in smallArr) {
                 if (smallArr[i] == arr[i]) {
-                    matchCount += 1
+                    matchCount++;
                 }
             }
+
             if (matchCount == smallArr.length) {
-                return arrIdx
+                return arrIdx;
             }
+
         }
-        return false
+        
+        return false;
+
     }
 
     chooseTranslation(ship, translations) {
+
         if (ship.name == 'Scout') {
-            let translationCopy = [...translations]
-            const delIndex = this.indexOfArr(translationCopy, [0,0])
-            translationCopy.splice(delIndex,1)
+            
+            let translationCopy = [...translations];
+            const delIndex = this.indexOfArr(translationCopy, [0, 0]);
+            translationCopy.splice(delIndex, 1);
+            
             while (true) {
-                const targetCoords = this.getOpponentHomeColonyCoords(ship)
-                const translation = this.minDistanceTranslationSemirandom(ship, translationCopy, targetCoords)
-                const newCoords = this.arrAdd(ship.coords, translation)
-                const coordObjs = this.simpleBoard[newCoords[0]][newCoords[1]]
-                let enemyInNewCoord = false
+                
+                const targetCoords = this.getOpponentHomeColonyCoords(ship);
+                const translation = this.minDistanceTranslationSemirandom(ship, translationCopy, targetCoords);
+                const newCoords = this.arrAdd(ship.coords, translation);
+                const coordObjs = this.simpleBoard[newCoords[0]][newCoords[1]];
+                let enemyInNewCoord = false;
+                
                 for (let obj of coordObjs) {
                     if (obj['objType'] == 'Ship' && obj['playerNum'] != this.playerNum) {
-                        const badTranslationIdx = this.indexOfArr(translationCopy, translation)
-                        translationCopy.splice(badTranslationIdx,1)
-                        enemyInNewCoord = true
-                        break
+                        const badTranslationIdx = this.indexOfArr(translationCopy, translation);
+                        translationCopy.splice(badTranslationIdx, 1);
+                        enemyInNewCoord = true;
+                        break;
                     }
                 }
-                if (enemyInNewCoord) {
-                    continue
-                }
-                return translation
+
+                if (!enemyInNewCoord) return translation;
+
             }
+
         }
+
         if (ship.name == 'Dreadnaught') {
-            let targetCoords = this.getClosestOpponentShipCoords(ship)
-            if (targetCoords == null) {
-                targetCoords = this.getOpponentHomeColonyCoords(ship)
-            }
-            return this.minDistanceTranslation(ship, translations, targetCoords)
+            let targetCoords = this.getClosestOpponentShipCoords(ship);
+            if (targetCoords == null) targetCoords = this.getOpponentHomeColonyCoords(ship);
+            return this.minDistanceTranslation(ship, translations, targetCoords);
         }
+
     }
 
     checkCoordStuff(ship) {
-        const shipCoords = ship.coords
-        console.log('CHECKING SHIP IN COORDINATE:')
-        console.log(shipCoords)
-        console.log(this.simpleBoard[shipCoords[0]][shipCoords[1]])
-        console.log(this.simpleBoard[shipCoords[1]][shipCoords[0]])
+        const shipCoords = ship.coords;
+        console.log('CHECKING SHIP IN COORDINATE:');
+        console.log(shipCoords);
+        console.log(this.simpleBoard[shipCoords[0]][shipCoords[1]]);
+        console.log(this.simpleBoard[shipCoords[1]][shipCoords[0]]);
     }
 
     chooseTarget(shipInfo, combatOrder) {

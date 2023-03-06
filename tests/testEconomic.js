@@ -1,10 +1,10 @@
 import Game from '../src/game.js';
-import BasicStrat from '../strategies/basicStrat.js';
-import Buy100Strat from '../strategies/buy100Strat.js';
+import BasicStrat   from '../strategies/basicStrat.js';
+import Buy100Strat  from '../strategies/buy100Strat.js';
 import BuyNoneStrat from '../strategies/buyNoneStrat.js';
-import assert from 'assert';
-import RandomStrat from '../strategies/maintFurthest.js';
+import RandomStrat  from '../strategies/maintFurthest.js';
 import MaintClosest from '../strategies/maintClosest.js';
+import assert from 'assert';
 
 // test 1
 
@@ -30,4 +30,3 @@ assert(player2.ships.length == 0, 'Player ship survived without paying maintenan
 
 const game3 = new Game(null, [new RandomStrat(), new MaintClosest()]);
 game3.initializeGame();
-

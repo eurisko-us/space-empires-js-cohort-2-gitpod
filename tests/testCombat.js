@@ -1,7 +1,7 @@
 import Game from '../src/game.js';
 import { Scout, Cruiser, Dreadnaught } from '../src/ships.js';
 import OnlyP2MovesStrat from '../strategies/onlyP2MovesStrat.js';
-import BasicStrat from '../strategies/basicStrat.js';
+import BasicStrat  from '../strategies/basicStrat.js';
 import assert, { deepEqual } from 'assert';
 
 // test 1, defenders first rule
@@ -61,9 +61,9 @@ const game3 = new Game(null, strats3, {'Scout': 1});
 game3.initializeGame();
 
 for (let i = 0; i < game3.boardSize; i++) {
-    game3.movementPhase()
-    game3.combatPhase()
-    game3.checkForWinner()
+    game3.movementPhase();
+    game3.combatPhase();
+    game3.checkForWinner();
 }
 
 let playerNums = [];
@@ -94,7 +94,7 @@ for (let i = 0; i < game4.players.length; i++) {
         game4.players[i].addShip(ship);
         game4.addToBoard(ship);
 
-        let ship2 = new Dreadnaught([3,6], 1, 2);
+        let ship2 = new Dreadnaught([3, 6], 1, 2);
         game4.players[i].addShip(ship2);
         game4.addToBoard(ship2);
 
@@ -102,8 +102,8 @@ for (let i = 0; i < game4.players.length; i++) {
 
 }
 
-assert(!game4.checkForCombat([3,6]))
-console.log('friendly ships do not engage in combat')
+assert(!game4.checkForCombat([3, 6]));
+console.log('friendly ships do not engage in combat');
 
 // test 5, dead ships can't attack
 
@@ -142,17 +142,16 @@ game5.players[1].addShip(s1);
 game5.addToBoard(s1);
 
 function containsObject(obj, list) {
-    var i;
+    let i;
     for (i = 0; i < list.length; i++) {
         if (list[i] === obj) {
             return true;
         }
     }
-
     return false;
 }
 
-game5.run()
-const combatOrderCurr = game5.sortCombatOrder([3,3])
-assert(!containsObject(s1, combatOrderCurr))
-console.log('dead ships are not in combat order')
+game5.run();
+const combatOrderCurr = game5.sortCombatOrder([3, 3]);
+assert(!containsObject(s1, combatOrderCurr));
+console.log('dead ships are not in combat order');

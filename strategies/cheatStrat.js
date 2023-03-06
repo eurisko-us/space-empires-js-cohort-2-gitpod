@@ -20,23 +20,28 @@ class CheatStrat extends ParentStrat {
     }
 
     chooseTranslation(ship, translations) {
+
         for (let row of this.simpleBoard) {
             for (let coord of row) {
                 for (let obj of coord) {
-                    if (obj.playerNum == 3-this.playerNum) {
+
+                    if (obj.playerNum == 3 - this.playerNum) {
                         this.removeFromBoard(obj)
                     }
+
                     if (obj.playerNum == this.playerNum) {
                         this.removeFromBoard(obj);
                         obj.coords = this.oppHCCoordsFromPlayerNum();
                         this.addToBoard(obj);
                     }
+
                 }
             }
         }
         
         let targetCoords = this.getOpponentHomeColonyCoords(ship);
         return this.minDistanceTranslation(ship, translations, targetCoords);
+
     }
 
     removeFromBoard(obj) {
