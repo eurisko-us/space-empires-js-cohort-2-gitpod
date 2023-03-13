@@ -90,5 +90,6 @@ for (let i = 0; i < game3.players.length; i++) {
 }
 
 game3.run();
-deepEqual(game3.winner, 1)
-console.log('win condition met')
+
+deepEqual(game3.winner, 1);
+console.log('win condition met');

@@ -1,23 +1,25 @@
 import Game from './../src/game.js';
+
 import CharlieStrat from '../strategies/competition_1/charlieStrat.js';
 import WilliamStrat from '../strategies/competition_1/williamStrat.js';
 import JustinStrat  from '../strategies/competition_1/justinStrat.js';
 import CaydenStrat  from '../strategies/competition_1/caydenStrat.js';
 import AntonStrat   from '../strategies/competition_1/antonStrat.js';
-// import MaiaStrat    from './../competitionStrategies/maiaStrat.js';
-import MakeColonies from '../strategies/makeColonies.js'
+// import MaiaStrat    from '../competitionStrategies/maiaStrat.js';
+
 import BasicStrat       from './../strategies/basicStrat.js';
 import Buy100Strat      from './../strategies/buy100Strat.js';
 import BuyNoneStrat     from './../strategies/buyNoneStrat.js';
 import CheatStrat       from './../strategies/cheatStrat.js';
 import HunterStrat      from './../strategies/hunterStrat.js'
 import InputStrat       from './../strategies/inputStrat.js';
+import MakeColonies     from './../strategies/makeColonies.js'
 import OnlyP2MovesStrat from './../strategies/onlyP2MovesStrat.js';
 import RandomStrat      from './../strategies/randomStrat.js';
 import RushStrat        from './../strategies/rushStrat.js';
 import ShopperStrat     from './../strategies/shopperStrat.js';
 import TurtleStrat      from './../strategies/turtleStrat.js';
-import AiStrat          from './../strategies/aiStrat.js'
+import AIStrat          from './../strategies/aiStrat.js'
 
 // don't edit this function
 
@@ -44,19 +46,19 @@ function runGame(strat1, strat2, numGames) {
                 if (strat === 'anton')   strategies.push(new AntonStrat());
                 // if (strat === 'maia')    strategies.push(new MaiaStrat());
 
-                if (strat === 'basic')       strategies.push(new BasicStrat());
-                if (strat === 'buy100')      strategies.push(new Buy100Strat());
-                if (strat === 'buyNone')     strategies.push(new BuyNoneStrat());
-                if (strat === 'cheat')       strategies.push(new CheatStrat());
-                if (strat === 'hunter')      strategies.push(new HunterStrat());
-                if (strat === 'input')       strategies.push(new InputStrat());
-                if (strat === 'onlyP2Moves') strategies.push(new OnlyP2MovesStrat());
-                if (strat === 'random')      strategies.push(new RandomStrat());
-                if (strat === 'rush')        strategies.push(new RushStrat());
-                if (strat === 'shopper')     strategies.push(new ShopperStrat());
-                if (strat === 'turtle')      strategies.push(new TurtleStrat());
-                if (strat === 'make colonies')      strategies.push(new MakeColonies());
-                if (strat === "AI")           strategies.push(new AiStrat())
+                if (strat === "AI")            strategies.push(new AIStrat());
+                if (strat === 'basic')         strategies.push(new BasicStrat());
+                if (strat === 'buy100')        strategies.push(new Buy100Strat());
+                if (strat === 'buyNone')       strategies.push(new BuyNoneStrat());
+                if (strat === 'cheat')         strategies.push(new CheatStrat());
+                if (strat === 'hunter')        strategies.push(new HunterStrat());
+                if (strat === 'input')         strategies.push(new InputStrat());
+                if (strat === 'make colonies') strategies.push(new MakeColonies());
+                if (strat === 'onlyP2Moves')   strategies.push(new OnlyP2MovesStrat());
+                if (strat === 'random')        strategies.push(new RandomStrat());
+                if (strat === 'rush')          strategies.push(new RushStrat());
+                if (strat === 'shopper')       strategies.push(new ShopperStrat());
+                if (strat === 'turtle')        strategies.push(new TurtleStrat());
 
             }
 

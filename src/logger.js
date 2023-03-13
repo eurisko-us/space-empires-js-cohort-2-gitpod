@@ -91,11 +91,11 @@ class Logger {
     }
 
     boughtNothing(player, thing) {
-        this.write(`\t\tPlayer ${player.playerNum} didn't buy any ${thing}\n`)
+        this.write(`\t\tPlayer ${player.playerNum} didn't buy any ${thing}\n`);
     }
 
-    madeColony(player, planet){
-        this.write(`\t\tPlayer ${player.playerNum} has colonized Planet ${planet.planetNum} at (${planet.coords})\n`)
+    madeColony(player, planet) {
+        this.write(`\t\tPlayer ${player.playerNum} has colonized Planet ${planet.planetNum} at (${planet.coords})\n`);
     }
 
     playerCPRemaining(player) {
@@ -107,11 +107,11 @@ class Logger {
     }
 
     spawnedPlanet(planet) {
-        this.write(`\t\tSpawned planet at (${planet.coords})\n`)
+        this.write(`\t\tSpawned planet at (${planet.coords})\n`);
     }
 
-    uncolonizedPlanet(planet){
-        this.write(`\t\t${planet.id} has been uncolonized\n`)
+    uncolonizedPlanet(planet) {
+        this.write(`\t\t${planet.id} has been uncolonized\n`);
     }
 
 }

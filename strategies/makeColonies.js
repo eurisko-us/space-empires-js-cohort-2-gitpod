@@ -8,21 +8,22 @@ class MakeColonies extends ParentStrat {
     }
 
     chooseTranslation(ship, translations) {
-            if ((ship.shipNum == 3 && this.turn > 19) || (ship.name != "ColonyShip" && this.turn > 19)){
-                let opponentColonyCoords = this.getOpponentRegularColonyCoords(ship)
-                let nearestOpponentColonyCoord = this.getNearestCoords(ship, opponentColonyCoords)
-                return this.minDistanceTranslation(ship, translations, nearestOpponentColonyCoord)
-            }
-
-            if (ship.shipNum != 3) {
-               let freePlanets = this.getFreePlanetsCoords(ship)
-                let nearestFreePlanet = this.getNearestCoords(ship, freePlanets)
-                return this.minDistanceTranslation(ship, translations, nearestFreePlanet) 
-            }
-
-            return [0,0]
-            
+        
+        if ((ship.shipNum == 3 && this.turn > 19) || (ship.name != "ColonyShip" && this.turn > 19)) {
+            let opponentColonyCoords = this.getOpponentRegularColonyCoords(ship);
+            let nearestOpponentColonyCoord = this.getNearestCoords(ship, opponentColonyCoords);
+            return this.minDistanceTranslation(ship, translations, nearestOpponentColonyCoord);
         }
+
+        if (ship.shipNum != 3) {
+            let freePlanets = this.getFreePlanetsCoords(ship);
+            let nearestFreePlanet = this.getNearestCoords(ship, freePlanets);
+            return this.minDistanceTranslation(ship, translations, nearestFreePlanet);
+        }
+
+        return [0, 0];
+        
+    }
         
 
     chooseTarget(shipInfo, combatOrder) {

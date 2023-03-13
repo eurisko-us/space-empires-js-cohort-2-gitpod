@@ -4,7 +4,7 @@ class CaydenStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
-        this.name = 'Cayden';
+        this.name = 'cayden';
     }
 
     chooseTranslation(ship, translations) {
@@ -13,28 +13,29 @@ class CaydenStrat extends ParentStrat {
     }
 
     chooseTranslationV2(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship)
+
+        let targetCoords = this.getOpponentHomeColonyCoords(ship);
 
         if (ship.shipNum <= 5) {
-            return this.minDistanceTranslation(ship, translations, targetCoords)
-        }
+            return this.minDistanceTranslation(ship, translations, targetCoords);
+        } else {
 
-        else {
-            let previousFleetsDead = false
-            let myShipNums = this.getMyShips(ship.playerNum)
-            let maxShipNumLastFleet = ship.shipNum - ship.shipNum % 5
+            let previousFleetsDead = false;
+            let myShipNums = this.getMyShips(ship.playerNum);
+            let maxShipNumLastFleet = ship.shipNum - ship.shipNum % 5;
 
             for (num of myShipNums) {
                 if (num <= maxShipNumLastFleet) {
-                    previousFleetsDead = true
+                    previousFleetsDead = true;
                 }
             }
 
-
         }
+
     }
 
     getMyShips(myPlayerNum) {
+
         let myShips = [];
 
         for (let i = 0; i < this.simpleBoard.length; i++) {
@@ -42,14 +43,15 @@ class CaydenStrat extends ParentStrat {
                 if (this.simpleBoard[i][j].length > 0) {
                     for (let obj of this.simpleBoard[i][j]) {
                         if (obj.objType == "Ship" && obj.playerNum == myPlayerNum) {
-                            myShips.push(obj.shipNum)
+                            myShips.push(obj.shipNum);
                         }
                     }
                 }
             }
         }
 
-        return myShips
+        return myShips;
+
     }
 
     chooseTarget(shipInfo, combatOrder) {
