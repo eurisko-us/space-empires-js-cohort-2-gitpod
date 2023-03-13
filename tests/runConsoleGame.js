@@ -1,5 +1,4 @@
 import Game from '../src/game.js';
-
 import RushStrat       from '../strategies/rushStrat.js';
 import CheatStrat      from '../strategies/cheatStrat.js';
 import BasicStrat      from '../strategies/basicStrat.js';
