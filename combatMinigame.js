@@ -1,5 +1,5 @@
-import AIStrat  from '../strategies/aiStrat.js';
-import { allShips } from './ships.js';
+import AIStrat  from './strategies/aiStrat.js';
+import { allShips } from './src/ships.js';
 
 
 function getRandom(min, max) {
@@ -15,12 +15,10 @@ let ownShipNum = getRandom(3,10);
 let oppShipNum = getRandom(3,10);
 
 for (let i = 0; i < ownShipNum; i++) {
-    shipIdx = getRandom(0, allShips.length);
+    const shipIdx = getRandom(0, allShips.length-1);
     let shipClass = allShips[shipIdx]
-    const count = myArray.filter(obj => obj instanceof shipClass).length; 
-    ownShipNum.push(new shipClass(null, 1, count));
-
-
+    const count = ownShips.filter(obj => obj instanceof shipClass).length; 
+    ownShips.push(new shipClass(null, 1, count));
 }
 
 console.log(ownShips)
