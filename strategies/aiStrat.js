@@ -82,7 +82,6 @@ class AIStrat extends ParentStrat {
             }
         }
 
-
         if (maxScoreMove.includes("[")) {
             return JSON.parse(maxScoreMove);
         }
@@ -173,19 +172,27 @@ class AIStrat extends ParentStrat {
         let shipClasses = ["A", "B", "C", "D", "E", "Z"];
 
         for (let factor of ["hp", "atk", "df", "shipClass", "atk tech", "df tech"]) {
+            
             if (factor == "shipClass") {
                 factors[`own ship ${factor}`] = shipClasses.indexOf(shipInfo[factor]);
                 factors[`opponent ship ${factor}`] = shipClasses.indexOf(opponentShipInfo[factor]);
-            } else if (factor == "atk tech") {
+            }
+            
+            else if (factor == "atk tech") {
                 factors[`own ship atk tech`] = shipInfo['technology']['attack'];
                 factors[`opponent ship atk tech`] = opponentShipInfo['technology']['attack'];
-            } else if (factor == "df tech"){
+            }
+            
+            else if (factor == "df tech") {
                 factors[`own ship df tech`] = shipInfo['technology']['defense'];
                 factors[`opponent ship df tech`] = opponentShipInfo['technology']['defense'];
-            } else {
+            }
+            
+            else {
                 factors[`own ship ${factor}`] = shipInfo[factor];
                 factors[`opponent ship ${factor}`] = opponentShipInfo[factor];
             }
+            
         }
 
         factors["probability of hit"] = (shipInfo["atk"] - opponentShipInfo["df"]) / 10;
@@ -239,18 +246,16 @@ class AIStrat extends ParentStrat {
 
         if (numScouts == 10) {
             return [];
+        } else if (cpBudget - (10 - numScouts) * 6 > 0) {
+            return [{"Scout": 10 - numScouts}];
         } else {
-            if (cpBudget - (10 - numScouts) * 6 > 0) {
-                return [{"Scout": 10 - numScouts}];
-            } else {
-                return [{"Scout": numScoutsToBuy}];
-            }
+            return [{"Scout": numScoutsToBuy}];
         }
         
     }
 
     maintOrder(ships) {
-        return ships.sort(function(a,b) {return a.hp - b.hp});
+        return ships.sort((a, b) => a.hp - b.hp);
     }
 
 }

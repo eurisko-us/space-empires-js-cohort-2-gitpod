@@ -4,7 +4,8 @@ import { Server } from 'socket.io';
 
 import Game from './src/game.js';
 
-import AIMovementStrat  from './strategies/aiMovementStrat.js';
+/* EDIT THIS */
+
 import AIStrat          from './strategies/aiStrat.js';
 import BasicStrat       from './strategies/basicStrat.js';
 import Buy100Strat      from './strategies/buy100Strat.js';
@@ -19,6 +20,8 @@ import RushStrat        from './strategies/rushStrat.js';
 import ShopperStrat     from './strategies/shopperStrat.js';
 import TechStrat        from './strategies/techStrat.js';
 import TurtleStrat      from './strategies/turtleStrat.js';
+
+/* DON'T EDIT THIS */
 
 const app = express();
 const httpServer = http.Server(app);
@@ -42,7 +45,7 @@ io.on('connection', (socket) => {
         delete clientSockets[socketId];
     });
 
-    // below is our code
+    /* EDIT THIS */
 
     socket.emit('initialize UI');
 
@@ -74,6 +77,8 @@ io.on('connection', (socket) => {
     });
 
 });
+
+/* DON'T EDIT THIS */
 
 let port = 3000;
 httpServer.listen(port, () => console.log(`Listening on *:${port}`));
