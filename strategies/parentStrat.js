@@ -106,6 +106,7 @@ class ParentStrat {
     chooseTarget(shipInfo, combatOrder) { return; }
     buyShips(cpBudget) { return; }
     maintOrder(ships) { return ships.sort((a, b) => a.maintCost - b.maintCost); }
+    buyTech(cpBudget) {return [];}
 
 }
 

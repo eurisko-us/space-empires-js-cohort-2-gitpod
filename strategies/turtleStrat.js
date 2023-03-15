@@ -9,7 +9,7 @@ class TurtleStrat extends ParentStrat {
 
     chooseTranslation(ship, translations) {
         if (this.turn == 1) {        
-            let targetCoords = this.getOpponentHomeColonyCoords(ship);
+            let targetCoords = this.getColonyCoords(ship, true, true);
             return this.minDistanceTranslation(ship, translations, targetCoords);
         }
         return [0, 0];

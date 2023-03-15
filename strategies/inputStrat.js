@@ -1,14 +1,22 @@
 import { nullInstances } from '../src/ships.js';
 import ParentStrat from './parentStrat.js';
-import promptSync from 'prompt-sync';
-const prompt = promptSync();
+//import promptSync from 'prompt-sync';
+//const prompt = promptSync();
+
+class Adaptor {
+    constructor(){
+        this.name = 'input';
+        this.manual = true;
+        this.strat = 'blank';
+    }
+}
 
 class InputStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
         this.name = 'input';
-        this.manual = true
+        this.manual = true;
     }
 
     chooseTranslation(ship, translations) {
@@ -46,7 +54,7 @@ class InputStrat extends ParentStrat {
             'stay':  [0, 0],
         };
 
-        let input = prompt("Pick a direction (up, down, left, right, stay) : ");
+        //let input = prompt("Pick a direction (up, down, left, right, stay) : ");
         return inputMap[input];
 
     }
@@ -59,7 +67,7 @@ class InputStrat extends ParentStrat {
 
     combatInput(opponentShips) {
 
-        let opponent = prompt('Pick an opponent (Format: "<shipType> <shipNum>"): '); // Auto assumes enemy player
+        //let opponent = prompt('Pick an opponent (Format: "<shipType> <shipNum>"): '); // Auto assumes enemy player
         opponent = opponent.split(' ');
         console.log(opponentShips);
 
@@ -100,7 +108,7 @@ class InputStrat extends ParentStrat {
 
     buyInput() {
 
-        let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
+        //let input = prompt('Please choose a ship and amount to buy (Format: "<shipType> <amount>") OR "Done": ');
         let cart = input.split(' ');
 
         while (cart.length == 1) {
@@ -110,12 +118,12 @@ class InputStrat extends ParentStrat {
         cart[1] = + cart[1];
 
         while (cart[1] === NaN) {
-            cart[1] = prompt('Please type a valid number');
+            //cart[1] = prompt('Please type a valid number');
             cart[1] = + cart[1];
         }
 
         let bought = this.findBought(cart[0]);
-        let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);
+        //let confirm = prompt(`You would like to buy ${cart[1]} ${bought.name} for ${bought.cpCost * cart[1]} CP? (Y/N): `);
         if (confirm == 'Y') return [bought, cart[1]];
         return this.buyInput();
 
@@ -129,7 +137,7 @@ class InputStrat extends ParentStrat {
             }
         }
 
-        let input = prompt('Please type a valid ship type: ');
+        //let input = prompt('Please type a valid ship type: ');
         return this.findBought(input);
 
     }

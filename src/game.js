@@ -8,7 +8,7 @@ import Planet from './planet.js'
 
 class Game {
     
-    constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
+    constructor(clientSockets, strategies, refreshRate=100, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
         this.boardSize = 7;

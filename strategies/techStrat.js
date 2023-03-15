@@ -8,7 +8,7 @@ class TechStrat extends ParentStrat {
     }
 
     chooseTranslation(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        let targetCoords = this.getColonyCoords(ship, true, true);
         return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
