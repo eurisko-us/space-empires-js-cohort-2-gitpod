@@ -229,6 +229,7 @@ class Game {
             target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
         }
 
+        this.log.combatHappening(combat)
         let defender = this.players[target.playerNum - 1];
         this.log.combat(ship, target);
 

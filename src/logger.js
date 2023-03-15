@@ -57,6 +57,10 @@ class Logger {
         this.write(`\t\tDefender: ${defender.id}\n`);
     }
 
+    combatHappening(combatCoord) {
+        this.write(`\t\tCombat is happening at (${combatCoord[0]}, ${combatCoord[1]})\n`)
+    }
+
     shipHit(defender) {
         this.write(`\t\tHit!\n`);
         this.write(`\t\t${defender.id} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
