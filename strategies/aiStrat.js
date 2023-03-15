@@ -1,6 +1,6 @@
 import ParentStrat from './parentStrat.js';
 
-class AIStrat extends ParentStrat {
+class AIStrat extends ParentStrat {  //ships in player and ships in board might not be equal
     
     constructor() {
         
@@ -47,6 +47,7 @@ class AIStrat extends ParentStrat {
         for (let factor in factors) {
             score += this.movementWeights[factor] * factors[factor];
         }
+
         return score;
     }
 
@@ -112,13 +113,13 @@ class AIStrat extends ParentStrat {
 
         for (let prop in ship) {
             if (Object.prototype.hasOwnProperty.call(ship, prop)) {
-                if (!['name', 'id', 'objType'].includes(prop)) {
+                if (!['name', 'id', 'objType', 'coords', 'hullSize'].includes(prop)) {
                     
                     if (prop == 'shipClass') {
                         shipFactorDict[prop] = shipClasses.indexOf(ship[prop]);
                     }
 
-                    if (prop == 'technology') {
+                    else if (prop == 'technology') {
                         shipFactorDict[prop] = ship[prop]['movement'];
                     } else {
                         shipFactorDict[prop] = ship[prop];

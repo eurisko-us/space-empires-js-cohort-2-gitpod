@@ -44,6 +44,10 @@ class Logger {
         this.write(`\t\t${ship.id} moved from (${oldCoords[0]}, ${oldCoords[1]}) to (${ship.coords[0]}, ${ship.coords[1]})\n`);
     }
 
+    shipCantMove(ship){
+        this.write(`\t\t${ship.id} cannot move because it is to be engaged in combat at (${ship.coords[0]}, ${ship.coords[1]})\n`)
+    }
+
     combatLocation(coords) {
         this.write(`\tCombat at: ${coords}\n\n`);
     }

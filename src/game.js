@@ -518,7 +518,11 @@ class Game {
     canShipMove(ship) {
         let ships = this.getAllShips(ship.coords);
         // let filteredShips = ships.filter(ship => ship.name != "ColonyShip");
-        return ships.every(otherShip => otherShip.playerNum === ship.playerNum);
+        if (ships.every(otherShip => otherShip.playerNum === ship.playerNum) == false){
+            this.log.shipCantMove(ship)
+            return false
+        }
+        return true
     }
 
     // Combat
