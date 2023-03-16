@@ -100,12 +100,22 @@ class ParentStrat {
     }
 
     
-    dist(coords1, coords2) { return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]); }
-    random(list) { return list[Math.floor(Math.random() * list.length)]; }
+    dist(coords1, coords2) {
+        return Math.hypot(coords2[0] - coords1[0], coords2[1] - coords1[1]);
+    }
+
+    maintOrder(ships) {
+        return ships.sort((a, b) => a.maintCost - b.maintCost);
+    }
+    
+    random(list) {
+        return list[Math.floor(Math.random() * list.length)];
+    }
+
     chooseTranslation(ship, translations) { return; }
     chooseTarget(shipInfo, combatOrder) { return; }
-    buyShips(cpBudget) { return; }
-    maintOrder(ships) { return ships.sort((a, b) => a.maintCost - b.maintCost); }
+    buyShips(cpBudget) { return []; }
+    buyTech(cpBudget, technologyData) { return []; }
 
 }
 

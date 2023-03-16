@@ -17,15 +17,11 @@ class RushStrat extends ParentStrat {
         return opponentShips[0];
     }
 
-    buyTech(cpBudget, technologyData) {
-        return []
-    }
-
     buyShips(cpBudget) {
         if (this.turn == 0) return [{"Battleship": 5}];
         if (cpBudget > 45) return [{"Battleship": 1}];
         return [];
-    } 
+    }
 
 }
 
