@@ -51,14 +51,23 @@ function updateElementsById() {
 }
 
 function createBoard() {
+
     for (let i = 0; i < 7; i++) {
         let row = boardHTML.insertRow();
-        for (let j = 0; j < 7; j++) {
+        for (let j = 0; j < 8; j++) {
+            
             let cell = row.insertCell();
             cell.className = 'cell';
-            cell.style.backgroundColor = 'gray';
+            
+            if (isBlank(i, j)) {
+                cell.style.backgroundColor = "d9d9d9";
+            } else {
+                cell.style.backgroundColor = "black";
+            }
+
         }
     }
+
 }
 
 function createEventListeners() {
@@ -125,6 +134,19 @@ function createEventListeners() {
 
 }
 
+function isBlank(i, j) {
+    let modifiedIndex = j - i%2;
+    return modifiedIndex == -1 || modifiedIndex == 7;
+}
+
+// function boardToUICoords(x, y) {
+//     return [x, y + x%2];
+// }
+
+// function UIToBoardCoords(i, j) {
+//     return [i, j - i%2];
+// }
+
 function updateObjType(objType, colors, innerHTML) {
 
     for (let i = 0; i < 7; i++) {
@@ -132,8 +154,11 @@ function updateObjType(objType, colors, innerHTML) {
             for (let obj of game.board[j][i]) {
                 if (obj.objType === objType) {
 
-                    let shipNum = game.board[j][i][0].playerNum;
-                    let cell = boardHTML.rows[j].cells[i];
+                    // let x, y = boardToUICoords(i, j);
+                    let x = i; // 
+                    let y = j; //
+                    let shipNum = game.board[i][j][0].playerNum;
+                    let cell = boardHTML.rows[x].cells[y];
 
                     cell.style.backgroundColor = colors[shipNum - 1];
                     cell.innerHTML = `${innerHTML}`;
@@ -148,7 +173,10 @@ function updateObjType(objType, colors, innerHTML) {
 function resetBoard() {
     for (let i = 0; i < 7; i++) {
         for (let j = 0; j < 7; j++) {
-            let cell = boardHTML.rows[i].cells[j];
+            // let x, y = boardToUICoords(i, j);
+            let x = i; // 
+            let y = j; //
+            let cell = boardHTML.rows[x].cells[y];
             cell.style.backgroundColor = 'gray';
             cell.innerHTML = '';
         }
@@ -164,7 +192,12 @@ function updateLogs() {
     }
 }
 
-function updateSquareInfo(x, y) {
+function updateSquareInfo(i, j) {
+
+    // let x, y = UIToBoardCoords(i, j);
+    let x = i; // 
+    let y = j; //
+
     squareInfoHTML.innerHTML = `Objects on coordinate (${x}, ${y}):<br><br>`;
     for (let obj of game.board[y][x]) {
 
