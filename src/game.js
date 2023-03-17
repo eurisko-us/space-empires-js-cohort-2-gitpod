@@ -38,6 +38,7 @@ class Game {
         this.phase = null;
         this.timesMvmt = 0;
         this.shipMoves = 0;
+        this.loggedCombatCoords = [];
 
     }
 
@@ -112,7 +113,8 @@ class Game {
         else if (this.phase == 'econ') this.economicPhase();
         else if (this.phase == 'mvmt') this.movementPhase();
         else if (this.phase == 'combat') this.combatPhase();
-        
+     
+
         if (this.phase == null) {
             this.turn++;
             this.winner = this.checkForWinner();
@@ -196,6 +198,7 @@ class Game {
         let combat = this.getCombatCoords()[0];
 
         if (!combat) {
+            this.loggedCombatCoords = []
             this.log.endPhase('Combat');
             this.uncolonizePlanets();
             this.playerTurn = 0;
@@ -203,6 +206,12 @@ class Game {
             this.phase = null;
             return;
         }
+
+        if (this.checkIfCoordInList(combat, this.loggedCombatCoords) == false) {
+            this.log.combatHappening(combat)
+            this.loggedCombatCoords.push(combat)
+        }
+
 
         let combatOrder = this.sortCombatOrder(combat);
 
@@ -229,7 +238,6 @@ class Game {
             target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
         }
 
-        this.log.combatHappening(combat)
         let defender = this.players[target.playerNum - 1];
         this.log.combat(ship, target);
 
@@ -786,6 +794,16 @@ class Game {
     }
     
     // Logs & Display
+
+    checkIfCoordInList(inputCoord, coordList){
+        for (let coord of coordList) {
+            if (coord[0] == inputCoord[0] && coord[1] == inputCoord[1]) {
+                return true
+            }
+        }
+
+        return false
+    }
 
     getLogs(data) {
 
