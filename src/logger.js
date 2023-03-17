@@ -48,13 +48,9 @@ class Logger {
         this.write(`\t\t${ship.id} can't move because it is to be engaged in combat at (${ship.coords[0]}, ${ship.coords[1]})\n`);
     }
 
-    combatLocation(coords) {
-        this.write(`\tCombat at: ${coords}\n\n`);
-    }
-
     combat(attacker, defender) {
-        this.write(`\t\tAttacker: ${attacker.id}\n`);
-        this.write(`\t\tDefender: ${defender.id}\n`);
+        this.write(`\t\t\tAttacker: ${attacker.id}\n`);
+        this.write(`\t\t\tDefender: ${defender.id}\n`);
     }
 
     combatHappening(combatCoord) {
@@ -62,16 +58,16 @@ class Logger {
     }
 
     shipHit(defender) {
-        this.write(`\t\tHit!\n`);
-        this.write(`\t\t${defender.id} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
+        this.write(`\t\t\tHit!\n`);
+        this.write(`\t\t\t${defender.id} hp: ${defender.hp} -> ${defender.hp - 1}\n`);
     }
 
     shipMiss() {
-        this.write(`\t\tMiss!\n`);
+        this.write(`\t\t\tMiss!\n`);
     }
 
     shipDestroyed(ship) {
-        this.write(`\t\t${ship.id} was destroyed\n`);
+        this.write(`\t\t\t${ship.id} was destroyed\n`);
     }
 
     playerCP(player) {
