@@ -15,8 +15,15 @@ class RandomStrat extends ParentStrat {
     }
 
     chooseTarget(shipInfo, combatOrder) {
+        console.log('len', combatOrder.length)
+        for (let ship of combatOrder) {
+            console.log(ship.playerNum)
+        }
+        exit
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        return this.random(opponentShips);
+        console.log(opponentShips.length)
+        console.log('ship', this.randomChoice(opponentShips))
+        return this.randomChoice(opponentShips);
     }
 
     buyTech(cpBudget, technologyData) {
@@ -49,6 +56,10 @@ class RandomStrat extends ParentStrat {
 
     maintOrder(ships) {
         return ships.sort(() => Math.random() - 0.5);
+    }
+
+    randomChoice(list) {
+        return list[Math.floor(Math.random() * list.length)];
     }
     
 }
