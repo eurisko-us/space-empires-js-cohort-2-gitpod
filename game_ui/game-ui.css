@@ -44,7 +44,7 @@ article {
 #board {
     display: flex;
     --size: 50px;
-    --margin: 4px;
+    --margin: calc(var(--size) / 12.5);
     --gradient: calc(1.732 * var(--size) + 4 * var(--margin) - 1px);
 }
 

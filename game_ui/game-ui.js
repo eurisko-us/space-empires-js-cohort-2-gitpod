@@ -1,8 +1,10 @@
 const socket = io();
 
+const NUM_HEXAGONS = 49;
+const INVIS_CHAR = "‎";
+
 let game;
 let gameIsStarted = false;
-let numHexagons = 7*7;
 
 let hexagonHTMLs;
 let logsHTML;
@@ -52,7 +54,7 @@ function updateElementsById() {
 }
 
 function createBoard() {
-    for (let i = 0; i < numHexagons; i++) {
+    for (let i = 0; i < NUM_HEXAGONS; i++) {
         
         let hexagonDiv = document.createElement("div");
         hexagonDiv.classList.add("hexagon");
@@ -60,7 +62,8 @@ function createBoard() {
 
         let textDiv = document.createElement("div");
         textDiv.classList.add("hexagonText");
-        
+        textDiv.innerHTML = INVIS_CHAR;
+
         hexagonDiv.appendChild(textDiv);
         document.getElementById("container").appendChild(hexagonDiv);
     
@@ -141,8 +144,8 @@ function updateObjType(objType, colors, innerHTML) {
 
     for (let hexagonHTML of hexagonHTMLs) {
         
-        if (hexagonHTML.id % 2 == 0) hexagonHTML.style.backgroundColor = "red";
-        // let [x, y] = convertIDtoCoords(hexagonHTML.id);
+        let [x, y] = convertIDtoCoords(hexagonHTML.id);
+        hexagonHTML.firstChild.innerHTML = `(${x},${y})`;
 
         // for (let obj of game.board[y][x]) {
         //     if (obj.objType === objType) {
@@ -150,10 +153,11 @@ function updateObjType(objType, colors, innerHTML) {
         //         let shipNum = game.board[x][y][0].playerNum;
 
         //         hexagonHTML.style.backgroundColor = colors[shipNum - 1];
-        //         hexagonHTML.innerHTML = `${innerHTML}`;
+        //         hexagonHTML.firstChild.innerHTML = `${innerHTML}`;
 
         //     }
         // }
+        
     }
 
 }
@@ -168,8 +172,8 @@ function updateLogs() {
 }
 
 function convertIDtoCoords(id) {
-    x = id % 7;
-    y = Math.floor(id / 7);
+    x = (id - 1) % 7;
+    y = Math.floor((id - 1) / 7);
     return [x, y];
 }
 
