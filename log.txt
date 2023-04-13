@@ -1,5 +1,5 @@
 Begin Game
-		Spawned planet at (2,2)
+		Spawned planet at (0,1)
 		Spawned planet at (0,4)
-		Spawned planet at (4,1)
-		Spawned planet at (5,5)
+		Spawned planet at (4,2)
+		Spawned planet at (4,6)
