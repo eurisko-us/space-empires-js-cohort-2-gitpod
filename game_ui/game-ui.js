@@ -145,7 +145,7 @@ function updateObjType(objType, colors, innerHTML) {
     for (let hexagonHTML of hexagonHTMLs) {
         
         let [x, y] = convertIDtoCoords(hexagonHTML.id);
-        hexagonHTML.firstChild.innerHTML = `(${x},${y})`;
+        hexagonHTML.firstChild.innerHTML = `${hexagonHTML.id}: ${x},${y}`;
 
         // for (let obj of game.board[y][x]) {
         //     if (obj.objType === objType) {
@@ -157,7 +157,7 @@ function updateObjType(objType, colors, innerHTML) {
 
         //     }
         // }
-        
+
     }
 
 }
