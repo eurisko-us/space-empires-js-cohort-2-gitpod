@@ -53,10 +53,17 @@ function updateElementsById() {
 
 function createBoard() {
     for (let i = 0; i < numHexagons; i++) {
+        
         let hexagonDiv = document.createElement("div");
         hexagonDiv.classList.add("hexagon");
         hexagonDiv.id = i + 1;
+
+        let textDiv = document.createElement("div");
+        textDiv.classList.add("hexagonText");
+        
+        hexagonDiv.appendChild(textDiv);
         document.getElementById("container").appendChild(hexagonDiv);
+    
     }
 }
 
@@ -134,7 +141,7 @@ function updateObjType(objType, colors, innerHTML) {
 
     for (let hexagonHTML of hexagonHTMLs) {
         
-        hexagonHTML.style.backgroundColor = "red";
+        if (hexagonHTML.id % 2 == 0) hexagonHTML.style.backgroundColor = "red";
         // let [x, y] = convertIDtoCoords(hexagonHTML.id);
 
         // for (let obj of game.board[y][x]) {

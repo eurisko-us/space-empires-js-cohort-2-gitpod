@@ -49,7 +49,15 @@ article {
 }
 
 #container {
-    font-size: 0;
+    font-size: 1;
+}
+
+.hexagonText {
+    text-align: center;
+    position: relative;
+    left: calc(-1 * var(--margin));
+    height: var(--size);
+    line-height: var(--size);
 }
 
 #container div {
