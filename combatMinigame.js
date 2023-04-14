@@ -14,7 +14,6 @@ function getRandom(min, max) {
 }
 
 function computeWorth(ship) {
-    // console.log({'HP': ship.hp, 'ATK': ship.atk, 'DF': ship.df, 'SHIPCLASS': shipClasses[ship.shipClass], 'CP': ship.cpCost})
     return ship.hp*(ship.atk + ship.df + shipClasses[ship.shipClass] + ship.cpCost + (ship.df*ship.hp) + (ship.atk*shipClasses[ship.shipClass]))
 }
 
@@ -23,70 +22,43 @@ function computePayoff(ownShips, oppShips) {
         return computeWorth(e); 
     }).reduce((a, b) => a + b, 0);
 
-    let oppSum = oppShips.map(function(e) {
-        return computeWorth(e);
+    let oppSum = oppShips.map(function(g) {
+        return computeWorth(g);
     }).reduce((a, b) => a + b, 0);
 
     return ownSum - oppSum
 }
 
-// let players = [new Player(1, new AIStrat()), new Player(2, new AIStrat())]
-let players = [new Player(1, new RandomStrat()), new Player(2, new RandomStrat())]
-let playerNumShips = {1: getRandom(3,10), 2: getRandom(3,10)};
-
-// NOT ADDING SHIPS TO FIRST PLAYER
-for (let p = 0; p < 2; p++) {
-    console.log('p', p)
-    for (let i = 0; i < playerNumShips[p]; i++) {
-        const shipIdx = getRandom(0, allShips.length-1);
-        let shipClass = allShips[shipIdx]
-        console.log(players[p].ships.length)
-        const count = players[p].ships.filter(obj => obj instanceof shipClass).length + 1;
-        console.log(players[p].ships.length)
-        // console.log(p)
-        players[p].ships.push(new shipClass(null, p+1, count));
+function addShipsToPlayers(players, playerNumShips) {
+    for (let p = 0; p < 2; p++) {
+        for (let i = 0; i < playerNumShips[p+1]; i++) {
+            const shipIdx = getRandom(0, allShips.length-1);
+            let shipClass = allShips[shipIdx]
+            const count = players[p].ships.filter(obj => obj instanceof shipClass).length + 1;
+            players[p].ships.push(new shipClass(null, p+1, count));
+        }
     }
 }
 
-// console.log(players[1].ships)
-exit
-
-function combatPhase() {
-
-    let allShipList = players[0].ships.concat(players[1].ships)
+function combatPhase(players) {
+    let allShipList = players[0].ships.concat(players[1].ships);
     allShipList.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
     let combatOrder = [...allShipList];
-
-
     let ship = combatOrder[0];
 
-    if (ship.name == "ColonyShip") {
-        let id = combatOrder.indexOf(this.currentPart) + 1;
-        this.currentPart = (id >= combatOrder.length) ? combatOrder[0] : combatOrder[id];
-        return;
-    };
-
     let attacker = players[ship.playerNum - 1];
-    let target;
-    target = attacker.strategy.chooseTarget(convertShipToDict(ship), combatOrder);
-    console.log(target)
+    let target = attacker.strategy.chooseTarget(convertShipToDict(ship), combatOrder);
     let defender = players[target.playerNum - 1];
 
-    if (this.roll(ship, target)) {
+    if (roll(ship, target)) {
         target.hp -= 1;
         if (target.hp <= 0) {
-            console.log(target)
-            let index = defender.ships.indexOf(ship);
-            defender.ships.splice(index, 1);
+            defender.ships = defender.ships.filter(plrShip => !(plrShip.id == ship.id));
         }
     }
-
-    let id = combatOrder.indexOf(this.currentPart) + 1;
-    this.currentPart = (id >= combatOrder.length) ? combatOrder[0] : combatOrder[id];
 }
 
 function roll(attacker, defender) {
-
     let roll = Math.floor(Math.random() * 10);
 
     if (roll <= attacker.atk - defender.df || roll === 1) {
@@ -94,7 +66,6 @@ function roll(attacker, defender) {
     } else {
         return false;
     }
-
 }
 
 function convertShipToDict(ship) {
@@ -105,5 +76,40 @@ function convertShipToDict(ship) {
     return shipInfo;
 }
 
-combatPhase()
-console.log(computePayoff(ownShips, oppShips))
+function runSimulation() {
+    // let players = [new Player(1, new AIStrat()), new Player(2, new AIStrat())]
+    let players = [new Player(1, new RandomStrat()), new Player(2, new RandomStrat())];
+    let playerNumShips = {1: getRandom(3,10), 2: getRandom(3,10)};
+
+    addShipsToPlayers(players, playerNumShips);
+
+    while (true) {
+        if (players[0].ships.length == 0 || players[1].ships.length == 0) {
+            break;
+        }
+
+        combatPhase(players);
+        for (let player of players) {
+            player.ships = player.ships.filter(plrShip => (plrShip.hp > 0));
+        }
+    }
+
+    return computePayoff(players[0].ships, players[1].ships);
+}
+
+let sim = {'pos':0, 'neg':0, 'zero':0};
+
+for (let i = 0; i < 1000; i++) {
+    let payoff = runSimulation()
+    if (payoff > 0) {
+        sim['pos'] += 1
+    }
+    if (payoff < 0) {
+        sim['neg'] += 1
+    }
+    if (payoff == 0) {
+        sim['zero'] += 1
+    }
+}
+
+console.log(sim)

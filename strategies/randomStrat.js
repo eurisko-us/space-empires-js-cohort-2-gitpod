@@ -15,14 +15,7 @@ class RandomStrat extends ParentStrat {
     }
 
     chooseTarget(shipInfo, combatOrder) {
-        console.log('len', combatOrder.length)
-        for (let ship of combatOrder) {
-            console.log(ship.playerNum)
-        }
-        exit
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
-        console.log(opponentShips.length)
-        console.log('ship', this.randomChoice(opponentShips))
         return this.randomChoice(opponentShips);
     }
 
