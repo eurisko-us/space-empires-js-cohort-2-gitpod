@@ -43,9 +43,9 @@ article {
 
 #board {
     display: flex;
-    --size: 50px;
-    --margin: calc(var(--size) / 12.5);
-    --gradient: calc(1.732 * var(--size) + 4 * var(--margin) - 1px);
+    --size: 50px; /* variable */
+    --margin: calc(var(--size) / 12.5); /* variable */
+    --gradient: calc(1.732 * var(--size) + 4 * var(--margin) - 1px); /* variable */
 }
 
 #container {

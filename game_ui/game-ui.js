@@ -31,7 +31,7 @@ socket.on('update UI', (gameState) => {
     updateElementsById();
     resetBoard();
     updateObjType('Ship', ['red', 'blue'], 'Ship');
-    updateObjType('Colony', ['#ff8080', '#a080ff'], 'Home Colony');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'HC');
     updateLogs();
 });
 
@@ -73,6 +73,7 @@ function createBoard() {
 function resetBoard() {
     for (let hexagonHTML of hexagonHTMLs) {
         hexagonHTML.style.backgroundColor = 'black';
+        hexagonHTML.innerHTML = INVIS_CHAR;        
     }
 }
 
@@ -145,18 +146,13 @@ function updateObjType(objType, colors, innerHTML) {
     for (let hexagonHTML of hexagonHTMLs) {
         
         let [x, y] = convertIDtoCoords(hexagonHTML.id);
-        hexagonHTML.firstChild.innerHTML = `${hexagonHTML.id}: ${x},${y}`;
 
-        // for (let obj of game.board[y][x]) {
-        //     if (obj.objType === objType) {
-
-        //         let shipNum = game.board[x][y][0].playerNum;
-
-        //         hexagonHTML.style.backgroundColor = colors[shipNum - 1];
-        //         hexagonHTML.firstChild.innerHTML = `${innerHTML}`;
-
-        //     }
-        // }
+        for (let obj of game.board[y][x]) {
+            if (obj.objType === objType) {
+                hexagonHTML.style.backgroundColor = colors[game.board[y][x][0].playerNum - 1];
+                hexagonHTML.firstChild.innerHTML = innerHTML;
+            }
+        }
 
     }
 
@@ -193,4 +189,5 @@ function updateSquareInfo(id) {
         squareInfoHTML.innerHTML += `<br>`;
 
     }
+
 }
