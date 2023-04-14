@@ -32,9 +32,10 @@ class Game {
         this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
         
         // state based stuff
+        this.playerInput = '';
+        this.showText = '';
         this.playerTurn = 0;
         this.currentPart = null;
-        this.playerInput = '';
         this.phase = null;
         this.timesMvmt = 0;
         this.shipMoves = 0;
@@ -155,7 +156,7 @@ class Game {
             this.log.beginPhase('Movement');
             this.currentPart = 0; // tracks ship by list index
             this.timesMvmt = 0; // tracks how many times a ship moved
-            this.shipMoves = 0;
+            this.shipMoves = 0; // tracks how many moves a ship can take
         }
 
         let player = this.players[this.playerTurn];
@@ -172,8 +173,9 @@ class Game {
             this.shipMoves = this.calcNumMovesPerShip(ship.technology["movement"]);
         }
 
-        if (this.timesMvmt < this.shipMoves) {
-            this.moveShip(player, ship);
+        if (this.timesMvmt < this.shipMoves && this.canShipMove(ship)) {
+            let manualCheck = this.moveShip(player, ship);
+            if (manualCheck == 'incomplete'){return;}
             this.timesMvmt++;
         }
 
@@ -181,6 +183,7 @@ class Game {
             this.timesMvmt = 0;
             this.shipMoves = 0
             this.playerInput = '';
+            this.displayText = '';
             this.currentPart++;
         }
 
@@ -198,7 +201,6 @@ class Game {
         if (!combat) {
             this.log.endPhase('Combat');
             this.uncolonizePlanets();
-            this.playerTurn = 0;
             this.currentPart = null;
             this.phase = null;
             return;
@@ -222,9 +224,9 @@ class Game {
         let target;
 
         if (attacker.isManual) {
-            // Do manual stuff!
-            // this.displayText(`Player ${this.playerTurn}: Please select a target for ${ship_id}`)
-            target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
+            this.displayText(`Player ${this.playerTurn}: Please select a target for ${ship_id} on ${combat}`)
+            target = attacker.strategy.chooseTarget(ship, combatOrder, this.playerInput); 
+            if (!target){return;}
         } else {
             target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
         }
@@ -279,41 +281,22 @@ class Game {
         }
 
         if (this.currentPart == 'maint') {
-
-            if (player.isManual) {
-                // Do manual stuff!
-                this.maintenance(player); // pay maintenance
-            } else {
-                this.maintenance(player);
-            }
-
+            let manualCheck = this.maintenance(player); // pay maintenance
+            if (manualCheck == 'incomplete'){return;}
             this.currentPart = 'buyTech';
 
         }
 
         if (this.currentPart == 'buyTech') {
-            
-            if (player.isManual) {
-                // Do manual stuff!
-                // Must buy ALL tech at once
-                this.buyTech(player);
-            } else{
-                this.buyTech(player);
-            }
+            let manualCheck = this.buyTech(player);
+            if (manualCheck == 'incomplete') {return;}
 
             this.currentPart = 'buyShips';
-
         }
 
         if (this.currentPart == 'buyShips') {
-            
-            if (player.isManual) {
-                // Do manual stuff!
-                // Must buy ALL ships at once
-                this.buyShips(player);
-            } else {
-                this.buyShips(player);
-            }
+            let manualCheck = this.buyShips(player);
+            if (manualCheck == 'incomplete') {return;}
 
             this.playerTurn++;
             this.currentPart = 'pay';
@@ -410,8 +393,9 @@ class Game {
 
     removeFromBoard(obj) {
         let [x, y] = [...obj.coords];
-        let index = this.board[y][x].indexOf(obj);
-        this.board[y][x].splice(index, 1); // first parameter sets the array index, second sets how many are removed
+        this.board[y][x] = this.board[y][x].filter(item => !(obj.id == item.id)); 
+        //let index = this.board[y][x].indexOf(obj);
+        //this.board[y][x].splice(index, 1); // first parameter sets the array index, second sets how many are removed
     }
 
     getShipNum(newShipName, player) { // gets new ship num to prevent repeats within 
@@ -450,8 +434,9 @@ class Game {
     }
 
     removeShipFromPlayer(player, ship) {
-        let index = player.ships.indexOf(ship);
-        player.ships.splice(index, 1);
+        player.ships = player.ships.filter(plrShip => !(plrShip.id == ship.id));
+        //let index = player.ships.indexOf(ship);
+        //player.ships.splice(index, 1);
     }
 
     removePlayer(player) {
@@ -471,30 +456,25 @@ class Game {
     moveShip(player, ship) {
 
         // Coords work [column, row]
+        // !?Need to make a log for ships that can't move
 
         let oldCoords = [...ship.coords];
         let translations = this.possibleTranslations(ship.coords);
         let translation;
 
         if (player.isManual) {
-            // Do manual stuff!
-            // this.displayText(`Player ${this.playerTurn}: Please type move for ship`)
-            translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations); 
+            this.displayText(`Player ${this.playerTurn}: Please type move for ${ship.name} ${ship.shipNum}`)
+            translation = player.strategy.chooseTranslation(translations, this.playerInput); 
+            if (!translation){
+                return 'incomplete';
+            }
         } else {
             translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);
         }
            
         let [newX, newY] = this.translate(oldCoords, translation);
 
-        // Need to make a log for ships that can't move!
-
-        if (!this.canShipMove(ship)) {
-            this.currentPart++;
-            return;
-        }
-
         if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) {
-            this.currentPart++;
             return;
         }
 
@@ -578,31 +558,43 @@ class Game {
 
     maintenance(player) {
 
-        let totalCost = this.calcMaintCost(player.ships);
-        
         let shipList = [];
         for (let ship of player.ships) {
             shipList.push(this.getSimpleObj(ship));
         }
-        
-        let orderedShips = player.strategy.maintOrder(shipList);
+        let orderedShips
+
+        if (player.isManual) {
+            this.displayText(`Player ${this.playerTurn}, pick your matinence order`)
+            orderedShips = player.strategy.maintOrder(shipList, this.playerInput);
+            if (!orderedShips) {return 'incomplete';}
+
+        } else {orderedShips = player.strategy.maintOrder(shipList);} 
+
+        let totalCost = this.calcMaintCost(orderedShips);
 
         while (totalCost > player.cp) {
-            
-            this.log.shipIsNotMaintained(player, orderedShips[0]);
-            this.removeFromBoard(orderedShips[0]);
-            assert (!(this.board[orderedShips[0].coords[1]][orderedShips[0].coords[0]].includes(orderedShips[0])), 'Ship lost to maintenance is still on the board');
-            
-            orderedShips.shift();
+            orderedShips.pop();
             totalCost = this.calcMaintCost(orderedShips);
-        
         }
+        //removes all ships not in orderedShips
+        let nonMaintained = player.ships.filter(plrShip => !orderedShips.some(ordShip => ordShip.id == plrShip.id));
+        for (let trashShip of nonMaintained) {
+
+            this.log.shipIsNotMaintained(player, trashShip);
+            this.removeFromBoard(trashShip);
+            this.removeShipFromPlayer(player, trashShip);
+            assert (!(this.board[trashShip.coords[1]][trashShip.coords[0]].includes(trashShip)), 'Ship lost to maintenance is still on the board');
+            assert (!(player.ships.includes(trashShip)), 'ship lost to maintenance is still with the player');
+            
+        }
+        assert (this.calcMaintCost(player.ships) == totalCost, 'ordered maint cost is not the same as player');
 
         player.cp -= totalCost;
         this.log.playerCPAfterMaintenance(player);
 
         assert (player.cp >= 0, 'Player did not give up enough ships for maintenance, has negative CP');
-        player.ships = orderedShips;
+        //player.ships = orderedShips;
 
     }
 
@@ -664,8 +656,16 @@ class Game {
     buyTech(player) {
 
         // buy technology
+        let newTech; // list of strings (i.e. ["attack", "defense", etc])
 
-        let newTech = player.buyTech(); // list of strings (i.e. ["attack", "defense", etc])
+        if (player.isManual){
+            // Must buy ALL tech at once
+            this.displayText(`Player ${this.playerTurn}, choose tech to buy`)
+            newTech = player.strategy.buyTech(this.playerInput);
+            if (!newTech){return 'incomplete';}
+        }
+        else {newTech = player.buyTech();}
+
         if (newTech.length == 0) this.log.boughtNothing(player, "technology");
 
         // pay for technology
@@ -688,10 +688,15 @@ class Game {
     }
 
     buyShips(player) {
-
         // buy ships
-
-        let playerShips = player.buyShips(); // list of dicts (i.e [{"Scout", 1}, etc])
+        let playerShips; // list of dicts (i.e [{"Scout", 1}, etc])
+        
+        if (player.isManual){
+            this.displayText(`Player ${this.playerTurn}, buy your ships`)
+            playerShips = player.strategy.buyShips(this.playerInput);
+            if (!playerShips){return 'incomplete';}
+        }
+        else {playerShips = player.buyShips();}
 
         if (playerShips.length == 0) this.log.boughtNothing(player, "ships");
 

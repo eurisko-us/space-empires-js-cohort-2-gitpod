@@ -6,9 +6,134 @@ import ParentStrat from './parentStrat.js';
 class Adaptor {
     constructor(){
         this.name = 'input';
-        this.manual = true;
+        this.isManual = true;
         this.strat = 'blank';
     }
+
+    // Required Functions
+
+    chooseTranslation(translations, plrInput){
+        let [input, endStatement] = plrInput.split('!!');
+        if (!endStatement) {
+            return;
+        }
+
+        let translation = this.getInputTranslation(input)
+
+        if (translations.find(el => this.sameArray(translation, el)) == undefined) {
+            console.log('That doesnt work, turn forfeit');
+            return [0, 0];
+        }
+        return translation;
+    }
+
+    chooseTarget(shipInfo, combatOrder, plrInput){
+        let [input, endStatement] = plrInput.split('!!');
+        if (!endStatement) {
+            return;
+        }
+
+        let [targName, targNum] = input.split(' ');
+        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
+        
+        for (let ship of opponentShips) {
+            if (ship.name == targName && ship.shipNum == targNum) {
+                return ship;
+            }
+        }
+
+        console.log(`Opponent does not have a ${opponent}, try again`);
+        console.log('just gonna skip that for now');
+        return opponentShips[Math.floor(Math.random() * opponentShips.length)];
+    }
+
+    buyShips(plrInput){
+        let [input, endStatement] = plrInput.split('!!');
+        if (!endStatement) {
+            return;
+        }
+
+        let cart = input.split(', ');
+        let shipList = [];
+        for (let item of cart) {
+            recipt = this.makeRecipt(item);
+            if (!recipt) {continue;}
+            shipList.push(recipt);
+        }
+
+        return shipList;
+    }
+
+    maintOrder(ships, plrInput){
+        let [input, endStatement] = plrInput.split('!!');
+        if (!endStatement) {
+            return;
+        }
+
+        let queue = input.split(', ');
+        let order = [];
+        for (let shipId of queue) {
+            let [name, id] = shipId.split(' ');
+            foundShip = ships.filter(ship => ship.name == name && ship.id == id);
+            if (foundShip.length == 0) {
+                console.log(`Something wrong was written for ${name} ${id}}`);
+            }
+            order.push(...foundShip);
+        }
+
+        return order;
+        
+    }
+
+    buyTech(plrInput){
+        let [input, endStatement] = plrInput.split('!!');
+        if (!endStatement) {
+            return;
+        }
+        let tech = input.split(', ')
+        return tech
+    }
+
+    // Helper && Translator Functions
+
+    getInputTranslation(input) {
+        let inputMap = {
+            'up':    [0, -1],
+            'down':  [0, 1],
+            'left':  [-1, 0],
+            'right': [1, 0],
+            'stay':  [0, 0],
+        };
+
+        return inputMap[input];
+    }
+
+    sameArray(array1, array2) {
+        for (let i = 0; i < array1.length; i++) {
+            if (array1[i] != array2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    makeRecipt(item) {
+        let [name, amt] = item.split(' ');
+        amt = + amt; //turns to number
+        if (amt === NaN) {amt = 1;}
+
+        if (!this.findBought(name)) {return;}
+
+        return {name: amt};
+    }
+
+    findBought(name) {
+        for (let ship of nullInstances) {
+            if (name == ship.name) {return ship;}
+        }
+        return;
+    }
+
 }
 
 class InputStrat extends ParentStrat {
@@ -18,7 +143,7 @@ class InputStrat extends ParentStrat {
         this.name = 'input';
         this.manual = true;
     }
-
+/*
     chooseTranslation(ship, translations) {
 
         console.log('\n\n');
@@ -35,15 +160,6 @@ class InputStrat extends ParentStrat {
 
     }
 
-    sameArray(array1, array2) {
-        for (let i = 0; i < array1.length; i++) {
-            if (array1[i] != array2[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     getInputTranslation() {
 
         let inputMap = {
@@ -57,6 +173,15 @@ class InputStrat extends ParentStrat {
         //let input = prompt("Pick a direction (up, down, left, right, stay) : ");
         return inputMap[input];
 
+    }
+
+    sameArray(array1, array2) {
+        for (let i = 0; i < array1.length; i++) {
+            if (array1[i] != array2[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -82,7 +207,7 @@ class InputStrat extends ParentStrat {
         return opponentShips[Math.floor(Math.random() * opponentShips.length)];
 
     }
-
+*/
     buyShips(cpBudget) {
 
         let shipList = [];
@@ -115,7 +240,7 @@ class InputStrat extends ParentStrat {
             return 'Done';
         }
 
-        cart[1] = + cart[1];
+        cart[1] = + cart[1]; //turns to number
 
         while (cart[1] === NaN) {
             //cart[1] = prompt('Please type a valid number');

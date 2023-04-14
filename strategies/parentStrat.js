@@ -4,7 +4,7 @@ class ParentStrat {
         this.simpleBoard = null;
         this.turn = 0;
         this.playerNum = null;
-        this.manual = false;
+        this.isManual = false;
     }
 
     minDistanceTranslation(ship, translations, targetCoords) {
