@@ -12,6 +12,9 @@ body {
 header, article, footer {
     border-radius: 25px;
     background-color: #d9d9d9;
+}
+
+header, article:not(#boardArticle), footer {
     text-align: center;
 }
 
@@ -24,8 +27,8 @@ header {
 }
 
 section {
-    display: -webkit-flex;
     display: flex;
+    display: -webkit-flex;
 }
 
 article {
@@ -36,16 +39,50 @@ article {
     max-height: 420px;
 }
 
+/*  Board UI  */
+
 #board {
-    margin: auto;
+    display: flex;
+    --size: 50px; /* variable */
+    --margin: calc(var(--size) / 12.5); /* variable */
+    --gradient: calc(1.732 * var(--size) + 4 * var(--margin) - 1px); /* variable */
 }
 
-td.cell {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    padding: 5px;
+#container {
+    font-size: 1;
 }
+
+.hexagonText {
+    text-align: center;
+    position: relative;
+    left: calc(-1 * var(--margin));
+    height: var(--size);
+    line-height: var(--size);
+}
+
+#container div {
+    width: var(--size);
+    margin: var(--margin);
+    height: calc(var(--size) * 1.1547);
+    display: inline-block;
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+    margin-bottom: calc(var(--margin) - var(--size) * 0.2886);
+}
+
+#container::before {
+    content: "";
+    width: calc(var(--size)/2 + var(--margin));
+    float: left;
+    height: 100%;
+    shape-outside: repeating-linear-gradient(#0000 0 calc(var(--gradient) - 3px), #000 0 var(--gradient));
+}
+
+.hexagon {
+    background-color: black;
+    color: white;
+}
+
+/*  ********  */
 
 #logs {
     font: 16px/26px Georgia, Garamond, Serif;

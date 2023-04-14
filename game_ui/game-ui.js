@@ -1,9 +1,12 @@
 const socket = io();
 
+const NUM_HEXAGONS = 49;
+const INVIS_CHAR = "‎";
+
 let game;
 let gameIsStarted = false;
 
-let boardHTML;
+let hexagonHTMLs;
 let logsHTML;
 let squareInfoHTML;
 
@@ -19,7 +22,7 @@ let inputTextHTML;
 
 socket.on('initialize UI', () => {
     updateElementsById();
-    (boardHTML.rows.length === 0) ? createBoard() : resetBoard();
+    (hexagonHTMLs.length == 0) ? createBoard() : resetBoard();
     createEventListeners();
 });
 
@@ -28,13 +31,13 @@ socket.on('update UI', (gameState) => {
     updateElementsById();
     resetBoard();
     updateObjType('Ship', ['red', 'blue'], 'Ship');
-    updateObjType('Colony', ['#ff8080', '#a080ff'], 'Home Colony');
+    updateObjType('Colony', ['#ff8080', '#a080ff'], 'HC');
     updateLogs();
 });
 
 function updateElementsById() {
 
-    boardHTML      = document.getElementById("board");
+    hexagonHTMLs   = document.getElementsByClassName("hexagon");
     logsHTML       = document.getElementById("logs");
     squareInfoHTML = document.getElementById("squareInfo");
     
@@ -51,21 +54,34 @@ function updateElementsById() {
 }
 
 function createBoard() {
-    for (let i = 0; i < 7; i++) {
-        let row = boardHTML.insertRow();
-        for (let j = 0; j < 7; j++) {
-            let cell = row.insertCell();
-            cell.className = 'cell';
-            cell.style.backgroundColor = 'gray';
-        }
+    for (let i = 0; i < NUM_HEXAGONS; i++) {
+        
+        let hexagonDiv = document.createElement("div");
+        hexagonDiv.classList.add("hexagon");
+        hexagonDiv.id = i + 1;
+
+        let textDiv = document.createElement("div");
+        textDiv.classList.add("hexagonText");
+        textDiv.innerHTML = INVIS_CHAR;
+
+        hexagonDiv.appendChild(textDiv);
+        document.getElementById("container").appendChild(hexagonDiv);
+    
+    }
+}
+
+function resetBoard() {
+    for (let hexagonHTML of hexagonHTMLs) {
+        hexagonHTML.style.backgroundColor = 'black';
+        hexagonHTML.innerHTML = INVIS_CHAR;        
     }
 }
 
 function createEventListeners() {
     
-    for (const cell of document.getElementsByClassName('cell')) {
-        cell.addEventListener('click', e => {
-            if (gameIsStarted) updateSquareInfo(e.target.cellIndex, e.target.parentElement.rowIndex);
+    for (let hexagonHTML of hexagonHTMLs) {
+        hexagonHTML.addEventListener("click", e => {
+            if (gameIsStarted) updateSquareInfo(hexagonHTML.id);
         });
     }
 
@@ -127,32 +143,19 @@ function createEventListeners() {
 
 function updateObjType(objType, colors, innerHTML) {
 
-    for (let i = 0; i < 7; i++) {
-        for (let j = 0; j < 7; j++) {
-            for (let obj of game.board[j][i]) {
-                if (obj.objType === objType) {
+    for (let hexagonHTML of hexagonHTMLs) {
+        
+        let [x, y] = convertIDtoCoords(hexagonHTML.id);
 
-                    let shipNum = game.board[j][i][0].playerNum;
-                    let cell = boardHTML.rows[j].cells[i];
-
-                    cell.style.backgroundColor = colors[shipNum - 1];
-                    cell.innerHTML = `${innerHTML}`;
-
-                }
+        for (let obj of game.board[y][x]) {
+            if (obj.objType === objType) {
+                hexagonHTML.style.backgroundColor = colors[game.board[y][x][0].playerNum - 1];
+                hexagonHTML.firstChild.innerHTML = innerHTML;
             }
         }
+
     }
 
-}
-
-function resetBoard() {
-    for (let i = 0; i < 7; i++) {
-        for (let j = 0; j < 7; j++) {
-            let cell = boardHTML.rows[i].cells[j];
-            cell.style.backgroundColor = 'gray';
-            cell.innerHTML = '';
-        }
-    }
 }
 
 function updateLogs() {
@@ -164,8 +167,17 @@ function updateLogs() {
     }
 }
 
-function updateSquareInfo(x, y) {
+function convertIDtoCoords(id) {
+    x = (id - 1) % 7;
+    y = Math.floor((id - 1) / 7);
+    return [x, y];
+}
+
+function updateSquareInfo(id) {
+
+    let [x, y] = convertIDtoCoords(id);
     squareInfoHTML.innerHTML = `Objects on coordinate (${x}, ${y}):<br><br>`;
+    
     for (let obj of game.board[y][x]) {
 
         squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>: hp: ${obj.hp}`;
@@ -177,4 +189,5 @@ function updateSquareInfo(x, y) {
         squareInfoHTML.innerHTML += `<br>`;
 
     }
+
 }
