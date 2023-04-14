@@ -1,0 +1,49 @@
+Begin Game
+		Spawned planet at (1,2)
+		Spawned planet at (2,5)
+		Spawned planet at (4,2)
+		Spawned planet at (4,4)
+Turn 1
+	Begin Economic Phase
+		Player 1 initially has 150 CP
+		Player 1 gained 10 CP and now has 160 CP
+		Player 1 now has 160 CP after paying maintenance
+		Player 1 didn't buy any technology
+		Player 1 bought a Scout
+		Player 1 has 154 CP remaining
+		Player 2 initially has 150 CP
+		Player 2 gained 10 CP and now has 160 CP
+		Player 2 now has 160 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 bought a Scout
+		Player 2 has 154 CP remaining
+	End Economic Phase
+
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 0) to (3, 1)
+		Player 2 Scout 1 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 2
+	Begin Economic Phase
+		Player 1 initially has 154 CP
+		Player 1 gained 10 CP and now has 164 CP
+		Player 1 now has 163 CP after paying maintenance
+		Player 1 didn't buy any technology
+		Player 1 bought a Scout
+		Player 1 has 157 CP remaining
+		Player 2 initially has 154 CP
+		Player 2 gained 10 CP and now has 164 CP
+		Player 2 now has 163 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 bought a Scout
+		Player 2 has 157 CP remaining
+	End Economic Phase
+
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 1) to (3, 2)
+		Player 1 Scout 2 moved from (3, 0) to (3, 1)
+		Player 2 Scout 1 moved from (3, 5) to (3, 4)

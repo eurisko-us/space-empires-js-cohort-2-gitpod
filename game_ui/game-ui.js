@@ -73,7 +73,7 @@ function createBoard() {
 function resetBoard() {
     for (let hexagonHTML of hexagonHTMLs) {
         hexagonHTML.style.backgroundColor = 'black';
-        hexagonHTML.innerHTML = INVIS_CHAR;        
+        // hexagonHTML.innerHTML = INVIS_CHAR;
     }
 }
 
@@ -141,7 +141,7 @@ function createEventListeners() {
 
 }
 
-function updateObjType(objType, colors, innerHTML) {
+function updateObjType(objType, colors, text) {
 
     for (let hexagonHTML of hexagonHTMLs) {
         
@@ -150,7 +150,7 @@ function updateObjType(objType, colors, innerHTML) {
         for (let obj of game.board[y][x]) {
             if (obj.objType === objType) {
                 hexagonHTML.style.backgroundColor = colors[game.board[y][x][0].playerNum - 1];
-                hexagonHTML.firstChild.innerHTML = innerHTML;
+                hexagonHTML.firstChild.innerHTML = text;
             }
         }
 

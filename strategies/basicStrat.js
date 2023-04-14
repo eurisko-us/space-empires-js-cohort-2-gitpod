@@ -8,17 +8,13 @@ class BasicStrat extends ParentStrat {
     }
 
     chooseTranslation(ship, translations) {
-        let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        let targetCoords = this.getColonyCoords(ship, true, true);
         return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
     chooseTarget(shipInfo, combatOrder) {
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
         return this.random(opponentShips);
-    }
-
-    buyTech(cpBudget) {
-        return [];
     }
 
     buyShips(cpBudget) {

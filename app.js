@@ -45,9 +45,9 @@ io.on('connection', (socket) => {
         delete clientSockets[socketId];
     });
 
-    /* EDIT THIS */
-
     socket.emit('initialize UI');
+
+    /* EDIT THIS */
 
     socket.on('initialize game', () => {
         const strategies = [new BasicStrat(), new BasicStrat()];
