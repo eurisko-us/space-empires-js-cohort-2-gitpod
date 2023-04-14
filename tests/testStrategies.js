@@ -90,7 +90,7 @@ function runTournament(strategies, numGamesPerRound) {
 
 // edit this code
 
-let strategies = ['AI', 'AI'];
+let strategies = ['random', 'rush'];
 let numGamesPerRound = 2;
 
 runTournament(strategies, numGamesPerRound);
