@@ -17,16 +17,16 @@ function computeWorth(ship) {
     return ship.hp*(ship.atk + ship.df + shipClasses[ship.shipClass] + ship.cpCost + (ship.df*ship.hp) + (ship.atk*shipClasses[ship.shipClass]))
 }
 
-function computePayoff(ownShips, oppShips) {
-    let ownSum = ownShips.map(function(e) { 
+function computeTotalWorth(shipList) {
+    let sum = shipList.map(function(e) { 
         return computeWorth(e); 
     }).reduce((a, b) => a + b, 0);
 
-    let oppSum = oppShips.map(function(g) {
-        return computeWorth(g);
-    }).reduce((a, b) => a + b, 0);
+    return sum;
+}
 
-    return ownSum - oppSum
+function computePayoff(ownShips, oppShips) {
+    return computeTotalWorth(ownShips) - computeTotalWorth(oppShips)
 }
 
 function addShipsToPlayers(players, playerNumShips) {
@@ -97,19 +97,44 @@ function runSimulation() {
     return computePayoff(players[0].ships, players[1].ships);
 }
 
-let sim = {'pos':0, 'neg':0, 'zero':0};
-
-for (let i = 0; i < 1000; i++) {
-    let payoff = runSimulation()
-    if (payoff > 0) {
-        sim['pos'] += 1
+let balance = {1:0, 2:0}
+for (let i = 0; i < 25; i++) {
+    let players = [new Player(1, new RandomStrat()), new Player(2, new RandomStrat())];
+    let playerNumShips = {1: getRandom(3,10), 2: getRandom(3,10)};
+    addShipsToPlayers(players, playerNumShips);
+    let worths = [];
+    for (let player of players) {
+        worths.push(computeTotalWorth(player.ships))
     }
-    if (payoff < 0) {
-        sim['neg'] += 1
+    
+    if (worths[0] > worths[1]) {
+        balance[1] += 1
     }
-    if (payoff == 0) {
-        sim['zero'] += 1
+    else {
+        balance[2] += 1
     }
+    
 }
+console.log(balance)
 
-console.log(sim)
+
+
+
+
+
+// let sim = {'pos':0, 'neg':0, 'zero':0};
+
+// for (let i = 0; i < 1000; i++) {
+//     let payoff = runSimulation()
+//     if (payoff > 0) {
+//         sim['pos'] += 1
+//     }
+//     if (payoff < 0) {
+//         sim['neg'] += 1
+//     }
+//     if (payoff == 0) {
+//         sim['zero'] += 1
+//     }
+// }
+
+// console.log(sim)
