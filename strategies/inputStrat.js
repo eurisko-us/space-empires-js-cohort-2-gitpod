@@ -3,7 +3,7 @@ import ParentStrat from './parentStrat.js';
 //import promptSync from 'prompt-sync';
 //const prompt = promptSync();
 
-class Adaptor {
+class InputStrat {
     constructor(){
         this.name = 'input';
         this.isManual = true;
@@ -136,7 +136,7 @@ class Adaptor {
 
 }
 
-class InputStrat extends ParentStrat {
+class InputStrat2 extends ParentStrat {
     
     constructor() {
         super(ParentStrat);

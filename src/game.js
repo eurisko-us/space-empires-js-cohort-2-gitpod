@@ -33,7 +33,7 @@ class Game {
         
         // state based stuff
         this.playerInput = '';
-        this.showText = '';
+        this.displayText = '';
         this.playerTurn = 0;
         this.currentPart = null;
         this.phase = null;
@@ -224,9 +224,10 @@ class Game {
         let target;
 
         if (attacker.isManual) {
-            this.displayText(`Player ${this.playerTurn}: Please select a target for ${ship_id} on ${combat}`)
+            this.displayText = `Player ${this.playerTurn}: Please select a target for ${ship_id} on ${combat}`;
             target = attacker.strategy.chooseTarget(ship, combatOrder, this.playerInput); 
             if (!target){return;}
+            this.playerInput = '';
         } else {
             target = attacker.strategy.chooseTarget(this.convertShipToDict(ship), combatOrder);
         }
@@ -463,11 +464,10 @@ class Game {
         let translation;
 
         if (player.isManual) {
-            this.displayText(`Player ${this.playerTurn}: Please type move for ${ship.name} ${ship.shipNum}`)
+            this.displayText = `Player ${this.playerTurn}: Please type move for ${ship.name} ${ship.shipNum}`;
             translation = player.strategy.chooseTranslation(translations, this.playerInput); 
-            if (!translation){
-                return 'incomplete';
-            }
+            if (!translation) {return 'incomplete';}
+            this.playerInput = '';
         } else {
             translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);
         }
@@ -565,9 +565,10 @@ class Game {
         let orderedShips
 
         if (player.isManual) {
-            this.displayText(`Player ${this.playerTurn}, pick your matinence order`)
+            this.displayText = `Player ${this.playerTurn}, pick your matinence order`
             orderedShips = player.strategy.maintOrder(shipList, this.playerInput);
             if (!orderedShips) {return 'incomplete';}
+            this.playerInput = '';
 
         } else {orderedShips = player.strategy.maintOrder(shipList);} 
 
@@ -660,9 +661,10 @@ class Game {
 
         if (player.isManual){
             // Must buy ALL tech at once
-            this.displayText(`Player ${this.playerTurn}, choose tech to buy`)
+            this.displayText = `Player ${this.playerTurn}, choose tech to buy`;
             newTech = player.strategy.buyTech(this.playerInput);
             if (!newTech){return 'incomplete';}
+            this.playerInput = '';
         }
         else {newTech = player.buyTech();}
 
@@ -692,9 +694,10 @@ class Game {
         let playerShips; // list of dicts (i.e [{"Scout", 1}, etc])
         
         if (player.isManual){
-            this.displayText(`Player ${this.playerTurn}, buy your ships`)
+            this.displayText = `Player ${this.playerTurn}, buy your ships`;
             playerShips = player.strategy.buyShips(this.playerInput);
-            if (!playerShips){return 'incomplete';}
+            if (!playerShips) {return 'incomplete';}
+            this.playerInput = '';
         }
         else {playerShips = player.buyShips();}
 
@@ -823,7 +826,8 @@ class Game {
             let data = fs.readFileSync('log.txt');	             	
             socket.emit('update UI', {	
                 board: this.board,	
-                logs: this.getLogs(data)
+                logs: this.getLogs(data),
+                promptText: this.displayText
             });
         }
     }
