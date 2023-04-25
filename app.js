@@ -45,9 +45,9 @@ io.on('connection', (socket) => {
         delete clientSockets[socketId];
     });
 
-    /* EDIT THIS */
-
     socket.emit('initialize UI');
+
+    /* EDIT THIS */
 
     socket.on('initialize game', () => {
         const strategies = [new TurtleStrat(), new InputStrat()];//[new TurtleStrat(), new TechStrat()];
@@ -80,5 +80,5 @@ io.on('connection', (socket) => {
 
 /* DON'T EDIT THIS */
 
-let port = 3001;
+let port = 3000;
 httpServer.listen(port, () => console.log(`Listening on *:${port}`));

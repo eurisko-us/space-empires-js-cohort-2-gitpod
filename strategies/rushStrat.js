@@ -21,7 +21,7 @@ class RushStrat extends ParentStrat {
         if (this.turn == 0) return [{"Battleship": 5}];
         if (cpBudget > 45) return [{"Battleship": 1}];
         return [];
-    } 
+    }
 
 }
 

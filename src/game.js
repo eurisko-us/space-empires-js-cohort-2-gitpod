@@ -37,6 +37,7 @@ class Game {
         this.phase = null;
         this.timesMvmt = 0;
         this.shipMoves = 0;
+        this.loggedCombatCoords = [];
 
         //Input Player Stuff
         this.playerInput = '';
@@ -67,7 +68,7 @@ class Game {
 
         for (let i = 0; i < 4; i++) {
             this.spawnPlanets(planetRanges[i][0], planetRanges[i][1]);
-        };
+        }
 
         for (let i = 0; i < this.players.length; i++) {
             
@@ -85,8 +86,9 @@ class Game {
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
             homeColony.setHomeColonyId();
             this.players[i].homeColony = homeColony;
-            this.players[i].aliveColonies.push(homeColony)
+            this.players[i].aliveColonies.push(homeColony);
             this.addToBoard(homeColony);
+
         }
 
         this.turn = 1;
@@ -112,11 +114,11 @@ class Game {
             this.log.turn(this.turn);
             this.phase = 'econ';
         }
-        
+
         else if (this.phase == 'econ') this.economicPhase();
         else if (this.phase == 'mvmt') this.movementPhase();
         else if (this.phase == 'combat') this.combatPhase();
-        
+
         if (this.phase == null) {
             this.turn++;
             this.winner = this.checkForWinner();
@@ -180,9 +182,7 @@ class Game {
             let manualCheck = this.moveShip(player, ship);
             if (manualCheck == 'incomplete'){return;}
             this.timesMvmt++;
-        }
-
-        else {
+        } else {
             this.timesMvmt = 0;
             this.shipMoves = 0
             this.playerInput = '';
@@ -202,6 +202,7 @@ class Game {
         let combat = this.getCombatCoords()[0];
 
         if (!combat) {
+            this.loggedCombatCoords = [];
             this.log.endPhase('Combat');
             this.uncolonizePlanets();
             this.currentPart = null;
@@ -209,11 +210,16 @@ class Game {
             return;
         }
 
+        if (!this.checkIfCoordInList(combat, this.loggedCombatCoords)) {
+            this.log.combatHappening(combat);
+            this.loggedCombatCoords.push(combat);
+        }
+
         let combatOrder = this.sortCombatOrder(combat);
 
         if (this.currentPart == null || combatOrder.indexOf(this.currentPart) == -1) {
             this.currentPart = combatOrder[0];
-        };
+        }
 
         let ship = this.currentPart;
 
@@ -221,7 +227,7 @@ class Game {
             let id = combatOrder.indexOf(this.currentPart) + 1;
             this.currentPart = (id >= combatOrder.length) ? combatOrder[0] : combatOrder[id];
             return;
-        };
+        }
 
         let attacker = this.players[ship.playerNum - 1];
         let target;
@@ -450,7 +456,6 @@ class Game {
         this.players.splice(this.players.indexOf(player), 1);
     }
 
-
     // Movement
 
     calcNumMovesPerShip(technologyLevel) {
@@ -503,7 +508,11 @@ class Game {
     canShipMove(ship) {
         let ships = this.getAllShips(ship.coords);
         // let filteredShips = ships.filter(ship => ship.name != "ColonyShip");
-        return ships.every(otherShip => otherShip.playerNum === ship.playerNum);
+        if (!ships.every(otherShip => otherShip.playerNum === ship.playerNum)) {
+            this.log.shipCantMove(ship);
+            return false;
+        }
+        return true;
     }
 
     // Combat
@@ -760,9 +769,18 @@ class Game {
 
     }
 
-
     // Miscellaneous
     
+    checkIfCoordInList(inputCoord, coordList) {
+        for (let coord of coordList) {
+            if (coord[0] == inputCoord[0] && coord[1] == inputCoord[1]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     updateSimpleBoard() { // prevents strategies from cheating
     
         let simpleBoard = this.boardRange.map(
