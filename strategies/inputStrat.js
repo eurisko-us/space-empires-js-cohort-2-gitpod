@@ -111,6 +111,17 @@ class InputStrat {
             'right': [1, 0],
             'stay':  [0, 0],
         };
+        /*
+        let inputMap = {
+            'ul':    [0, -1],
+            'ur':  [0, 1],
+            'l':  [-1, 0],
+            'r': [1, 0],
+            'dl':  [0, 0],
+            'dr': [0, 0],
+            'stay': [0, 0],
+        };
+        //*/
 
         return inputMap[input];
     }

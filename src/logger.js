@@ -94,6 +94,10 @@ class Logger {
         this.write(`\t\tPlayer ${player.playerNum} bought a ${ship.name}\n`);
     }
 
+    buyTech(player, tech) {
+        this.write(`\t\tPlayer ${player.playerNum} bought a module of ${tech}\n`);
+    }
+
     boughtNothing(player, thing) {
         this.write(`\t\tPlayer ${player.playerNum} didn't buy any ${thing}\n`);
     }

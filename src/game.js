@@ -232,8 +232,8 @@ class Game {
         let attacker = this.players[ship.playerNum - 1];
         let target;
 
-        if (attacker.isManual) {
-            this.displayText = `Player ${this.playerTurn}: Please select a target for ${ship_id} on ${combat}`;
+        if (attacker.strategy.isManual) {
+            this.displayText = `Player ${ship.playerNum}: Please select a target for ${ship.name} ${ship.shipNum} on (${combat})`;
             this.instructText = '[Target Ship Name] [Target Number]';
             target = attacker.strategy.chooseTarget(ship, combatOrder, this.playerInput); 
             if (!target){return;}
@@ -421,7 +421,7 @@ class Game {
 
         for (let shipClass of allShips) {
             if (shipName == shipClass.name) {
-                return new shipClass(player.homeColony.coords, i+1, shipNum);
+                return new shipClass([3,3], i+1, shipNum);//return new shipClass(player.homeColony.coords, i+1, shipNum);
             }
         }
 
@@ -580,7 +580,7 @@ class Game {
 
         if (player.strategy.isManual) {
             this.displayText = `Player ${this.playerTurn}, pick your matinence order`
-            this.instructText = '[Ship Name] [Ship Number], [Ship2 Name] [Ship2 Number], ...';
+            this.instructText = '[Ship Name] [Ship Num], [Ship2 Name] [Ship2 Num], ... \n Type auto to autopay';
             orderedShips = player.strategy.maintOrder(shipList, this.playerInput);
             if (!orderedShips) {return 'incomplete';}
             this.playerInput = '';
@@ -677,7 +677,7 @@ class Game {
         if (player.strategy.isManual){
             // Must buy ALL tech at once
             this.displayText = `Player ${this.playerTurn}, choose tech to buy`;
-            this.instructText = '[Tech], [Tech], [Tech] \n Just Type What To Buy \n Type None to skip';
+            this.instructText = 'Type attack, defense, movement to buy one or more tech \n Type None to skip';
             newTech = player.strategy.buyTech(this.playerInput);
             if (!newTech){return 'incomplete';}
             this.playerInput = '';
@@ -700,6 +700,7 @@ class Game {
         // add technology to player
 
         for (let tech of newTech) {
+            this.log.buyTech(player, tech)
             player.technology[tech]++;
         }
 
