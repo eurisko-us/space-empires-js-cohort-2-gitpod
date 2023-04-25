@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
     socket.emit('initialize UI');
 
     socket.on('initialize game', () => {
-        const strategies = [new TurtleStrat(), new TechStrat()];
+        const strategies = [new TurtleStrat(), new InputStrat()];//[new TurtleStrat(), new TechStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
         game.display();
@@ -80,5 +80,5 @@ io.on('connection', (socket) => {
 
 /* DON'T EDIT THIS */
 
-let port = 3000;
+let port = 3001;
 httpServer.listen(port, () => console.log(`Listening on *:${port}`));

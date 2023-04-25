@@ -32,13 +32,16 @@ class Game {
         this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
         
         // state based stuff
-        this.playerInput = '';
-        this.displayText = '';
         this.playerTurn = 0;
         this.currentPart = null;
         this.phase = null;
         this.timesMvmt = 0;
         this.shipMoves = 0;
+
+        //Input Player Stuff
+        this.playerInput = '';
+        this.displayText = '';
+        this.instructText = '';
 
     }
 
@@ -225,6 +228,7 @@ class Game {
 
         if (attacker.isManual) {
             this.displayText = `Player ${this.playerTurn}: Please select a target for ${ship_id} on ${combat}`;
+            this.instructText = '[Target Ship Name] [Target Number]';
             target = attacker.strategy.chooseTarget(ship, combatOrder, this.playerInput); 
             if (!target){return;}
             this.playerInput = '';
@@ -463,8 +467,9 @@ class Game {
         let translations = this.possibleTranslations(ship.coords);
         let translation;
 
-        if (player.isManual) {
+        if (player.strategy.isManual) {
             this.displayText = `Player ${this.playerTurn}: Please type move for ${ship.name} ${ship.shipNum}`;
+            this.instructText = 'up / down / left / right / stay';
             translation = player.strategy.chooseTranslation(translations, this.playerInput); 
             if (!translation) {return 'incomplete';}
             this.playerInput = '';
@@ -564,8 +569,9 @@ class Game {
         }
         let orderedShips
 
-        if (player.isManual) {
+        if (player.strategy.isManual) {
             this.displayText = `Player ${this.playerTurn}, pick your matinence order`
+            this.instructText = '[Ship Name] [Ship Number], [Ship2 Name] [Ship2 Number], ...';
             orderedShips = player.strategy.maintOrder(shipList, this.playerInput);
             if (!orderedShips) {return 'incomplete';}
             this.playerInput = '';
@@ -659,9 +665,10 @@ class Game {
         // buy technology
         let newTech; // list of strings (i.e. ["attack", "defense", etc])
 
-        if (player.isManual){
+        if (player.strategy.isManual){
             // Must buy ALL tech at once
             this.displayText = `Player ${this.playerTurn}, choose tech to buy`;
+            this.instructText = '[Tech], [Tech], [Tech] \n Just Type What To Buy \n Type None to skip';
             newTech = player.strategy.buyTech(this.playerInput);
             if (!newTech){return 'incomplete';}
             this.playerInput = '';
@@ -693,8 +700,9 @@ class Game {
         // buy ships
         let playerShips; // list of dicts (i.e [{"Scout", 1}, etc])
         
-        if (player.isManual){
+        if (player.strategy.isManual){
             this.displayText = `Player ${this.playerTurn}, buy your ships`;
+            this.instructText = '[Ship Name] [Amount], [Ship2 Name] [Amount2], ... \n Type None to skip';
             playerShips = player.strategy.buyShips(this.playerInput);
             if (!playerShips) {return 'incomplete';}
             this.playerInput = '';
@@ -827,7 +835,7 @@ class Game {
             socket.emit('update UI', {	
                 board: this.board,	
                 logs: this.getLogs(data),
-                promptText: this.displayText
+                infoText: [this.displayText, this.instructText]
             });
         }
     }

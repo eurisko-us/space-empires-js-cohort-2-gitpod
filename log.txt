@@ -1,5 +1,107 @@
 Begin Game
-		Spawned planet at (1,0)
-		Spawned planet at (1,6)
-		Spawned planet at (5,0)
-		Spawned planet at (5,6)
+		Spawned planet at (2,1)
+		Spawned planet at (2,4)
+		Spawned planet at (6,2)
+		Spawned planet at (6,5)
+Turn 1
+	Begin Economic Phase
+		Player 1 initially has 150 CP
+		Player 1 gained 10 CP and now has 160 CP
+		Player 1 now has 160 CP after paying maintenance
+		Player 1 didn't buy any technology
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 has 148 CP remaining
+		Player 2 initially has 150 CP
+		Player 2 gained 10 CP and now has 160 CP
+		Player 2 now has 160 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 bought a Scout
+		Player 2 has 154 CP remaining
+	End Economic Phase
+
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 0) to (3, 1)
+		Player 1 Scout 2 moved from (3, 0) to (3, 1)
+		Player 2 Scout 1 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 2
+	Begin Economic Phase
+		Player 1 initially has 148 CP
+		Player 1 gained 10 CP and now has 158 CP
+		Player 1 now has 156 CP after paying maintenance
+		Player 1 didn't buy any technology
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 has 144 CP remaining
+		Player 2 initially has 154 CP
+		Player 2 gained 10 CP and now has 164 CP
+		Player 2 now has 163 CP after paying maintenance
+		Player 2 didn't buy any technology
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Cruiser
+		Player 2 has 139 CP remaining
+	End Economic Phase
+
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 1) to (3, 1)
+		Player 1 Scout 2 moved from (3, 1) to (3, 1)
+		Player 1 Scout 3 moved from (3, 0) to (3, 0)
+		Player 1 Scout 4 moved from (3, 0) to (3, 0)
+		Player 2 Scout 1 moved from (3, 5) to (3, 4)
+		Player 2 Scout 2 moved from (3, 6) to (3, 5)
+		Player 2 Scout 3 moved from (3, 6) to (3, 5)
+		Player 2 Cruiser 1 moved from (3, 6) to (3, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 3
+	Begin Economic Phase
+		Player 1 initially has 144 CP
+		Player 1 gained 10 CP and now has 154 CP
+		Player 1 now has 150 CP after paying maintenance
+		Player 1 didn't buy any technology
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 has 138 CP remaining
+		Player 2 initially has 139 CP
+		Player 2 gained 10 CP and now has 149 CP
+		Player 2 now has 144 CP after paying maintenance
+		Player 2 didn't buy any ships
+		Player 2 has 124 CP remaining
+	End Economic Phase
+
+	Begin Movement Phase
+		Player 1 Scout 1 moved from (3, 1) to (3, 1)
+		Player 1 Scout 2 moved from (3, 1) to (3, 1)
+		Player 1 Scout 3 moved from (3, 0) to (3, 0)
+		Player 1 Scout 4 moved from (3, 0) to (3, 0)
+		Player 1 Scout 5 moved from (3, 0) to (3, 0)
+		Player 1 Scout 6 moved from (3, 0) to (3, 0)
+		Player 2 Scout 1 moved from (3, 4) to (3, 3)
+		Player 2 Scout 2 moved from (3, 5) to (3, 5)
+		Player 2 Scout 3 moved from (3, 5) to (3, 6)
+		Player 2 Cruiser 1 moved from (3, 5) to (2, 5)
+	End Movement Phase
+
+	Begin Combat Phase
+	End Combat Phase
+
+Turn 4
+	Begin Economic Phase
+		Player 1 initially has 138 CP
+		Player 1 gained 10 CP and now has 148 CP
+		Player 1 now has 142 CP after paying maintenance
+		Player 1 didn't buy any technology
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 has 130 CP remaining
+		Player 2 initially has 124 CP
+		Player 2 gained 10 CP and now has 134 CP

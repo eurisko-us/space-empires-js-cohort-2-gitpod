@@ -13,12 +13,11 @@ class InputStrat {
     // Required Functions
 
     chooseTranslation(translations, plrInput){
-        let [input, endStatement] = plrInput.split('!!');
-        if (!endStatement) {
+        if (!plrInput) {
             return;
         }
 
-        let translation = this.getInputTranslation(input)
+        let translation = this.getInputTranslation(plrInput)
 
         if (translations.find(el => this.sameArray(translation, el)) == undefined) {
             console.log('That doesnt work, turn forfeit');
@@ -28,12 +27,11 @@ class InputStrat {
     }
 
     chooseTarget(shipInfo, combatOrder, plrInput){
-        let [input, endStatement] = plrInput.split('!!');
-        if (!endStatement) {
+        if (!plrInput) {
             return;
         }
 
-        let [targName, targNum] = input.split(' ');
+        let [targName, targNum] = plrInput.split(' ');
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
         
         for (let ship of opponentShips) {
@@ -48,15 +46,18 @@ class InputStrat {
     }
 
     buyShips(plrInput){
-        let [input, endStatement] = plrInput.split('!!');
-        if (!endStatement) {
+        if (!plrInput) {
             return;
         }
+        
+        if (plrInput == 'None') {
+            return [];
+        }
 
-        let cart = input.split(', ');
+        let cart = plrInput.split(', ');
         let shipList = [];
         for (let item of cart) {
-            recipt = this.makeRecipt(item);
+            let recipt = this.makeRecipt(item);
             if (!recipt) {continue;}
             shipList.push(recipt);
         }
@@ -65,16 +66,19 @@ class InputStrat {
     }
 
     maintOrder(ships, plrInput){
-        let [input, endStatement] = plrInput.split('!!');
-        if (!endStatement) {
+        if (ships.length == 0) {
+            return [];
+        }
+
+        if (!plrInput) {
             return;
         }
 
-        let queue = input.split(', ');
+        let queue = plrInput.split(', ');
         let order = [];
         for (let shipId of queue) {
             let [name, id] = shipId.split(' ');
-            foundShip = ships.filter(ship => ship.name == name && ship.id == id);
+            let foundShip = ships.filter(ship => ship.name == name && ship.shipNum == id);
             if (foundShip.length == 0) {
                 console.log(`Something wrong was written for ${name} ${id}}`);
             }
@@ -86,11 +90,14 @@ class InputStrat {
     }
 
     buyTech(plrInput){
-        let [input, endStatement] = plrInput.split('!!');
-        if (!endStatement) {
+        if (!plrInput) {
             return;
         }
-        let tech = input.split(', ')
+        if (plrInput == 'None') {
+            return [];
+        }
+
+        let tech = plrInput.split(', ')
         return tech
     }
 
@@ -124,7 +131,9 @@ class InputStrat {
 
         if (!this.findBought(name)) {return;}
 
-        return {name: amt};
+        let recipt = {};
+        recipt[name] = amt;
+        return recipt;
     }
 
     findBought(name) {

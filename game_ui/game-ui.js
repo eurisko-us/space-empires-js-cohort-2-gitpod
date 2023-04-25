@@ -44,6 +44,7 @@ function updateElementsById() {
     autoRunButton  = document.getElementById("autoRun");
 
     promptTextHTML = document.getElementById("promptText");
+    instucTextHTML = document.getElementById("instructText");
     errorTextHTML  = document.getElementById("errorText");
     inputFormHTML  = document.getElementById("inputForm");
     inputTextHTML  = document.getElementById("inputText");
@@ -156,6 +157,8 @@ function resetBoard() {
 }
 
 function updateLogs() {
+    promptTextHTML.innerHTML = game.infoText[0];
+    instucTextHTML.innerHTML = game.infoText[1]
     logsHTML.innerHTML = '';
     for (let turn of game.logs.reverse()) {
         for (let line of turn.reverse()) {

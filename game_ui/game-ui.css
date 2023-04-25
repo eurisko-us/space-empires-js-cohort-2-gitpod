@@ -81,3 +81,7 @@ footer {
     display: inline-block;
     color: red;
 }
+
+#instructText {
+    color: blueviolet;
+}
