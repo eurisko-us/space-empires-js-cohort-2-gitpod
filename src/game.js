@@ -580,7 +580,7 @@ class Game {
 
         if (player.strategy.isManual) {
             this.displayText = `Player ${this.playerTurn}, pick your matinence order`
-            this.instructText = '[Ship Name] [Ship Num], [Ship2 Name] [Ship2 Num], ... \n Type auto to autopay';
+            this.instructText = '[Ship Name] [Ship Num], [Ship2 Name] [Ship2 Num], ... \n Type auto to autopay \n Type Remove: [maint order] to remove those ships and autopay the rest';
             orderedShips = player.strategy.maintOrder(shipList, this.playerInput);
             if (!orderedShips) {return 'incomplete';}
             this.playerInput = '';

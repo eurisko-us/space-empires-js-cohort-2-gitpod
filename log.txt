@@ -1,8 +1,8 @@
 Begin Game
-		Spawned planet at (0,0)
+		Spawned planet at (0,1)
 		Spawned planet at (0,5)
-		Spawned planet at (6,0)
-		Spawned planet at (6,6)
+		Spawned planet at (5,2)
+		Spawned planet at (4,5)
 Turn 1
 	Begin Economic Phase
 		Player 1 initially has 150 CP
@@ -40,13 +40,8 @@ Turn 1
 		Combat is happening at (3, 3)
 			Attacker: Player 1 Scout 1
 			Defender: Player 2 Scout 6
-			Hit!
-			Player 2 Scout 6 hp: 1 -> 0
-			Player 2 Scout 6 was destroyed
-			Attacker: Player 2 Scout 1
-			Defender: Player 1 Scout 1
 			Miss!
-			Attacker: Player 2 Scout 2
+			Attacker: Player 2 Scout 1
 			Defender: Player 1 Scout 1
 			Hit!
 			Player 1 Scout 1 hp: 1 -> 0
@@ -63,3 +58,5 @@ Turn 2
 		Player 1 has 158 CP remaining
 		Player 2 initially has 98 CP
 		Player 2 gained 10 CP and now has 108 CP
+		Player 2 lost Player 2 Scout 1 due to insufficient CP to pay maintenance
+		Player 2 now has 102 CP after paying maintenance

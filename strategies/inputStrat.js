@@ -13,9 +13,7 @@ class InputStrat {
     // Required Functions
 
     chooseTranslation(translations, plrInput){
-        if (!plrInput) {
-            return;
-        }
+        if (!plrInput) {return;}
 
         let translation = this.getInputTranslation(plrInput)
 
@@ -27,32 +25,23 @@ class InputStrat {
     }
 
     chooseTarget(shipInfo, combatOrder, plrInput){
-        if (!plrInput) {
-            return;
-        }
+        if (!plrInput) {return;}
 
         let [targName, targNum] = plrInput.split(' ');
         let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
         
         for (let ship of opponentShips) {
-            if (ship.name == targName && ship.shipNum == targNum) {
-                return ship;
-            }
+            if (ship.name == targName && ship.shipNum == targNum) {return ship;}
         }
 
-        console.log(`Opponent does not have a ${opponent}, try again`);
+        console.log(`Opponent does not have ${targName} ${targNum}, try again`);
         console.log('just gonna skip that for now');
         return opponentShips[Math.floor(Math.random() * opponentShips.length)];
     }
 
     buyShips(plrInput){
-        if (!plrInput) {
-            return;
-        }
-        
-        if (plrInput == 'None') {
-            return [];
-        }
+        if (!plrInput) {return;}
+        if (plrInput == 'None') {return [];}
 
         let cart = plrInput.split(', ');
         let shipList = [];
@@ -66,36 +55,25 @@ class InputStrat {
     }
 
     maintOrder(ships, plrInput){
-        if (ships.length == 0) {
-            return [];
+        if (ships.length == 0) {return [];}
+        if (!plrInput) {return;}
+
+        if (plrInput == 'auto') {return ships.sort((a, b) => a.maintCost - b.maintCost);}
+
+        if (plrInput.split(': ')[1]) {
+            let remove = plrInput.split(': ')[1]
+            remove = this.splitMaintOrder(ships, remove);
+            let maint = ships.filter(plrShip => !remove.some(ordShip => ordShip.id == plrShip.id));
+            return maint.sort((a, b) => a.maintCost - b.maintCost);
         }
 
-        if (!plrInput) {
-            return;
-        }
-
-        let queue = plrInput.split(', ');
-        let order = [];
-        for (let shipId of queue) {
-            let [name, id] = shipId.split(' ');
-            let foundShip = ships.filter(ship => ship.name == name && ship.shipNum == id);
-            if (foundShip.length == 0) {
-                console.log(`Something wrong was written for ${name} ${id}}`);
-            }
-            order.push(...foundShip);
-        }
-
-        return order;
+        return this.splitMaintOrder(ships, plrInput);
         
     }
 
     buyTech(plrInput){
-        if (!plrInput) {
-            return;
-        }
-        if (plrInput == 'None') {
-            return [];
-        }
+        if (!plrInput) {return;}
+        if (plrInput == 'None') {return [];}
 
         let tech = plrInput.split(', ')
         return tech
@@ -113,12 +91,12 @@ class InputStrat {
         };
         /*
         let inputMap = {
-            'ul':    [0, -1],
-            'ur':  [0, 1],
+            'ul':    [-1, -1],
+            'ur':  [0, -1],
             'l':  [-1, 0],
             'r': [1, 0],
-            'dl':  [0, 0],
-            'dr': [0, 0],
+            'dl':  [-1, 1],
+            'dr': [0, 1],
             'stay': [0, 0],
         };
         //*/
@@ -128,9 +106,7 @@ class InputStrat {
 
     sameArray(array1, array2) {
         for (let i = 0; i < array1.length; i++) {
-            if (array1[i] != array2[i]) {
-                return false;
-            }
+            if (array1[i] != array2[i]) {return false;}
         }
         return true;
     }
@@ -152,6 +128,22 @@ class InputStrat {
             if (name == ship.name) {return ship;}
         }
         return;
+    }
+
+    splitMaintOrder(ships, maintOrder) {
+        let queue = maintOrder.split(', ');
+        let order = [];
+        for (let shipId of queue) {
+            let [name, id] = shipId.split(' ');
+            let foundShip = ships.filter(ship => ship.name == name && ship.shipNum == id);
+            if (foundShip.length == 0) {
+                console.log(`Something wrong was written for ${name} ${id}}`);
+                continue;
+            }
+            order.push(...foundShip);
+        }
+
+        return order;
     }
 
 }
