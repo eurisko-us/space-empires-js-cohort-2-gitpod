@@ -475,7 +475,7 @@ class Game {
         if (player.strategy.isManual) {
             this.displayText = `Player ${this.playerTurn}: Please type move for ${ship.name} ${ship.shipNum}`;
             this.instructText = 'up / down / left / right / stay';
-            translation = player.strategy.chooseTranslation(translations, this.playerInput); 
+            translation = player.strategy.chooseTranslation(translations, ship.coords, this.playerInput); 
             if (!translation) {return 'incomplete';}
             this.playerInput = '';
         } else {

@@ -12,15 +12,15 @@ class InputStrat {
 
     // Required Functions
 
-    chooseTranslation(translations, plrInput){
+    chooseTranslation(translations, shipCoords, plrInput){
         if (!plrInput) {return;}
 
-        let translation = this.getInputTranslation(plrInput)
-
+        let translation = this.getInputTranslation(plrInput, shipCoords[1])
+        /*
         if (translations.find(el => this.sameArray(translation, el)) == undefined) {
             console.log('That doesnt work, turn forfeit');
             return [0, 0];
-        }
+        }*/
         return translation;
     }
 
@@ -75,13 +75,20 @@ class InputStrat {
         if (!plrInput) {return;}
         if (plrInput == 'None') {return [];}
 
-        let tech = plrInput.split(', ')
-        return tech
+        let tech = plrInput.split(', ');
+        let cart = [];
+        for (let item of tech) {
+            if (item == 'atk') {cart.push('attack');}
+            else if (item == 'def') {cart.push('defense');}
+            else if (item == 'mvmt') {cart.push('movement');}
+        }
+        return cart;
     }
 
     // Helper && Translator Functions
 
-    getInputTranslation(input) {
+    getInputTranslation(input, col) {
+        /*
         let inputMap = {
             'up':    [0, -1],
             'down':  [0, 1],
@@ -89,14 +96,15 @@ class InputStrat {
             'right': [1, 0],
             'stay':  [0, 0],
         };
-        /*
+        //*/
+        ///*
         let inputMap = {
-            'ul':    [-1, -1],
-            'ur':  [0, -1],
+            'ur':    [(col)%2, -1],
+            'ul':   [(col+1)%2, -1],
             'l':  [-1, 0],
             'r': [1, 0],
-            'dl':  [-1, 1],
-            'dr': [0, 1],
+            'dr':  [(col)%2, 1],
+            'dl': [(col+1)%2, 1],
             'stay': [0, 0],
         };
         //*/
