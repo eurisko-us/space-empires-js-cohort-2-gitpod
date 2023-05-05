@@ -1,3 +1,13 @@
+/*
+
+    Current bugs:
+
+    - the hexagons are only in a 7 by 7 grid if the window is the right size
+    - there are random planets all over which are messing up the coloring (ask Cayden)
+    - we should explain which possibleTranslations() correspond with which moves (ask Anton)
+
+*/
+
 const socket = io();
 
 const NUM_HEXAGONS = 49;
