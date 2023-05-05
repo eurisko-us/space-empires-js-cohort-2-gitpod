@@ -73,7 +73,7 @@ function createBoard() {
 function resetBoard() {
     for (let hexagonHTML of hexagonHTMLs) {
         hexagonHTML.style.backgroundColor = 'black';
-        // hexagonHTML.innerHTML = INVIS_CHAR;
+        hexagonHTML.firstChild.innerHTML = INVIS_CHAR;
     }
 }
 
