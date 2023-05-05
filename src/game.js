@@ -8,7 +8,7 @@ import Planet from './planet.js'
 
 class Game {
     
-    constructor(clientSockets, strategies, refreshRate=1000, maxTurns=1000, cpPerRound=10) {
+    constructor(clientSockets, strategies, refreshRate=200, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
         this.boardSize = 7;
@@ -516,8 +516,19 @@ class Game {
     }
 
     possibleTranslations(coords) {
+        
         let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        
+        if (coords[1] % 2 == 0) {
+            allTranslations.push([-1, 1]);
+            allTranslations.push([-1, -1]);
+        } else {
+            allTranslations.push([1, 1]);
+            allTranslations.push([1, -1]);
+        }
+
         return allTranslations.filter(t => this.checkInBounds(this.translate(t, coords)));
+    
     }
 
     canShipMove(ship) {
