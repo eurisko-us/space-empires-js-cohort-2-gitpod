@@ -93,7 +93,10 @@ class Game {
     }
 
     start() {
-        this.stopInterval = setInterval(() => this.run(), this.refreshRate); // this.refreshRate is how often this.run() runs (in milliseconds)
+        // this.refreshRate is how often this.run() runs (in milliseconds)
+        if (!this.stopInterval) {
+            this.stopInterval = setInterval(() => this.run(), this.refreshRate);
+        }
     }
 
     run() {
@@ -102,7 +105,7 @@ class Game {
 
         if (this.winner) {
             this.log.playerWin(this.winner);
-            clearInterval(this.stopInterval);
+            this.endGame();
             return;
         }
 
@@ -128,6 +131,7 @@ class Game {
 
     endGame() {
         clearInterval(this.stopInterval);
+        this.stopInterval = null;
     }
 
     checkForWinner() {

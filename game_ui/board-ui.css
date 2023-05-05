@@ -1,0 +1,45 @@
+/* Note: prefixing a word with "--" turns it into a variable */
+
+#board {
+    display: flex;
+    --size: 50px;
+    --margin: calc(var(--size) / 12.5);
+    --gradient: calc(1.732 * var(--size) + 4 * var(--margin) - 1px);
+}
+
+.hexagon {
+    background-color: black;
+    color: white;
+}
+
+#container {
+    font-size: 1;
+}
+
+.hexagonText {
+    text-align: center;
+    position: relative;
+    left: calc(-1 * var(--margin));
+    height: var(--size);
+    line-height: var(--size);
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#container div {
+    width: var(--size);
+    margin: var(--margin);
+    height: calc(var(--size) * 1.1547);
+    display: inline-block;
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+    margin-bottom: calc(var(--margin) - var(--size) * 0.2886);
+}
+
+#container::before {
+    content: "";
+    width: calc(var(--size)/2 + var(--margin));
+    float: left;
+    height: 100%;
+    shape-outside: repeating-linear-gradient(#0000 0 calc(var(--gradient) - 3px), #000 0 var(--gradient));
+}
