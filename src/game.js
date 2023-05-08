@@ -8,7 +8,7 @@ import Planet from './planet.js'
 
 class Game {
     
-    constructor(clientSockets, strategies, refreshRate=100, maxTurns=1000, cpPerRound=10) {
+    constructor(clientSockets, strategies, refreshRate=200, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
         this.boardSize = 7;
@@ -501,8 +501,19 @@ class Game {
     }
 
     possibleTranslations(coords) {
+        
         let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+        
+        if (coords[1] % 2 == 0) {
+            allTranslations.push([-1, 1]);
+            allTranslations.push([-1, -1]);
+        } else {
+            allTranslations.push([1, 1]);
+            allTranslations.push([1, -1]);
+        }
+
         return allTranslations.filter(t => this.checkInBounds(this.translate(t, coords)));
+    
     }
 
     canShipMove(ship) {
@@ -580,7 +591,7 @@ class Game {
 
         if (player.strategy.isManual) {
             this.displayText = `Player ${this.playerTurn+1}, pick your matinence order`
-            this.instructText = '[Ship Name] [Ship Num], [Ship2 Name] [Ship2 Num], ... \n Type auto to autopay \n Type Remove: [maint order] to remove those ships and autopay the rest';
+            this.instructText = '[ShipName] [ShipNum], [Ship2Name] [Ship2Num], ... \n Type auto to autopay \n Type Remove: [MaintOrder] to remove those ships and autopay the rest';
             orderedShips = player.strategy.maintOrder(shipList, this.playerInput);
             if (!orderedShips) {return 'incomplete';}
             this.playerInput = '';
@@ -677,7 +688,7 @@ class Game {
         if (player.strategy.isManual){
             // Must buy ALL tech at once
             this.displayText = `Player ${this.playerTurn+1}, choose tech to buy`;
-            this.instructText = 'Type attack, defense, movement to buy one or more tech \n Type None to skip';
+            this.instructText = 'Type atk, def mvmt to buy one or more tech \n Type None to skip';
             newTech = player.strategy.buyTech(this.playerInput);
             if (!newTech){return 'incomplete';}
             this.playerInput = '';
@@ -712,7 +723,7 @@ class Game {
         
         if (player.strategy.isManual){
             this.displayText = `Player ${this.playerTurn+1}, buy your ships`;
-            this.instructText = '[Ship Name] [Amount], [Ship2 Name] [Amount2], ... \n Type None to skip';
+            this.instructText = '[ShipName] [Amount], [Ship2Name] [Amount2], ... \n Type None to skip';
             playerShips = player.strategy.buyShips(this.playerInput);
             if (!playerShips) {return 'incomplete';}
             this.playerInput = '';
