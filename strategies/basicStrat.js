@@ -18,7 +18,7 @@ class BasicStrat extends ParentStrat {
     }
 
     buyShips(cpBudget) {
-        return [{"Scout": 1}];
+        return []//[{"Scout": 1}];
     }
 
 }

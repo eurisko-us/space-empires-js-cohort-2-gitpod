@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
     /* EDIT THIS */
 
     socket.on('initialize game', () => {
-        const strategies = [new BasicStrat(), new InputStrat()];//[new TurtleStrat(), new TechStrat()];
+        const strategies = [new InputStrat(), new InputStrat()];//[new TurtleStrat(), new TechStrat()];
         game = new Game(clientSockets, strategies);
         game.initializeGame();
         game.display();

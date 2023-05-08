@@ -1,269 +1,43 @@
 Begin Game
-		Spawned planet at (2,0)
-		Spawned planet at (0,5)
-		Spawned planet at (5,1)
-		Spawned planet at (6,5)
+		Spawned planet at (1,0)
+		Spawned planet at (2,5)
+		Spawned planet at (5,0)
+		Spawned planet at (5,6)
 Turn 1
 	Begin Economic Phase
 		Player 1 initially has 150 CP
 		Player 1 gained 10 CP and now has 160 CP
-		Player 1 didn't buy any ships
-		Player 1 has 160 CP remaining
+		Player 1 now has 160 CP after paying maintenance
+		Player 1 didn't buy any technology
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 bought a Scout
+		Player 1 has 142 CP remaining
 		Player 2 initially has 150 CP
 		Player 2 gained 10 CP and now has 160 CP
+		Player 2 now has 160 CP after paying maintenance
+		Player 2 didn't buy any technology
 		Player 2 bought a Scout
-		Player 2 has 154 CP remaining
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 bought a Scout
+		Player 2 has 40 CP remaining
 	End Economic Phase
 
 	Begin Movement Phase
-		Player 2 Scout 1 moved from (3, 3) to (3, 2)
-	End Movement Phase
-
-Turn 2
-	Begin Economic Phase
-		Player 1 initially has 160 CP
-		Player 1 gained 10 CP and now has 170 CP
-		Player 1 didn't buy any ships
-		Player 1 has 170 CP remaining
-		Player 2 initially has 154 CP
-		Player 2 gained 10 CP and now has 164 CP
-		Player 2 didn't buy any ships
-		Player 2 has 164 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (3, 2) to (3, 3)
-	End Movement Phase
-
-Turn 3
-	Begin Economic Phase
-		Player 1 initially has 170 CP
-		Player 1 gained 10 CP and now has 180 CP
-		Player 1 didn't buy any ships
-		Player 1 has 180 CP remaining
-		Player 2 initially has 164 CP
-		Player 2 gained 10 CP and now has 174 CP
-		Player 2 didn't buy any ships
-		Player 2 has 174 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (3, 3) to (4, 2)
-	End Movement Phase
-
-Turn 4
-	Begin Economic Phase
-		Player 1 initially has 180 CP
-		Player 1 gained 10 CP and now has 190 CP
-		Player 1 didn't buy any ships
-		Player 1 has 190 CP remaining
-		Player 2 initially has 174 CP
-		Player 2 gained 10 CP and now has 184 CP
-		Player 2 didn't buy any ships
-		Player 2 has 184 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (4, 2) to (4, 1)
-	End Movement Phase
-
-Turn 5
-	Begin Economic Phase
-		Player 1 initially has 190 CP
-		Player 1 gained 10 CP and now has 200 CP
-		Player 1 didn't buy any ships
-		Player 1 has 200 CP remaining
-		Player 2 initially has 184 CP
-		Player 2 gained 10 CP and now has 194 CP
-		Player 2 didn't buy any ships
-		Player 2 has 194 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (4, 1) to (4, 0)
-	End Movement Phase
-
-Turn 6
-	Begin Economic Phase
-		Player 1 initially has 200 CP
-		Player 1 gained 10 CP and now has 210 CP
-		Player 1 didn't buy any ships
-		Player 1 has 210 CP remaining
-		Player 2 initially has 194 CP
-		Player 2 gained 10 CP and now has 204 CP
-		Player 2 didn't buy any ships
-		Player 2 has 204 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (4, 0) to (4, 1)
-	End Movement Phase
-
-Turn 7
-	Begin Economic Phase
-		Player 1 initially has 210 CP
-		Player 1 gained 10 CP and now has 220 CP
-		Player 1 didn't buy any ships
-		Player 1 has 220 CP remaining
-		Player 2 initially has 204 CP
-		Player 2 gained 10 CP and now has 214 CP
-		Player 2 didn't buy any ships
-		Player 2 has 214 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (4, 1) to (3, 1)
-	End Movement Phase
-
-Turn 8
-	Begin Economic Phase
-		Player 1 initially has 220 CP
-		Player 1 gained 10 CP and now has 230 CP
-		Player 1 didn't buy any ships
-		Player 1 has 230 CP remaining
-		Player 2 initially has 214 CP
-		Player 2 gained 10 CP and now has 224 CP
-		Player 2 didn't buy any ships
-		Player 2 has 224 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (3, 1) to (3, 2)
-	End Movement Phase
-
-Turn 9
-	Begin Economic Phase
-		Player 1 initially has 230 CP
-		Player 1 gained 10 CP and now has 240 CP
-		Player 1 didn't buy any ships
-		Player 1 has 240 CP remaining
-		Player 2 initially has 224 CP
-		Player 2 gained 10 CP and now has 234 CP
-		Player 2 didn't buy any ships
-		Player 2 has 234 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (3, 2) to (3, 3)
-	End Movement Phase
-
-Turn 10
-	Begin Economic Phase
-		Player 1 initially has 240 CP
-		Player 1 gained 10 CP and now has 250 CP
-		Player 1 didn't buy any ships
-		Player 1 has 250 CP remaining
-		Player 2 initially has 234 CP
-		Player 2 gained 10 CP and now has 244 CP
-		Player 2 didn't buy any ships
-		Player 2 has 244 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (3, 3) to (4, 4)
-	End Movement Phase
-
-Turn 11
-	Begin Economic Phase
-		Player 1 initially has 250 CP
-		Player 1 gained 10 CP and now has 260 CP
-		Player 1 didn't buy any ships
-		Player 1 has 260 CP remaining
-		Player 2 initially has 244 CP
-		Player 2 gained 10 CP and now has 254 CP
-		Player 2 didn't buy any ships
-		Player 2 has 254 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (4, 4) to (4, 5)
-	End Movement Phase
-
-Turn 12
-	Begin Economic Phase
-		Player 1 initially has 260 CP
-		Player 1 gained 10 CP and now has 270 CP
-		Player 1 didn't buy any ships
-		Player 1 has 270 CP remaining
-		Player 2 initially has 254 CP
-		Player 2 gained 10 CP and now has 264 CP
-		Player 2 didn't buy any ships
-		Player 2 has 264 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (4, 5) to (4, 6)
-	End Movement Phase
-
-Turn 13
-	Begin Economic Phase
-		Player 1 initially has 270 CP
-		Player 1 gained 10 CP and now has 280 CP
-		Player 1 didn't buy any ships
-		Player 1 has 280 CP remaining
-		Player 2 initially has 264 CP
-		Player 2 gained 10 CP and now has 274 CP
-		Player 2 didn't buy any ships
-		Player 2 has 274 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (4, 6) to (3, 6)
-	End Movement Phase
-
-Turn 14
-	Begin Economic Phase
-		Player 1 initially has 280 CP
-		Player 1 gained 10 CP and now has 290 CP
-		Player 1 didn't buy any ships
-		Player 1 has 290 CP remaining
-		Player 2 initially has 274 CP
-		Player 2 gained 10 CP and now has 284 CP
-		Player 2 didn't buy any ships
-		Player 2 has 284 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (3, 6) to (2, 6)
-	End Movement Phase
-
-Turn 15
-	Begin Economic Phase
-		Player 1 initially has 290 CP
-		Player 1 gained 10 CP and now has 300 CP
-		Player 1 didn't buy any ships
-		Player 1 has 300 CP remaining
-		Player 2 initially has 284 CP
-		Player 2 gained 10 CP and now has 294 CP
-		Player 2 didn't buy any ships
-		Player 2 has 294 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (2, 6) to (1, 6)
-	End Movement Phase
-
-Turn 16
-	Begin Economic Phase
-		Player 1 initially has 300 CP
-		Player 1 gained 10 CP and now has 310 CP
-		Player 1 didn't buy any ships
-		Player 1 has 310 CP remaining
-		Player 2 initially has 294 CP
-		Player 2 gained 10 CP and now has 304 CP
-		Player 2 didn't buy any ships
-		Player 2 has 304 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Scout 1 moved from (1, 6) to (1, 5)
-	End Movement Phase
-
-Turn 17
-	Begin Economic Phase
-		Player 1 initially has 310 CP
-		Player 1 gained 10 CP and now has 320 CP
-		Player 1 didn't buy any ships
-		Player 1 has 320 CP remaining
-		Player 2 initially has 304 CP
-		Player 2 gained 10 CP and now has 314 CP

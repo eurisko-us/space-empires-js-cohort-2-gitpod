@@ -421,7 +421,7 @@ class Game {
 
         for (let shipClass of allShips) {
             if (shipName == shipClass.name) {
-                return new shipClass([3,3], i+1, shipNum);//return new shipClass(player.homeColony.coords, i+1, shipNum);
+                return new shipClass(player.homeColony.coords, i+1, shipNum);
             }
         }
 
@@ -473,8 +473,8 @@ class Game {
         let translation;
 
         if (player.strategy.isManual) {
-            this.displayText = `Player ${this.playerTurn}: Please type move for ${ship.name} ${ship.shipNum}`;
-            this.instructText = 'up / down / left / right / stay';
+            this.displayText = `Player ${ship.playerNum}: Please type move for ${ship.name} ${ship.shipNum}`;
+            this.instructText = 'ur / ul / l / r / dr / dl / stay';
             translation = player.strategy.chooseTranslation(translations, ship.coords, this.playerInput); 
             if (!translation) {return 'incomplete';}
             this.playerInput = '';
@@ -579,7 +579,7 @@ class Game {
         let orderedShips
 
         if (player.strategy.isManual) {
-            this.displayText = `Player ${this.playerTurn}, pick your matinence order`
+            this.displayText = `Player ${this.playerTurn+1}, pick your matinence order`
             this.instructText = '[Ship Name] [Ship Num], [Ship2 Name] [Ship2 Num], ... \n Type auto to autopay \n Type Remove: [maint order] to remove those ships and autopay the rest';
             orderedShips = player.strategy.maintOrder(shipList, this.playerInput);
             if (!orderedShips) {return 'incomplete';}
@@ -676,7 +676,7 @@ class Game {
 
         if (player.strategy.isManual){
             // Must buy ALL tech at once
-            this.displayText = `Player ${this.playerTurn}, choose tech to buy`;
+            this.displayText = `Player ${this.playerTurn+1}, choose tech to buy`;
             this.instructText = 'Type attack, defense, movement to buy one or more tech \n Type None to skip';
             newTech = player.strategy.buyTech(this.playerInput);
             if (!newTech){return 'incomplete';}
@@ -711,7 +711,7 @@ class Game {
         let playerShips; // list of dicts (i.e [{"Scout", 1}, etc])
         
         if (player.strategy.isManual){
-            this.displayText = `Player ${this.playerTurn}, buy your ships`;
+            this.displayText = `Player ${this.playerTurn+1}, buy your ships`;
             this.instructText = '[Ship Name] [Amount], [Ship2 Name] [Amount2], ... \n Type None to skip';
             playerShips = player.strategy.buyShips(this.playerInput);
             if (!playerShips) {return 'incomplete';}

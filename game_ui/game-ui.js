@@ -28,8 +28,8 @@ socket.on('initialize UI', () => {
 
 socket.on('update UI', (gameState) => {
     game = gameState;
-    updateElementsById();
     resetBoard();
+    updateElementsById();
     updateObjType('Ship', ['red', 'blue'], 'Ship');
     updateObjType('Colony', ['#ff8080', '#a080ff'], 'HC');
     updateLogs();
@@ -74,7 +74,7 @@ function createBoard() {
 function resetBoard() {
     for (let hexagonHTML of hexagonHTMLs) {
         hexagonHTML.style.backgroundColor = 'black';
-        // hexagonHTML.innerHTML = INVIS_CHAR;
+        hexagonHTML.firstChild.innerHTML = INVIS_CHAR;
     }
 }
 
