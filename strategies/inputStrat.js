@@ -87,7 +87,7 @@ class InputStrat {
 
     // Helper && Translator Functions
 
-    getInputTranslation(input, col) {
+    getInputTranslation(input, row) {
         /*
         let inputMap = {
             'up':    [0, -1],
@@ -99,12 +99,12 @@ class InputStrat {
         //*/
         ///*
         let inputMap = {
-            'ur':    [(col)%2, -1],
-            'ul':   [(col+1)%2, -1],
+            'ur':    [(row)%2, -1],
+            'ul':   [-(row+1)%2, -1],
             'l':  [-1, 0],
             'r': [1, 0],
-            'dr':  [(col)%2, 1],
-            'dl': [(col+1)%2, 1],
+            'dr':  [(row)%2, 1],
+            'dl': [-(row+1)%2, 1],
             'stay': [0, 0],
         };
         //*/
