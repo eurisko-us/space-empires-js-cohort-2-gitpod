@@ -1,10 +1,12 @@
 import fs from 'fs';
 import assert from 'assert';
-import { allShips } from './ships.js';
+
 import Player from './player.js';
-import Colony from './colony.js';
 import Logger from './logger.js';
-import Planet from './planet.js';
+
+import { allShips } from './objects/ships.js';
+import Colony from './objects/colony.js';
+import Planet from './objects/planet.js';
 
 class Game {
     

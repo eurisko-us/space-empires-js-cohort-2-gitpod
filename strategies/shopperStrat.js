@@ -1,4 +1,4 @@
-import { nullInstances } from '../src/ships.js';
+import { nullInstances } from '../src/objects/ships.js';
 import ParentStrat from './parentStrat.js';
 
 // moves towards opponent home colony, buys random ship

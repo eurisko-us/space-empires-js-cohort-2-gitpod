@@ -1,4 +1,4 @@
-import { allShips } from './ships.js';
+import { allShips } from './objects/ships.js';
 
 class Player {
 
