@@ -1,10 +1,10 @@
 /*
 
     Current bugs:
-
+    
     - the hexagons are only in a 7 by 7 grid if the window is the right size
-    - there are random planets all over which are messing up the coloring (ask Cayden)
-    - we should explain which possibleTranslations() correspond with which moves (ask Anton)
+    - board is not vertically OR horizontally centered
+    - board isn't always cleared when the game is ended
 
 */
 
@@ -19,15 +19,6 @@ let gameIsStarted = false;
 let hexagonHTMLs;
 let logsHTML;
 let squareInfoHTML;
-
-let initGameButton;
-let nextTurnButton;
-let autoRunButton;
-let endGameButton;
-
-let promptTextHTML;
-let errorTextHTML;
-let inputFormHTML;
 let inputTextHTML;
 
 socket.on('initialize UI', () => {
@@ -37,31 +28,26 @@ socket.on('initialize UI', () => {
 });
 
 socket.on('update UI', (gameState) => {
+
     game = gameState;
-    resetBoard();
+
     updateElementsById();
-    updateObjType('Ship', ['red', 'blue'], 'Ship');
-    updateObjType('Colony', ['#ff8080', '#a080ff'], 'HC');
+    resetBoard();
+
+    updateObjType('Ship', ['#FF0000', '#0000FF'], 'Ship');
+    updateObjType('Colony', ['#FF8080', '#89CFF0'], 'HC');
+    updateObjType('Planet', ['#008000', '#008000'], 'Planet');
+
     updateLogs();
+
 });
 
 function updateElementsById() {
-
-    hexagonHTMLs   = document.getElementsByClassName("hexagon");
-    logsHTML       = document.getElementById("logs");
+    hexagonHTMLs = document.getElementsByClassName("hexagon");
+    logsHTML = document.getElementById("logs");
     squareInfoHTML = document.getElementById("squareInfo");
-    
-    initGameButton = document.getElementById("initGame");
-    endGameButton  = document.getElementById("endGame");
-    nextTurnButton = document.getElementById("nextTurn");
-    autoRunButton  = document.getElementById("autoRun");
-
-    promptTextHTML = document.getElementById("promptText");
+    inputTextHTML = document.getElementById("inputText");
     instucTextHTML = document.getElementById("instructText");
-    errorTextHTML  = document.getElementById("errorText");
-    inputFormHTML  = document.getElementById("inputForm");
-    inputTextHTML  = document.getElementById("inputText");
-
 }
 
 function createBoard() {
@@ -91,21 +77,25 @@ function resetBoard() {
 function createEventListeners() {
     
     for (let hexagonHTML of hexagonHTMLs) {
-        hexagonHTML.addEventListener("click", e => {
-            if (gameIsStarted) updateSquareInfo(hexagonHTML.id);
+        hexagonHTML.addEventListener("click", _ => {
+            if (gameIsStarted) {
+                updateSquareInfo(hexagonHTML.id);
+            }
         });
     }
 
-    initGameButton.addEventListener("click", () => {
+    document.getElementById("initGame").addEventListener("click", () => {
         if (!gameIsStarted) {
             socket.emit('initialize game');
             gameIsStarted = true;
         }
     });
 
-    endGameButton.addEventListener("click", () => {
+    document.getElementById("endGame").addEventListener("click", () => {
         if (gameIsStarted) {
-            
+
+            socket.emit('end game');
+
             updateElementsById();
             resetBoard();
 
@@ -113,24 +103,22 @@ function createEventListeners() {
             squareInfoHTML.innerHTML = '';
             gameIsStarted = false;
 
-            socket.emit('end game');
-
         }
     });
 
-    nextTurnButton.addEventListener("click", () => {
+    document.getElementById("nextTurn").addEventListener("click", () => {
         if (gameIsStarted) {
             socket.emit('next turn');
         }
     });
 
-    autoRunButton.addEventListener("click", () => {
+    document.getElementById("autoRun").addEventListener("click", () => {
         if (gameIsStarted) {
             socket.emit('auto run');
         }
     });
 
-    inputFormHTML.addEventListener('submit', (e) => {
+    document.getElementById("inputForm").addEventListener('submit', (e) => {
 
         if (gameIsStarted) {
 
@@ -160,7 +148,8 @@ function updateObjType(objType, colors, text) {
 
         for (let obj of game.board[y][x]) {
             if (obj.objType === objType) {
-                hexagonHTML.style.backgroundColor = colors[game.board[y][x][0].playerNum - 1];
+                let colorIndex = (objType == "Planet") ? 0 : (game.board[y][x][0].playerNum - 1);
+                hexagonHTML.style.backgroundColor = colors[colorIndex];
                 hexagonHTML.firstChild.innerHTML = text;
             }
         }
@@ -193,10 +182,20 @@ function updateSquareInfo(id) {
     
     for (let obj of game.board[y][x]) {
 
-        squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>: hp: ${obj.hp}`;
+        squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>`;
 
         if (obj.objType == 'Ship') {
-            squareInfoHTML.innerHTML += `, attack: ${obj.atk}, defense: ${obj.df}, cp cost: ${obj.cpCost}, maintenance cost: ${obj.maintCost}`;
+            squareInfoHTML.innerHTML += `: 
+                hp: ${obj.hp}, 
+                attack: ${obj.atk}, 
+                defense: ${obj.df}, 
+                cp cost: ${obj.cpCost}, 
+                maintenance cost: ${obj.maintCost}
+            `;
+        }
+        
+        else if (obj.objType == 'Colony') {
+            squareInfoHTML.innerHTML += `: hp: ${obj.hp}`;
         }
 
         squareInfoHTML.innerHTML += `<br>`;

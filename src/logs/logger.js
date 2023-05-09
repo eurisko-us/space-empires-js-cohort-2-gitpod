@@ -2,7 +2,7 @@ import { writeFileSync, appendFileSync } from 'fs';
 
 class Logger {
     
-    constructor(filename='log.txt') {
+    constructor(filename='./src/logs/log.txt') {
         this.filename = filename;
     }
 

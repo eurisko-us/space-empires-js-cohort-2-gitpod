@@ -1,21 +1,20 @@
 import fs from 'fs';
-import assert, { throws } from 'assert';
-import { allShips } from './ships.js';
+import assert from 'assert';
 import Player from './player.js';
+import Logger from './../logs/logger.js';
+import { allShips } from './ships.js';
 import Colony from './colony.js';
-import Logger from './logger.js';
-import Planet from './planet.js'
+import Planet from './planet.js';
+
 
 class Game {
     
     constructor(clientSockets, strategies, refreshRate=200, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
-        this.boardSize = 7;
+        this.refreshRate = refreshRate; // how often this.run() is called, in milliseconds
         this.maxTurns = maxTurns;
-        this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
-        this.stopInterval = null;
     
         this.log = new Logger();
         this.log.clear();
@@ -25,12 +24,11 @@ class Game {
 
         this.board = [];
         this.turn = 0;
-        this.planets = []
+        this.planets = [];
         this.winner = null;
 
-        this.boardRange = [...Array(this.boardSize).keys()];
-        this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
-        
+        this.stopInterval = null;
+
         // state based stuff
         this.playerTurn = 0;
         this.currentPart = null;
@@ -46,18 +44,20 @@ class Game {
 
     }
 
-    // Initializing and running the game
+    // Initialize / Run Game
 
     initializeGame() {
 
         // create board
 
-        for (let i = 0; i < this.boardSize; i++) {
+        for (let i = 0; i < 7; i++) {
             this.board.push([]);
-            for (let j = 0; j < this.boardSize; j++) {
+            for (let j = 0; j < 7; j++) {
                 this.board[i].push([]);
             }
         }
+
+        // spawn planets
 
         const planetRanges = {
             0: [[0, 1, 2], [0, 1, 2]],
@@ -70,20 +70,19 @@ class Game {
             this.spawnPlanets(planetRanges[i][0], planetRanges[i][1]);
         }
 
+        // spawn home colonies
+
+        const homeColonyCoordsMap = {
+            0: [3, 0],
+            1: [3, 6],
+            2: [0, 3],
+            3: [3, 3]
+        }
+
         for (let i = 0; i < this.players.length; i++) {
             
-            // buy home colony
-            
-            const halfBoardSize = (this.boardSize - 1) / 2;
-
-            const homeColonyCoordsMap = {
-                0: [halfBoardSize, 0],
-                1: [halfBoardSize, this.boardSize - 1],
-                2: [0, halfBoardSize],
-                3: [this.boardSize - 1, halfBoardSize]
-            }
-
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
+            
             homeColony.setHomeColonyId();
             this.players[i].homeColony = homeColony;
             this.players[i].aliveColonies.push(homeColony);
@@ -97,7 +96,9 @@ class Game {
     }
 
     start() {
-        this.stopInterval = setInterval(() => this.run(), this.refreshRate); // this.refreshRate is how often this.run() runs (in milliseconds)
+        if (!this.stopInterval) {
+            this.stopInterval = setInterval(() => this.run(), this.refreshRate);
+        }
     }
 
     run() {
@@ -106,7 +107,7 @@ class Game {
 
         if (this.winner) {
             this.log.playerWin(this.winner);
-            clearInterval(this.stopInterval);
+            this.endGame();
             return;
         }
 
@@ -131,7 +132,7 @@ class Game {
     }
 
     endGame() {
-        clearInterval(this.stopInterval);
+        this.stopInterval = clearInterval(this.stopInterval);
     }
 
     checkForWinner() {
@@ -139,8 +140,8 @@ class Game {
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
                     .forEach(player => this.removePlayer(player));
 
-        if (this.players.length === 1) return this.players[0].playerNum;
-        if (this.players.length === 0) return 'Tie';
+        if (this.players.length == 1) return this.players[0].playerNum;
+        if (this.players.length == 0) return 'Tie';
 
     }
 
@@ -167,7 +168,7 @@ class Game {
         let player = this.players[this.playerTurn];
         let ship = player.ships[this.currentPart];
 
-        if (!ship){
+        if (!ship) {
             this.currentPart = 0;
             this.playerTurn++;
             this.playerInput = '';
@@ -178,7 +179,7 @@ class Game {
             this.shipMoves = this.calcNumMovesPerShip(ship.technology["movement"]);
         }
 
-        if (this.timesMvmt < this.shipMoves && this.canShipMove(ship)) {
+        if (this.timesMvmt < this.shipMoves) {
             let manualCheck = this.moveShip(player, ship);
             if (manualCheck == 'incomplete'){return;}
             this.timesMvmt++;
@@ -205,6 +206,7 @@ class Game {
             this.loggedCombatCoords = [];
             this.log.endPhase('Combat');
             this.uncolonizePlanets();
+            this.playerTurn = 0;
             this.currentPart = null;
             this.phase = null;
             return;
@@ -295,13 +297,11 @@ class Game {
             let manualCheck = this.maintenance(player); // pay maintenance
             if (manualCheck == 'incomplete'){return;}
             this.currentPart = 'buyTech';
-
         }
 
         if (this.currentPart == 'buyTech') {
             let manualCheck = this.buyTech(player);
             if (manualCheck == 'incomplete') {return;}
-
             this.currentPart = 'buyShips';
         }
 
@@ -436,12 +436,12 @@ class Game {
     }
 
     getAllShips(coords) {
-        return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+        return this.board[coords[1]][coords[0]].filter(obj => obj.objType == 'Ship' && obj.hp > 0);
     }
 
     checkForOpponentShips(obj) {
         let ships = this.getAllShips(obj.coords);
-        return !ships.every(ship => ship.playerNum === obj.playerNum);
+        return !ships.every(ship => ship.playerNum == obj.playerNum);
     }
 
     removeShipFromPlayer(player, ship) {
@@ -466,7 +466,6 @@ class Game {
     moveShip(player, ship) {
 
         // Coords work [column, row]
-        // !?Need to make a log for ships that can't move
 
         let oldCoords = [...ship.coords];
         let translations = this.possibleTranslations(ship.coords);
@@ -481,15 +480,22 @@ class Game {
         } else {
             translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);
         }
-           
-        let [newX, newY] = this.translate(oldCoords, translation);
+        
+        let newCoords = this.translate(oldCoords, translation);
 
-        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) {
+        // Need to make a log for ships that can't move!
+
+        if (!this.canShipMove(ship)) {
+            this.currentPart++;
+            return;
+        }
+
+        if (!this.checkInBounds(newCoords)) {
             return;
         }
 
         this.removeFromBoard(ship);
-        ship.coords = [newX, newY];
+        ship.coords = newCoords;
         this.addToBoard(ship);
         this.log.shipMovement(oldCoords, ship);
         this.updateSimpleBoard();
@@ -497,12 +503,12 @@ class Game {
     }
 
     checkInBounds(coords) {
-        return coords.every(coord => this.boardRange.includes(coord));
+        return coords.every(coord => (0 <= coord) && (coord <= 6));
     }
 
     possibleTranslations(coords) {
-        
-        let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+
+        let allTranslations = [[0, 0], [1, 0], [0, 1], [-1, 0], [0, -1]];
         
         if (coords[1] % 2 == 0) {
             allTranslations.push([-1, 1]);
@@ -519,7 +525,7 @@ class Game {
     canShipMove(ship) {
         let ships = this.getAllShips(ship.coords);
         // let filteredShips = ships.filter(ship => ship.name != "ColonyShip");
-        if (!ships.every(otherShip => otherShip.playerNum === ship.playerNum)) {
+        if (!ships.every(otherShip => otherShip.playerNum == ship.playerNum)) {
             this.log.shipCantMove(ship);
             return false;
         }
@@ -536,12 +542,28 @@ class Game {
         let xs = Array.from(new Set(ships.map(ship => ship.name)));
         let ys = new Set(["ColonyShip"]);
 
-        if (xs.size === ys.size && xs.every(x => ys.has(x))) return false;
-        return !ships.every(obj => obj.playerNum === ships[0].playerNum);
+        if (xs.size == ys.size && xs.every(x => ys.has(x))) return false;
+        return !ships.every(obj => obj.playerNum == ships[0].playerNum);
     }
 
     getCombatCoords() {
-        return this.allCoords.filter(coords => this.checkForCombat(coords));
+
+        let combatCoords = [];
+
+        for (let i = 0; i < 7; i++) {
+            for (let j = 0; j < 7; j++) {
+
+                let coords = [i, j];
+
+                if (this.checkForCombat(coords)) {
+                    combatCoords.push(coords);
+                }
+
+            }
+        }
+
+        return combatCoords;
+
     }
 
     sortCombatOrder(coords) {
@@ -563,7 +585,7 @@ class Game {
 
         let roll = Math.floor(Math.random() * 10);
 
-        if (roll <= attacker.atk - defender.df || roll === 1) {
+        if (roll <= attacker.atk - defender.df || roll == 1) {
             this.log.shipHit(defender);
             return true;
         } else {
@@ -794,14 +816,20 @@ class Game {
     }
 
     updateSimpleBoard() { // prevents strategies from cheating
-    
-        let simpleBoard = this.boardRange.map(
-            i => this.boardRange.map(
-                j => this.board[j][i].map(
-                    obj => this.getSimpleObj(obj)
-                )
-            )
-        );
+
+        let simpleBoard = [];
+
+        for (let i = 0; i < 7; i++) {
+            let row = [];
+            for (let j = 0; j < 7; j++) {
+                let cell = [];
+                for (let obj of this.board[j][i]) {
+                    cell.push(this.getSimpleObj(obj));
+                }
+                row.push(cell);
+            }
+            simpleBoard.push(row);
+        }
 
         for (let player of this.players) {
             player.strategy.simpleBoard = simpleBoard;
@@ -839,14 +867,14 @@ class Game {
 
         for (let i = 0; i < decodedData.length; i++) {
             
-            if (decodedData[i] === '\n') {
+            if (decodedData[i] == '\n') {
                 turn.push(currentLine);
                 currentLine = '';
             } else {
                 currentLine += decodedData[i];
             }
 
-            if (decodedData.slice(i, i+4) === 'Turn' || i == decodedData.length - 1) {
+            if (decodedData.slice(i, i+4) == 'Turn' || i == decodedData.length - 1) {
                 logs.push(turn);
                 turn = [];
             }

@@ -7,19 +7,19 @@ import CaydenStrat  from '../strategies/competition_1/caydenStrat.js';
 import AntonStrat   from '../strategies/competition_1/antonStrat.js';
 // import MaiaStrat    from '../competitionStrategies/maiaStrat.js';
 
-import BasicStrat       from './../strategies/basicStrat.js';
-import Buy100Strat      from './../strategies/buy100Strat.js';
-import BuyNoneStrat     from './../strategies/buyNoneStrat.js';
-import CheatStrat       from './../strategies/cheatStrat.js';
-import HunterStrat      from './../strategies/hunterStrat.js'
-import InputStrat       from './../strategies/inputStrat.js';
-import MakeColonies     from './../strategies/makeColonies.js'
-import OnlyP2MovesStrat from './../strategies/onlyP2MovesStrat.js';
-import RandomStrat      from './../strategies/randomStrat.js';
-import RushStrat        from './../strategies/rushStrat.js';
-import ShopperStrat     from './../strategies/shopperStrat.js';
-import TurtleStrat      from './../strategies/turtleStrat.js';
-import AIStrat          from './../strategies/aiStrat.js'
+import BasicStrat       from '../strategies/basicStrat.js';
+import Buy100Strat      from '../strategies/buy100Strat.js';
+import BuyNoneStrat     from '../strategies/buyNoneStrat.js';
+import CheatStrat       from '../strategies/cheatStrat.js';
+import HunterStrat      from '../strategies/hunterStrat.js'
+import InputStrat       from '../strategies/inputStrat.js';
+import MakeColonies     from '../strategies/makeColonies.js'
+import OnlyP2MovesStrat from '../strategies/onlyP2MovesStrat.js';
+import RandomStrat      from '../strategies/randomStrat.js';
+import RushStrat        from '../strategies/rushStrat.js';
+import ShopperStrat     from '../strategies/shopperStrat.js';
+import TurtleStrat      from '../strategies/turtleStrat.js';
+import AIStrat          from '../strategies/aiStrat.js'
 
 // don't edit this function
 
