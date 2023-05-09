@@ -1,9 +1,10 @@
 import fs from 'fs';
 import assert from 'assert';
-import { allShips } from './ships.js';
+
 import Player from './player.js';
+import Logger from './../logs/logger.js';
+import { allShips } from './ships.js';
 import Colony from './colony.js';
-import Logger from './logger.js';
 import Planet from './planet.js';
 
 class Game {
@@ -11,10 +12,9 @@ class Game {
     constructor(clientSockets, strategies, refreshRate=200, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
+        this.refreshRate = refreshRate; // how often this.run() is called, in milliseconds
         this.maxTurns = maxTurns;
-        this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
-        this.stopInterval = null;
     
         this.log = new Logger();
         this.log.clear();
@@ -26,12 +26,14 @@ class Game {
         this.turn = 0;
         this.planets = [];
         this.winner = null;
-        
-        // state based stuff
+
+        this.stopInterval = null;
+
+        // state-based stuff
 
         this.playerTurn = 0;
         this.currentPart = null;
-        this.playerInput = '';
+        this.playerInput = ''; // not being used rn
         this.phase = null;
         this.timesMvmt = 0;
         this.shipMoves = 0;
@@ -39,7 +41,7 @@ class Game {
 
     }
 
-    // Initializing and running the game
+    // Initialize / Run Game
 
     initializeGame() {
 
@@ -91,7 +93,6 @@ class Game {
     }
 
     start() {
-        // this.refreshRate is how often this.run() runs (in milliseconds)
         if (!this.stopInterval) {
             this.stopInterval = setInterval(() => this.run(), this.refreshRate);
         }
@@ -128,8 +129,7 @@ class Game {
     }
 
     endGame() {
-        clearInterval(this.stopInterval);
-        this.stopInterval = null;
+        this.stopInterval = clearInterval(this.stopInterval);
     }
 
     checkForWinner() {
@@ -137,8 +137,8 @@ class Game {
         this.players.filter(player => this.checkForOpponentShips(player.homeColony))
                     .forEach(player => this.removePlayer(player));
 
-        if (this.players.length === 1) return this.players[0].playerNum;
-        if (this.players.length === 0) return 'Tie';
+        if (this.players.length == 1) return this.players[0].playerNum;
+        if (this.players.length == 0) return 'Tie';
 
     }
 
@@ -449,12 +449,12 @@ class Game {
     }
 
     getAllShips(coords) {
-        return this.board[coords[1]][coords[0]].filter(obj => obj.objType === 'Ship' && obj.hp > 0);
+        return this.board[coords[1]][coords[0]].filter(obj => obj.objType == 'Ship' && obj.hp > 0);
     }
 
     checkForOpponentShips(obj) {
         let ships = this.getAllShips(obj.coords);
-        return !ships.every(ship => ship.playerNum === obj.playerNum);
+        return !ships.every(ship => ship.playerNum == obj.playerNum);
     }
 
     removeShipFromPlayer(player, ship) {
@@ -536,7 +536,7 @@ class Game {
     canShipMove(ship) {
         let ships = this.getAllShips(ship.coords);
         // let filteredShips = ships.filter(ship => ship.name != "ColonyShip");
-        if (!ships.every(otherShip => otherShip.playerNum === ship.playerNum)) {
+        if (!ships.every(otherShip => otherShip.playerNum == ship.playerNum)) {
             this.log.shipCantMove(ship);
             return false;
         }
@@ -553,8 +553,8 @@ class Game {
         let xs = Array.from(new Set(ships.map(ship => ship.name)));
         let ys = new Set(["ColonyShip"]);
 
-        if (xs.size === ys.size && xs.every(x => ys.has(x))) return false;
-        return !ships.every(obj => obj.playerNum === ships[0].playerNum);
+        if (xs.size == ys.size && xs.every(x => ys.has(x))) return false;
+        return !ships.every(obj => obj.playerNum == ships[0].playerNum);
     }
 
     getCombatCoords() {
@@ -596,7 +596,7 @@ class Game {
 
         let roll = Math.floor(Math.random() * 10);
 
-        if (roll <= attacker.atk - defender.df || roll === 1) {
+        if (roll <= attacker.atk - defender.df || roll == 1) {
             this.log.shipHit(defender);
             return true;
         } else {
@@ -846,14 +846,14 @@ class Game {
 
         for (let i = 0; i < decodedData.length; i++) {
             
-            if (decodedData[i] === '\n') {
+            if (decodedData[i] == '\n') {
                 turn.push(currentLine);
                 currentLine = '';
             } else {
                 currentLine += decodedData[i];
             }
 
-            if (decodedData.slice(i, i+4) === 'Turn' || i == decodedData.length - 1) {
+            if (decodedData.slice(i, i+4) == 'Turn' || i == decodedData.length - 1) {
                 logs.push(turn);
                 turn = [];
             }
@@ -868,7 +868,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            let data = fs.readFileSync('log.txt');	             	
+            let data = fs.readFileSync('./src/logs/log.txt');	             	
             socket.emit('update UI', {	
                 board: this.board,	
                 logs: this.getLogs(data)

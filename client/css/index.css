@@ -1,12 +1,12 @@
 body {
-    background-image: url("pexels-philippe-donn-1169754.jpg");
-    /* background-image: url("pexels-felix-mittermeier-956981.jpg"); */
+    background-image: url("./../assets/images/pexels-philippe-donn-1169754.jpg");
+    /* background-image: url("./../assets/images/pexels-felix-mittermeier-956981.jpg"); */
     background-size: 100%;
 }
 
 @font-face {
     font-family: spaceFont;
-    src: url("SpaceMission-rgyw9.otf");
+    src: url("./../assets/fonts/SpaceMission-rgyw9.otf");
 }
 
 header, article, footer {

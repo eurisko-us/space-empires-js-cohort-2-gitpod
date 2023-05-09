@@ -10,7 +10,7 @@ Merge two branches ----------------------- (use github)
 Commit ----------------------------------- git add [filename or .]
                                            git commit -m '[commit message]'
                                            git push origin [branch name]
- 
+
 List changes since last commit ----------- git status
 Delete changes since last commit --------- git reset --hard
 

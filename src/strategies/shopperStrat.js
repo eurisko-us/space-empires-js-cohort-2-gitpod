@@ -1,17 +1,18 @@
-import { nullInstances } from '../src/ships.js';
+import { nullInstances } from './../game/ships.js';
 import ParentStrat from './parentStrat.js';
 
-// moves randomly, buys random ship
+// moves towards opponent home colony, buys random ship
 
-class MaintClosest extends ParentStrat {
+class ShopperStrat extends ParentStrat {
     
     constructor() {
         super(ParentStrat);
-        this.name = 'random';
+        this.name = 'shopper';
     }
 
     chooseTranslation(ship, translations) {
-        return this.random(translations);
+        let targetCoords = this.getOpponentHomeColonyCoords(ship);
+        return this.minDistanceTranslation(ship, translations, targetCoords);
     }
 
     chooseTarget(shipInfo, combatOrder) {
@@ -26,7 +27,7 @@ class MaintClosest extends ParentStrat {
         let totalCost = 0;
 
         while (randCostLim >= totalCost) {
-            
+
             let randomShip = this.random(nullInstances);
             
             totalCost += randomShip.cpCost;
@@ -41,13 +42,9 @@ class MaintClosest extends ParentStrat {
 
         if (this.turn == 0 && shipList.length == 0) return this.buyShips(cpBudget);
         return shipList;
-    
-    }
 
-    maintOrder(ships) {
-        return ships.sort((a, b) => this.dist(b.coords, this.getHomeColonyCoords(b)) - this.dist(a.coords, this.getHomeColonyCoords(b)));
     }
 
 }
 
-export default MaintClosest;
+export default ShopperStrat;
