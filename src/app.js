@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 
-import Game from './src/game.js';
+import Game from './game/game.js';
 
 /* EDIT THIS */
 
