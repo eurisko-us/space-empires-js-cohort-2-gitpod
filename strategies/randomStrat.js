@@ -19,12 +19,10 @@ class RandomStrat extends ParentStrat {
         return this.random(opponentShips);
     }
 
-    buyTech(cpBudget, technologyData) {
-        return []
-    }
-
     buyShips(cpBudget) {
+
         const randCostLim = Math.floor(Math.random() * (cpBudget + 1));
+        
         let shipList = [];
         let totalCost = 0;
 
