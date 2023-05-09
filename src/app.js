@@ -10,8 +10,8 @@ import AIStrat          from './strategies/aiStrat.js';
 import BasicStrat       from './strategies/basicStrat.js';
 import Buy100Strat      from './strategies/buy100Strat.js';
 import BuyNoneStrat     from './strategies/buyNoneStrat.js';
-import CheatStrat       from './strategies/cheatStrat.js'
-import HunterStrat      from './strategies/hunterStrat.js'
+import CheatStrat       from './strategies/cheatStrat.js';
+import HunterStrat      from './strategies/hunterStrat.js';
 import InputStrat       from './strategies/inputStrat.js';
 import MaintClosest     from './strategies/maintClosest.js';
 import OnlyP2MovesStrat from './strategies/onlyP2MovesStrat.js';
