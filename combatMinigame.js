@@ -42,6 +42,7 @@ function addShipsToPlayers(players, playerNumShips) {
 
 function combatPhase(players) {
     let allShipList = players[0].ships.concat(players[1].ships);
+    allShipList = allShipList.sort(()=>Math.random()-0.5)
     allShipList.sort((a, b) => a.shipClass.localeCompare(b.shipClass));
     let combatOrder = [...allShipList];
     let ship = combatOrder[0];
@@ -97,6 +98,7 @@ function runSimulation() {
     return computePayoff(players[0].ships, players[1].ships);
 }
 
+/*
 let balance = {1:0, 2:0}
 for (let i = 0; i < 25; i++) {
     let players = [new Player(1, new RandomStrat()), new Player(2, new RandomStrat())];
@@ -116,25 +118,22 @@ for (let i = 0; i < 25; i++) {
     
 }
 console.log(balance)
+*/
 
 
+let sim = {'pos':0, 'neg':0, 'zero':0};
 
+for (let i = 0; i < 1000; i++) {
+    let payoff = runSimulation()
+    if (payoff > 0) {
+        sim['pos'] += 1
+    }
+    if (payoff < 0) {
+        sim['neg'] += 1
+    }
+    if (payoff == 0) {
+        sim['zero'] += 1
+    }
+}
 
-
-
-// let sim = {'pos':0, 'neg':0, 'zero':0};
-
-// for (let i = 0; i < 1000; i++) {
-//     let payoff = runSimulation()
-//     if (payoff > 0) {
-//         sim['pos'] += 1
-//     }
-//     if (payoff < 0) {
-//         sim['neg'] += 1
-//     }
-//     if (payoff == 0) {
-//         sim['zero'] += 1
-//     }
-// }
-
-// console.log(sim)
+console.log(sim)
