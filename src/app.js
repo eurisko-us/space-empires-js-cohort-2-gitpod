@@ -27,8 +27,8 @@ const app = express();
 const httpServer = http.Server(app);
 const io = new Server(httpServer);
 
-app.use(express.static('game_ui'));
-app.get('/', (_, res) => res.sendFile(`${__dirname}/game_ui/index.html`));
+app.use(express.static('src/client'));
+app.get('/', (_, res) => res.sendFile(`${__dirname}/client/index.html`));
 
 let game = null;
 let clientSockets = {};

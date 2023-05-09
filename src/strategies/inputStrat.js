@@ -1,4 +1,4 @@
-import { nullInstances } from '../src/server/objects/ships.js';
+import { nullInstances } from './../game/ships.js';
 import ParentStrat from './parentStrat.js';
 import promptSync from 'prompt-sync';
 const prompt = promptSync();

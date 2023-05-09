@@ -870,7 +870,7 @@ class Game {
     display() {
         for (let socketId in this.clientSockets) {
             let socket = this.clientSockets[socketId];
-            let data = fs.readFileSync('log.txt');	             	
+            let data = fs.readFileSync('./src/logs/log.txt');	             	
             socket.emit('update UI', {	
                 board: this.board,	
                 logs: this.getLogs(data)

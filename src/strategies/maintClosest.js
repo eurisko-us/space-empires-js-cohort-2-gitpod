@@ -1,4 +1,4 @@
-import { nullInstances } from '../src/server/objects/ships.js';
+import { nullInstances } from './../game/ships.js';
 import ParentStrat from './parentStrat.js';
 
 // moves randomly, buys random ship
