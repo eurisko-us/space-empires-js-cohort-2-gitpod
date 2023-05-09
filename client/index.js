@@ -3,6 +3,8 @@
     Current bugs:
     
     - the hexagons are only in a 7 by 7 grid if the window is the right size
+    - board is not vertically OR horizontally centered
+    - board isn't always cleared when the game is ended
 
 */
 
@@ -17,15 +19,6 @@ let gameIsStarted = false;
 let hexagonHTMLs;
 let logsHTML;
 let squareInfoHTML;
-
-let initGameButton;
-let nextTurnButton;
-let autoRunButton;
-let endGameButton;
-
-let promptTextHTML;
-let errorTextHTML;
-let inputFormHTML;
 let inputTextHTML;
 
 socket.on('initialize UI', () => {
@@ -50,21 +43,10 @@ socket.on('update UI', (gameState) => {
 });
 
 function updateElementsById() {
-
-    hexagonHTMLs   = document.getElementsByClassName("hexagon");
-    logsHTML       = document.getElementById("logs");
+    hexagonHTMLs = document.getElementsByClassName("hexagon");
+    logsHTML = document.getElementById("logs");
     squareInfoHTML = document.getElementById("squareInfo");
-    
-    initGameButton = document.getElementById("initGame");
-    endGameButton  = document.getElementById("endGame");
-    nextTurnButton = document.getElementById("nextTurn");
-    autoRunButton  = document.getElementById("autoRun");
-
-    promptTextHTML = document.getElementById("promptText");
-    errorTextHTML  = document.getElementById("errorText");
-    inputFormHTML  = document.getElementById("inputForm");
-    inputTextHTML  = document.getElementById("inputText");
-
+    inputTextHTML = document.getElementById("inputText");
 }
 
 function createBoard() {
@@ -94,19 +76,21 @@ function resetBoard() {
 function createEventListeners() {
     
     for (let hexagonHTML of hexagonHTMLs) {
-        hexagonHTML.addEventListener("click", e => {
-            if (gameIsStarted) updateSquareInfo(hexagonHTML.id);
+        hexagonHTML.addEventListener("click", _ => {
+            if (gameIsStarted) {
+                updateSquareInfo(hexagonHTML.id);
+            }
         });
     }
 
-    initGameButton.addEventListener("click", () => {
+    document.getElementById("initGame").addEventListener("click", () => {
         if (!gameIsStarted) {
             socket.emit('initialize game');
             gameIsStarted = true;
         }
     });
 
-    endGameButton.addEventListener("click", () => {
+    document.getElementById("endGame").addEventListener("click", () => {
         if (gameIsStarted) {
 
             socket.emit('end game');
@@ -121,19 +105,19 @@ function createEventListeners() {
         }
     });
 
-    nextTurnButton.addEventListener("click", () => {
+    document.getElementById("nextTurn").addEventListener("click", () => {
         if (gameIsStarted) {
             socket.emit('next turn');
         }
     });
 
-    autoRunButton.addEventListener("click", () => {
+    document.getElementById("autoRun").addEventListener("click", () => {
         if (gameIsStarted) {
             socket.emit('auto run');
         }
     });
 
-    inputFormHTML.addEventListener('submit', (e) => {
+    document.getElementById("inputForm").addEventListener('submit', (e) => {
 
         if (gameIsStarted) {
 

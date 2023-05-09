@@ -1,7 +1,7 @@
 Begin Game
 		Spawned planet at (1,1)
-		Spawned planet at (0,6)
-		Spawned planet at (4,2)
+		Spawned planet at (1,6)
+		Spawned planet at (6,0)
 		Spawned planet at (6,4)
 Turn 1
 	Begin Economic Phase
@@ -9,95 +9,32 @@ Turn 1
 		Player 1 gained 10 CP and now has 160 CP
 		Player 1 now has 160 CP after paying maintenance
 		Player 1 didn't buy any technology
-		Player 1 didn't buy any ships
-		Player 1 has 160 CP remaining
+		Player 1 bought a Scout
+		Player 1 bought a BattleCruiser
+		Player 1 bought a Dreadnaught
+		Player 1 bought a Battleship
+		Player 1 has 95 CP remaining
 		Player 2 initially has 150 CP
 		Player 2 gained 10 CP and now has 160 CP
 		Player 2 now has 160 CP after paying maintenance
 		Player 2 didn't buy any technology
-		Player 2 bought a Destroyer
-		Player 2 has 151 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Destroyer 1 moved from (3, 6) to (4, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-Turn 2
-	Begin Economic Phase
-		Player 1 initially has 160 CP
-		Player 1 gained 10 CP and now has 170 CP
-		Player 1 now has 170 CP after paying maintenance
-		Player 1 didn't buy any technology
-		Player 1 didn't buy any ships
-		Player 1 has 170 CP remaining
-		Player 2 initially has 151 CP
-		Player 2 gained 10 CP and now has 161 CP
-		Player 2 now has 160 CP after paying maintenance
-		Player 2 didn't buy any technology
-		Player 2 bought a Dreadnaught
-		Player 2 bought a Destroyer
-		Player 2 bought a Dreadnaught
-		Player 2 bought a Destroyer
-		Player 2 has 94 CP remaining
-	End Economic Phase
-
-	Begin Movement Phase
-		Player 2 Destroyer 1 moved from (4, 6) to (4, 6)
-		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 5)
-		Player 2 Destroyer 2 moved from (3, 6) to (2, 5)
-		Player 2 Dreadnaught 2 moved from (3, 6) to (2, 5)
-		Player 2 Destroyer 3 moved from (3, 6) to (2, 6)
-	End Movement Phase
-
-	Begin Combat Phase
-	End Combat Phase
-
-Turn 3
-	Begin Economic Phase
-		Player 1 initially has 170 CP
-		Player 1 gained 10 CP and now has 180 CP
-		Player 1 now has 180 CP after paying maintenance
-		Player 1 didn't buy any technology
-		Player 1 bought a Scout
-		Player 1 bought a Dreadnaught
-		Player 1 bought a ColonyShip
-		Player 1 bought a Scout
-		Player 1 bought a Scout
-		Player 1 bought a Cruiser
-		Player 1 bought a Dreadnaught
-		Player 1 bought a Destroyer
-		Player 1 bought a Scout
-		Player 1 bought a ColonyShip
-		Player 1 has 71 CP remaining
-		Player 2 initially has 94 CP
-		Player 2 gained 10 CP and now has 104 CP
-		Player 2 now has 95 CP after paying maintenance
-		Player 2 didn't buy any technology
-		Player 2 bought a Dreadnaught
-		Player 2 bought a Destroyer
-		Player 2 bought a Scout
 		Player 2 bought a ColonyShip
+		Player 2 bought a BattleCruiser
+		Player 2 bought a Scout
+		Player 2 bought a Cruiser
+		Player 2 bought a Dreadnaught
+		Player 2 bought a Dreadnaught
+		Player 2 bought a Battleship
+		Player 2 bought a ColonyShip
+		Player 2 bought a Cruiser
 		Player 2 bought a Destroyer
-		Player 2 bought a Destroyer
-		Player 2 has 30 CP remaining
+		Player 2 has 22 CP remaining
 	End Economic Phase
 
 	Begin Movement Phase
-		Player 1 Scout 1 moved from (3, 0) to (2, 1)
-		Player 1 Dreadnaught 1 moved from (3, 0) to (2, 1)
-		Player 1 ColonyShip 1 moved from (3, 0) to (2, 0)
-		Player 1 Scout 2 moved from (3, 0) to (4, 0)
-		Player 1 Scout 3 moved from (3, 0) to (3, 1)
-		Player 1 Cruiser 1 moved from (3, 0) to (2, 1)
-		Player 1 Dreadnaught 2 moved from (3, 0) to (2, 1)
-		Player 1 Destroyer 1 moved from (3, 0) to (4, 0)
-		Player 1 Scout 4 moved from (3, 0) to (3, 0)
-		Player 1 ColonyShip 2 moved from (3, 0) to (3, 0)
-		Player 2 Destroyer 1 moved from (4, 6) to (4, 5)
-		Player 2 Dreadnaught 2 moved from (2, 5) to (1, 5)
-		Player 2 Dreadnaught 1 moved from (3, 5) to (4, 4)
-		Player 2 Destroyer 3 moved from (2, 6) to (2, 5)
+		Player 1 Scout 1 moved from (3, 0) to (3, 0)
+		Player 1 BattleCruiser 1 moved from (3, 0) to (4, 0)
+		Player 1 Dreadnaught 1 moved from (3, 0) to (3, 0)
+		Player 1 Battleship 1 moved from (3, 0) to (2, 0)
+		Player 2 ColonyShip 1 moved from (3, 6) to (2, 6)
+		Player 2 BattleCruiser 1 moved from (3, 6) to (2, 5)
