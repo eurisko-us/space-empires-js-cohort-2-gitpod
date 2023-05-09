@@ -4,7 +4,7 @@ class Planet {
         this.coords = coords;
         this.colony = null;
         this.planetNum = planetNum;
-        this.objType = 'Planet'
+        this.objType = 'Planet';
         this.id = `Planet ${this.planetNum}`;
     }
 

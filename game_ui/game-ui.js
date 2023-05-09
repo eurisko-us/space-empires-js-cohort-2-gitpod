@@ -1,10 +1,8 @@
 /*
 
     Current bugs:
-
+    
     - the hexagons are only in a 7 by 7 grid if the window is the right size
-    - there are random planets all over which are messing up the coloring (ask Cayden)
-    - we should explain which possibleTranslations() correspond with which moves (ask Anton)
 
 */
 
@@ -37,12 +35,18 @@ socket.on('initialize UI', () => {
 });
 
 socket.on('update UI', (gameState) => {
+
     game = gameState;
+
     updateElementsById();
     resetBoard();
-    updateObjType('Ship', ['red', 'blue'], 'Ship');
-    updateObjType('Colony', ['#ff8080', '#a080ff'], 'HC');
+
+    updateObjType('Ship', ['#FF0000', '#0000FF'], 'Ship');
+    updateObjType('Colony', ['#FF8080', '#89CFF0'], 'HC');
+    updateObjType('Planet', ['#008000', '#008000'], 'Planet');
+
     updateLogs();
+
 });
 
 function updateElementsById() {
@@ -104,15 +108,15 @@ function createEventListeners() {
 
     endGameButton.addEventListener("click", () => {
         if (gameIsStarted) {
-            
+
+            socket.emit('end game');
+
             updateElementsById();
             resetBoard();
 
             logsHTML.innerHTML = '';
             squareInfoHTML.innerHTML = '';
             gameIsStarted = false;
-
-            socket.emit('end game');
 
         }
     });
@@ -159,7 +163,8 @@ function updateObjType(objType, colors, text) {
 
         for (let obj of game.board[y][x]) {
             if (obj.objType === objType) {
-                hexagonHTML.style.backgroundColor = colors[game.board[y][x][0].playerNum - 1];
+                let colorIndex = (objType == "Planet") ? 0 : (game.board[y][x][0].playerNum - 1);
+                hexagonHTML.style.backgroundColor = colors[colorIndex];
                 hexagonHTML.firstChild.innerHTML = text;
             }
         }
@@ -190,10 +195,20 @@ function updateSquareInfo(id) {
     
     for (let obj of game.board[y][x]) {
 
-        squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>: hp: ${obj.hp}`;
+        squareInfoHTML.innerHTML += `<strong>${obj.id}</strong>`;
 
         if (obj.objType == 'Ship') {
-            squareInfoHTML.innerHTML += `, attack: ${obj.atk}, defense: ${obj.df}, cp cost: ${obj.cpCost}, maintenance cost: ${obj.maintCost}`;
+            squareInfoHTML.innerHTML += `: 
+                hp: ${obj.hp}, 
+                attack: ${obj.atk}, 
+                defense: ${obj.df}, 
+                cp cost: ${obj.cpCost}, 
+                maintenance cost: ${obj.maintCost}
+            `;
+        }
+        
+        else if (obj.objType == 'Colony') {
+            squareInfoHTML.innerHTML += `: hp: ${obj.hp}`;
         }
 
         squareInfoHTML.innerHTML += `<br>`;

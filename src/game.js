@@ -1,17 +1,16 @@
 import fs from 'fs';
-import assert, { throws } from 'assert';
+import assert from 'assert';
 import { allShips } from './ships.js';
 import Player from './player.js';
 import Colony from './colony.js';
 import Logger from './logger.js';
-import Planet from './planet.js'
+import Planet from './planet.js';
 
 class Game {
     
     constructor(clientSockets, strategies, refreshRate=200, maxTurns=1000, cpPerRound=10) {
         
         this.clientSockets = clientSockets;
-        this.boardSize = 7;
         this.maxTurns = maxTurns;
         this.refreshRate = refreshRate;
         this.cpPerRound = cpPerRound;
@@ -25,13 +24,11 @@ class Game {
 
         this.board = [];
         this.turn = 0;
-        this.planets = []
+        this.planets = [];
         this.winner = null;
-
-        this.boardRange = [...Array(this.boardSize).keys()];
-        this.allCoords = [...this.boardRange.flatMap(y => this.boardRange.map(x => [x, y]))];
         
         // state based stuff
+
         this.playerTurn = 0;
         this.currentPart = null;
         this.playerInput = '';
@@ -48,12 +45,14 @@ class Game {
 
         // create board
 
-        for (let i = 0; i < this.boardSize; i++) {
+        for (let i = 0; i < 7; i++) {
             this.board.push([]);
-            for (let j = 0; j < this.boardSize; j++) {
+            for (let j = 0; j < 7; j++) {
                 this.board[i].push([]);
             }
         }
+
+        // spawn planets
 
         const planetRanges = {
             0: [[0, 1, 2], [0, 1, 2]],
@@ -66,20 +65,19 @@ class Game {
             this.spawnPlanets(planetRanges[i][0], planetRanges[i][1]);
         }
 
+        // spawn home colonies
+
+        const homeColonyCoordsMap = {
+            0: [3, 0],
+            1: [3, 6],
+            2: [0, 3],
+            3: [3, 3]
+        }
+
         for (let i = 0; i < this.players.length; i++) {
             
-            // buy home colony
-            
-            const halfBoardSize = (this.boardSize - 1) / 2;
-
-            const homeColonyCoordsMap = {
-                0: [halfBoardSize, 0],
-                1: [halfBoardSize, this.boardSize - 1],
-                2: [0, halfBoardSize],
-                3: [this.boardSize - 1, halfBoardSize]
-            }
-
             let homeColony = new Colony(homeColonyCoordsMap[i], i+1, true);
+            
             homeColony.setHomeColonyId();
             this.players[i].homeColony = homeColony;
             this.players[i].aliveColonies.push(homeColony);
@@ -93,7 +91,10 @@ class Game {
     }
 
     start() {
-        this.stopInterval = setInterval(() => this.run(), this.refreshRate); // this.refreshRate is how often this.run() runs (in milliseconds)
+        // this.refreshRate is how often this.run() runs (in milliseconds)
+        if (!this.stopInterval) {
+            this.stopInterval = setInterval(() => this.run(), this.refreshRate);
+        }
     }
 
     run() {
@@ -102,7 +103,7 @@ class Game {
 
         if (this.winner) {
             this.log.playerWin(this.winner);
-            clearInterval(this.stopInterval);
+            this.endGame();
             return;
         }
 
@@ -128,6 +129,7 @@ class Game {
 
     endGame() {
         clearInterval(this.stopInterval);
+        this.stopInterval = null;
     }
 
     checkForWinner() {
@@ -163,7 +165,7 @@ class Game {
         let player = this.players[this.playerTurn];
         let ship = player.ships[this.currentPart];
 
-        if (!ship){
+        if (!ship) {
             this.currentPart = 0;
             this.playerTurn++;
             this.playerInput = '';
@@ -488,8 +490,8 @@ class Game {
         } else {
             translation = player.strategy.chooseTranslation(this.convertShipToDict(ship), translations);
         }
-           
-        let [newX, newY] = this.translate(oldCoords, translation);
+        
+        let newCoords = this.translate(oldCoords, translation);
 
         // Need to make a log for ships that can't move!
 
@@ -498,13 +500,13 @@ class Game {
             return;
         }
 
-        if (newX < 0 || newX > this.boardSize - 1 || newY < 0 || newY > this.boardSize - 1) {
+        if (!this.checkInBounds(newCoords)) {
             this.currentPart++;
             return;
         }
 
         this.removeFromBoard(ship);
-        ship.coords = [newX, newY];
+        ship.coords = newCoords;
         this.addToBoard(ship);
         this.log.shipMovement(oldCoords, ship);
         this.updateSimpleBoard();
@@ -512,12 +514,12 @@ class Game {
     }
 
     checkInBounds(coords) {
-        return coords.every(coord => this.boardRange.includes(coord));
+        return coords.every(coord => (0 <= coord) && (coord <= 6));
     }
 
     possibleTranslations(coords) {
-        
-        let allTranslations = [[0,0], [0,1], [1,0], [-1,0], [0,-1]];
+
+        let allTranslations = [[0, 0], [1, 0], [0, 1], [-1, 0], [0, -1]];
         
         if (coords[1] % 2 == 0) {
             allTranslations.push([-1, 1]);
@@ -556,7 +558,23 @@ class Game {
     }
 
     getCombatCoords() {
-        return this.allCoords.filter(coords => this.checkForCombat(coords));
+
+        let combatCoords = [];
+
+        for (let i = 0; i < 7; i++) {
+            for (let j = 0; j < 7; j++) {
+
+                let coords = [i, j];
+
+                if (this.checkForCombat(coords)) {
+                    combatCoords.push(coords);
+                }
+
+            }
+        }
+
+        return combatCoords;
+
     }
 
     sortCombatOrder(coords) {
@@ -777,14 +795,20 @@ class Game {
     }
 
     updateSimpleBoard() { // prevents strategies from cheating
-    
-        let simpleBoard = this.boardRange.map(
-            i => this.boardRange.map(
-                j => this.board[j][i].map(
-                    obj => this.getSimpleObj(obj)
-                )
-            )
-        );
+
+        let simpleBoard = [];
+
+        for (let i = 0; i < 7; i++) {
+            let row = [];
+            for (let j = 0; j < 7; j++) {
+                let cell = [];
+                for (let obj of this.board[j][i]) {
+                    cell.push(this.getSimpleObj(obj));
+                }
+                row.push(cell);
+            }
+            simpleBoard.push(row);
+        }
 
         for (let player of this.players) {
             player.strategy.simpleBoard = simpleBoard;
