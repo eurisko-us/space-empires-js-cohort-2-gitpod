@@ -19,6 +19,11 @@ let gameIsStarted = false;
 let hexagonHTMLs;
 let logsHTML;
 let squareInfoHTML;
+
+// For Input Plr
+let promptTextHTML;
+let errorTextHTML;
+let inputFormHTML;
 let inputTextHTML;
 
 socket.on('initialize UI', () => {
@@ -46,8 +51,11 @@ function updateElementsById() {
     hexagonHTMLs = document.getElementsByClassName("hexagon");
     logsHTML = document.getElementById("logs");
     squareInfoHTML = document.getElementById("squareInfo");
-    inputTextHTML = document.getElementById("inputText");
+
+    promptTextHTML = document.getElementById("promptText");
     instucTextHTML = document.getElementById("instructText");
+    errorTextHTML  = document.getElementById("errorText");
+    inputTextHTML  = document.getElementById("inputText");
 }
 
 function createBoard() {
@@ -202,4 +210,4 @@ function updateSquareInfo(id) {
 
     }
 
-}
+};
