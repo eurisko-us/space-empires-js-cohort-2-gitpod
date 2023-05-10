@@ -1,8 +1,8 @@
 Begin Game
-		Spawned planet at (1,0)
-		Spawned planet at (1,6)
-		Spawned planet at (6,2)
-		Spawned planet at (5,5)
+		Spawned planet at (1,1)
+		Spawned planet at (1,5)
+		Spawned planet at (4,1)
+		Spawned planet at (6,4)
 Turn 1
 	Begin Economic Phase
 		Player 1 initially has 150 CP
@@ -15,21 +15,15 @@ Turn 1
 		Player 2 gained 10 CP and now has 160 CP
 		Player 2 now has 160 CP after paying maintenance
 		Player 2 didn't buy any technology
-		Player 2 bought a BattleCruiser
-		Player 2 bought a BattleCruiser
-		Player 2 bought a BattleCruiser
-		Player 2 bought a Dreadnaught
-		Player 2 bought a Dreadnaught
-		Player 2 has 67 CP remaining
+		Player 2 bought a Battleship
+		Player 2 bought a Scout
+		Player 2 has 134 CP remaining
 	End Economic Phase
 
 	Begin Movement Phase
 		Player 1 Scout 1 moved from (3, 0) to (3, 1)
-		Player 2 BattleCruiser 1 moved from (3, 6) to (2, 6)
-		Player 2 BattleCruiser 2 moved from (3, 6) to (2, 5)
-		Player 2 BattleCruiser 3 moved from (3, 6) to (4, 6)
-		Player 2 Dreadnaught 1 moved from (3, 6) to (3, 6)
-		Player 2 Dreadnaught 2 moved from (3, 6) to (3, 6)
+		Player 2 Battleship 1 moved from (3, 6) to (3, 5)
+		Player 2 Scout 1 moved from (3, 6) to (2, 5)
 	End Movement Phase
 
 	Begin Combat Phase
