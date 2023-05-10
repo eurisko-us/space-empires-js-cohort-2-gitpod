@@ -31,7 +31,7 @@ app.use(express.static('client'));
 app.get('/', (_, res) => res.sendFile(`${__dirname}/client/index.html`));
 
 let game = null;
-let clientSockets = {};
+let clientSockets = {}; 
 
 io.on('connection', (socket) => {
 
