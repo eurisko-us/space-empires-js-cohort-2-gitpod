@@ -287,8 +287,8 @@ class Game {
 
         if (this.currentPart == 'pay') {
             this.log.playerCP(player); // gain cp
-            player.cp += player.aliveColonies.length() * 10
-            this.log.newPlayerCP(player, player.aliveColonies.length() * 10);
+            player.cp += player.aliveColonies.length * 10
+            this.log.newPlayerCP(player, player.aliveColonies.length * 10);
             this.currentPart = 'maint';
         }
 
