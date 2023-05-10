@@ -9,12 +9,11 @@ import Planet from './planet.js';
 
 class Game {
     
-    constructor(clientSockets, strategies, refreshRate=200, maxTurns=1000, cpPerRound=10) {
+    constructor(clientSockets, strategies, refreshRate=200, maxTurns=1000) {
         
         this.clientSockets = clientSockets;
         this.refreshRate = refreshRate; // how often this.run() is called, in milliseconds
         this.maxTurns = maxTurns;
-        this.cpPerRound = cpPerRound;
     
         this.log = new Logger();
         this.log.clear();
@@ -288,8 +287,8 @@ class Game {
 
         if (this.currentPart == 'pay') {
             this.log.playerCP(player); // gain cp
-            player.cp += this.cpPerRound; 
-            this.log.newPlayerCP(player, this.cpPerRound);
+            player.cp += player.aliveColonies.length() * 10
+            this.log.newPlayerCP(player, player.aliveColonies.length() * 10);
             this.currentPart = 'maint';
         }
 
