@@ -1,13 +1,10 @@
 import { nullInstances } from './../game/ships.js';
 import ParentStrat from './parentStrat.js';
-//import promptSync from 'prompt-sync';
-//const prompt = promptSync();
 
 class InputStrat {
     constructor(){
         this.name = 'input';
         this.isManual = true;
-        this.strat = 'blank';
     }
 
     // Required Functions
@@ -16,22 +13,24 @@ class InputStrat {
         if (!plrInput) {return;}
 
         let translation = this.getInputTranslation(plrInput, shipCoords[1])
-        /*
         if (translations.find(el => this.sameArray(translation, el)) == undefined) {
-            console.log('That doesnt work, turn forfeit');
+            console.log('That doesnt work');
+            console.log('gonna do that later');
             return [0, 0];
-        }*/
+        }
         return translation;
     }
 
     chooseTarget(shipInfo, combatOrder, plrInput){
+        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
+        if (opponentShips.length == 1) {return opponentShips[0];}
+
         if (!plrInput) {return;}
 
         let [targName, targNum] = plrInput.split(' ');
-        let opponentShips = combatOrder.filter(ship => ship.playerNum != shipInfo.playerNum && ship.hp > 0);
         
         for (let ship of opponentShips) {
-            if (ship.name == targName && ship.shipNum == targNum) {return ship;}
+            if (ship.name.toLowerCase() == targName.toLowerCase() && ship.shipNum == targNum) {return ship;}
         }
 
         console.log(`Opponent does not have ${targName} ${targNum}, try again`);
@@ -58,7 +57,7 @@ class InputStrat {
         if (ships.length == 0) {return [];}
         if (!plrInput) {return;}
 
-        if (plrInput == 'auto') {return ships.sort((a, b) => a.maintCost - b.maintCost);}
+        if (plrInput.toLowerCase() == 'auto') {return ships.sort((a, b) => a.maintCost - b.maintCost);}
 
         if (plrInput.split(': ')[1]) {
             let remove = plrInput.split(': ')[1]
@@ -78,6 +77,7 @@ class InputStrat {
         let tech = plrInput.split(', ');
         let cart = [];
         for (let item of tech) {
+            item = item.toLowerCase()
             if (item == 'atk') {cart.push('attack');}
             else if (item == 'def') {cart.push('defense');}
             else if (item == 'mvmt') {cart.push('movement');}
@@ -88,16 +88,8 @@ class InputStrat {
     // Helper && Translator Functions
 
     getInputTranslation(input, row) {
-        /*
-        let inputMap = {
-            'up':    [0, -1],
-            'down':  [0, 1],
-            'left':  [-1, 0],
-            'right': [1, 0],
-            'stay':  [0, 0],
-        };
-        //*/
-        ///*
+        input = input.toLowerCase()
+
         let inputMap = {
             'ur':    [(row)%2, -1],
             'ul':   [-(row+1)%2, -1],
@@ -106,8 +98,8 @@ class InputStrat {
             'dr':  [(row)%2, 1],
             'dl': [-(row+1)%2, 1],
             'stay': [0, 0],
+            's': [0, 0],
         };
-        //*/
 
         return inputMap[input];
     }
@@ -123,17 +115,18 @@ class InputStrat {
         let [name, amt] = item.split(' ');
         amt = + amt; //turns to number
         if (amt === NaN) {amt = 1;}
+        let bought = this.findBought(name);
 
-        if (!this.findBought(name)) {return;}
+        if (!bought) {return;}
 
         let recipt = {};
-        recipt[name] = amt;
+        recipt[bought.name] = amt;
         return recipt;
     }
 
     findBought(name) {
         for (let ship of nullInstances) {
-            if (name == ship.name) {return ship;}
+            if (name.toLowerCase() == ship.name.toLowerCase()) {return ship;}
         }
         return;
     }
@@ -143,7 +136,7 @@ class InputStrat {
         let order = [];
         for (let shipId of queue) {
             let [name, id] = shipId.split(' ');
-            let foundShip = ships.filter(ship => ship.name == name && ship.shipNum == id);
+            let foundShip = ships.filter(ship => ship.name.toLowerCase() == name.toLowerCase() && ship.shipNum == id);
             if (foundShip.length == 0) {
                 console.log(`Something wrong was written for ${name} ${id}}`);
                 continue;

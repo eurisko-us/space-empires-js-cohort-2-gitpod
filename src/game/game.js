@@ -470,9 +470,14 @@ class Game {
         let translations = this.possibleTranslations(ship.coords);
         let translation;
 
+        if (!this.canShipMove(ship)) {
+            this.currentPart++;
+            return;
+        }
+
         if (player.strategy.isManual) {
-            this.displayText = `Player ${ship.playerNum}: Please type move for ${ship.name} ${ship.shipNum}`;
-            this.instructText = 'ur / ul / l / r / dr / dl / stay';
+            this.displayText = `Player ${ship.playerNum}: Please type move for ${ship.name} ${ship.shipNum} at (${ship.coords})`;
+            this.instructText = 'ur / ul / l / r / dr / dl / stay / s';
             translation = player.strategy.chooseTranslation(translations, ship.coords, this.playerInput); 
             if (!translation) {return 'incomplete';}
             this.playerInput = '';
@@ -481,13 +486,6 @@ class Game {
         }
         
         let newCoords = this.translate(oldCoords, translation);
-
-        // Need to make a log for ships that can't move!
-
-        if (!this.canShipMove(ship)) {
-            this.currentPart++;
-            return;
-        }
 
         if (!this.checkInBounds(newCoords)) {
             return;
